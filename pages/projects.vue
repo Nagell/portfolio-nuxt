@@ -1,29 +1,37 @@
 <template>
-  <div class="container mx-auto px-4 py-16">
-    <h1 class="text-4xl font-bold mb-8">My Projects</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
+    <div class="container mx-auto px-4 py-16">
+        <h1 class="text-4xl font-bold mb-8">
+            My Projects
+        </h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ProjectCard
+                v-for="project in projects"
+                :key="project.id"
+                :project="project"
+            />
+        </div>
     </div>
-  </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useSupabaseClient } from '#imports'
+    import { onMounted, ref } from 'vue'
 
-const supabase = useSupabaseClient()
-const projects = ref([])
+    import { useSupabaseClient } from '#imports'
 
-onMounted(async () => {
-    const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .order('created_at', { ascending: false })
+    const supabase = useSupabaseClient()
+    const projects = ref([])
 
-  if (error) {
-    console.error('Error fetching projects:', error)
-  } else {
-    projects.value = data
-  }
-})
+    onMounted(async () => {
+        const { data, error } = await supabase
+            .from('projects')
+            .select('*')
+            .order('created_at', { ascending: false })
+
+        if (error) {
+            console.error('Error fetching projects:', error)
+        }
+        else {
+            projects.value = data
+        }
+    })
 </script>
