@@ -1,0 +1,72 @@
+{
+    "folders": [
+        {
+            "path": "./"
+        },
+    ],
+    "settings": {
+        /* typescript */
+        "typescript.tsdk": "node_modules/typescript/lib",
+        /* eslint */
+        "[html]": {
+            "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        },
+        "[javascript]": {
+            "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        },
+        "[typescript]": {
+            "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        },
+        "[vue]": {
+            "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+        },
+        "editor.codeActionsOnSave": {
+            "source.fixAll.eslint": "explicit"
+        },
+        "eslint.format.enable": true,
+        "eslint.options": {
+            "extensions": [
+                ".html",
+                ".js",
+                ".cjs",
+                ".vue",
+                ".jsx"
+            ]
+        },
+        "eslint.validate": [
+            "html",
+            "vue",
+            "language",
+            "javascriptreact",
+            "typescript",
+            "javascript"
+        ],
+        /* i18n-ally */
+        "i18n-ally.namespace": true,
+        "i18n-ally.pathMatcher": "{locale}.json",
+        "i18n-ally.localesPaths": [
+            "src/locales"
+        ],
+        "i18n-ally.enabledFrameworks": [
+            "vscode",
+            "vue",
+            "general"
+        ],
+        "i18n-ally.keystyle": "flat",
+        /* tailwind */
+        "tailwindCSS.experimental.classRegex": [
+            // for VuePrime styling. Example: class: [strings_in_this_array]
+            [
+                "class:\\s*\\[((?:[^[\\]]|\\[(?:[^[\\]]|\\[[^[\\]]*\\])*])*?)\\]",
+                "(?:['\"`]([^'\"`]*)['\"`])"
+            ],
+            // for computed functions. Example: const textClass = computed(() => ['text-red'])
+            [
+                "computed\\(\\s*\\(\\s*\\)\\s*=>\\s*([\\s\\S]*?)\\)",
+                "(?:['\"`]([^'\"`]*)['\"`])"
+            ],
+            // additional inline option - add /*tw:*/ before any string
+            "\\/\\*\\s?tw:\\s?\\*\\/\\s?['\"`](.*)['\"`]"
+        ],
+    }
+}
