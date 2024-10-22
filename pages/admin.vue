@@ -43,7 +43,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useSupabaseClient, useSupabaseUser } from '@nuxtjs/supabase'
+import { useSupabaseClient, useSupabaseUser } from '#imports'
 
 const supabase = useSupabaseClient()
 const user = useSupabaseUser()

@@ -3,7 +3,7 @@
     <h1 class="text-4xl font-bold mb-8">About Me</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div>
-        <img src="/profile-picture.jpg" alt="Profile Picture" class="rounded-lg shadow-lg mb-4">
+        <img src="https://fastly.picsum.photos/id/55/200/200.jpg?hmac=bZJlDgjT6ZbhsSE405Cdmv7eIH2M2P8FjGnOJwvryB8" alt="Profile Picture" class="rounded-lg shadow-lg mb-4">
       </div>
       <div>
         <p class="text-lg mb-4">

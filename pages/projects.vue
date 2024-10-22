@@ -9,16 +9,16 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useSupabaseClient } from '@nuxtjs/supabase'
+import { useSupabaseClient } from '#imports'
 
 const supabase = useSupabaseClient()
 const projects = ref([])
 
 onMounted(async () => {
-  const { data, error } = await supabase
-    .from('projects')
-    .select('*')
-    .order('created_at', { ascending: false })
+    const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false })
 
   if (error) {
     console.error('Error fetching projects:', error)
