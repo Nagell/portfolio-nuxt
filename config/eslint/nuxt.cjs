@@ -6,9 +6,8 @@ module.exports = {
                 '@nuxt/eslint-config',
             ],
             rules: {
-                'no-undef': [
-                    'warn',
-                ],
+                'no-undef': 'off',
+                'import/no-unresolved': 'off',
             }
         }
     ],
