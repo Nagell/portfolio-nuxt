@@ -1284,7 +1284,7 @@
     vite-plugin-checker "^0.8.0"
     vue-bundle-renderer "^2.1.0"
 
-"@nuxtjs/supabase@^1.1.7":
+"@nuxtjs/supabase@^1.4.0":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-1.4.1.tgz#32d30ce91c7c35ab62319f327234f77242bd47b2"
   integrity sha512-i3sm+3UGiTM+Jvvo5VxwyZ0kNP13kczywy4CFZ6bi7QrBV3NtrFwz6/vddyQ7UAN0nsnVNr7ozfDhDIf5f6J5w==
@@ -1700,7 +1700,7 @@
   dependencies:
     "@supabase/node-fetch" "^2.6.14"
 
-"@supabase/supabase-js@^2.39.7", "@supabase/supabase-js@^2.45.4":
+"@supabase/supabase-js@^2.45.4":
   version "2.45.5"
   resolved "https://registry.yarnpkg.com/@supabase/supabase-js/-/supabase-js-2.45.5.tgz#69772930d221e045548a100910fb6a4f7918c577"
   integrity sha512-xTPsv33Hcj6C38SXa4nKobwEwkNQuwcCKtcuBsDT6bvphl1VUAO3x2QoLOuuglJzk2Oaf3WcVsvRcxXNE8PG/g==
