@@ -1,6 +1,28 @@
-# Nuxt 3 Minimal Starter
+# Dawid Nitka - Portfolio
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+> [!NOTE]
+> This project is still in progress.  
+
+It is a personal portfolio website built with:
+
+- Nuxt,
+- Tailwind CSS,
+- and Supabase.  
+
+Its main goal it to try out a combination of Nuxt and Supabase, ideally in the SSR mode.
+
+## TODO
+
+- [x] Add Supabase integration
+- [x] Add Tailwind CSS integration
+- [ ] Add admin panel
+- [ ] Create a design
+- [ ] Add animations
+- [ ] Add meta tags
+- [ ] Add i18n
+- [ ] Deploy to Vercel
+- [ ] Add tests
+- [ ] Add CI/CD
 
 ## Setup
 

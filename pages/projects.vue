@@ -22,6 +22,6 @@
 
     if (error.value) {
         console.error(error.value)
-        }
+    }
     projects.value = data.value
 </script>
