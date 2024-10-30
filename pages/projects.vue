@@ -13,25 +13,15 @@
     </div>
 </template>
 
-<script setup>
-    import { onMounted, ref } from 'vue'
+<script setup lang="ts">
+    import { ref } from 'vue'
 
-    import { useSupabaseClient } from '#imports'
+    const projects = ref()
 
-    const supabase = useSupabaseClient()
-    const projects = ref([])
+    const { data, error } = await useFetch('/api/projects', { headers: useRequestHeaders([ 'cookie' ]), key: 'projects' })
 
-    onMounted(async () => {
-        const { data, error } = await supabase
-            .from('projects')
-            .select('*')
-            .order('created_at', { ascending: false })
-
-        if (error) {
-            console.error('Error fetching projects:', error)
+    if (error.value) {
+        console.error(error.value)
         }
-        else {
-            projects.value = data
-        }
-    })
+    projects.value = data.value
 </script>
