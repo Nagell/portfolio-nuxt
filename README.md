@@ -19,10 +19,22 @@ pnpm install
 
 ## Development Server
 
-Start the development server on http://localhost:3000
+Start the development server on <http://localhost:3000>
 
 ```bash
 npm run dev
+```
+
+## Supabase types
+
+To generate types for Supabase, run the following command:
+
+```bash
+# Login safely to Supabase
+npx supabase login
+
+# Generate types
+npm run generate:supabase
 ```
 
 ## Production

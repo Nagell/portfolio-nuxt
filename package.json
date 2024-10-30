@@ -6,6 +6,7 @@
         "dev": "nuxt dev --open",
         "build": "nuxt build",
         "generate": "nuxt generate",
+        "generate:supabase": "npx supabase gen types --lang=typescript --project-id gmbtgsckranserhrllex > types/database.types.ts && eslint --fix types/database.types.ts",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
         "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix src",
         "preview": "nuxt preview",
