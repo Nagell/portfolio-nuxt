@@ -21,7 +21,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [ ] Add meta tags
 - [ ] Add i18n
 - [ ] Deploy to Vercel
-- [ ] Add tests
+- [ ] Add Vitest and tests
 - [ ] Add CI/CD
 
 ## Setup
