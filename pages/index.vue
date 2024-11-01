@@ -8,12 +8,17 @@
                 <p class="text-xl mb-8">
                     I'm a passionate developer creating amazing web experiences.
                 </p>
-                <NuxtLink
-                    to="/projects"
-                    class="bg-primary text-surface-950 px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300"
+                <Button
+                    as-child
+                    variant="default"
+                    size="lg"
                 >
-                    View My Projects
-                </NuxtLink>
+                    <NuxtLink
+                        to="/projects"
+                    >
+                        View My Projects
+                    </NuxtLink>
+                </Button>
             </div>
         </section>
 
