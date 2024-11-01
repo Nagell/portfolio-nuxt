@@ -35,7 +35,7 @@
                             v-model="newProject.title"
                             type="text"
                             required
-                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-white"
+                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
                         >
                     </div>
                     <div>
@@ -49,7 +49,7 @@
                             id="description"
                             v-model="newProject.description"
                             required
-                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-white"
+                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
                         />
                     </div>
                     <div>
@@ -64,7 +64,7 @@
                             v-model="newProject.image"
                             type="url"
                             required
-                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-white"
+                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
                         >
                     </div>
                     <div>
@@ -79,7 +79,7 @@
                             v-model="newProject.github_url"
                             type="url"
                             required
-                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-white"
+                            class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
                         >
                     </div>
                 </div>

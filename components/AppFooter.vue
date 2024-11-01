@@ -7,7 +7,7 @@
                     href="https://github.com/yourusername"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-white hover:text-primary"
+                    class="text-foreground hover:text-primary"
                 >
                     GitHub
                 </a>
@@ -15,7 +15,7 @@
                     href="https://linkedin.com/in/yourusername"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-white hover:text-primary"
+                    class="text-foreground hover:text-primary"
                 >
                     LinkedIn
                 </a>

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="hero text-white py-20">
+        <section class="hero text-foreground py-20">
             <div class="container mx-auto px-4">
                 <h1 class="text-5xl font-bold mb-4">
                     Welcome to My Portfolio
@@ -30,7 +30,7 @@
                 </div>
                 <div
                     v-else-if="loading"
-                    class="text-white mb-4"
+                    class="text-foreground mb-4"
                 >
                     Loading projects...
                 </div>

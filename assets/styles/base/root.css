@@ -1,7 +1,5 @@
 @layer base {
     :root {
-        --accent:          var(--accent-400);
-
         --accent-50:       254 252 232;      /* #fefce8 */
         --accent-100:      254 249 195;      /* #fef9c3 */
         --accent-200:      254 240 138;      /* #fef08a */
@@ -14,8 +12,6 @@
         --accent-900:      113 63 18;        /* #713f12 */
         --accent-950:      66 32 6;          /* #422006 */
 
-        --surface:          var(--surface-900);
-
         --surface-50:       248 250 252;      /* #f8fafc */
         --surface-100:      241 245 249;      /* #f1f5f9 */
         --surface-200:      226 232 240;      /* #e2e8f0 */
@@ -27,8 +23,6 @@
         --surface-800:      30 41 59;         /* #1e293b */
         --surface-900:      15 23 42;         /* #0f172a */
         --surface-950:      2 6 23;           /* #020617 */
-
-        --white:            255 255 255;      /* #ffffff */
 
         @apply light;
 

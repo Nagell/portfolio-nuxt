@@ -10,25 +10,25 @@
             <div class="space-x-4">
                 <NuxtLink
                     to="/"
-                    class="text-white hover:text-primary"
+                    class="text-foreground hover:text-primary"
                 >
                     Home
                 </NuxtLink>
                 <NuxtLink
                     to="/projects"
-                    class="text-white hover:text-primary"
+                    class="text-foreground hover:text-primary"
                 >
                     Projects
                 </NuxtLink>
                 <NuxtLink
                     to="/about"
-                    class="text-white hover:text-primary"
+                    class="text-foreground hover:text-primary"
                 >
                     About
                 </NuxtLink>
                 <NuxtLink
                     to="/admin"
-                    class="text-white hover:text-primary"
+                    class="text-foreground hover:text-primary"
                 >
                     Admin
                 </NuxtLink>

@@ -16,9 +16,11 @@
     "dependencies": {
         "@nuxtjs/color-mode": "^3.5.2",
         "@nuxtjs/supabase": "^1.4.0",
+        "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "lucide-vue-next": "^0.454.0",
         "nuxt": "^3.13.0",
+        "radix-vue": "^1.9.8",
         "shadcn-nuxt": "^0.10.4",
         "tailwind-merge": "^2.5.4"
     },
