@@ -15,7 +15,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 
 - [x] Add Supabase integration
 - [x] Add Tailwind CSS integration
-- [ ] Add admin panel
+- [x] Add admin panel with authentication
 - [ ] Create a design
 - [ ] Add animations
 - [ ] Add meta tags
