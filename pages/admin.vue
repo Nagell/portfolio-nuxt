@@ -4,9 +4,20 @@
             Admin Dashboard
         </h1>
         <div v-if="user">
-            <h2 class="text-2xl font-bold mb-4">
+            <div class="flex w-full justify-between gap-4">
+                <h2 class="text-2xl font-bold">
+                    Hello, {{ user.user_metadata.full_name }}
+                </h2>
+                <button
+                    class="bg-primary text-surface-950 px-4 py-2 rounded-md hover:bg-opacity-90 transition duration-300"
+                    @click="logout"
+                >
+                    Logout
+                </button>
+            </div>
+            <h3 class="text-xl font-bold mb-4">
                 Manage Projects
-            </h2>
+            </h3>
             <form
                 class="mb-8"
                 @submit.prevent="addProject"
@@ -94,7 +105,7 @@
                     </h4>
                     <p>{{ project.description }}</p>
                     <button
-                        class="mt-2 bg-red-600 text-surface-950 px-2 py-1 rounded-md hover:bg-opacity-90 transition duration-300"
+                        class="mt-2 bg-red-600 text-primary px-2 py-1 rounded-md hover:bg-opacity-90 transition duration-300"
                         @click="deleteProject(project.id)"
                     >
                         Delete
@@ -104,12 +115,6 @@
         </div>
         <div v-else>
             <p>Please log in to access the admin dashboard.</p>
-            <button
-                class="mt-4 bg-primary text-surface-950 px-4 py-2 rounded-md hover:bg-opacity-90 transition duration-300"
-                @click="login"
-            >
-                Log In
-            </button>
         </div>
     </div>
 </template>
@@ -121,18 +126,23 @@
 
     const supabase = useSupabaseClient()
     const user = useSupabaseUser()
+    const router = useRouter()
 
     const projects = ref([])
-    const newProject = ref({
+    const newProjectModel = ref({
         title: '',
         description: '',
         image: '',
         github_url: ''
     })
+    const newProject = ref(newProjectModel)
 
     onMounted(async () => {
         if (user.value) {
             await fetchProjects()
+        }
+        else {
+            router.push('login')
         }
     })
 
@@ -151,7 +161,7 @@
     }
 
     async function addProject() {
-        const { data, error } = await supabase
+        const { error } = await supabase
             .from('projects')
             .insert([ newProject.value ])
 
@@ -160,7 +170,7 @@
         }
         else {
             await fetchProjects()
-            newProject.value = { title: '', description: '', image: '', github_url: '' }
+            newProject.value = { ...newProjectModel }
         }
     }
 
@@ -178,12 +188,9 @@
         }
     }
 
-    function login() {
-        supabase.auth.signInWithOAuth({
-            provider: 'github',
-            options: {
-                redirectTo: `${window.location.origin}/admin`
-            }
+    function logout() {
+        supabase.auth.signOut({
+            redirectTo: router.push('login')
         })
     }
 </script>
