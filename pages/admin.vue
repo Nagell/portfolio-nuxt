@@ -126,7 +126,6 @@
 
     const supabase = useSupabaseClient()
     const user = useSupabaseUser()
-    const router = useRouter()
 
     const projects = ref([])
     const newProjectModel = ref({
@@ -142,7 +141,7 @@
             await fetchProjects()
         }
         else {
-            router.push('login')
+            navigateTo('login')
         }
     })
 
@@ -190,7 +189,7 @@
 
     function logout() {
         supabase.auth.signOut({
-            redirectTo: router.push('login')
+            redirectTo: navigateTo('login')
         })
     }
 </script>
