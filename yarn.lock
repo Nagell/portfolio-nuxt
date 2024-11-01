@@ -1124,7 +1124,7 @@
     "@typescript-eslint/types" "^8.11.0"
     "@typescript-eslint/utils" "^8.11.0"
 
-"@nuxt/kit@3.13.2", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.13.2":
+"@nuxt/kit@3.13.2", "@nuxt/kit@^3.11.2", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.13.2":
   version "3.13.2"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.13.2.tgz#4c019a87e08c33ec14d1059497ba40568b82bfed"
   integrity sha512-KvRw21zU//wdz25IeE1E5m/aFSzhJloBRAQtv+evcFeZvuroIxpIQuUqhbzuwznaUwpiWbmwlcsp5uOWmi4vwA==
@@ -1231,6 +1231,16 @@
     vite-plugin-checker "^0.8.0"
     vue-bundle-renderer "^2.1.0"
 
+"@nuxtjs/color-mode@^3.5.2":
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/color-mode/-/color-mode-3.5.2.tgz#4f2cbdd44009068b746e3bb0964b761b90969b73"
+  integrity sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==
+  dependencies:
+    "@nuxt/kit" "^3.13.2"
+    pathe "^1.1.2"
+    pkg-types "^1.2.1"
+    semver "^7.6.3"
+
 "@nuxtjs/supabase@^1.4.0":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@nuxtjs/supabase/-/supabase-1.4.1.tgz#32d30ce91c7c35ab62319f327234f77242bd47b2"
@@ -1241,7 +1251,7 @@
     defu "^6.1.4"
     pathe "^1.1.2"
 
-"@nuxtjs/tailwindcss@^6.11.4":
+"@nuxtjs/tailwindcss@^6.12.2":
   version "6.12.2"
   resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-6.12.2.tgz#3fa41b0b9361cd69ec14934f800e66225b3c9e1f"
   integrity sha512-qPJiFH67CkTj/2kBGBzqXihOD1rQXMsbVS4vdQvfBxOBLPfGhU1yw7AATdhPl2BBjO2krjJLuZj39t7dnDYOwg==
@@ -1259,6 +1269,11 @@
     tailwindcss "~3.4.13"
     ufo "^1.5.4"
     unctx "^2.3.1"
+
+"@oxc-parser/wasm@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@oxc-parser/wasm/-/wasm-0.1.0.tgz#c103bfbc5629321104531973819cf9a8713fc1d2"
+  integrity sha512-oA7XhTbg9rRBJhIzxCNhJwYmON/9LFAH4GBQxl7HWmGSS6HTrb2t6Peq82nxY0W7knguH52neh9T7zs27FVvsQ==
 
 "@parcel/watcher-android-arm64@2.4.1":
   version "2.4.1"
@@ -2816,6 +2831,11 @@ cliui@^8.0.1:
     string-width "^4.2.0"
     strip-ansi "^6.0.1"
     wrap-ansi "^7.0.0"
+
+clsx@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.1.tgz#eed397c9fd8bd882bfb18deab7102049a2f32999"
+  integrity sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==
 
 cluster-key-slot@^1.1.0:
   version "1.1.2"
@@ -5382,6 +5402,11 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+lucide-vue-next@^0.454.0:
+  version "0.454.0"
+  resolved "https://registry.yarnpkg.com/lucide-vue-next/-/lucide-vue-next-0.454.0.tgz#cf40f9badbd7121e9655471cab066f39dab76dc6"
+  integrity sha512-UeThgLHm5sZyVTBIE1pcFn2jJsZTKe7AWo94lY2OMQAgYTKgPnrj1QLlSco2lU+kE7iFWl/stNLSsbxfoWCd6A==
+
 magic-string-ast@^0.6.2:
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/magic-string-ast/-/magic-string-ast-0.6.2.tgz#180679c584bdea9de1dbb6c755fd3e4bf1b0b509"
@@ -6236,7 +6261,7 @@ pirates@^4.0.1:
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.6.tgz#3018ae32ecfcff6c29ba2267cbf21166ac1f36b9"
   integrity sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==
 
-pkg-types@^1.0.3, pkg-types@^1.1.1, pkg-types@^1.2.0:
+pkg-types@^1.0.3, pkg-types@^1.1.1, pkg-types@^1.2.0, pkg-types@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-1.2.1.tgz#6ac4e455a5bb4b9a6185c1c79abd544c901db2e5"
   integrity sha512-sQoqa8alT3nHjGuTjuKgOnvjo4cljkufdtLMnO2LBP/wRwuDlo1tkaEdMxCRhyGRPacv/ztlZgDPm2b7FAmEvw==
@@ -7000,6 +7025,14 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
+shadcn-nuxt@^0.10.4:
+  version "0.10.4"
+  resolved "https://registry.yarnpkg.com/shadcn-nuxt/-/shadcn-nuxt-0.10.4.tgz#8a42f152d218d7db587e285746207edc22c64f44"
+  integrity sha512-WhSGzjaSMi1D2xb9Aflpwl8G8Qvlb0g4OuJLPO4YyRhduQDuscU6Pr1HdF7T4700foLLglgFnz7m8E2DDLLHJA==
+  dependencies:
+    "@nuxt/kit" "^3.11.2"
+    "@oxc-parser/wasm" "^0.1.0"
+
 shebang-command@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-2.0.0.tgz#ccd0af4f8835fbdc265b82461aaf0c36663f34ea"
@@ -7375,6 +7408,16 @@ tailwind-config-viewer@^2.0.4:
     open "^7.0.4"
     portfinder "^1.0.26"
     replace-in-file "^6.1.0"
+
+tailwind-merge@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.5.4.tgz#4bf574e81fa061adeceba099ae4df56edcee78d1"
+  integrity sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==
+
+tailwindcss-animate@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz#318b692c4c42676cc9e67b19b78775742388bef4"
+  integrity sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==
 
 tailwindcss@~3.4.13:
   version "3.4.14"

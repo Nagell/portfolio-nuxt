@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-surface py-4">
+    <header class="py-4">
         <nav class="container mx-auto px-4 flex justify-between items-center">
             <NuxtLink
                 to="/"

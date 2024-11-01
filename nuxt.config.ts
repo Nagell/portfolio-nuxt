@@ -4,7 +4,9 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
     modules: [
         '@nuxtjs/tailwindcss',
-        '@nuxtjs/supabase'
+        '@nuxtjs/supabase',
+        'shadcn-nuxt',
+        '@nuxtjs/color-mode',
     ],
     supabase: {
         redirectOptions: {
@@ -21,6 +23,10 @@ export default defineNuxtConfig({
             }
         }
     },
+    shadcn: {
+        prefix: '',
+        componentDir: './components/ui'
+    },
     css: [ '~/assets/styles/main.css' ],
     postcss: {
         plugins: {
@@ -28,4 +34,15 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
+    colorMode: {
+        preference: 'dark',
+        fallback: 'dark',
+        hid: 'nuxt-color-mode-script',
+        globalName: '__NUXT_COLOR_MODE__',
+        componentName: 'ColorScheme',
+        classPrefix: '',
+        classSuffix: '',
+        storage: 'localStorage',
+        storageKey: 'nuxt-color-mode'
+    }
 })

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="hero bg-surface text-white py-20">
+        <section class="hero text-white py-20">
             <div class="container mx-auto px-4">
                 <h1 class="text-5xl font-bold mb-4">
                     Welcome to My Portfolio
@@ -47,7 +47,7 @@
             </div>
         </section>
 
-        <section class="skills bg-surface py-16">
+        <section class="skills py-16">
             <div class="container mx-auto px-4">
                 <h2 class="text-3xl font-bold mb-8">
                     My Skills

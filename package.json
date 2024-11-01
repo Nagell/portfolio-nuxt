@@ -14,8 +14,13 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@nuxtjs/color-mode": "^3.5.2",
         "@nuxtjs/supabase": "^1.4.0",
-        "nuxt": "^3.13.0"
+        "clsx": "^2.1.1",
+        "lucide-vue-next": "^0.454.0",
+        "nuxt": "^3.13.0",
+        "shadcn-nuxt": "^0.10.4",
+        "tailwind-merge": "^2.5.4"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.5.0",
@@ -23,7 +28,7 @@
         "@html-eslint/eslint-plugin": "^0.26.0",
         "@html-eslint/parser": "^0.26.0",
         "@nuxt/eslint-config": "^0.6.0",
-        "@nuxtjs/tailwindcss": "^6.11.4",
+        "@nuxtjs/tailwindcss": "^6.12.2",
         "@stylistic/eslint-plugin": "^1.6.3",
         "@tailwindcss/container-queries": "^0.1.1",
         "@tailwindcss/forms": "^0.5.7",
@@ -37,6 +42,8 @@
         "husky": "^9.1.6",
         "postcss": "^8.4.35",
         "postcss-import": "^16.1.0",
+        "tailwindcss-animate": "^1.0.7",
         "typescript": "~5.4.5"
-    }
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
