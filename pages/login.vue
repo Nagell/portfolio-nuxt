@@ -14,7 +14,6 @@
 
 <script lang="ts" setup>
     const supabase = useSupabaseClient()
-    const router = useRouter()
 
     const signInWithGithub = async () => {
         const { error } = await supabase.auth.signInWithOAuth({
