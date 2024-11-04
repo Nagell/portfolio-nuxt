@@ -18,10 +18,16 @@
 
     const projects = ref()
 
-    const { data, error } = await useFetch('/api/projects', { headers: useRequestHeaders([ 'cookie' ]), key: 'projects' })
+    const { data, error } = await useFetch('/api/projects', {
+        headers: useRequestHeaders([ 'cookie' ]),
+        key: 'projects',
+        method: 'get'
+    })
 
     if (error.value) {
         console.error(error.value)
     }
-    projects.value = data.value
+    else {
+        projects.value = data.value
+    }
 </script>
