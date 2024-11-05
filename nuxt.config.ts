@@ -7,6 +7,7 @@ export default defineNuxtConfig({
         '@nuxtjs/supabase',
         'shadcn-nuxt',
         '@nuxtjs/color-mode',
+        'nuxt-lucide-icons'
     ],
     supabase: {
         redirectOptions: {
