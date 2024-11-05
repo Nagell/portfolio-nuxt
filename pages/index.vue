@@ -70,11 +70,7 @@
 </template>
 
 <script setup>
-    import { onMounted, ref } from 'vue'
-
-    import { useSupabaseClient } from '#imports'
-
-    const supabase = useSupabaseClient()
+    const supabaseClient = useSupabaseClient()
     const featuredProjects = ref([])
     const loading = ref(true)
     const error = ref(null)

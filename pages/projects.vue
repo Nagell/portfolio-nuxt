@@ -14,8 +14,6 @@
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue'
-
     const projects = ref()
 
     const { data, error } = await useFetch('/api/projects', {
