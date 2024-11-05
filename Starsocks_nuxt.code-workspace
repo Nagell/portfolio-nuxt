@@ -76,5 +76,9 @@
                 "(?:'|\"|`)([^']*)(?:'|\"|`)"
             ]
         ],
+        /* spellchecker */
+        "cSpell.words": [
+            "Supabase"
+        ],
     }
 }
