@@ -27,7 +27,7 @@
             <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                    <Input
+                    <Textarea
                         type="text"
                         placeholder="Project description"
                         v-bind="componentField"
