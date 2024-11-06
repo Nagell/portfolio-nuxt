@@ -41,8 +41,8 @@
 </template>
 
 <script lang="ts" setup>
-
     import type { RealtimeChannel } from '@supabase/supabase-js'
+    import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Database, Tables } from '~/types/database.types'
 
     const supabaseClient = useSupabaseClient<Database>()
@@ -50,7 +50,7 @@
     let realtimeChannel: RealtimeChannel
 
     const emits = defineEmits<{
-        openForm: [{ mode: 'add' | 'edit', project?: Tables<'projects'> }]
+        openForm: [{ mode: FormProps['mode'], project?: Tables<'projects'> }]
     }>()
 
     onMounted(async () => {

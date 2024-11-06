@@ -10,13 +10,14 @@
 </template>
 
 <script setup lang="ts">
+    import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Tables } from '~/types/database.types'
 
     const isFormOpen = ref(false)
-    const addEditFormMode = ref<'add' | 'edit'>('add')
+    const addEditFormMode = ref<FormProps['mode']>('add')
     const currentProject = ref<Partial<Tables<'projects'>>>({})
 
-    function openAddEditForm(event: { mode: 'add' | 'edit', project?: Tables<'projects'> }) {
+    function openAddEditForm(event: { mode: FormProps['mode'], project?: Tables<'projects'> }) {
         console.log('openAddEditForm', event)
 
         isFormOpen.value = true

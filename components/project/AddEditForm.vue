@@ -1,6 +1,6 @@
 <template>
     <!-- TODO: Move to dialog or panel -->
-    <CommonForm
+    <CommonAddEditFormWrapper
         v-if="open && localCurrentProject"
         :post="() => addProject(localCurrentProject)"
         :patch="() => patchProject(localCurrentProject)"
@@ -67,27 +67,20 @@
                 >
             </div>
         </div>
-    </CommonForm>
+    </CommonAddEditFormWrapper>
 </template>
 
 <script setup lang="ts">
-    import type { Props as FormProps } from '~/components/common/Form.vue'
+    import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Tables } from '~/types/database.types'
 
-    interface ProjectFormProps {
+    interface Props {
         currentProject: Partial<Tables<'projects'>>
         mode: FormProps['mode']
     }
 
     const open = defineModel<boolean>()
-    const props = defineProps<ProjectFormProps>()
-
-    // const resetProjectModel = {
-    //     title: '',
-    //     description: '',
-    //     image: '',
-    //     github_url: ''
-    // } as Partial<Tables<'projects'>>
+    const props = defineProps<Props>()
 
     // when opening the form, set the local copy of the current project
     const localCurrentProject = ref<Partial<Tables<'projects'>>>({})
