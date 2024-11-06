@@ -13,7 +13,7 @@
                 {{ project.description }}
             </p>
             <a
-                :href="project.github_url"
+                :href="project.url"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-primary hover:underline"

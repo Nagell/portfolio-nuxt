@@ -1,7 +1,7 @@
 <template>
     <div>
         <ProjectAddEditForm
-            v-model="isFormOpen"
+            v-model:is-form-open="isFormOpen"
             :current-project="currentProject"
             :mode="addEditFormMode"
         />
@@ -18,8 +18,6 @@
     const currentProject = ref<Partial<Tables<'projects'>>>({})
 
     function openAddEditForm(event: { mode: FormProps['mode'], project?: Tables<'projects'> }) {
-        console.log('openAddEditForm', event)
-
         isFormOpen.value = true
         addEditFormMode.value = event.mode
         currentProject.value = event.project ?? {}

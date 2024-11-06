@@ -1,7 +1,7 @@
 <template>
     <form
         class="mb-8"
-        @submit.prevent="submit"
+        @submit.prevent="onSubmit"
     >
         <slot />
         <Button
@@ -17,25 +17,21 @@
     import { computed } from 'vue'
 
     export interface Props {
-        post: () => Promise<void> | void
-        patch: () => Promise<void> | void
         mode: 'add' | 'edit'
     }
 
-    const props = withDefaults(defineProps<Props>(), {
-        post: () => {},
-        patch: () => {},
-        mode: 'add'
-    })
+    const props = defineProps<Props>()
+
+    const emits = defineEmits<{
+        submit: []
+    }>()
 
     const buttonLabel = computed(
         () => props.mode === 'add'
             ? 'Add'
             : 'Edit')
 
-    const submit = () => {
-        props.mode === 'add'
-            ? props.post()
-            : props.patch()
+    function onSubmit() {
+        emits('submit')
     }
 </script>

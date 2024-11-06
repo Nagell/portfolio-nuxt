@@ -1,76 +1,81 @@
 <template>
-    <!-- TODO: Move to dialog or panel -->
     <CommonAddEditFormWrapper
-        v-if="open && localCurrentProject"
-        :post="() => addProject(localCurrentProject)"
-        :patch="() => patchProject(localCurrentProject)"
+        v-if="isFormOpen && localCurrentProject"
         :mode="mode"
+        @submit="onSubmit"
     >
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-                <label
-                    for="title"
-                    class="block text-sm font-medium text-surface-300"
-                >
-                    Title
-                </label>
-                <input
-                    id="title"
-                    v-model="localCurrentProject.title"
-                    type="text"
-                    required
-                    class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
-                >
-            </div>
-            <div>
-                <label
-                    for="description"
-                    class="block text-sm font-medium text-surface-300"
-                >
-                    Description
-                </label>
-                <textarea
-                    id="description"
-                    v-model="localCurrentProject.description"
-                    required
-                    class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
-                />
-            </div>
-            <div>
-                <label
-                    for="image"
-                    class="block text-sm font-medium text-surface-300"
-                >
-                    Image URL
-                </label>
-                <input
-                    id="image"
-                    v-model="localCurrentProject.image"
-                    type="url"
-                    required
-                    class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
-                >
-            </div>
-            <div>
-                <label
-                    for="github_url"
-                    class="block text-sm font-medium text-surface-300"
-                >
-                    GitHub URL
-                </label>
-                <input
-                    id="github_url"
-                    v-model="localCurrentProject.github_url"
-                    type="url"
-                    required
-                    class="mt-1 block w-full rounded-md bg-surface-700 border-surface-600 text-foreground"
-                >
-            </div>
-        </div>
+        <FormField
+            v-slot="{ componentField }"
+            name="title"
+        >
+            <FormItem>
+                <FormLabel>Title</FormLabel>
+                <FormControl>
+                    <Input
+                        type="text"
+                        placeholder="Project title"
+                        v-bind="componentField"
+                    />
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
+        <FormField
+            v-slot="{ componentField }"
+            name="description"
+        >
+            <FormItem>
+                <FormLabel>Description</FormLabel>
+                <FormControl>
+                    <Input
+                        type="text"
+                        placeholder="Project description"
+                        v-bind="componentField"
+                    />
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
+        <FormField
+            v-slot="{ componentField }"
+            name="image"
+        >
+            <FormItem>
+                <FormLabel>Image URL</FormLabel>
+                <FormControl>
+                    <Input
+                        type="url"
+                        placeholder="Image URL"
+                        v-bind="componentField"
+                    />
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
+        <FormField
+            v-slot="{ componentField }"
+            name="url"
+        >
+            <FormItem>
+                <FormLabel>GitHub URL</FormLabel>
+                <FormControl>
+                    <Input
+                        type="url"
+                        placeholder="GitHub URL"
+                        v-bind="componentField"
+                    />
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
     </CommonAddEditFormWrapper>
 </template>
 
 <script setup lang="ts">
+    import { toTypedSchema } from '@vee-validate/zod'
+    import { useForm } from 'vee-validate'
+    import * as z from 'zod'
+
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Tables } from '~/types/database.types'
 
@@ -79,17 +84,35 @@
         mode: FormProps['mode']
     }
 
-    const open = defineModel<boolean>()
     const props = defineProps<Props>()
+    const isFormOpen = defineModel<boolean>('isFormOpen')
 
-    // when opening the form, set the local copy of the current project
     const localCurrentProject = ref<Partial<Tables<'projects'>>>({})
 
+    // when opening the form, set the local copy of the current project
     watch(props, (value) => {
-        if (value) {
-            localCurrentProject.value = { ...props.currentProject }
-        }
+        resetForm({ values: { ...value.currentProject } }, { force: true })
     }, { deep: true })
+
+    const formSchema = toTypedSchema(z.object({
+        id: z.number().optional(),
+        title: z.string().min(2).max(200),
+        description: z.string().min(2).max(500),
+        image: z.string().url(),
+        url: z.string().url().nullish(),
+    }))
+
+    const { handleSubmit, resetForm } = useForm({
+        validationSchema: formSchema,
+    })
+    const onSubmit = handleSubmit((data) => {
+        if (props.mode === 'add') {
+            addProject(data)
+        }
+        else {
+            patchProject(data)
+        }
+    })
 
     /**
      * Add a new project to the database
@@ -100,7 +123,7 @@
             query: data,
             method: 'post'
         })
-        open.value = false
+        isFormOpen.value = false
     }
 
     /**
@@ -112,7 +135,6 @@
             query: data,
             method: 'patch'
         })
-        open.value = false
+        isFormOpen.value = false
     }
-
 </script>

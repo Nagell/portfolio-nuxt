@@ -12,27 +12,27 @@ export type Database = {
             projects: {
                 Row: {
                     created_at: string
-                    description: string | null
-                    github_url: string | null
+                    description: string
                     id: number
-                    image: string | null
-                    title: string | null
+                    image: string
+                    title: string
+                    url: string | null
                 }
                 Insert: {
                     created_at?: string
-                    description?: string | null
-                    github_url?: string | null
+                    description: string
                     id?: number
-                    image?: string | null
-                    title?: string | null
+                    image: string
+                    title: string
+                    url?: string | null
                 }
                 Update: {
                     created_at?: string
-                    description?: string | null
-                    github_url?: string | null
+                    description?: string
                     id?: number
-                    image?: string | null
-                    title?: string | null
+                    image?: string
+                    title?: string
+                    url?: string | null
                 }
                 Relationships: []
             }
