@@ -6,7 +6,7 @@
         "dev": "nuxt dev --open",
         "build": "nuxt build",
         "generate": "nuxt generate",
-        "generate:supabase": "npx supabase gen types --lang=typescript --project-id gmbtgsckranserhrllex > types/database.types.ts && eslint --fix types/database.types.ts",
+        "generate:supabase": "supabase gen types --lang=typescript --project-id gmbtgsckranserhrllex > types/database.types.ts && eslint --fix types/database.types.ts",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
         "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix src",
         "preview": "nuxt preview",
@@ -49,6 +49,7 @@
         "husky": "^9.1.6",
         "postcss": "^8.4.35",
         "postcss-import": "^16.1.0",
+        "supabase": "^1.215.0",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "~5.4.5"
     },
