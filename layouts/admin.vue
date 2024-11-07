@@ -119,12 +119,12 @@
         projects: [
             {
                 title: 'Projects',
-                url: '#',
+                url: '/projects',
                 icon: Library,
             },
             {
-                title: 'Images',
-                url: '#',
+                title: 'Covers',
+                url: '/admin/covers',
                 icon: Image,
             },
         ],

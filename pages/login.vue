@@ -18,7 +18,7 @@
     const signInWithGithub = async () => {
         const { error } = await supabase.auth.signInWithOAuth({
             provider: 'github',
-            options: { redirectTo: `${window.location.origin}/admin` }
+            options: { redirectTo: `${window.location.origin}/admin/projects` }
         })
 
         if (error) console.log('signInWithGithub error', error)

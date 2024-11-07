@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     supabase: {
         redirectOptions: {
             login: '/login',
-            callback: '/admin',
+            callback: '/admin/projects',
             include: [ '/admin(/*)?' ],
         },
     },

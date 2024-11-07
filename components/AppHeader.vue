@@ -27,7 +27,7 @@
                     About
                 </NuxtLink>
                 <NuxtLink
-                    to="/admin"
+                    to="/admin/projects"
                     class="text-foreground hover:text-primary"
                 >
                     Admin
