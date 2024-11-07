@@ -1,4 +1,4 @@
-import * as images from './constants/images'
+import * as images from './constants/projectCovers'
 
 export default defineNuxtPlugin(() => {
     return {

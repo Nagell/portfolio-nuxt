@@ -1,19 +1,18 @@
 import { createError } from 'h3'
 
+import { PROJECT_COVERS_BUCKET } from '~/plugins/constants/projectCovers'
+
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { UploadFileQuery } from '~/types/files.types'
+import type { DeleteFileQuery } from '~/types/files.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
 
-    const query = getQuery(event) as UploadFileQuery
+    const query = getQuery(event) as DeleteFileQuery
     const { data, error } = await superbaseClient.storage
-        .from('project-covers')
-        .upload(query.name, query.file, {
-            cacheControl: '3600',
-            upsert: true
-        })
+        .from(PROJECT_COVERS_BUCKET)
+        .remove([ query.path ])
 
     if (error) throw createError({ statusMessage: error.message })
 

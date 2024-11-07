@@ -1,5 +1,7 @@
 import { createError } from 'h3'
 
+import { PROJECT_COVERS_BUCKET } from '~/plugins/constants/projectCovers'
+
 import { serverSupabaseClient } from '#supabase/server'
 
 import type { GetFileQuery } from '~/types/files.types'
@@ -9,7 +11,7 @@ export default defineEventHandler(async (event) => {
 
     const query = getQuery(event) as GetFileQuery
     const { data, error } = await superbaseClient.storage
-        .from('project-covers')
+        .from(PROJECT_COVERS_BUCKET)
         .download(query.path)
 
     if (error) throw createError({ statusMessage: error.message })
