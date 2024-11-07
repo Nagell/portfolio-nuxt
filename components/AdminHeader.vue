@@ -1,44 +1,19 @@
 <template>
-    <header class="py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <NuxtLink
-                to="/"
-                class="text-2xl font-bold text-primary"
-            >
-                My Portfolio - Admin
-            </NuxtLink>
-            <div class="space-x-4">
-                <span v-if="supabaseUser">
-                    Hello, {{ supabaseUser.user_metadata.full_name }}
-                </span>
+    <header class="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <nav class="flex items-center w-full gap-2 px-4 justify-between">
+            <div class="flex gap-2 items-center">
+                <SidebarTrigger class="-ml-1" />
+                <Separator
+                    orientation="vertical"
+                    class="mr-2 h-4"
+                />
                 <NuxtLink
                     to="/"
-                    class="text-foreground hover:text-primary"
+                    class="text-base font-bold text-primary"
                 >
                     Home
                 </NuxtLink>
-                <Button
-                    size="sm"
-                    @click="logout"
-                >
-                    Logout
-                </Button>
             </div>
         </nav>
     </header>
 </template>
-
-<script setup lang="ts">
-    import type { Database } from '~/types/database.types'
-
-    const supabaseClient = useSupabaseClient<Database>()
-    const supabaseUser = useSupabaseUser()
-
-    /**
-     * Log out the current user
-     */
-    async function logout() {
-        supabaseClient.auth.signOut({})
-        await navigateTo('/login')
-    }
-</script>
