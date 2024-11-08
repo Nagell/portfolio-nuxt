@@ -45,7 +45,8 @@
     const formSchema = toTypedSchema(z.object({
         files: z.any()
             .refine(files => files?.length == 1, 'Image is required.')
-            .refine(files => files?.[0]?.size <= $const.covers.MAX_FILE_SIZE, `Max file size is 5MB.`)
+            .refine(files => files?.[0]?.size <= $const.covers.MAX_FILE_SIZE,
+                    `Max file size is ${$const.covers.MAX_FILE_SIZE / 1024 / 1024} MB.`)
             .refine(
                 files => $const.covers.ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
                 '.jpg, .jpeg, .png and .webp files are accepted.'
