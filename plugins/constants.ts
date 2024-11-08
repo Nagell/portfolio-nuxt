@@ -1,10 +1,10 @@
-import * as images from './constants/projectCovers'
+import * as covers from './constants/projectCovers'
 
 export default defineNuxtPlugin(() => {
     return {
         provide: {
-            constants: {
-                images
+            const: {
+                covers
             }
         }
     }
