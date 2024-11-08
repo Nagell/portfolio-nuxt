@@ -15,7 +15,16 @@
                 :key="projectCover.metadata?.id"
                 class="mb-4 p-4 bg-surface-800 rounded-lg flex justify-between"
             >
-                <div>
+                <div class="flex gap-2">
+                    <Avatar class="h-8 w-8 rounded-lg">
+                        <AvatarImage
+                            :src="getPublicURL(projectCover.name)"
+                            :alt="projectCover.name"
+                        />
+                        <AvatarFallback class="rounded-lg">
+                            <Image class="w-4" />
+                        </AvatarFallback>
+                    </Avatar>
                     <h4 class="text-lg font-bold">
                         {{ projectCover.name }}
                     </h4>
@@ -40,6 +49,10 @@
 </template>
 
 <script lang="ts" setup>
+    import {
+        Image
+    } from 'lucide-vue-next'
+
     import type { FileObject } from '@supabase/storage-js'
     import type { RealtimeChannel } from '@supabase/supabase-js'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
@@ -86,5 +99,11 @@
             query: { name },
             method: 'delete'
         })
+    }
+    /**
+     * Get the URL of an image
+     */
+    function getPublicURL(name: string) {
+        return useGetPublicURL(name)
     }
 </script>

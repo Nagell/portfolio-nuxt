@@ -17,14 +17,16 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [x] Add Tailwind CSS integration
 - [x] Add admin panel with authentication
 - [x] Add server-side CRUD operations for projects
-- [ ] Add server-side CRUD operations for images
-- [ ] Add i18n
+- [x] Add server-side CRUD operations for images
+- [ ] Add image optimization
 - [ ] Create a design
 - [ ] Add animations
 - [ ] Add meta tags
 - [ ] Deploy to Vercel
 - [ ] Add Vitest and tests
 - [ ] Add CI/CD
+- [ ] Add i18n
+- [ ] Add color switcher
 
 ## Setup
 
