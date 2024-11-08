@@ -1,6 +1,6 @@
 <template>
     <CommonAddEditFormWrapper
-        v-if="isFormOpen && localCurrentProject"
+        v-if="isFormOpen && currentProject"
         :mode="mode"
         @submit="onSubmit"
     >
@@ -87,13 +87,6 @@
     const props = defineProps<Props>()
     const isFormOpen = defineModel<boolean>('isFormOpen')
 
-    const localCurrentProject = ref<Partial<Tables<'projects'>>>({})
-
-    // when opening the form, set the local copy of the current project
-    watch(props, (value) => {
-        resetForm({ values: { ...value.currentProject } }, { force: true })
-    }, { deep: true })
-
     const formSchema = toTypedSchema(z.object({
         id: z.number().optional(),
         title: z.string().min(2).max(200),
@@ -105,6 +98,15 @@
     const { handleSubmit, resetForm } = useForm({
         validationSchema: formSchema,
     })
+
+    // when opening the form, set the local copy of the current project
+    watch(props, (value) => {
+        resetForm({ values: { ...value.currentProject } }, { force: true })
+    }, { deep: true })
+
+    /**
+     * Submit the form
+     */
     const onSubmit = handleSubmit((data) => {
         if (props.mode === 'add') {
             addProject(data)
@@ -113,7 +115,6 @@
             patchProject(data)
         }
     })
-
     /**
      * Add a new project to the database
      */

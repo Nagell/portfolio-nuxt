@@ -8,5 +8,5 @@ export interface GetFileQuery {
 }
 
 export interface DeleteFileQuery {
-    path: string
+    name: string
 }

@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event) as DeleteFileQuery
     const { data, error } = await superbaseClient.storage
         .from(PROJECT_COVERS_BUCKET)
-        .remove([ query.path ])
+        .remove([ query.name ])
 
     if (error) throw createError({ statusMessage: error.message })
 
