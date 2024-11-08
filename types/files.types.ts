@@ -4,7 +4,7 @@ export interface UploadFileQuery {
 }
 
 export interface GetFileQuery {
-    path: string
+    name: string
 }
 
 export interface DeleteFileQuery {
