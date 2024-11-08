@@ -6,14 +6,13 @@
     >
         <FormField
             v-slot="{ componentField }"
-            name="file"
+            name="files"
         >
             <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
                     <Input
                         type="file"
-                        placeholder="Project title"
                         @change="componentField.onChange($event.target.files)"
                         @blur="componentField.onBlur($event.target.files)"
                     />
@@ -42,9 +41,9 @@
     const props = defineProps<Props>()
     const isFormOpen = defineModel<boolean>('isFormOpen')
 
-    type FormSchema = { file?: FileList }
+    type FormSchema = { files?: FileList }
     const formSchema = toTypedSchema(z.object({
-        file: z.any()
+        files: z.any()
             .refine(files => files?.length == 1, 'Image is required.')
             .refine(files => files?.[0]?.size <= $const.covers.MAX_FILE_SIZE, `Max file size is 5MB.`)
             .refine(
@@ -57,29 +56,37 @@
         validationSchema: formSchema,
     })
 
-    // when opening the form, set the local copy of the current project
+    // when opening the form, set the local copy of the current project cover
     watch(props, (value) => {
-        resetForm({ values: { file: value.currentProjectCover ?? undefined } }, { force: true })
+        resetForm({ values: { files: value.currentProjectCover ?? undefined } }, { force: true })
     }, { deep: true })
 
     /**
      * Submit the form
      */
     const onSubmit = handleSubmit((data: FormSchema) => {
+        console.log(data)
+
         if (props.mode === 'add') {
-            addProject(data)
+            addProjectCover(data)
         }
         else {
-            patchProject(data)
+            patchProjectCover(data)
         }
     })
     /**
      * Add a new project to the database
      */
-    async function addProject(data: FormSchema) {
+    async function addProjectCover(data: FormSchema) {
+        const formData = new FormData()
+        const files = data.files as FileList
+        const file = files[0]
+
+        formData.append('file', file)
+
         await $fetch('/api/project-covers', {
             headers: useRequestHeaders([ 'cookie' ]),
-            query: { file: data.file?.[0], name: data.file?.[0].name },
+            body: formData,
             method: 'post'
         })
         isFormOpen.value = false
@@ -88,10 +95,16 @@
     /**
      * Patch a project in the database
      */
-    async function patchProject(data: FormSchema) {
+    async function patchProjectCover(data: FormSchema) {
+        const formData = new FormData()
+        const files = data.files as FileList
+        const file = files[0]
+
+        formData.append('file', file)
+
         await $fetch('/api/project-covers', {
             headers: useRequestHeaders([ 'cookie' ]),
-            query: data.file,
+            body: formData,
             method: 'patch'
         })
         isFormOpen.value = false
