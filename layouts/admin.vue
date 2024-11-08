@@ -119,7 +119,7 @@
         projects: [
             {
                 title: 'Projects',
-                url: '/projects',
+                url: '/admin/projects',
                 icon: Library,
             },
             {
