@@ -15,16 +15,10 @@
                     Home
                 </NuxtLink>
                 <NuxtLink
-                    to="/projects"
+                    to="/tests"
                     class="text-foreground hover:text-primary"
                 >
-                    Projects
-                </NuxtLink>
-                <NuxtLink
-                    to="/about"
-                    class="text-foreground hover:text-primary"
-                >
-                    About
+                    Tests
                 </NuxtLink>
                 <NuxtLink
                     to="/admin/projects"

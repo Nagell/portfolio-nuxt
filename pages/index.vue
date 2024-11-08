@@ -28,23 +28,10 @@
                     Featured Projects
                 </h2>
                 <div
-                    v-if="error"
-                    class="text-red-500 mb-4"
-                >
-                    {{ error }}
-                </div>
-                <div
-                    v-else-if="loading"
-                    class="text-foreground mb-4"
-                >
-                    Loading projects...
-                </div>
-                <div
-                    v-else
                     class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                 >
                     <ProjectCard
-                        v-for="project in featuredProjects"
+                        v-for="project in projects"
                         :key="project.id"
                         :project="project"
                     />
@@ -69,34 +56,14 @@
     </div>
 </template>
 
-<script setup>
-    const supabaseClient = useSupabaseClient()
-    const featuredProjects = ref([])
-    const loading = ref(true)
-    const error = ref(null)
-
+<script setup lang="ts">
     const skills = ref([
         'JavaScript', 'Vue.js', 'Nuxt.js', 'React', 'Node.js', 'TypeScript', 'TailwindCSS', 'Git'
     ])
 
-    onMounted(async () => {
-        try {
-            const { data, error: supabaseError } = await supabase
-                .from('projects')
-                .select('*')
-                .limit(3)
-                .order('created_at', { ascending: false })
-
-            if (supabaseError) throw supabaseError
-
-            featuredProjects.value = data
-        }
-        catch (e) {
-            console.error('Error fetching projects:', e)
-            error.value = 'Failed to load projects. Please try again later.'
-        }
-        finally {
-            loading.value = false
-        }
+    const { data: projects } = await useFetch('/api/projects', {
+        headers: useRequestHeaders([ 'cookie' ]),
+        key: 'projects',
+        method: 'get'
     })
 </script>
