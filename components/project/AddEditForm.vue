@@ -1,74 +1,82 @@
 <template>
-    <CommonAddEditFormWrapper
-        v-if="isFormOpen && currentProject"
-        :mode="mode"
-        @submit="onSubmit"
-    >
-        <FormField
-            v-slot="{ componentField }"
-            name="title"
+    <SheetContent>
+        <SheetHeader>
+            <SheetTitle>{{ mode === 'edit' ? 'Edit' : 'Add' }} project</SheetTitle>
+            <SheetDescription>
+                Make changes to your projects here. Click save when you're done.
+            </SheetDescription>
+        </SheetHeader>
+        <CommonAddEditFormWrapper
+            v-if="isFormOpen && currentProject"
+            :mode="mode"
+            @submit="onSubmit"
         >
-            <FormItem>
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                    <Input
-                        type="text"
-                        placeholder="Project title"
-                        v-bind="componentField"
-                    />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
-        <FormField
-            v-slot="{ componentField }"
-            name="description"
-        >
-            <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                    <Textarea
-                        type="text"
-                        placeholder="Project description"
-                        v-bind="componentField"
-                    />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
-        <FormField
-            v-slot="{ componentField }"
-            name="image"
-        >
-            <FormItem>
-                <FormLabel>Image URL</FormLabel>
-                <FormControl>
-                    <Input
-                        type="url"
-                        placeholder="Image URL"
-                        v-bind="componentField"
-                    />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
-        <FormField
-            v-slot="{ componentField }"
-            name="url"
-        >
-            <FormItem>
-                <FormLabel>GitHub URL</FormLabel>
-                <FormControl>
-                    <Input
-                        type="url"
-                        placeholder="GitHub URL"
-                        v-bind="componentField"
-                    />
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
-    </CommonAddEditFormWrapper>
+            <FormField
+                v-slot="{ componentField }"
+                name="title"
+            >
+                <FormItem>
+                    <FormLabel>Title</FormLabel>
+                    <FormControl>
+                        <Input
+                            type="text"
+                            placeholder="Project title"
+                            v-bind="componentField"
+                        />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+            <FormField
+                v-slot="{ componentField }"
+                name="description"
+            >
+                <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                        <Textarea
+                            type="text"
+                            placeholder="Project description"
+                            v-bind="componentField"
+                        />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+            <FormField
+                v-slot="{ componentField }"
+                name="image"
+            >
+                <FormItem>
+                    <FormLabel>Image URL</FormLabel>
+                    <FormControl>
+                        <Input
+                            type="url"
+                            placeholder="Image URL"
+                            v-bind="componentField"
+                        />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+            <FormField
+                v-slot="{ componentField }"
+                name="url"
+            >
+                <FormItem>
+                    <FormLabel>GitHub URL</FormLabel>
+                    <FormControl>
+                        <Input
+                            type="url"
+                            placeholder="GitHub URL"
+                            v-bind="componentField"
+                        />
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+        </CommonAddEditFormWrapper>
+    </SheetContent>
 </template>
 
 <script setup lang="ts">

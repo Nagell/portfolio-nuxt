@@ -1,24 +1,20 @@
 <template>
-    <div class="flex gap-2">
-        <div class="overflow-hidden rounded-md">
-            <img
-                :src="useGetPublicURL(image.name)"
-                :class="'h-auto w-60 object-cover aspect-square'"
-            >
-        </div>
+    <div class="flex flex-col gap-2">
+        <img
+            :src="useGetPublicURL(image.name)"
+            class="w-full object-cover aspect-square rounded-md"
+        >
         <div>
-            <p class="font-medium leading-none">
-                Current file
+            <p class="font-medium truncate">
+                {{ image.name }}
             </p>
-            <div class="grid grid-rows-4 gap-2 mt-2 grid-cols-[.5fr_1fr]">
-                <span class="text-xs text-muted-foreground grid grid-cols-subgrid grid-rows-4 gap-2 row-span-4">
-                    <p>Name</p>
+            <div class="grid grid-rows-3 gap-2 mt-2 grid-cols-[.5fr_1fr]">
+                <span class="text-xs text-muted-foreground grid grid-cols-subgrid grid-rows-3 gap-2 row-span-3">
                     <p>Size</p>
                     <p>Created at</p>
                     <p>Updated at</p>
                 </span>
-                <span class="text-sm font-medium grid grid-cols-subgrid grid-rows-4 gap-2 row-span-4">
-                    <p>{{ image.name }}</p>
+                <span class="text-sm font-medium grid grid-cols-subgrid grid-rows-3 gap-2 row-span-3">
                     <p>{{ fileSize }}</p>
                     <p>{{ convertDate(image.created_at) }}</p>
                     <p>{{ convertDate(image.updated_at) }}</p>

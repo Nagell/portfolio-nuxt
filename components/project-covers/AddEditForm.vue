@@ -1,34 +1,43 @@
 <template>
-    <CommonAddEditFormWrapper
-        v-if="isFormOpen"
-        :mode="mode"
-        @submit="onSubmit"
-    >
-        <template v-if="mode === 'edit' && currentProjectCover">
-            <CommonImageWithProps
-                :image="currentProjectCover"
-            />
-        </template>
-        <FormField
-            v-slot="{ componentField }"
-            name="files"
+    <SheetContent>
+        <SheetHeader>
+            <SheetTitle>{{ mode === 'edit' ? 'Edit' : 'Add' }} project cover</SheetTitle>
+            <SheetDescription>
+                Make changes to your project covers here. Click save when you're done.
+            </SheetDescription>
+        </SheetHeader>
+        <CommonAddEditFormWrapper
+            v-if="isFormOpen"
+            :mode="mode"
+            @submit="onSubmit"
         >
-            <FormItem class="mt-4">
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                    <Input
-                        type="file"
-                        @change="componentField.onChange($event.target.files)"
-                        @blur="componentField.onBlur($event.target.files)"
-                    />
-                    <FormDescription>
-                        Choosing a file with different name will create a new one
-                    </FormDescription>
-                </FormControl>
-                <FormMessage />
-            </FormItem>
-        </FormField>
-    </CommonAddEditFormWrapper>
+            <template v-if="mode === 'edit' && currentProjectCover">
+                <CommonImageWithProps
+                    class="mt-4"
+                    :image="currentProjectCover"
+                />
+            </template>
+            <FormField
+                v-slot="{ componentField }"
+                name="files"
+            >
+                <FormItem class="mt-4">
+                    <FormLabel>Image</FormLabel>
+                    <FormControl>
+                        <Input
+                            type="file"
+                            @change="componentField.onChange($event.target.files)"
+                            @blur="componentField.onBlur($event.target.files)"
+                        />
+                        <FormDescription>
+                            Choosing a file with different name will create a new one
+                        </FormDescription>
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            </FormField>
+        </CommonAddEditFormWrapper>
+    </SheetContent>
 </template>
 
 <script setup lang="ts">

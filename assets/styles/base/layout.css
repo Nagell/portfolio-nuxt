@@ -5,4 +5,12 @@
     body {
         @apply bg-background text-foreground;
     }
+    
+    :root {
+      color-scheme: light;
+    }
+    
+    html.dark {
+      color-scheme: dark;
+    }
 }

@@ -2,13 +2,14 @@
     <div>
         <h3 class="text-xl font-bold mb-4">
             Projects List
-        </h3>
-        <Button
-            class="mb-4"
-            @click="emits('openForm', { mode: 'add' })"
-        >
-            Add new
-        </Button>
+        </h3><SheetTrigger as-child>
+            <Button
+                class="mb-4"
+                @click="emits('openForm', { mode: 'add' })"
+            >
+                Add new
+            </Button>
+        </SheetTrigger>
         <ul>
             <li
                 v-for="project in projectsData"
@@ -27,13 +28,14 @@
                         @click="deleteProject(project.id)"
                     >
                         Delete
-                    </Button>
-                    <Button
-                        variant="link"
-                        @click="emits('openForm', { mode: 'edit', project })"
-                    >
-                        Edit
-                    </Button>
+                    </Button><SheetTrigger as-child>
+                        <Button
+                            variant="link"
+                            @click="emits('openForm', { mode: 'edit', project })"
+                        >
+                            Edit
+                        </Button>
+                    </SheetTrigger>
                 </div>
             </li>
         </ul>

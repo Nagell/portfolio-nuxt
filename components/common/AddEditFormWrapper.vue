@@ -4,12 +4,16 @@
         @submit.prevent="onSubmit"
     >
         <slot />
-        <Button
-            type="submit"
-            class="mt-4"
-        >
-            {{ buttonLabel }}
-        </Button>
+        <SheetFooter>
+            <SheetClose as-child>
+                <Button
+                    type="submit"
+                    class="mt-4"
+                >
+                    {{ buttonLabel }}
+                </Button>
+            </SheetClose>
+        </SheetFooter>
     </form>
 </template>
 

@@ -1,11 +1,13 @@
 <template>
     <div>
-        <ProjectAddEditForm
-            v-model:is-form-open="isFormOpen"
-            :current-project="currentProject"
-            :mode="addEditFormMode"
-        />
-        <ProjectList @open-form="openAddEditForm" />
+        <Sheet>
+            <ProjectAddEditForm
+                v-model:is-form-open="isFormOpen"
+                :current-project="currentProject"
+                :mode="addEditFormMode"
+            />
+            <ProjectList @open-form="openAddEditForm" />
+        </Sheet>
     </div>
 </template>
 

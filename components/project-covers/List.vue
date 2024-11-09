@@ -3,12 +3,14 @@
         <h3 class="text-xl font-bold mb-4">
             ProjectCovers List
         </h3>
-        <Button
-            class="mb-4"
-            @click="emits('openForm', { mode: 'add' })"
-        >
-            Add new
-        </Button>
+        <SheetTrigger as-child>
+            <Button
+                class="mb-4"
+                @click="emits('openForm', { mode: 'add' })"
+            >
+                Add new
+            </Button>
+        </SheetTrigger>
         <ul>
             <li
                 v-for="projectCover in projectCoversData"
@@ -36,12 +38,14 @@
                     >
                         Delete
                     </Button>
-                    <Button
-                        variant="link"
-                        @click="emits('openForm', { mode: 'edit', projectCover })"
-                    >
-                        Edit
-                    </Button>
+                    <SheetTrigger as-child>
+                        <Button
+                            variant="link"
+                            @click="emits('openForm', { mode: 'edit', projectCover })"
+                        >
+                            Edit
+                        </Button>
+                    </SheetTrigger>
                 </div>
             </li>
         </ul>
