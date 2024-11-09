@@ -1,10 +1,16 @@
 <template>
-    <div class="bg-surface-800 rounded-lg overflow-hidden shadow-lg">
-        <img
-            :src="project.image"
-            :alt="project.title"
-            class="w-full h-48 object-cover"
-        >
+    <div class="bg-surface-800 rounded-lg overflow-hidden group">
+        <div class="overflow-hidden">
+            <NuxtImg
+                :src="project.image"
+                :alt="project.title"
+                class="w-full h-48 object-cover group-hover:scale-105 transition-transform"
+                placeholder
+                format="webp"
+                loading="lazy"
+                sizes="xs:500px md:700px"
+            />
+        </div>
         <div class="p-4 bg-surface-800">
             <h3 class="text-xl font-bold mb-2">
                 {{ project.title }}

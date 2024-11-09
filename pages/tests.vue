@@ -36,6 +36,22 @@
                 </div>
             </div>
         </section>
+        <div class="bg-surface-800 rounded-lg overflow-hidden group">
+            <div class="overflow-hidden">
+                <NuxtImg
+                    src="/12-2500x1667.jpg"
+                    alt="just a test"
+                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform"
+                    placeholder
+                    format="webp"
+                    loading="lazy"
+                    sizes="xs:500px md:1200px"
+                />
+            </div>
+            <div class="p-4 bg-surface-800">
+                View on GitHub
+            </div>
+        </div>
     </div>
 </template>
 

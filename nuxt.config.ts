@@ -2,12 +2,20 @@
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: { enabled: true },
+
+    routeRules: {
+        // Home generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
+        '/': { swr: 3600 },
+        // Would be nice but: https://github.com/nuxt/image/issues/1400
+        // '/_ipx/**': { swr: 3600 },
+    },
     modules: [
         '@nuxtjs/tailwindcss',
         '@nuxtjs/supabase',
         'shadcn-nuxt',
         '@nuxtjs/color-mode',
-        'nuxt-lucide-icons'
+        'nuxt-lucide-icons',
+        '@nuxt/image'
     ],
     supabase: {
         redirectOptions: {
@@ -45,5 +53,14 @@ export default defineNuxtConfig({
         classSuffix: '',
         storage: 'localStorage',
         storageKey: 'nuxt-color-mode'
-    }
+    },
+    image: {
+        format: [ 'webp', 'jpeg' ],
+        domains: [
+            'localhost',
+            'gmbtgsckranserhrllex.supabase.co',
+            'portfolio-nuxt-orcin.vercel.app',
+            'dawidnitka.com'
+        ],
+    },
 })
