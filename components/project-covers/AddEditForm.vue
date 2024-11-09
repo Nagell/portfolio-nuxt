@@ -83,8 +83,6 @@
      * Submit the form
      */
     const onSubmit = handleSubmit((data: FormSchema) => {
-        console.log(data)
-
         if (props.mode === 'add') {
             addProjectCover(data)
         }

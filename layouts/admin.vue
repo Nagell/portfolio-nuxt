@@ -139,8 +139,6 @@
      */
 
     async function logout() {
-        console.log('Logging out')
-
         supabaseClient.auth.signOut({})
         await navigateTo('/login')
     }
