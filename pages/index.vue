@@ -14,9 +14,9 @@
                     size="lg"
                 >
                     <NuxtLink
-                        to="/projects"
+                        to="/"
                     >
-                        View My Projects
+                        Some button
                     </NuxtLink>
                 </Button>
             </div>
