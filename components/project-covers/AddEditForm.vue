@@ -4,11 +4,16 @@
         :mode="mode"
         @submit="onSubmit"
     >
+        <template v-if="mode === 'edit' && currentProjectCover">
+            <CommonImageWithProps
+                :image="currentProjectCover"
+            />
+        </template>
         <FormField
             v-slot="{ componentField }"
             name="files"
         >
-            <FormItem>
+            <FormItem class="mt-4">
                 <FormLabel>Title</FormLabel>
                 <FormControl>
                     <Input
@@ -16,6 +21,9 @@
                         @change="componentField.onChange($event.target.files)"
                         @blur="componentField.onBlur($event.target.files)"
                     />
+                    <FormDescription>
+                        Choosing a file with different name will create a new one
+                    </FormDescription>
                 </FormControl>
                 <FormMessage />
             </FormItem>
