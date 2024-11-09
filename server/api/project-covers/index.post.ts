@@ -1,4 +1,4 @@
-import { MultiPartData, createError } from 'h3'
+import { createError } from 'h3'
 
 import { PROJECT_COVERS_BUCKET } from '~/plugins/constants/projectCovers'
 
@@ -7,37 +7,33 @@ import { serverSupabaseClient } from '#supabase/server'
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
 
-    const headers = getRequestHeaders(event)
-
-    if (!headers['content-type']?.includes('multipart/form-data'))
-        throw createError({ status: 400, message: 'Bad Request' })
-
     const parts = await readMultipartFormData(event)
 
-    if (!parts)
-        throw createError({ status: 500, statusMessage: 'No body in the request' })
+    if (!parts) throw createError({ status: 500, statusMessage: 'No body in the request' })
+
+    // prepare Files out of MultiPartData
+    const files = parts
+        .filter(part => part?.name === 'file')
+        .map(part => part?.filename
+            ? new File([ part.data ], part?.filename, { type: part.type })
+            : null)
+
+    if (!files.length) throw createError({ status: 400, message: 'Bad Request: no files in this request' })
 
     const responses = []
+    for (const file of files) {
+        if (!file) continue
 
-    for (const part of parts) {
-        const file = prepareFiles(part)
-        if (file) {
-            const { data, error } = await superbaseClient.storage
-                .from(PROJECT_COVERS_BUCKET)
-                .upload(file.name, file, {
-                    cacheControl: '3600',
-                    upsert: false
-                })
-            responses.push(data)
+        const { data, error } = await superbaseClient.storage
+            .from(PROJECT_COVERS_BUCKET)
+            .upload(file.name, file, {
+                cacheControl: '3600',
+                upsert: false
+            })
 
-            if (error) throw createError(error)
-        }
-
-        return { status: 200, message: `delivered files: ${JSON.stringify(responses)}` }
+        responses.push(data)
+        if (error) throw createError(error)
     }
-})
 
-function prepareFiles(data: MultiPartData) {
-    const file = data.name === 'file' ? data : null
-    return file?.filename ? new File([ file.data ], file.filename, { type: file.type }) : null
-}
+    return { status: 200, message: `delivered files: ${JSON.stringify(responses)}` }
+})
