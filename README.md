@@ -18,13 +18,15 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [x] Add admin panel with authentication
 - [x] Add server-side CRUD operations for projects
 - [x] Add server-side CRUD operations for images
-- [ ] Add image optimization
+- [x] Add image optimization
 - [ ] Create a design
 - [ ] Add animations
 - [ ] Add meta tags
-- [ ] Deploy to Vercel
+- [x] Deploy to Vercel
+- [x] Add CI/CD
+- [ ] End testing phase - prepare dev and prod environments
+- [ ] Connect final domain to the main branch
 - [ ] Add Vitest and tests
-- [ ] Add CI/CD
 - [ ] Add i18n
 - [ ] Add color switcher
 
