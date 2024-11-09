@@ -18,7 +18,7 @@
                 <div class="flex gap-2">
                     <Avatar class="h-8 w-8 rounded-lg">
                         <AvatarImage
-                            :src="getPublicURL(projectCover.name)"
+                            :src="useGetPublicURL(projectCover.name)"
                             :alt="projectCover.name"
                         />
                         <AvatarFallback class="rounded-lg">
@@ -99,11 +99,5 @@
             query: { name },
             method: 'delete'
         })
-    }
-    /**
-     * Get the URL of an image
-     */
-    function getPublicURL(name: string) {
-        return useGetPublicURL(name)
     }
 </script>

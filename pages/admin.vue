@@ -1,5 +1,5 @@
 <template>
-    <div class="container mx-auto px-4 py-16">
+    <div>
         <NuxtPage :page-key="route => route.fullPath" />
     </div>
 </template>
