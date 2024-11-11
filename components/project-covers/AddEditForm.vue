@@ -79,9 +79,7 @@
         resetForm({ values: { files: value.currentProjectCover ?? undefined } }, { force: true })
     }, { deep: true })
 
-    /**
-     * Submit the form
-     */
+    /** Submit the form */
     const onSubmit = handleSubmit((data: FormSchema) => {
         if (props.mode === 'add') {
             addProjectCover(data)
@@ -90,9 +88,7 @@
             patchProjectCover(data)
         }
     })
-    /**
-     * Add a new project to the database
-     */
+    /** Add a new project to the database */
     async function addProjectCover(data: FormSchema) {
         const formData = new FormData()
         const files = data.files as FileList
@@ -108,9 +104,7 @@
         isFormOpen.value = false
     }
 
-    /**
-     * Patch a project in the database
-     */
+    /** Patch a project in the database */
     async function patchProjectCover(data: FormSchema) {
         const formData = new FormData()
         const files = data.files as FileList

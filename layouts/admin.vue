@@ -109,7 +109,6 @@
     const supabaseClient = useSupabaseClient<Database>()
     const supabaseUser = useSupabaseUser()
 
-    // This is sample data.
     const data = {
         user: {
             name: supabaseUser.value?.user_metadata.full_name ?? 'anonymous',
@@ -134,10 +133,7 @@
         },
     }
 
-    /**
-     * Log out the current user
-     */
-
+    /** Log out the current user */
     async function logout() {
         supabaseClient.auth.signOut({})
         await navigateTo('/login')

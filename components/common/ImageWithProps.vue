@@ -32,9 +32,7 @@
     }
 
     const props = defineProps<Props>()
-    /**
-     * Shows different file size descriptions on the file size (in B, KB or MB)
-     */
+    /** Shows different file size descriptions on the file size (in B, KB or MB) */
     const fileSize = computed(() => {
         const size = props.image.metadata?.size
         if (!size) return
@@ -44,9 +42,7 @@
 
         return size
     })
-    /**
-     * Converts the date to a human readable format
-     */
+    /** Converts the date to a human readable format */
     const convertDate = (date: string) => {
         return new Date(date).toLocaleString()
     }
