@@ -7,7 +7,6 @@
             </SheetDescription>
         </SheetHeader>
         <CommonAddEditFormWrapper
-            v-if="isFormOpen"
             :mode="mode"
             @submit="onSubmit"
         >
@@ -56,7 +55,6 @@
     }
 
     const props = defineProps<Props>()
-    const isFormOpen = defineModel<boolean>('isFormOpen')
 
     type FormSchema = { files?: FileList }
     const formSchema = toTypedSchema(z.object({
@@ -72,9 +70,17 @@
 
     const { handleSubmit, resetForm } = useForm({
         validationSchema: formSchema,
+        keepValuesOnUnmount: true
     })
 
+    /** =======================
+     * FORM
+     */
+
     // when opening the form, set the local copy of the current project cover
+    onMounted(() => {
+        resetForm({ values: { files: props.currentProjectCover ?? undefined } }, { force: true })
+    })
     watch(props, (value) => {
         resetForm({ values: { files: value.currentProjectCover ?? undefined } }, { force: true })
     }, { deep: true })
@@ -101,7 +107,6 @@
             body: formData,
             method: 'post'
         })
-        isFormOpen.value = false
     }
 
     /** Patch a project in the database */
@@ -117,6 +122,5 @@
             body: formData,
             method: 'patch'
         })
-        isFormOpen.value = false
     }
 </script>

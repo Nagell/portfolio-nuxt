@@ -2,7 +2,7 @@
     <div>
         <Sheet>
             <ProjectCoversAddEditForm
-                v-model:is-form-open="isFormOpen"
+                v-if="isFormOpen"
                 :current-project-cover="currentProjectCover"
                 :mode="addEditFormMode"
             />

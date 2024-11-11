@@ -1,6 +1,6 @@
 <template>
     <form
-        class="mb-8"
+        class="mt-6 space-y-6"
         @submit.prevent="onSubmit"
     >
         <slot />
@@ -8,7 +8,6 @@
             <SheetClose as-child>
                 <Button
                     type="submit"
-                    class="mt-4"
                 >
                     {{ buttonLabel }}
                 </Button>
