@@ -4,14 +4,14 @@
             <SidebarHeader>
                 <SidebarMenu>
                     <SidebarMenuItem>
-                        <div class="flex items-center group-data-[state=expanded]:p-1 pt-1">
-                            <div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                        <div class="flex items-center group-data-[state=expanded]:p-2 p-1">
+                            <div class="flex aspect-square size-6 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                                 <component
                                     :is="data.page.logo"
-                                    class="size-6"
+                                    class="size-4"
                                 />
                             </div>
-                            <div class="grid flex-1 text-left text-lg leading-tight pl-1">
+                            <div class="grid flex-1 text-left text-lg leading-tight pl-2">
                                 <span class="truncate font-semibold">
                                     {{ data.page.name }}
                                 </span>
