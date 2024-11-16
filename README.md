@@ -21,7 +21,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [x] Add image optimization
 - [x] Deploy to Vercel
 - [x] Add CI/CD
-- [ ] End testing phase - prepare dev and prod environments
+- [x] End testing phase - prepare dev and prod environments
 - [ ] Create a design
 - [ ] Add animations
 - [ ] Add meta tags
@@ -55,15 +55,7 @@ npm run dev
 
 ## Supabase types
 
-To generate types for Supabase, run the following command:
-
-```bash
-# Login safely to Supabase
-npx supabase login
-
-# Generate types
-npm run generate:supabase
-```
+More on this in the [Supabase development](./docs/SUPABASE.md).
 
 ## Production
 
