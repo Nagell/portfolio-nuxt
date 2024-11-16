@@ -56,11 +56,5 @@ export default defineNuxtConfig({
     },
     image: {
         format: [ 'webp', 'jpeg' ],
-        domains: [
-            'localhost',
-            'gmbtgsckranserhrllex.supabase.co',
-            'portfolio-nuxt-orcin.vercel.app',
-            'dawidnitka.com'
-        ],
     },
 })
