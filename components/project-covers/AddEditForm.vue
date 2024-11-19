@@ -26,6 +26,7 @@
                         <Input
                             type="file"
                             accept=".jpg, .jpeg, .png, .webp"
+                            multiple
                             @change="componentField.onChange($event.target.files)"
                             @blur="componentField.onBlur($event.target.files)"
                         />
@@ -57,15 +58,14 @@
 
     const props = defineProps<Props>()
 
-    type FormSchema = { files?: FileList }
-
     const formSchema = toTypedSchema(z.object({
-        files: z.any()
-            .refine(files => files?.length == 1, 'Image is required.')
-            .refine(files => files?.[0]?.size <= $const.covers.MAX_FILE_SIZE,
+        files: z.instanceof(FileList)
+            .refine(files => files?.length, 'No files selected.')
+            .transform(files => Array.from(files))
+            .refine(files => files.every(file => file.size <= $const.covers.MAX_FILE_SIZE),
                     `Max file size is ${$const.covers.MAX_FILE_SIZE / 1024 / 1024} MB.`)
             .refine(
-                files => $const.covers.ACCEPTED_IMAGE_TYPES.includes(files?.[0]?.type),
+                files => files.every(file => $const.covers.ACCEPTED_IMAGE_TYPES.includes(file.type)),
                 '.jpg, .jpeg, .png and .webp files are accepted.'
             ),
     }))
@@ -79,30 +79,32 @@
      * FORM
      */
 
-    // when opening the form, set the local copy of the current project cover
+    // when opening the form, reset the form
     onMounted(() => {
-        resetForm({ values: { files: props.currentProjectCover ?? undefined } }, { force: true })
+        resetForm({ values: { files: [] } }, { force: true })
     })
-    watch(props, (value) => {
-        resetForm({ values: { files: value.currentProjectCover ?? undefined } }, { force: true })
+    watch(props, () => {
+        resetForm({ values: { files: [] } }, { force: true })
     }, { deep: true })
 
+    type FormValues = { files: File[] }
+
     /** Submit the form */
-    const onSubmit = handleSubmit(async (data: FormSchema) => {
+    const onSubmit = handleSubmit(async (data: FormValues) => {
         if (props.mode === 'add') {
-            await addProjectCover(data)
+            await addProjectCover(data.files)
         }
         else {
-            await patchProjectCover(data)
+            await patchProjectCover(data.files)
         }
     })
     /** Add a new project cover to the database */
-    async function addProjectCover(data: FormSchema) {
+    async function addProjectCover(files: File[]) {
         const formData = new FormData()
-        const files = data.files as FileList
-        const file = files[0]
 
-        formData.append('file', file)
+        files.forEach((file) => {
+            formData.append('file', file)
+        })
 
         await $fetch('/api/project-covers', {
             headers: useRequestHeaders([ 'cookie' ]),
@@ -112,12 +114,12 @@
     }
 
     /** Patch a project cover in the database */
-    async function patchProjectCover(data: FormSchema) {
+    async function patchProjectCover(files: File[]) {
         const formData = new FormData()
-        const files = data.files as FileList
-        const file = files[0]
 
-        formData.append('file', file)
+        files.forEach((file) => {
+            formData.append('file', file)
+        })
 
         await $fetch('/api/project-covers', {
             headers: useRequestHeaders([ 'cookie' ]),
