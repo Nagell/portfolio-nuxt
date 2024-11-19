@@ -104,9 +104,7 @@
 
     import AdminHeader from '~/components/AdminHeader.vue'
 
-    import type { Database } from '~/types/database.types'
-
-    const supabaseClient = useSupabaseClient<Database>()
+    const supabaseClient = useSupabaseClient()
     const supabaseUser = useSupabaseUser()
 
     const data = {

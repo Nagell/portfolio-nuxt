@@ -116,12 +116,12 @@
 
     import { cn } from '~/lib/utils'
 
-    import type { FileObject } from '@supabase/storage-js'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { Tables } from '~/types/database.types'
+    import type { ProjectCover } from '~/types/files.types'
+    import type { PatchProjectQuery, PostProjectQuery, Project } from '~/types/projects.types'
 
     interface Props {
-        currentProject: Partial<Tables<'projects'>>
+        currentProject: Project | {}
         mode: FormProps['mode']
     }
 
@@ -153,16 +153,16 @@
     }, { deep: true })
 
     /** Submit the form */
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = handleSubmit(async (data) => {
         if (props.mode === 'add') {
-            addProject(data)
+            await addProject(data)
         }
         else {
-            patchProject(data)
+            await patchProject(data as PatchProjectQuery)
         }
     })
     /** Add a new project to the database */
-    async function addProject(data: Partial<Tables<'projects'>>) {
+    async function addProject(data: PostProjectQuery) {
         await $fetch('/api/projects', {
             headers: useRequestHeaders([ 'cookie' ]),
             query: data,
@@ -171,7 +171,7 @@
     }
 
     /** Patch a project in the database */
-    async function patchProject(data: Partial<Tables<'projects'>>) {
+    async function patchProject(data: PatchProjectQuery) {
         await $fetch('/api/projects', {
             headers: useRequestHeaders([ 'cookie' ]),
             query: data,
@@ -182,7 +182,7 @@
     // =======================
     // IMAGES
 
-    const images = ref<FileObject[]>([])
+    const images = ref<ProjectCover[]>([])
 
     // when opening the form, fetch the list of images
     onMounted(async () => {
@@ -193,7 +193,7 @@
 
     /** Fetch the list of images */
     async function listImages() {
-        const images = await $fetch<FileObject[]>('/api/project-covers/list', {
+        const images = await $fetch<ProjectCover[]>('/api/project-covers/list', {
             headers: useRequestHeaders([ 'cookie' ]),
             method: 'get'
         })
@@ -201,7 +201,7 @@
     }
     /** Filter the image name */
     const filterImageName = computed(() => {
-        if (!images.value.length) return 'Loading images...'
+        if (!images.value.length) return 'No images found'
 
         return images.value.find(
             image => decodeURIComponent(values.image?.split('/').pop() || '') === image.name,

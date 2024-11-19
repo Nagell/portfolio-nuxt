@@ -25,7 +25,7 @@
                 <div>
                     <Button
                         variant="link"
-                        @click="deleteProject(project.id)"
+                        @click="deleteProject({ id: project.id })"
                     >
                         Delete
                     </Button><SheetTrigger as-child>
@@ -45,14 +45,14 @@
 <script lang="ts" setup>
     import type { RealtimeChannel } from '@supabase/supabase-js'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { Database, Tables } from '~/types/database.types'
+    import type { DeleteProjectQuery, Project } from '~/types/projects.types'
 
-    const supabaseClient = useSupabaseClient<Database>()
+    const supabaseClient = useSupabaseClient()
 
     let realtimeChannel: RealtimeChannel
 
     const emits = defineEmits<{
-        openForm: [{ mode: FormProps['mode'], project?: Tables<'projects'> }]
+        openForm: [{ mode: FormProps['mode'], project?: Project }]
     }>()
 
     onMounted(async () => {
@@ -75,10 +75,10 @@
         method: 'get'
     })
     /** Delete a project from the database */
-    async function deleteProject(id: number) {
+    async function deleteProject(data: DeleteProjectQuery) {
         await $fetch(`/api/projects`, {
             headers: useRequestHeaders([ 'cookie' ]),
-            query: { id },
+            query: data,
             method: 'delete'
         })
     }

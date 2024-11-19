@@ -1,11 +1,13 @@
 import { createError } from 'h3'
 
+import { DeleteProjectQuery } from '~/types/projects.types'
+
 import { serverSupabaseClient } from '#supabase/server'
 
 export default eventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
 
-    const query = getQuery(event)
+    const query = getQuery(event) as DeleteProjectQuery
     const { data, error } = await superbaseClient
         .from('projects')
         .delete()

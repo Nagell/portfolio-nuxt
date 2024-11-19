@@ -25,6 +25,7 @@
                     <FormControl>
                         <Input
                             type="file"
+                            accept=".jpg, .jpeg, .png, .webp"
                             @change="componentField.onChange($event.target.files)"
                             @blur="componentField.onBlur($event.target.files)"
                         />
@@ -44,19 +45,20 @@
     import { useForm } from 'vee-validate'
     import * as z from 'zod'
 
-    import type { FileObject } from '@supabase/storage-js'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
+    import type { ProjectCover } from '~/types/files.types'
 
     const { $const } = useNuxtApp()
 
     interface Props {
-        currentProjectCover?: FileObject
+        currentProjectCover?: ProjectCover
         mode: FormProps['mode']
     }
 
     const props = defineProps<Props>()
 
     type FormSchema = { files?: FileList }
+
     const formSchema = toTypedSchema(z.object({
         files: z.any()
             .refine(files => files?.length == 1, 'Image is required.')
@@ -86,15 +88,15 @@
     }, { deep: true })
 
     /** Submit the form */
-    const onSubmit = handleSubmit((data: FormSchema) => {
+    const onSubmit = handleSubmit(async (data: FormSchema) => {
         if (props.mode === 'add') {
-            addProjectCover(data)
+            await addProjectCover(data)
         }
         else {
-            patchProjectCover(data)
+            await patchProjectCover(data)
         }
     })
-    /** Add a new project to the database */
+    /** Add a new project cover to the database */
     async function addProjectCover(data: FormSchema) {
         const formData = new FormData()
         const files = data.files as FileList
@@ -109,7 +111,7 @@
         })
     }
 
-    /** Patch a project in the database */
+    /** Patch a project cover in the database */
     async function patchProjectCover(data: FormSchema) {
         const formData = new FormData()
         const files = data.files as FileList

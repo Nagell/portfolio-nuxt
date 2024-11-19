@@ -25,10 +25,10 @@
 </template>
 
 <script lang="ts" setup>
-    import type { FileObject } from '@supabase/storage-js'
+    import type { ProjectCover } from '~/types/files.types'
 
     export interface Props {
-        image: FileObject
+        image: ProjectCover
     }
 
     const props = defineProps<Props>()

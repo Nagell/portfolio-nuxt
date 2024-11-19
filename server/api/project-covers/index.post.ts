@@ -30,9 +30,9 @@ export default defineEventHandler(async (event) => {
                 cacheControl: '3600',
                 upsert: false
             })
+        if (error) throw createError(error)
 
         responses.push(data)
-        if (error) throw createError(error)
     }
 
     return { status: 200, message: `delivered files: ${JSON.stringify(responses)}` }

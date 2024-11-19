@@ -14,7 +14,9 @@ export default defineEventHandler(async (event) => {
     // prepare Files out of MultiPartData
     const files = parts
         .filter(part => part?.name === 'file')
-        .map(part => part?.filename ? new File([ part.data ], part?.filename, { type: part.type }) : null)
+        .map(part => part?.filename
+            ? new File([ part.data ], part?.filename, { type: part.type })
+            : null)
 
     if (!files.length) throw createError({ status: 400, message: 'Bad Request: no files in this request' })
 
@@ -28,9 +30,9 @@ export default defineEventHandler(async (event) => {
                 cacheControl: '3600',
                 upsert: true
             })
+        if (error) throw createError(error)
 
         responses.push(data)
-        if (error) throw createError(error)
     }
 
     return { status: 200, message: `delivered files: ${JSON.stringify(responses)}` }

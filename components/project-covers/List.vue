@@ -57,19 +57,18 @@
         Image
     } from 'lucide-vue-next'
 
-    import type { FileObject } from '@supabase/storage-js'
     import type { RealtimeChannel } from '@supabase/supabase-js'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { Database } from '~/types/database.types'
+    import type { ProjectCover } from '~/types/files.types'
 
-    const supabaseClient = useSupabaseClient<Database>()
+    const supabaseClient = useSupabaseClient()
 
     const { $const } = useNuxtApp()
 
     let realtimeChannel: RealtimeChannel
 
     const emits = defineEmits<{
-        openForm: [{ mode: FormProps['mode'], projectCover?: FileObject }]
+        openForm: [{ mode: FormProps['mode'], projectCover?: ProjectCover }]
     }>()
 
     onMounted(async () => {
@@ -86,7 +85,7 @@
     })
 
     /** Fetch all projectCovers from the database */
-    const { data: projectCoversData, refresh: refreshProjectCovers } = await useFetch<FileObject[]>('/api/project-covers/list', {
+    const { data: projectCoversData, refresh: refreshProjectCovers } = await useFetch<ProjectCover[]>('/api/project-covers/list', {
         headers: useRequestHeaders([ 'cookie' ]),
         key: 'projectCovers',
         method: 'get'
