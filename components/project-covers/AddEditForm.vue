@@ -25,7 +25,7 @@
                     <FormControl>
                         <Input
                             type="file"
-                            accept=".jpg, .jpeg, .png, .webp"
+                            :accept="$const.covers.ACCEPTED_IMAGE_TYPES"
                             multiple
                             @change="componentField.onChange($event.target.files)"
                             @blur="componentField.onBlur($event.target.files)"
@@ -65,8 +65,8 @@
             .refine(files => files.every(file => file.size <= $const.covers.MAX_FILE_SIZE),
                     `Max file size is ${$const.covers.MAX_FILE_SIZE / 1024 / 1024} MB.`)
             .refine(
-                files => files.every(file => $const.covers.ACCEPTED_IMAGE_TYPES.includes(file.type)),
-                '.jpg, .jpeg, .png and .webp files are accepted.'
+                files => files.every(file => $const.covers.ACCEPTED_IMAGE_TYPES_MIME.includes(file.type)),
+                `${$const.covers.ACCEPTED_IMAGE_TYPES} files are accepted.`
             ),
     }))
 
