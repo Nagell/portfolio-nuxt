@@ -22,7 +22,10 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [x] Deploy to Vercel
 - [x] Add CI/CD
 - [x] End testing phase - prepare dev and prod environments
-- [ ] Create a design
+- [ ] Create a design for
+  - [ ] landing page
+  - [ ] login page
+  - [ ] admin panel
 - [ ] Add animations
 - [ ] Add meta tags
 - [ ] Connect final domain to the main branch
@@ -53,7 +56,7 @@ Start the development server on <http://localhost:3000>
 npm run dev
 ```
 
-## Supabase types
+## Supabase & Development
 
 More on this in the [Supabase development](./docs/SUPABASE.md).
 
