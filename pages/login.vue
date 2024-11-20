@@ -13,10 +13,10 @@
 </template>
 
 <script lang="ts" setup>
-    const supabase = useSupabaseClient()
+    const supabaseClient = useSupabaseClient()
 
     const signInWithGithub = async () => {
-        const { error } = await supabase.auth.signInWithOAuth({
+        const { error } = await supabaseClient.auth.signInWithOAuth({
             provider: 'github',
             options: { redirectTo: `${window.location.origin}/admin/projects` }
         })
