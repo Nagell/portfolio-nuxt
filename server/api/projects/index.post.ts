@@ -1,5 +1,3 @@
-import { createError } from 'h3'
-
 import { PostProjectQuery } from '~/types/projects.types'
 
 import { serverSupabaseClient } from '#supabase/server'

@@ -1,5 +1,3 @@
-import { createError } from 'h3'
-
 import { PROJECT_COVERS_BUCKET } from '~/plugins/constants/projectCovers'
 
 import { serverSupabaseClient } from '#supabase/server'
@@ -9,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
     const parts = await readMultipartFormData(event)
 
-    if (!parts) throw createError({ status: 500, statusMessage: 'No body in the request' })
+    if (!parts) throw createError({ status: 400, statusMessage: 'No body in the request' })
 
     // prepare Files out of MultiPartData
     const files = parts

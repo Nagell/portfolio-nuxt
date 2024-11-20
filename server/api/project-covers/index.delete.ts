@@ -1,5 +1,3 @@
-import { createError } from 'h3'
-
 import { PROJECT_COVERS_BUCKET } from '~/plugins/constants/projectCovers'
 
 import { serverSupabaseClient } from '#supabase/server'
