@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
     const { data, error } = await superbaseClient
         .from('experience')
         .select('*')
-        .order('created_at', { ascending: false })
+        .order('id', { ascending: false })
 
     if (error) throw createError({ statusMessage: error.message })
 
