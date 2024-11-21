@@ -84,13 +84,13 @@
         supabaseClient.removeChannel(realtimeChannel)
     })
 
-    /** Fetch all projectCovers from the database */
+    /** Fetch all project cover files from the bucket */
     const { data: projectCoversData, refresh: refreshProjectCovers } = await useFetch<ProjectCover[]>('/api/project-covers/list', {
         headers: useRequestHeaders([ 'cookie' ]),
         key: 'projectCovers',
         method: 'get'
     })
-    /** Delete na image from the database */
+    /** Delete a project cover file from the bucket */
     async function deleteImage(name: string) {
         await $fetch(`/api/project-covers/`, {
             headers: useRequestHeaders([ 'cookie' ]),

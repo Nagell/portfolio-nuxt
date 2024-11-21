@@ -159,7 +159,7 @@
             await patchProject(data as PatchProjectQuery)
         }
     })
-    /** Add a new project to the database */
+    /** Add a new project row to the database */
     async function addProject(data: PostProjectQuery) {
         await $fetch('/api/projects', {
             headers: useRequestHeaders([ 'cookie' ]),
@@ -168,7 +168,7 @@
         })
     }
 
-    /** Patch a project in the database */
+    /** Patch a project row in the database */
     async function patchProject(data: PatchProjectQuery) {
         await $fetch('/api/projects', {
             headers: useRequestHeaders([ 'cookie' ]),

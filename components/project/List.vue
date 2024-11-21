@@ -68,13 +68,13 @@
         supabaseClient.removeChannel(realtimeChannel)
     })
 
-    /** Fetch all projects from the database */
+    /** Fetch all projects rows from the database */
     const { data: projectsData, refresh: refreshProjects } = await useFetch('/api/projects', {
         headers: useRequestHeaders([ 'cookie' ]),
         key: 'projects',
         method: 'get'
     })
-    /** Delete a project from the database */
+    /** Delete a project row from the database */
     async function deleteProject(data: DeleteProjectQuery) {
         await $fetch(`/api/projects`, {
             headers: useRequestHeaders([ 'cookie' ]),

@@ -98,7 +98,7 @@
             await patchProjectCover(data.files)
         }
     })
-    /** Add a new project cover to the database */
+    /** Add a new project cover file to the bucket */
     async function addProjectCover(files: File[]) {
         const formData = new FormData()
 
@@ -113,7 +113,7 @@
         })
     }
 
-    /** Patch a project cover in the database */
+    /** Patch a project cover file in the bucket */
     async function patchProjectCover(files: File[]) {
         const formData = new FormData()
 
