@@ -1,49 +1,44 @@
 <template>
-    <SheetContent>
-        <SheetHeader>
-            <SheetTitle>{{ mode === 'edit' ? 'Edit' : 'Add' }} project cover</SheetTitle>
-            <SheetDescription>
-                Make changes to your project covers here. Click save when you're done.
-            </SheetDescription>
-        </SheetHeader>
-        <CommonAddEditFormWrapper
-            :mode="mode"
-            @submit="onSubmit"
+    <CommonAddEditFormWrapper
+        :mode="mode"
+        title="project cover"
+        description="Make changes to your project covers here. Click save when you're done."
+        :is-verified="useIsFormValid().value"
+        @submit="onSubmit"
+    >
+        <template v-if="mode === 'edit' && currentProjectCover">
+            <CommonImageWithProps
+                class="mt-4"
+                :image="currentProjectCover"
+            />
+        </template>
+        <FormField
+            v-slot="{ componentField }"
+            name="files"
         >
-            <template v-if="mode === 'edit' && currentProjectCover">
-                <CommonImageWithProps
-                    class="mt-4"
-                    :image="currentProjectCover"
-                />
-            </template>
-            <FormField
-                v-slot="{ componentField }"
-                name="files"
-            >
-                <FormItem class="mt-4">
-                    <FormLabel>Image</FormLabel>
-                    <FormControl>
-                        <Input
-                            type="file"
-                            :accept="$const.covers.ACCEPTED_IMAGE_TYPES"
-                            multiple
-                            @change="componentField.onChange($event.target.files)"
-                            @blur="componentField.onBlur($event.target.files)"
-                        />
-                        <FormDescription>
-                            Choosing a file with different name will create a new one
-                        </FormDescription>
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-            </FormField>
-        </CommonAddEditFormWrapper>
-    </SheetContent>
+            <FormItem class="mt-4">
+                <FormLabel>Image</FormLabel>
+                <FormControl>
+                    <Input
+                        type="file"
+                        :accept="$const.covers.ACCEPTED_IMAGE_TYPES"
+                        multiple
+                        @change="componentField.onChange($event.target.files)"
+                        @blur="componentField.onBlur($event.target.files)"
+                    />
+                    <FormDescription>
+                        Choosing a file with different name will create a new one
+                    </FormDescription>
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
+    </CommonAddEditFormWrapper>
 </template>
 
 <script setup lang="ts">
     import { toTypedSchema } from '@vee-validate/zod'
-    import { useForm } from 'vee-validate'
+    import { useForm, useIsFormValid } from 'vee-validate'
     import * as z from 'zod'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
@@ -80,12 +75,12 @@
      */
 
     // when opening the form, reset the form
-    onMounted(() => {
+    onMounted(() => reset())
+    watch(props, () => reset(), { deep: true })
+
+    function reset() {
         resetForm({ values: { files: [] } }, { force: true })
-    })
-    watch(props, () => {
-        resetForm({ values: { files: [] } }, { force: true })
-    }, { deep: true })
+    }
 
     type FormValues = { files: File[] }
 
@@ -98,7 +93,7 @@
             await patchProjectCover(data.files)
         }
     })
-    /** Add a new project cover to the database */
+    /** Add a new project cover file to the bucket */
     async function addProjectCover(files: File[]) {
         const formData = new FormData()
 
@@ -112,8 +107,7 @@
             method: 'post'
         })
     }
-
-    /** Patch a project cover in the database */
+    /** Patch a project cover file in the bucket */
     async function patchProjectCover(files: File[]) {
         const formData = new FormData()
 

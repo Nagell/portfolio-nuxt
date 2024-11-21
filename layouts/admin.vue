@@ -96,6 +96,7 @@
 <script setup lang=ts>
     import {
         ChevronsUpDown,
+        CircleArrowUp,
         Image,
         Library,
         LogOut,
@@ -123,6 +124,11 @@
                 title: 'Covers',
                 url: '/admin/covers',
                 icon: Image,
+            },
+            {
+                title: 'Experience',
+                url: '/admin/experience',
+                icon: CircleArrowUp,
             },
         ],
         page: {

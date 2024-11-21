@@ -99,5 +99,8 @@ To generate types for Supabase, run the following command:
 yarn supabase login
 
 # Generate types
-npm run generate:supabase
+yarn types:supabase
+
+# Generate types from the local database
+yarn types:supabase:local
 ```

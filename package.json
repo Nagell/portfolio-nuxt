@@ -5,10 +5,14 @@
     "scripts": {
         "dev": "nuxt dev --open",
         "build": "nuxt build",
-        "generate": "nuxt generate",
-        "generate:supabase": "supabase gen types --lang=typescript --project-id gmbtgsckranserhrllex > types/database.types.ts && eslint --fix types/database.types.ts",
+        "-----": "",
+        "types:supabase": "supabase gen types --lang=typescript --project-id gmbtgsckranserhrllex > types/database.types.ts && yarn types:supazod",
+        "types:supabase:local": "supabase gen types --lang=typescript --local > types/database.types.ts && yarn types:supazod",
+        "types:supazod": "supazod -i types/database.types.ts -o types/schemas.ts -s public && eslint --fix types/*",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
         "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix src",
+        "----": "",
+        "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "prepare": "husky"
@@ -50,7 +54,8 @@
         "husky": "^9.1.6",
         "postcss": "^8.4.35",
         "postcss-import": "^16.1.0",
-        "supabase": "^1.219.2",
+        "supabase": "^1.223.10",
+        "supazod": "^1.1.2",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "~5.4.5"
     },
