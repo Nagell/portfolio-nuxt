@@ -115,6 +115,7 @@
     import * as z from 'zod'
 
     import { cn } from '~/lib/utils'
+    import { publicProjectsInsertSchemaSchema, publicProjectsUpdateSchemaSchema } from '~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { ProjectCover } from '~/types/files.types'
@@ -127,13 +128,10 @@
 
     const props = defineProps<Props>()
 
-    const formSchema = toTypedSchema(z.object({
-        id: z.number().optional(),
-        title: z.string().min(2).max(200),
-        description: z.string().min(2).max(500),
-        image: z.string().url(),
-        url: z.string().url().nullish(),
-    }))
+    const formSchema = toTypedSchema(z.intersection(
+        publicProjectsInsertSchemaSchema,
+        publicProjectsUpdateSchemaSchema
+    ))
 
     const { handleSubmit, resetForm, setFieldValue, values } = useForm({
         validationSchema: formSchema,
