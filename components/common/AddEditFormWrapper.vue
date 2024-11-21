@@ -15,6 +15,7 @@
                 <SheetClose as-child>
                     <Button
                         type="submit"
+                        :disabled="!isVerified"
                     >
                         {{ buttonLabel }}
                     </Button>
@@ -31,6 +32,7 @@
         mode: 'add' | 'edit'
         title?: string
         description?: string
+        isVerified?: boolean
     }
 
     const props = defineProps<Props>()

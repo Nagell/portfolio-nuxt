@@ -4,6 +4,7 @@
         :mode="mode"
         title="project"
         description="Make changes to your projects here. Click save when you're done."
+        :is-verified="useIsFormValid().value"
         @submit="onSubmit"
     >
         <FormField
@@ -105,11 +106,10 @@
         Check,
         ChevronsUpDown
     } from 'lucide-vue-next'
-    import { useForm } from 'vee-validate'
-    import * as z from 'zod'
+    import { useForm, useIsFormValid } from 'vee-validate'
 
     import { cn } from '~/lib/utils'
-    import { publicProjectsInsertSchemaSchema, publicProjectsUpdateSchemaSchema } from '~/types/schemas'
+    import { publicProjectsInsertSchemaSchema } from '~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { ProjectCover } from '~/types/files.types'
@@ -122,10 +122,9 @@
 
     const props = defineProps<Props>()
 
-    const formSchema = toTypedSchema(z.intersection(
-        publicProjectsInsertSchemaSchema,
-        publicProjectsUpdateSchemaSchema
-    ))
+    const formSchema = toTypedSchema(
+        publicProjectsInsertSchemaSchema
+    )
 
     const { handleSubmit, resetForm, setFieldValue, values } = useForm({
         validationSchema: formSchema,
@@ -161,7 +160,6 @@
             method: 'post'
         })
     }
-
     /** Patch a project row in the database */
     async function patchProject(data: PatchProjectQuery) {
         await $fetch('/api/projects', {

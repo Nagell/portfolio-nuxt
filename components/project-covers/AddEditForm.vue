@@ -3,6 +3,7 @@
         :mode="mode"
         title="project cover"
         description="Make changes to your project covers here. Click save when you're done."
+        :is-verified="useIsFormValid().value"
         @submit="onSubmit"
     >
         <template v-if="mode === 'edit' && currentProjectCover">
@@ -37,7 +38,7 @@
 
 <script setup lang="ts">
     import { toTypedSchema } from '@vee-validate/zod'
-    import { useForm } from 'vee-validate'
+    import { useForm, useIsFormValid } from 'vee-validate'
     import * as z from 'zod'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
@@ -106,7 +107,6 @@
             method: 'post'
         })
     }
-
     /** Patch a project cover file in the bucket */
     async function patchProjectCover(files: File[]) {
         const formData = new FormData()
