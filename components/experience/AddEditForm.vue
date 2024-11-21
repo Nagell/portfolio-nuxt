@@ -218,14 +218,6 @@
     const { handleSubmit, resetForm, setFieldValue, values } = useForm({
         validationSchema: formSchema,
         keepValuesOnUnmount: true,
-        initialValues: {
-            title: '',
-            link: '',
-            description: '',
-            start: '',
-            end: '',
-            tags: [ 'a' ],
-        },
     })
 
     /** =======================
@@ -233,12 +225,12 @@
      */
 
     // when mounting or reopening the form, set the form values
-    onMounted(() => {
-        resetForm({ values: { ...props.currentExperience, tags: [] } }, { force: true })
-    })
-    watch(props, (value) => {
-        resetForm({ values: { ...value.currentExperience } }, { force: true })
-    }, { deep: true })
+    onMounted(() => reset(props.currentExperience))
+    watch(props, value => reset(value.currentExperience), { deep: true })
+
+    function reset(data: Experience | {}) {
+        resetForm({ values: { tags: [], ...data } }, { force: true })
+    }
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {

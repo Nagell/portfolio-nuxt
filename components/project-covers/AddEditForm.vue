@@ -75,12 +75,12 @@
      */
 
     // when opening the form, reset the form
-    onMounted(() => {
+    onMounted(() => reset())
+    watch(props, () => reset(), { deep: true })
+
+    function reset() {
         resetForm({ values: { files: [] } }, { force: true })
-    })
-    watch(props, () => {
-        resetForm({ values: { files: [] } }, { force: true })
-    }, { deep: true })
+    }
 
     type FormValues = { files: File[] }
 

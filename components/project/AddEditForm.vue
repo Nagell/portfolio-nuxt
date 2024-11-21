@@ -136,12 +136,12 @@
      */
 
     // when mounting or reopening the form, set the form values
-    onMounted(() => {
-        resetForm({ values: { ...props.currentProject } }, { force: true })
-    })
-    watch(props, (value) => {
-        resetForm({ values: { ...value.currentProject } }, { force: true })
-    }, { deep: true })
+    onMounted(() => reset(props.currentProject))
+    watch(props, value => reset(value.currentProject), { deep: true })
+
+    function reset(data: Project | {}) {
+        resetForm({ values: { ...data } }, { force: true })
+    }
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {
