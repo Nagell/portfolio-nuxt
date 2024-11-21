@@ -166,17 +166,24 @@
             </FormItem>
         </FormField>
         <FormField
-            v-slot="{ componentField }"
+            v-slot="{ value }"
             name="tags"
         >
             <FormItem>
                 <FormLabel>Tags</FormLabel>
                 <FormControl>
-                    <Textarea
-                        type="text"
-                        placeholder="tags"
-                        v-bind="componentField"
-                    />
+                    <TagsInput :model-value="value">
+                        <TagsInputItem
+                            v-for="item in value"
+                            :key="item"
+                            :value="item"
+                        >
+                            <TagsInputItemText />
+                            <TagsInputItemDelete />
+                        </TagsInputItem>
+
+                        <TagsInputInput placeholder="Add tags" />
+                    </TagsInput>
                 </FormControl>
                 <FormMessage />
             </FormItem>
@@ -210,7 +217,15 @@
 
     const { handleSubmit, resetForm, setFieldValue, values } = useForm({
         validationSchema: formSchema,
-        keepValuesOnUnmount: true
+        keepValuesOnUnmount: true,
+        initialValues: {
+            title: '',
+            link: '',
+            description: '',
+            start: '',
+            end: '',
+            tags: [ 'a' ],
+        },
     })
 
     /** =======================
@@ -219,7 +234,7 @@
 
     // when mounting or reopening the form, set the form values
     onMounted(() => {
-        resetForm({ values: { ...props.currentExperience } }, { force: true })
+        resetForm({ values: { ...props.currentExperience, tags: [] } }, { force: true })
     })
     watch(props, (value) => {
         resetForm({ values: { ...value.currentExperience } }, { force: true })
