@@ -1,44 +1,38 @@
 <template>
-    <SheetContent>
-        <SheetHeader>
-            <SheetTitle>{{ mode === 'edit' ? 'Edit' : 'Add' }} project cover</SheetTitle>
-            <SheetDescription>
-                Make changes to your project covers here. Click save when you're done.
-            </SheetDescription>
-        </SheetHeader>
-        <CommonAddEditFormWrapper
-            :mode="mode"
-            @submit="onSubmit"
+    <CommonAddEditFormWrapper
+        :mode="mode"
+        title="project cover"
+        description="Make changes to your project covers here. Click save when you're done."
+        @submit="onSubmit"
+    >
+        <template v-if="mode === 'edit' && currentProjectCover">
+            <CommonImageWithProps
+                class="mt-4"
+                :image="currentProjectCover"
+            />
+        </template>
+        <FormField
+            v-slot="{ componentField }"
+            name="files"
         >
-            <template v-if="mode === 'edit' && currentProjectCover">
-                <CommonImageWithProps
-                    class="mt-4"
-                    :image="currentProjectCover"
-                />
-            </template>
-            <FormField
-                v-slot="{ componentField }"
-                name="files"
-            >
-                <FormItem class="mt-4">
-                    <FormLabel>Image</FormLabel>
-                    <FormControl>
-                        <Input
-                            type="file"
-                            :accept="$const.covers.ACCEPTED_IMAGE_TYPES"
-                            multiple
-                            @change="componentField.onChange($event.target.files)"
-                            @blur="componentField.onBlur($event.target.files)"
-                        />
-                        <FormDescription>
-                            Choosing a file with different name will create a new one
-                        </FormDescription>
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-            </FormField>
-        </CommonAddEditFormWrapper>
-    </SheetContent>
+            <FormItem class="mt-4">
+                <FormLabel>Image</FormLabel>
+                <FormControl>
+                    <Input
+                        type="file"
+                        :accept="$const.covers.ACCEPTED_IMAGE_TYPES"
+                        multiple
+                        @change="componentField.onChange($event.target.files)"
+                        @blur="componentField.onBlur($event.target.files)"
+                    />
+                    <FormDescription>
+                        Choosing a file with different name will create a new one
+                    </FormDescription>
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
+    </CommonAddEditFormWrapper>
 </template>
 
 <script setup lang="ts">

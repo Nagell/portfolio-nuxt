@@ -5,6 +5,7 @@
         />
         <DialogContent
             :class="cn(sheetVariants({ side }), props.class)"
+            class="max-h-screen overflow-y-auto"
             v-bind="{ ...forwarded, ...$attrs }"
         >
             <slot />
