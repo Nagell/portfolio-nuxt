@@ -28,6 +28,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
   - [ ] admin panel
 - [ ] Add animations
 - [ ] Add meta tags
+- [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
 - [ ] Connect final domain to the main branch
 - [ ] Add Vitest and tests
 - [ ] Add i18n
