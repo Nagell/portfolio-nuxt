@@ -15,9 +15,9 @@
             </CommonTypography>
             <CommonTypography
                 tag="p"
-                class="text-xl mt-5"
+                class="mt-5"
             >
-                I have extensive experience in building high-quality web applications and a strong focus on team development through knowledge sharing and collaboration. With expertise in modern web technologies such as Vue, Nx, and JavaScript/TypeScript, I deliver user-centered, scalable solutions. I promote innovation, support colleagues, and take responsibility for project success, including leading small teams.
+                I’m a seasoned Frontend Developer passionate about creating scalable, user-focused web applications that balance elegant design with robust technology. With expertise in Vue, Nuxt, and TypeScript, I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve honed skills in responsive design, accessibility, and web performance. Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.
             </CommonTypography>
             <div class="text-muted text-9xl">
                 Image Placeholder

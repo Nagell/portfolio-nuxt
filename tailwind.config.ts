@@ -18,6 +18,9 @@ export default {
     prefix: '',
     theme: {
         // Define your overwrites and customizations for the default Tailwind CSS theme here
+        fontFamily: {
+            sans: [ 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' ],
+        },
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
