@@ -1,12 +1,12 @@
 <template>
     <div>
         <Sheet>
-            <ProjectAddEditForm
+            <AdminProjectAddEditForm
                 v-if="isFormOpen"
                 :current-project="currentProject"
                 :mode="addEditFormMode"
             />
-            <ProjectList @open-form="openAddEditForm" />
+            <AdminProjectList @open-form="openAddEditForm" />
         </Sheet>
     </div>
 </template>

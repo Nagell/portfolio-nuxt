@@ -1,12 +1,12 @@
 <template>
     <div>
         <Sheet>
-            <ProjectCoversAddEditForm
+            <AdminProjectCoversAddEditForm
                 v-if="isFormOpen"
                 :current-project-cover="currentProjectCover"
                 :mode="addEditFormMode"
             />
-            <ProjectCoversList @open-form="openAddEditForm" />
+            <AdminProjectCoversList @open-form="openAddEditForm" />
         </Sheet>
     </div>
 </template>

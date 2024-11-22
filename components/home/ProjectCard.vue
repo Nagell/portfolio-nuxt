@@ -10,6 +10,7 @@
                 loading="lazy"
                 sizes="xs:500px md:700px"
             />
+            <!-- TODO: fix sizes -->
         </div>
         <div class="p-4 bg-surface-800">
             <h3 class="text-xl font-bold mb-2">
