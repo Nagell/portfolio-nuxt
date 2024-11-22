@@ -1,58 +1,56 @@
 <template>
     <div>
-        <section class="hero text-foreground py-20">
-            <div class="container mx-auto px-4">
-                <h1 class="text-5xl font-bold mb-4">
-                    Welcome to My Portfolio
-                </h1>
-                <p class="text-xl mb-8">
-                    I'm a passionate developer creating amazing web experiences.
-                </p>
-                <Button
-                    as-child
-                    variant="default"
-                    size="lg"
-                >
-                    <NuxtLink
-                        to="/"
-                    >
-                        Some button
-                    </NuxtLink>
-                </Button>
+        <CommonSection>
+            <CommonTypography
+                tag="h1"
+            >
+                Dawid Nitka
+            </CommonTypography>
+            <CommonTypography
+                tag="h2"
+                variant="h3"
+                class="text-muted-foreground mt-1.5"
+            >
+                Senior Front End Engineer
+            </CommonTypography>
+            <CommonTypography
+                tag="p"
+                class="text-xl mt-5"
+            >
+                I have extensive experience in building high-quality web applications and a strong focus on team development through knowledge sharing and collaboration. With expertise in modern web technologies such as Vue, Nx, and JavaScript/TypeScript, I deliver user-centered, scalable solutions. I promote innovation, support colleagues, and take responsibility for project success, including leading small teams.
+            </CommonTypography>
+            <div class="text-muted text-9xl">
+                Image Placeholder
             </div>
-        </section>
+        </CommonSection>
 
-        <section class="projects py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8">
-                    Featured Projects
-                </h2>
-                <div
-                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    <HomeProjectCard
-                        v-for="project in projects"
-                        :key="project.id"
-                        :project="project"
-                    />
-                </div>
+        <CommonSection>
+            <h2 class="text-3xl font-bold mb-8">
+                Featured Projects
+            </h2>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+                <FrontProjectCard
+                    v-for="project in projects"
+                    :key="project.id"
+                    :project="project"
+                />
             </div>
-        </section>
+        </CommonSection>
 
-        <section class="skills py-16">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-8">
-                    My Skills
-                </h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <HomeSkillBadge
-                        v-for="skill in skills"
-                        :key="skill"
-                        :skill="skill"
-                    />
-                </div>
+        <CommonSection>
+            <h2 class="text-3xl font-bold mb-8">
+                My Skills
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <FrontSkillBadge
+                    v-for="skill in skills"
+                    :key="skill"
+                    :skill="skill"
+                />
             </div>
-        </section>
+        </CommonSection>
     </div>
 </template>
 
