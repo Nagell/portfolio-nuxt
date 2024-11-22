@@ -33,6 +33,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [ ] Add Vitest and tests
 - [ ] Add i18n
 - [ ] Add color switcher
+- [ ] stats from vercel and cookie banner with cookie-control
 
 ## Setup
 
