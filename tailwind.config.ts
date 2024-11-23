@@ -130,12 +130,21 @@ export default {
                     from: { height: 'var(--radix-collapsible-content-height)' },
                     to: { height: '0' },
                 },
+                'text-blur': {
+                    '0%': { filter: 'blur(10px)', transform: 'translateY(10px)', opacity: '0' },
+                    '100%': { filter: 'blur(0px)', transform: 'translateY(0px)', opacity: '1' }
+                },
+            },
+            transitionTimingFunction: {
+                'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+                'out-expo': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
                 'collapsible-down': 'collapsible-down 0.2s ease-in-out',
                 'collapsible-up': 'collapsible-up 0.2s ease-in-out',
+                'text-blur': 'text-blur 1s out-expo',
             },
         },
     },

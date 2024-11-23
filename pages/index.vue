@@ -3,21 +3,40 @@
         <CommonSection>
             <CommonTypography
                 tag="h1"
+                class="text-6xl font-medium flex gap-1.5"
             >
-                Dawid Nitka
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_400ms] inline-block will-change-transform">
+                    Dawid
+                </span>
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_450ms] inline-block will-change-transform">
+                    Nitka
+                </span>
             </CommonTypography>
             <CommonTypography
                 tag="h2"
                 variant="h3"
-                class="text-muted-foreground mt-1.5"
+                class="text-muted-foreground mt-1.5 flex gap-[0.3rem]"
             >
-                Senior Front End Engineer
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_600ms] inline-block will-change-transform">
+                    Senior
+                </span>
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_650ms] inline-block will-change-transform">
+                    Front
+                </span>
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_700ms] inline-block will-change-transform">
+                    End
+                </span>
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_750ms] inline-block will-change-transform">
+                    Engineer
+                </span>
             </CommonTypography>
             <CommonTypography
                 tag="p"
                 class="mt-5"
             >
-                I’m a seasoned Frontend Developer passionate about creating scalable, user-focused web applications that balance elegant design with robust technology. With expertise in Vue, Nuxt, and TypeScript, I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve honed skills in responsive design, accessibility, and web performance. Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.
+                <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform">
+                    I’m a seasoned Frontend Developer passionate about creating scalable, user-focused web applications that balance elegant design with robust technology. With expertise in Vue, Nuxt, and TypeScript, I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve honed skills in responsive design, accessibility, and web performance. Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.
+                </span>
             </CommonTypography>
             <div class="text-muted text-9xl">
                 Image Placeholder
