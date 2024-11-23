@@ -3,12 +3,11 @@
         <h1 class="text-4xl font-bold mb-8">
             Login page
         </h1>
-        <button
-            class="bg-primary text-surface-950 px-6 py-3 rounded-lg hover:bg-opacity-90 transition duration-300 mt-4"
+        <Button
             @click="signInWithGithub"
         >
             Sign In with Github
-        </button>
+        </Button>
     </div>
 </template>
 
