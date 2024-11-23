@@ -14,7 +14,7 @@
             <li
                 v-for="experience in experienceData"
                 :key="experience.id"
-                class="mb-4 p-4 bg-surface-800 rounded-lg flex justify-between"
+                class="mb-4 p-4 border rounded-lg flex justify-between"
             >
                 <div>
                     <h4 class="text-lg font-bold">

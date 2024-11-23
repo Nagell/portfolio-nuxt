@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-surface-800 rounded-lg overflow-hidden group">
+    <div class="border rounded-lg overflow-hidden group">
         <div class="overflow-hidden">
             <NuxtImg
                 :src="project.image"
@@ -12,18 +12,17 @@
             />
             <!-- TODO: fix sizes -->
         </div>
-        <div class="p-4 bg-surface-800">
+        <div class="p-4">
             <h3 class="text-xl font-bold mb-2">
                 {{ project.title }}
             </h3>
-            <p class="text-surface-300 mb-4">
+            <p class="mb-4">
                 {{ project.description }}
             </p>
             <a
                 :href="project.url"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-primary hover:underline"
             >
                 View on GitHub
             </a>

@@ -15,7 +15,7 @@
             <li
                 v-for="projectCover in projectCoversData"
                 :key="projectCover.metadata?.id"
-                class="mb-4 p-4 bg-surface-800 rounded-lg flex justify-between"
+                class="mb-4 p-4 border rounded-lg flex justify-between"
             >
                 <div class="flex gap-2">
                     <Avatar class="h-8 w-8 rounded-lg">
