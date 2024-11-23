@@ -106,6 +106,10 @@ export default {
                     '0%': { filter: 'blur(10px)', transform: 'translateY(10px)', opacity: '0' },
                     '100%': { filter: 'blur(0px)', transform: 'translateY(0px)', opacity: '1' }
                 },
+                'image-hero-blur': {
+                    '0%': { transform: 'translateZ(200px) translateX(50px)', opacity: '0', filter: 'blur(10px)' },
+                    '100%': { transform: 'translateZ(0px) translateX(0px)', opacity: '1', filter: 'blur(0px)' }
+                },
             },
             transitionTimingFunction: {
                 'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
@@ -117,6 +121,7 @@ export default {
                 'collapsible-down': 'collapsible-down 0.2s ease-in-out',
                 'collapsible-up': 'collapsible-up 0.2s ease-in-out',
                 'text-blur': 'text-blur 1s out-expo',
+                'image-hero-blur': 'image-hero-blur 1s out-expo',
             },
         },
     },
