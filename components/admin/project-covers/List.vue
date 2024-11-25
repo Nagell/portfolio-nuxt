@@ -72,6 +72,7 @@
     }>()
 
     onMounted(async () => {
+        // Subscribe to the project covers channel for real-time updates
         realtimeChannel = supabaseClient.channel($const.covers.PROJECT_COVERS_BUCKET).on(
             'postgres_changes',
             { event: '*', schema: 'storage', table: 'objects' },

@@ -56,6 +56,7 @@
     }>()
 
     onMounted(async () => {
+        // Subscribe to the projects channel for real-time updates
         realtimeChannel = supabaseClient.channel('projects').on(
             'postgres_changes',
             { event: '*', schema: 'public', table: 'projects' },

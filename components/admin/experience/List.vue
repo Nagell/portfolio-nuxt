@@ -56,6 +56,7 @@
     }>()
 
     onMounted(async () => {
+        // Subscribe to the experience channel for real-time updates
         realtimeChannel = supabaseClient.channel('experience').on(
             'postgres_changes',
             { event: '*', schema: 'public', table: 'experience' },
