@@ -33,7 +33,7 @@
             h4: 'scroll-m-20 text-xl font-medium tracking-tight',
             p: 'leading-6 [&:not(:first-child)]:mt-6',
             ul: 'my-6 ml-6 list-disc [&>li]:mt-2',
-            li: 'leading-7',
+            li: 'leading-6',
             code: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold'
         }
 
