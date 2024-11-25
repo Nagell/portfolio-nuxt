@@ -20,6 +20,7 @@
                 {{ project.description }}
             </p>
             <a
+                v-if="project.url"
                 :href="project.url"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -30,11 +31,12 @@
     </div>
 </template>
 
-<script setup>
-    defineProps({
-        project: {
-            type: Object,
-            required: true
-        }
-    })
+<script setup lang="ts">
+    import type { Project } from '~/types/projects.types'
+
+    interface Props {
+        project: Project
+    }
+
+    defineProps<Props>()
 </script>

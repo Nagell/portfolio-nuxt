@@ -29,10 +29,6 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-
-</script>
-
 <style scoped lang="css">
     .hero__wrapper {
         --hero-width: 900px;

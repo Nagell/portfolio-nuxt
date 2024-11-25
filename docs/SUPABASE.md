@@ -22,7 +22,11 @@ Documentation on this topic can be found [here](https://supabase.com/docs/guides
 # Install the Supabase CLI 
 # in this project it is already installed as a dev dependency
 # but you can install it globally
-yarn add supabase -D
+yarn global add supabase
+
+# If supabase is not recognized as a command after yarn install
+# you can just force it by reinstalling the package
+yarn install supabase -D
 
 # Initialize the Supabase project
 yarn supabase init
