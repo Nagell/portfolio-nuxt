@@ -48,6 +48,6 @@ Communicated effectively with multiple departments and stakeholders (both intern
 
 Documented processes and conducted training sessions for team members on frontend design patterns, Vue, Pinia, and Figma',
 '2023-04-01',
-'2024-12-31',
+NULL,
 '["JavaScript", "TypeScript", "Vue 3", "Pinia", "Cypress", "Vite", "Nx", "Tailwind", "Scss", "Storybook", "Figma"]',
 'https://onehiring.com');

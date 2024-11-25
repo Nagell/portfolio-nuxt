@@ -7,7 +7,7 @@
                 class="text-muted-foreground leading-7"
             >
                 {{ formatDate(experience.start) }} - {{
-                    experience.end ? formatDate(experience.end) : 'now'
+                    experience.end ? formatDate(experience.end) : 'Present'
                 }}
             </CommonTypography>
         </div>
