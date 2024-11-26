@@ -18,6 +18,7 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@nuxt/fonts": "^0.10.2",
         "@nuxt/image": "^1.8.1",
         "@nuxtjs/color-mode": "^3.5.2",
         "@nuxtjs/supabase": "^1.4.0",

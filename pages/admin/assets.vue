@@ -1,27 +1,27 @@
 <template>
     <div>
         <Sheet>
-            <ProjectCoversAddEditForm
+            <AdminAssetsAddEditForm
                 v-if="isFormOpen"
-                :current-project-cover="currentProjectCover"
+                :current-asset="currentAsset"
                 :mode="addEditFormMode"
             />
-            <ProjectCoversList @open-form="openAddEditForm" />
+            <AdminAssetsList @open-form="openAddEditForm" />
         </Sheet>
     </div>
 </template>
 
 <script setup lang="ts">
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { ProjectCover } from '~/types/files.types'
+    import type { Asset } from '~/types/files.types'
 
     const isFormOpen = ref(false)
     const addEditFormMode = ref<FormProps['mode']>('add')
-    const currentProjectCover = ref<ProjectCover>()
+    const currentAsset = ref<Asset>()
 
-    function openAddEditForm(event: { mode: FormProps['mode'], projectCover?: ProjectCover }) {
+    function openAddEditForm(event: { mode: FormProps['mode'], asset?: Asset }) {
         isFormOpen.value = true
         addEditFormMode.value = event.mode
-        currentProjectCover.value = event.projectCover ?? undefined
+        currentAsset.value = event.asset ?? undefined
     }
 </script>

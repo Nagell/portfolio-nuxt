@@ -1,12 +1,12 @@
 <template>
     <div>
         <Sheet>
-            <ExperienceAddEditForm
+            <AdminExperienceAddEditForm
                 v-if="isFormOpen"
                 :current-experience="currentExperience"
                 :mode="addEditFormMode"
             />
-            <ExperienceList @open-form="openAddEditForm" />
+            <AdminExperienceList @open-form="openAddEditForm" />
         </Sheet>
     </div>
 </template>

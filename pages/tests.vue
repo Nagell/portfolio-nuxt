@@ -4,7 +4,7 @@
             Test field
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectCard
+            <FrontProjectCard
                 v-for="project in projects"
                 :key="project.id"
                 :project="project"
@@ -36,22 +36,6 @@
                 </div>
             </div>
         </section>
-        <div class="bg-surface-800 rounded-lg overflow-hidden group">
-            <div class="overflow-hidden">
-                <NuxtImg
-                    src="/12-2500x1667.jpg"
-                    alt="just a test"
-                    class="w-full h-48 object-cover group-hover:scale-105 transition-transform"
-                    placeholder
-                    format="webp"
-                    loading="lazy"
-                    sizes="xs:500px md:1200px"
-                />
-            </div>
-            <div class="p-4 bg-surface-800">
-                View on GitHub
-            </div>
-        </div>
     </div>
 </template>
 
@@ -63,12 +47,6 @@
         key: 'projects',
         method: 'get'
     })
-
-    // const { data, error: supabaseError } = await supabaseClient
-    //             .from('projects')
-    //             .select('*')
-    //             .limit(3)
-    //             .order('created_at', { ascending: false })
 
     if (error.value) {
         console.error(error.value)
@@ -86,13 +64,13 @@
     const supabaseClient = useSupabaseClient()
     const src = ref('')
     const downloadImage = async () => {
-        await supabaseClient.storage.from($const.covers.PROJECT_COVERS_BUCKET).list().then(({ data, error }) => {
+        await supabaseClient.storage.from($const.assets.ASSETS_BUCKET).list().then(({ data, error }) => {
             if (error) throw error
             console.log(data)
 
             const firstImage = data[0]
 
-            supabaseClient.storage.from($const.covers.PROJECT_COVERS_BUCKET)
+            supabaseClient.storage.from($const.assets.ASSETS_BUCKET)
                 .download(firstImage.name)
                 .then(({ data, error }) => {
                     if (error) throw error

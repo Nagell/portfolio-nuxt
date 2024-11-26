@@ -1,15 +1,15 @@
 <template>
     <CommonAddEditFormWrapper
         :mode="mode"
-        title="project cover"
-        description="Make changes to your project covers here. Click save when you're done."
+        title="assets"
+        description="Make changes to your assets here. Click save when you're done."
         :is-verified="useIsFormValid().value"
         @submit="onSubmit"
     >
-        <template v-if="mode === 'edit' && currentProjectCover">
-            <CommonImageWithProps
+        <template v-if="mode === 'edit' && currentAsset">
+            <CommonAssetWithProps
                 class="mt-4"
-                :image="currentProjectCover"
+                :asset="currentAsset"
             />
         </template>
         <FormField
@@ -21,7 +21,7 @@
                 <FormControl>
                     <Input
                         type="file"
-                        :accept="$const.covers.ACCEPTED_IMAGE_TYPES"
+                        :accept="$const.assets.ACCEPTED_FILE_TYPES"
                         multiple
                         @change="componentField.onChange($event.target.files)"
                         @blur="componentField.onBlur($event.target.files)"
@@ -42,12 +42,12 @@
     import * as z from 'zod'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { ProjectCover } from '~/types/files.types'
+    import type { Asset } from '~/types/files.types'
 
     const { $const } = useNuxtApp()
 
     interface Props {
-        currentProjectCover?: ProjectCover
+        currentAsset?: Asset
         mode: FormProps['mode']
     }
 
@@ -57,11 +57,11 @@
         files: z.instanceof(FileList)
             .refine(files => files?.length, 'No files selected.')
             .transform(files => Array.from(files))
-            .refine(files => files.every(file => file.size <= $const.covers.MAX_FILE_SIZE),
-                    `Max file size is ${$const.covers.MAX_FILE_SIZE / 1024 / 1024} MB.`)
+            .refine(files => files.every(file => file.size <= $const.assets.MAX_FILE_SIZE),
+                    `Max file size is ${$const.assets.MAX_FILE_SIZE / 1024 / 1024} MB.`)
             .refine(
-                files => files.every(file => $const.covers.ACCEPTED_IMAGE_TYPES_MIME.includes(file.type)),
-                `${$const.covers.ACCEPTED_IMAGE_TYPES} files are accepted.`
+                files => files.every(file => $const.assets.ACCEPTED_MIME_TYPES.includes(file.type)),
+                `${$const.assets.ACCEPTED_FILE_TYPES} files are accepted.`
             ),
     }))
 
@@ -74,7 +74,7 @@
      * FORM
      */
 
-    // when opening the form, reset the form
+    // when mounting or reopening the form, set the form values
     onMounted(() => reset())
     watch(props, () => reset(), { deep: true })
 
@@ -87,35 +87,35 @@
     /** Submit the form */
     const onSubmit = handleSubmit(async (data: FormValues) => {
         if (props.mode === 'add') {
-            await addProjectCover(data.files)
+            await addAsset(data.files)
         }
         else {
-            await patchProjectCover(data.files)
+            await patchAsset(data.files)
         }
     })
-    /** Add a new project cover file to the bucket */
-    async function addProjectCover(files: File[]) {
+    /** Add a new asset file to the bucket */
+    async function addAsset(files: File[]) {
         const formData = new FormData()
 
         files.forEach((file) => {
             formData.append('file', file)
         })
 
-        await $fetch('/api/project-covers', {
+        await $fetch('/api/assets', {
             headers: useRequestHeaders([ 'cookie' ]),
             body: formData,
             method: 'post'
         })
     }
-    /** Patch a project cover file in the bucket */
-    async function patchProjectCover(files: File[]) {
+    /** Patch a asset file in the bucket */
+    async function patchAsset(files: File[]) {
         const formData = new FormData()
 
         files.forEach((file) => {
             formData.append('file', file)
         })
 
-        await $fetch('/api/project-covers', {
+        await $fetch('/api/assets', {
             headers: useRequestHeaders([ 'cookie' ]),
             body: formData,
             method: 'patch'

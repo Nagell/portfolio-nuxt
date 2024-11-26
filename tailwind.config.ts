@@ -18,37 +18,12 @@ export default {
     prefix: '',
     theme: {
         // Define your overwrites and customizations for the default Tailwind CSS theme here
+        fontFamily: {
+            sans: [ 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' ],
+        },
         colors: {
             transparent: 'transparent',
             current: 'currentColor',
-
-            accent: {
-                50: 'rgb(var(--accent-50) / <alpha-value>)',
-                100: 'rgb(var(--accent-100) / <alpha-value>)',
-                200: 'rgb(var(--accent-200) / <alpha-value>)',
-                300: 'rgb(var(--accent-300) / <alpha-value>)',
-                400: 'rgb(var(--accent-400) / <alpha-value>)',
-                500: 'rgb(var(--accent-500) / <alpha-value>)',
-                600: 'rgb(var(--accent-600) / <alpha-value>)',
-                700: 'rgb(var(--accent-700) / <alpha-value>)',
-                800: 'rgb(var(--accent-800) / <alpha-value>)',
-                900: 'rgb(var(--accent-900) / <alpha-value>)',
-                950: 'rgb(var(--accent-950) / <alpha-value>)',
-            },
-
-            surface: {
-                50: 'rgb(var(--surface-50) / <alpha-value>)',
-                100: 'rgb(var(--surface-100) / <alpha-value>)',
-                200: 'rgb(var(--surface-200) / <alpha-value>)',
-                300: 'rgb(var(--surface-300) / <alpha-value>)',
-                400: 'rgb(var(--surface-400) / <alpha-value>)',
-                500: 'rgb(var(--surface-500) / <alpha-value>)',
-                600: 'rgb(var(--surface-600) / <alpha-value>)',
-                700: 'rgb(var(--surface-700) / <alpha-value>)',
-                800: 'rgb(var(--surface-800) / <alpha-value>)',
-                900: 'rgb(var(--surface-900) / <alpha-value>)',
-                950: 'rgb(var(--surface-950) / <alpha-value>)',
-            },
         },
         container: {
             center: true,
@@ -127,12 +102,26 @@ export default {
                     from: { height: 'var(--radix-collapsible-content-height)' },
                     to: { height: '0' },
                 },
+                'text-blur': {
+                    '0%': { filter: 'blur(10px)', transform: 'translateY(10px)', opacity: '0' },
+                    '100%': { filter: 'blur(0px)', transform: 'translateY(0px)', opacity: '1' }
+                },
+                'image-hero-blur': {
+                    '0%': { transform: 'translateZ(200px) translateX(50px)', opacity: '0', filter: 'blur(10px)' },
+                    '100%': { transform: 'translateZ(0px) translateX(0px)', opacity: '1', filter: 'blur(0px)' }
+                },
+            },
+            transitionTimingFunction: {
+                'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+                'out-expo': 'cubic-bezier(0.25, 0.1, 0.25, 1)',
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
                 'accordion-up': 'accordion-up 0.2s ease-out',
                 'collapsible-down': 'collapsible-down 0.2s ease-in-out',
                 'collapsible-up': 'collapsible-up 0.2s ease-in-out',
+                'text-blur': 'text-blur 1s out-expo',
+                'image-hero-blur': 'image-hero-blur 1s out-expo',
             },
         },
     },

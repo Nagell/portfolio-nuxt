@@ -1,10 +1,10 @@
-import * as covers from './constants/projectCovers'
+import * as assets from './constants/assets'
 
 export default defineNuxtPlugin(() => {
     return {
         provide: {
             const: {
-                covers
+                assets
             }
         }
     }

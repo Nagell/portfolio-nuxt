@@ -85,7 +85,7 @@
             <SidebarRail />
         </Sidebar>
         <SidebarInset>
-            <AdminHeader />
+            <LayoutAdminHeader />
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
                 <slot />
             </div>
@@ -103,8 +103,6 @@
         SlidersHorizontal
     } from 'lucide-vue-next'
 
-    import AdminHeader from '~/components/AdminHeader.vue'
-
     const supabaseClient = useSupabaseClient()
     const supabaseUser = useSupabaseUser()
 
@@ -121,8 +119,8 @@
                 icon: Library,
             },
             {
-                title: 'Covers',
-                url: '/admin/covers',
+                title: 'Assets',
+                url: '/admin/assets',
                 icon: Image,
             },
             {
