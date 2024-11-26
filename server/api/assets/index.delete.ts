@@ -2,12 +2,12 @@ import { ASSETS_BUCKET } from '~/plugins/constants/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { DeleteFileQuery } from '~/types/files.types'
+import type { DeleteAssetQuery } from '~/types/files.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
 
-    const query = getQuery(event) as DeleteFileQuery
+    const query = getQuery(event) as DeleteAssetQuery
     const { data, error } = await superbaseClient.storage
         .from(ASSETS_BUCKET)
         .remove([ query.name ])
