@@ -5,13 +5,23 @@
 
 It is a personal portfolio website built with:
 
-- Nuxt,
-- Tailwind CSS,
-- and Supabase.  
+- `nuxt` - Vue framework with built-in SSR,
+- `supabase` - Postgres database with auth,
+- `tailwindcss` - CSS framework,
+- `shadcn-vue` - radix based components,
+- `lucide` - SVG icons,
 
-Its main goal it to try out a combination of Nuxt and Supabase, ideally in the SSR mode.
+of course with `typescript` and `eslint` for better code quality.  
+The project is deployed and hosted on Vercel.
 
-## TODO
+## About
+
+Projects main goal it to try out a combination of Nuxt and Supabase.  
+The Admin Dashboard is built with SSR and CRUD operations are done on the server side.  
+Front (landing pages) on the other hand is built with ISR, which means that the data  
+is fetched at build time and then served from the cache.
+
+## Tasks
 
 - [x] Add Supabase integration
 - [x] Add Tailwind CSS integration
@@ -30,6 +40,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 - [ ] Add meta tags
 - [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
 - [ ] Connect final domain to the main branch
+- [ ] Add a rebuild trigger on Vercel when DB changes
 - [ ] Add Vitest and tests
 - [ ] Add i18n
 - [ ] Add color switcher
@@ -40,14 +51,7 @@ Its main goal it to try out a combination of Nuxt and Supabase, ideally in the S
 Make sure to install the dependencies:
 
 ```bash
-# yarn
 yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
 ```
 
 ## Development Server
@@ -55,7 +59,7 @@ pnpm install
 Start the development server on <http://localhost:3000>
 
 ```bash
-npm run dev
+yarn run dev
 ```
 
 ## Supabase & Development
@@ -67,13 +71,11 @@ More on this in the [Supabase development](./docs/SUPABASE.md).
 Build the application for production:
 
 ```bash
-npm run build
+yarn run build
 ```
 
 Locally preview production build:
 
 ```bash
-npm run preview
+yarn run preview
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
