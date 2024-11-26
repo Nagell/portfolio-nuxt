@@ -60,17 +60,18 @@ Y
 yarn supabase db pull --schema auth,storage
 # Update remote migration history table? [Y/n]
 Y
-# Apply the changes locally
-yarn supabase db reset
-# To seed buckets run
-yarn supabase seed buckets
 ```
 
-> [!NOTE] If you need to run it again, delete the /migrations folder locally and delete all the migrations  
-> in the supabase_migrations table on the supabase dashboard (see attached img).
->
-> Once you have migration files in the /migrations folder, the way to apply these to your local db is by running supabase db reset.  
-> If this runs without failure, your local schema should now match your  production schema.
+Once you have migration files in the /migrations folder, the way to apply these to your  
+local db is by running supabase db reset. If this runs without failure, your local schema  
+should now match your production schema.
+
+```bash
+# Apply the changes locally (it also seeds the buckets)
+yarn supabase db reset
+# To seed buckets manually run
+yarn supabase seed buckets
+```
 
 ### Environment variables
 
@@ -108,3 +109,7 @@ yarn types:supabase
 # Generate types from the local database
 yarn types:supabase:local
 ```
+
+### Supabase Studio (local admin panel)
+
+To access the Supabase admin panel, go to <http://127.0.0.1:54323> in your browser.
