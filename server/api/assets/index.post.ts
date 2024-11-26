@@ -1,4 +1,4 @@
-import { PROJECT_COVERS_BUCKET } from '~/plugins/constants/projectCovers'
+import { ASSETS_BUCKET } from '~/plugins/constants/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
         if (!file) continue
 
         const { data, error } = await superbaseClient.storage
-            .from(PROJECT_COVERS_BUCKET)
+            .from(ASSETS_BUCKET)
             .upload(file.name, file, {
                 cacheControl: '3600',
                 upsert: false

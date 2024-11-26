@@ -119,8 +119,8 @@
                 icon: Library,
             },
             {
-                title: 'Covers',
-                url: '/admin/covers',
+                title: 'Assets',
+                url: '/admin/assets',
                 icon: Image,
             },
             {

@@ -112,7 +112,7 @@
     import { publicProjectsInsertSchemaSchema } from '~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { ProjectCover } from '~/types/files.types'
+    import type { Asset } from '~/types/files.types'
     import type { PatchProjectQuery, PostProjectQuery, Project } from '~/types/projects.types'
 
     interface Props {
@@ -172,18 +172,18 @@
     // =======================
     // IMAGES
 
-    const images = ref<ProjectCover[]>([])
+    const images = ref<Asset[]>([])
 
-    // when opening the form, fetch the list of images
+    // when opening the form, fetch the list of assets and pick only the images
     onMounted(async () => {
-        await listImages().then((data) => {
-            images.value = data
+        await listAssets().then((data) => {
+            images.value = data.filter(asset => isImage(asset))
         })
     })
 
-    /** Fetch the list of images */
-    async function listImages() {
-        const images = await $fetch<ProjectCover[]>('/api/project-covers/list', {
+    /** Fetch the list of assets */
+    async function listAssets() {
+        const images = await $fetch<Asset[]>('/api/assets/list', {
             headers: useRequestHeaders([ 'cookie' ]),
             method: 'get'
         })

@@ -64,13 +64,13 @@
     const supabaseClient = useSupabaseClient()
     const src = ref('')
     const downloadImage = async () => {
-        await supabaseClient.storage.from($const.covers.PROJECT_COVERS_BUCKET).list().then(({ data, error }) => {
+        await supabaseClient.storage.from($const.assets.ASSETS_BUCKET).list().then(({ data, error }) => {
             if (error) throw error
             console.log(data)
 
             const firstImage = data[0]
 
-            supabaseClient.storage.from($const.covers.PROJECT_COVERS_BUCKET)
+            supabaseClient.storage.from($const.assets.ASSETS_BUCKET)
                 .download(firstImage.name)
                 .then(({ data, error }) => {
                     if (error) throw error
