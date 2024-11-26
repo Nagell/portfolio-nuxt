@@ -74,7 +74,7 @@
      * FORM
      */
 
-    // when opening the form, reset the form
+    // when mounting or reopening the form, set the form values
     onMounted(() => reset())
     watch(props, () => reset(), { deep: true })
 
