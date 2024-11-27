@@ -7,10 +7,11 @@
     }
     
     :root {
-      color-scheme: light;
+        color-scheme: light;
+        @apply scroll-smooth;
     }
     
     html.dark {
-      color-scheme: dark;
+        color-scheme: dark;
     }
 }

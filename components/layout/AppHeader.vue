@@ -5,16 +5,29 @@
                 Logo
             </NavigationMenuItem>
             <NavigationMenuItem>
-                <NuxtLink to="/">
+                <NuxtLink
+                    @click.prevent="scrollToAnchor('about')"
+                >
                     <NavigationMenuLink :class="navigationMenuTriggerStyle()">
-                        Home
+                        About
                     </NavigationMenuLink>
                 </NuxtLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-                <NuxtLink to="/tests">
+                <NuxtLink
+                    @click.prevent="scrollToAnchor('experience')"
+                >
                     <NavigationMenuLink :class="navigationMenuTriggerStyle()">
-                        Tests
+                        Experience
+                    </NavigationMenuLink>
+                </NuxtLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+                <NuxtLink
+                    @click.prevent="scrollToAnchor('projects')"
+                >
+                    <NavigationMenuLink :class="navigationMenuTriggerStyle()">
+                        Projects
                     </NavigationMenuLink>
                 </NuxtLink>
             </NavigationMenuItem>
@@ -31,4 +44,8 @@
 
 <script setup lang="ts">
     import { navigationMenuTriggerStyle } from '../ui/navigation-menu'
+
+    function scrollToAnchor(elementId: string) {
+        document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' })
+    }
 </script>
