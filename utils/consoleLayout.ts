@@ -10,7 +10,7 @@ export default () => {
   `
         .concat('\n\n')
         .concat('What was it... ah yes! Hello, World!\n\n')
-        .concat('PROJECTS: https://github.com/Nagell\n')
-        .concat('LINKEDIN: https://www.linkedin.com/in/dawidnitka/\n')
+        .concat(`PROJECTS: ${import.meta.env.VITE_LINK_GITHUB}\n`)
+        .concat(`LINKEDIN: ${import.meta.env.VITE_LINK_LINKEDIN}\n`)
     )
 }
