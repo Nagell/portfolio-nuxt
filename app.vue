@@ -1,7 +1,7 @@
 <template>
     <div>
         <NuxtLoadingIndicator
-            color="repeating-linear-gradient(to right,#fef08a 0%,#facc15 50%,#ca8a04 100%)"
+            color="repeating-linear-gradient(to right,hsl(47.9 95.8% 70%) 0%,hsl(47.9 95.8% 53.1%) 50%,hsl(35.5 91.7% 32.9%) 100%)"
             :throttle="50"
         />
         <NuxtLayout>
