@@ -12,7 +12,9 @@ export default defineEventHandler(async (event) => {
         .from(ASSETS_BUCKET)
         .download(query.name)
 
-    if (error) throw createError({ statusMessage: error.message })
+    console.log('data', data)
+
+    if (error) throw createError({ status: 400, message: 'No such file' })
 
     return data
 })

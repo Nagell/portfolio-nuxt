@@ -16,7 +16,7 @@
             <div v-if="experience.link">
                 <a
                     :href="experience.link"
-                    class="inline-block"
+                    class="inline-block group"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
@@ -25,7 +25,7 @@
                         variant="h4"
                     >
                         {{ experience.title }}
-                        <ArrowUpRight class="align-bottom inline-block" />
+                        <ArrowUpRight class="align-bottom inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                     </CommonTypography>
                 </a>
             </div>
@@ -40,7 +40,7 @@
             <!-- description -->
             <CommonTypography
                 tag="ul"
-                class="my-0"
+                class="my-0 text-muted-foreground"
             >
                 <CommonTypography
                     v-for="(description, key) in descriptionList"
