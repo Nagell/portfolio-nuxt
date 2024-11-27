@@ -75,7 +75,7 @@
             pointer-events: none;
             position: absolute;
             inset: -8px;
-            background: linear-gradient(to right, transparent 80%, theme('colors.background') 90%);
+            background: linear-gradient(to right, transparent 70%, theme('colors.background') 85%);
         }
     }
 </style>
