@@ -38,6 +38,7 @@ is fetched at build time and then served from the cache.
   - [ ] admin panel
 - [ ] Add animations
 - [ ] Add meta tags
+- [ ] Add license
 - [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
 - [ ] Connect final domain to the main branch
 - [ ] Add a rebuild trigger on Vercel when DB changes
