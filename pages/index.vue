@@ -1,7 +1,7 @@
 <template>
     <div>
         <FrontSpotlights />
-        <FrontAbout />
+        <FrontAbout class="mt-8 md:mt-20" />
         <FrontHero />
         <CommonSection heading="Experience">
             <div class="mt-9 flex flex-col gap-14">

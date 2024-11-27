@@ -1,32 +1,34 @@
 <template>
-    <header class="py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <NuxtLink
-                to="/"
-                class="text-2xl font-bold text-primary"
-            >
-                My Portfolio
-            </NuxtLink>
-            <div class="space-x-4">
-                <NuxtLink
-                    to="/"
-                    class="text-foreground hover:text-primary"
-                >
-                    Home
+    <NavigationMenu class="flex justify-between items-start">
+        <NavigationMenuList>
+            <NavigationMenuItem>
+                Logo
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+                <NuxtLink to="/">
+                    <NavigationMenuLink :class="navigationMenuTriggerStyle()">
+                        Home
+                    </NavigationMenuLink>
                 </NuxtLink>
-                <NuxtLink
-                    to="/tests"
-                    class="text-foreground hover:text-primary"
-                >
-                    Tests
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+                <NuxtLink to="/tests">
+                    <NavigationMenuLink :class="navigationMenuTriggerStyle()">
+                        Tests
+                    </NavigationMenuLink>
                 </NuxtLink>
-                <NuxtLink
-                    to="/admin/projects"
-                    class="text-foreground hover:text-primary"
-                >
-                    Admin
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+                <NuxtLink to="/admin/projects">
+                    <NavigationMenuLink :class="navigationMenuTriggerStyle()">
+                        Admin
+                    </NavigationMenuLink>
                 </NuxtLink>
-            </div>
-        </nav>
-    </header>
+            </NavigationMenuItem>
+        </NavigationMenuList>
+    </NavigationMenu>
 </template>
+
+<script setup lang="ts">
+    import { navigationMenuTriggerStyle } from '../ui/navigation-menu'
+</script>
