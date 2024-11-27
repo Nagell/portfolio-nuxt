@@ -1,5 +1,9 @@
-export default () => {
-    import.meta.env.MODE !== 'development' && console.log(`
+function consoleLayout() {
+    const env = import.meta.env
+
+    if (env.MODE === 'development') return
+
+    let text = `
  ____                                 __      __  __      __    __                  
 /\\  _\`\\                        __    /\\ \\    /\\ \\/\\ \\  __/\\ \\__/\\ \\                 
 \\ \\ \\/\\ \\     __    __  __  __/\\_\\   \\_\\ \\   \\ \\ \`\\\\ \\/\\_\\ \\ ,_\\ \\ \\/'\\      __     
@@ -10,7 +14,17 @@ export default () => {
   `
         .concat('\n\n')
         .concat('What was it... ah yes! Hello, World!\n\n')
-        .concat(`PROJECTS: ${import.meta.env.VITE_LINK_GITHUB}\n`)
-        .concat(`LINKEDIN: ${import.meta.env.VITE_LINK_LINKEDIN}\n`)
-    )
+
+    if (env.VITE_LINK_GITHUB) text = text.concat(`PROJECTS: ${env.VITE_LINK_GITHUB}\n`)
+    if (env.VITE_LINK_LINKEDIN) text = text.concat(`LINKEDIN: ${env.VITE_LINK_LINKEDIN}\n`)
+
+    console.log(text)
 }
+
+export default defineNuxtPlugin(() => {
+    return {
+        provide: {
+            consoleLayout
+        }
+    }
+})

@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+    const { $consoleLayout } = useNuxtApp()
     // make sure that the dark mode is applied on the first render
     // (even without JS active in the client)
     useHead({
@@ -18,5 +19,7 @@
             class: 'dark',
         },
     })
-    consoleLayout()
+    onMounted(() => {
+        $consoleLayout()
+    })
 </script>
