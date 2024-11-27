@@ -50,9 +50,13 @@
             <NavigationMenuItem>
                 <NuxtLink
                     to="/admin/projects"
-                    :class="navigationMenuTriggerStyle()"
                 >
-                    Admin
+                    <NavigationMenuLink
+                        as="span"
+                        :class="navigationMenuTriggerStyle()"
+                    >
+                        Admin
+                    </NavigationMenuLink>
                 </NuxtLink>
             </NavigationMenuItem>
         </NavigationMenuList>
