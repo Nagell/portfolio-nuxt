@@ -63,6 +63,10 @@ Start the development server on <http://localhost:3000>
 yarn run dev
 ```
 
+> [!NOTE]
+> This step requires a running Supabase instance and .env file with the Supabase credentials  
+> as well as some other environment variables. Sample `.env.example` file is provided.
+
 ## Supabase & Development
 
 More on this in the [Supabase development](./docs/SUPABASE.md).
