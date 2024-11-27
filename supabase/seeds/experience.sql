@@ -14,7 +14,7 @@ Created materials for online advertising using Photoshop and Illustrator to enha
 '2018-02-01',
 '2019-05-31',
 '["JavaScript","SCSS","Gulp","Joomla","Java","Photoshop","Illustrator"]',
-'https://www.lab56.de/'),
+NULL),
 ('Frontend Engineer, LK Digital (DCC.RUHR)',
 'Planned and led a customizable Atomic Design project for multiple companies utilizing Vue 2, jQuery, Vite, Tailwind, Storybook, Lerna, NPM packages, and Figma
 
