@@ -1,6 +1,6 @@
 <template>
     <footer class="py-4 mt-8">
-        <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="container flex justify-between items-center">
             <p>&copy; {{ new Date().getFullYear() }} My Portfolio</p>
             <div class="space-x-4">
                 <a

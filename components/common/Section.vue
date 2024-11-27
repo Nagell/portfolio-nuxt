@@ -1,6 +1,6 @@
 <template>
     <section :class="cn(props.class, 'py-16')">
-        <div class="container mx-auto px-4">
+        <div class="container">
             <CommonTypography
                 v-if="props.heading"
                 tag="h2"
