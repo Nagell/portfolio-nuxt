@@ -34,6 +34,9 @@ export default {
         },
         extend: {
             // Add your custom classes, or override existing classes here
+            screens: {
+                xs: '450px',
+            },
             colors: {
                 border: 'hsl(var(--border) / <alpha-value>)',
                 input: 'hsl(var(--input) / <alpha-value>)',
