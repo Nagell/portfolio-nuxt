@@ -19,8 +19,6 @@
     } from 'radix-vue'
     import { type HTMLAttributes, computed } from 'vue'
 
-    import { cn } from '@/lib/utils'
-
     import { navigationMenuTriggerStyle } from '.'
 
     const props = defineProps<NavigationMenuTriggerProps & { class?: HTMLAttributes['class'] }>()

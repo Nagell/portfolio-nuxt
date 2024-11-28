@@ -19,7 +19,6 @@
     import { type HTMLAttributes, computed } from 'vue'
 
     import { buttonVariants } from '@/components/ui/button'
-    import { cn } from '@/lib/utils'
 
     const props = defineProps<CalendarNextProps & { class?: HTMLAttributes['class'] }>()
 

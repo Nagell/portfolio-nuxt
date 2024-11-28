@@ -11,8 +11,6 @@
     import { DialogDescription, type DialogDescriptionProps } from 'radix-vue'
     import { type HTMLAttributes, computed } from 'vue'
 
-    import { cn } from '@/lib/utils'
-
     const props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes['class'] }>()
 
     const delegatedProps = computed(() => {

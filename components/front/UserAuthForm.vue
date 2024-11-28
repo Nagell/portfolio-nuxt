@@ -44,8 +44,6 @@
     import { ArrowLeft, Github, Loader2 } from 'lucide-vue-next'
     import { ref } from 'vue'
 
-    import { cn } from '@/lib/utils'
-
     import { buttonVariants } from '../ui/button'
 
     const supabaseClient = useSupabaseClient()

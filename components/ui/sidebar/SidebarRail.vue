@@ -20,7 +20,6 @@
 </template>
 
 <script setup lang="ts">
-    import { cn } from '@/lib/utils'
 
     import { useSidebar } from './utils'
 
