@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
             ? new File([ part.data ], part?.filename, { type: part.type })
             : null)
 
-    if (!files.length) throw createError({ status: 400, message: 'Bad Request: no files in this request' })
+    if (!files.length) throw createError({ status: 400, statusMessage: 'Bad Request: no files in this request' })
 
     const responses = []
     for (const file of files) {
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
                 cacheControl: '3600',
                 upsert: false
             })
-        if (error) throw createError(error)
+        if (error) throw createError({ statusMessage: error.message })
 
         responses.push(data)
     }
