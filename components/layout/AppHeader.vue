@@ -1,61 +1,41 @@
 <template>
-    <NavigationMenu class="flex justify-between items-start">
+    <NavigationMenu class="">
         <NavigationMenuList>
             <NavigationMenuItem>
                 <NuxtLink
                     to="/"
+                    class="px-2 py-3 block"
                 >
-                    Logo
+                    <CommonLogoWhite class="h-6" />
                 </NuxtLink>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            <NavigationMenuItem
+                v-for="anchor in anchors"
+                :key="anchor.name"
+            >
                 <NuxtLink
-                    to="/#about"
-                    @click.prevent="scrollToAnchor('about')"
+                    :to="anchor.link"
+                    @click.prevent="anchor.onClick"
                 >
                     <NavigationMenuLink
                         as="span"
                         :class="navigationMenuTriggerStyle()"
                     >
-                        About
+                        {{ anchor.name }}
                     </NavigationMenuLink>
                 </NuxtLink>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-                <NuxtLink
-                    to="/#experience"
-                    @click.prevent="scrollToAnchor('experience')"
-                >
-                    <NavigationMenuLink
-                        as="span"
-                        :class="navigationMenuTriggerStyle()"
-                    >
-                        Experience
-                    </NavigationMenuLink>
-                </NuxtLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-                <NuxtLink
-                    to="/#projects"
-                    @click.prevent="scrollToAnchor('projects')"
-                >
-                    <NavigationMenuLink
-                        as="span"
-                        :class="navigationMenuTriggerStyle()"
-                    >
-                        Projects
-                    </NavigationMenuLink>
-                </NuxtLink>
-            </NavigationMenuItem>
+        </NavigationMenuList>
+        <NavigationMenuList class="hidden xs:flex">
             <NavigationMenuItem>
                 <NuxtLink
                     to="/admin/projects"
                 >
                     <NavigationMenuLink
                         as="span"
-                        :class="navigationMenuTriggerStyle()"
+                        :class="[navigationMenuTriggerStyle(), 'pr-3']"
                     >
-                        Admin
+                        Login
                     </NavigationMenuLink>
                 </NuxtLink>
             </NavigationMenuItem>
@@ -69,4 +49,22 @@
     function scrollToAnchor(elementId: string) {
         document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' })
     }
+
+    const anchors = [
+        {
+            name: 'About',
+            link: '/#about',
+            onClick: () => scrollToAnchor('about')
+        },
+        {
+            name: 'Experience',
+            link: '/#experience',
+            onClick: () => scrollToAnchor('experience')
+        },
+        {
+            name: 'Projects',
+            link: '/#projects',
+            onClick: () => scrollToAnchor('projects')
+        }
+    ]
 </script>

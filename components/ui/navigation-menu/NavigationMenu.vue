@@ -1,10 +1,10 @@
 <template>
     <NavigationMenuRoot
         v-bind="forwarded"
-        :class="cn('fixed inset-0 bottom-auto z-10 flex items-center justify-center !container rounded-xl !px-0', props.class)"
+        :class="cn('fixed inset-0 bottom-auto z-10 !container rounded-xl !px-0', props.class)"
     >
-        <div class="fixed inset-0 bottom-auto h-[3.625rem] pointer-events-none backdrop-blur-sm" />
-        <div class="container mt-4 w-full flex flex-auto items-center justify-start px-4 border border-opacity-50 rounded-xl backdrop-blur-lg bg-background/50">
+        <div class="fixed inset-0 bottom-auto h-16 pointer-events-none select-none backdrop-blur-sm blur-mask" />
+        <div class="mt-4 w-full flex flex-auto items-center justify-between px-2 border border-opacity-50 rounded-xl backdrop-blur-lg bg-background/50">
             <slot />
             <NavigationMenuViewport />
         </div>
@@ -38,7 +38,7 @@
 </script>
 
 <style scoped lang="css">
-    .container {
-        max-width: 100%;
+    .blur-mask {
+        mask-image: linear-gradient(to bottom, theme('colors.background') 20%, theme('colors.transparent') calc(100% - 20%));
     }
 </style>
