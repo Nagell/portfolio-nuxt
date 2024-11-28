@@ -36,6 +36,7 @@ is fetched at build time and then served from the cache.
   - [ ] landing page
   - [ ] login page
   - [ ] admin panel
+- [ ] Add Terms of Service and Privacy Policy
 - [ ] Add animations
 - [ ] Add meta tags
 - [ ] Add license
@@ -44,7 +45,6 @@ is fetched at build time and then served from the cache.
 - [ ] Add a rebuild trigger on Vercel when DB changes
 - [ ] Add Vitest and tests
 - [ ] Add i18n
-- [ ] Add color switcher
 - [ ] stats from vercel and cookie banner with cookie-control
 
 ## Setup

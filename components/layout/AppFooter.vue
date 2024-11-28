@@ -19,6 +19,18 @@
                 >
                     LinkedIn
                 </a>
+                <a
+                    href="/terms"
+                    class="underline underline-offset-4 hover:text-primary"
+                >
+                    Terms of Service
+                </a>
+                <a
+                    href="/privacy"
+                    class="underline underline-offset-4 hover:text-primary"
+                >
+                    Privacy Policy
+                </a>
             </div>
         </div>
     </footer>
