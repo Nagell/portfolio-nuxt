@@ -3,19 +3,10 @@
         <FrontSpotlights />
         <FrontAbout class="mt-8 md:mt-20" />
         <FrontHero />
-        <CommonSection heading="Experience">
-            <div class="mt-9 flex flex-col gap-14">
-                <FrontExperienceItem
-                    v-for="experience in experienceData"
-                    :key="experience.id"
-                    :experience="experience"
-                />
-            </div>
-
-            <FrontExternalLink @click="fetchCvWithBackup">
-                View Full Résumé
-            </FrontExternalLink>
-        </CommonSection>
+        <FrontExperience
+            v-if="experienceData"
+            :experience-data="experienceData"
+        />
         <CommonSection heading="Projects">
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <FrontProjectItem
@@ -29,8 +20,6 @@
 </template>
 
 <script setup lang="ts">
-    const { $const } = useNuxtApp()
-
     /** Fetch all projects rows from the database */
     const { data: projects } = await useFetch('/api/projects', {
         key: 'projects',
@@ -42,17 +31,4 @@
         key: 'experience',
         method: 'get'
     })
-
-    /** Download the CV or open linkedin in a new tab */
-    async function fetchCvWithBackup() {
-        await $fetch('/api/assets/', {
-            query: { name: $const.assets.CV_FILE_NAME },
-            method: 'get'
-        }).then((data) => {
-            downloadBlob(data as Blob, $const.assets.CV_FILE_NAME)
-        }).catch((err) => {
-            console.error(err)
-            window.open($const.links.LINKEDIN, '_blank')
-        })
-    }
 </script>
