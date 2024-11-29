@@ -32,10 +32,10 @@ is fetched at build time and then served from the cache.
 - [x] Deploy to Vercel
 - [x] Add CI/CD
 - [x] End testing phase - prepare dev and prod environments
-- [ ] Create a design for
+- [ ] Create and implement a design for
   - [ ] landing page
-  - [ ] login page
-  - [ ] admin panel
+  - [x] login page
+  - [x] admin panel
 - [ ] Add Terms of Service and Privacy Policy
 - [ ] Add animations
 - [ ] Add meta tags

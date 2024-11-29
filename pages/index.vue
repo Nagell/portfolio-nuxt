@@ -12,13 +12,9 @@
                 />
             </div>
 
-            <button
-                class="mt-14 text-xl font-medium tracking-tight group"
-                @click="fetchCvWithBackup()"
-            >
+            <FrontExternalLink @click="fetchCvWithBackup">
                 View Full Résumé
-                <ArrowUpRight class="align-bottom inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </button>
+            </FrontExternalLink>
         </CommonSection>
         <CommonSection heading="Projects">
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -33,8 +29,6 @@
 </template>
 
 <script setup lang="ts">
-    import { ArrowUpRight } from 'lucide-vue-next'
-
     const { $const } = useNuxtApp()
 
     /** Fetch all projects rows from the database */

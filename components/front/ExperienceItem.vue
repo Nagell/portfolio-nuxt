@@ -12,30 +12,12 @@
             </CommonTypography>
         </div>
         <div class="grow flex flex-col gap-3">
-            <!-- heading -->
-            <div v-if="experience.link">
-                <a
-                    :href="experience.link"
-                    class="inline-block group"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <CommonTypography
-                        tag="h3"
-                        variant="h4"
-                    >
-                        {{ experience.title }}
-                        <ArrowUpRight class="align-bottom inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </CommonTypography>
-                </a>
+            <div>
+                <!-- heading -->
+                <FrontExternalLink :href="experience.link">
+                    {{ experience.title.trim() }}
+                </FrontExternalLink>
             </div>
-            <CommonTypography
-                v-else
-                tag="h3"
-                variant="h4"
-            >
-                {{ experience.title }}
-            </CommonTypography>
 
             <!-- description -->
             <CommonTypography
@@ -70,8 +52,6 @@
 </template>
 
 <script lang="ts" setup>
-    import { ArrowUpRight } from 'lucide-vue-next'
-
     import type { Experience } from '~/types/experience.types'
 
     interface Props {
