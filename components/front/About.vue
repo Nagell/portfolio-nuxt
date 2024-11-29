@@ -1,5 +1,5 @@
 <template>
-    <CommonSection>
+    <CommonSection id="about">
         <CommonTypography
             tag="h1"
             class="flex gap-1.5"

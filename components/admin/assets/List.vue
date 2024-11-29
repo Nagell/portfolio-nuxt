@@ -11,53 +11,25 @@
                 Add new
             </Button>
         </SheetTrigger>
-        <ul>
-            <li
-                v-for="asset in assetsData"
-                :key="asset.metadata?.id"
-                class="mb-4 p-4 border rounded-lg flex justify-between"
-            >
-                <div class="flex gap-2">
-                    <Avatar class="h-8 w-8 rounded-lg">
-                        <AvatarImage
-                            :src="useGetPublicURL(asset.name)"
-                            :alt="asset.name"
-                        />
-                        <AvatarFallback class="rounded-lg">
-                            <Image class="w-4" />
-                        </AvatarFallback>
-                    </Avatar>
-                    <h4 class="text-lg font-bold">
-                        {{ asset.name }}
-                    </h4>
-                </div>
-                <div>
-                    <Button
-                        variant="link"
-                        @click="deleteAsset(asset.name)"
-                    >
-                        Delete
-                    </Button>
-                    <SheetTrigger as-child>
-                        <Button
-                            variant="link"
-                            @click="emits('openForm', { mode: 'edit', asset })"
-                        >
-                            Edit
-                        </Button>
-                    </SheetTrigger>
-                </div>
-            </li>
-        </ul>
+        <CommonDataTable
+            v-if="assetsData"
+            :columns="columns"
+            :data="assetsData"
+            filter-by="name"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
-    import {
-        Image
-    } from 'lucide-vue-next'
+    import { ArrowUpDown, Image } from 'lucide-vue-next'
+    import { h } from 'vue'
+
+    import DropdownAction from '~/components/common/DataTableDropdown.vue'
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+    import { Button } from '~/components/ui/button'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
+    import type { ColumnDef } from '@tanstack/vue-table'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Asset } from '~/types/files.types'
 
@@ -84,6 +56,56 @@
     onUnmounted(() => {
         supabaseClient.removeChannel(realtimeChannel)
     })
+
+    /** Define the columns for the assets table */
+    const columns: ColumnDef<Asset>[] = [
+        {
+            accessorKey: 'image',
+            header: 'Image',
+            cell: ({ row }) => {
+                const item = row.original
+
+                return h('div', { class: 'relative' }, h(Avatar, { class: 'h-8 w-8 rounded-lg' }, () => [
+                    h(AvatarImage, { src: useGetPublicURL(item.name), alt: 'Image' }),
+                    h(AvatarFallback, { class: 'rounded-lg' }, () => [
+                        h(Image, { class: 'h-4 w-4' })
+                    ])
+                ]))
+            },
+        },
+        {
+            accessorKey: 'name',
+            header: ({ column }) => {
+                return h(Button, {
+                    variant: 'ghost',
+                    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+                }, () => [ 'Name', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' }) ])
+            },
+            cell: ({ row }) => h('div', { class: 'truncate overflow-hidden max-w-80' }, row.getValue('name')),
+        },
+        {
+            accessorKey: 'metadata',
+            header: 'Type',
+            cell: ({ row }) => {
+                const item = row.original
+                return h('div', { class: 'truncate overflow-hidden max-w-80' }, item.metadata?.mimetype)
+            },
+        },
+        {
+            id: 'actions',
+            enableHiding: false,
+            cell: ({ row }) => {
+                const item = row.original
+
+                return h('div', { class: 'relative' }, h(DropdownAction, {
+                    item,
+                    onExpand: row.toggleExpanded,
+                    onDelete: () => deleteAsset(item.name),
+                    onEdit: () => emits('openForm', { mode: 'edit', asset: item })
+                }))
+            },
+        },
+    ]
 
     /** Fetch all asset files from the bucket */
     const { data: assetsData, refresh: refreshAssets } = await useFetch<Asset[]>('/api/assets/list', {

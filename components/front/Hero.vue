@@ -10,15 +10,16 @@
             <div class="hero__animation-frame absolute inset-0">
                 <div class="hero opacity-0 animate-[image-hero-blur_1s_forwards_1000ms] absolute inset-0">
                     <NuxtImg
-                        src="/images/window.png"
+                        src="/images/window.webp"
                         alt="IDE window image"
                         class="w-full"
                         format="webp"
                         sizes="xs:700px sm:1000px md:1500px"
+                        quality="100"
                     />
                 </div>
                 <NuxtImg
-                    src="/images/text.png"
+                    src="/images/text.webp"
                     alt="Code text image"
                     class="hero opacity-0 animate-[image-hero-blur_1s_forwards_1500ms] absolute inset-0 w-full"
                     format="webp"
@@ -75,7 +76,7 @@
             pointer-events: none;
             position: absolute;
             inset: -8px;
-            background: linear-gradient(to right, transparent 80%, theme('colors.background') 90%);
+            background: linear-gradient(to right, transparent 70%, theme('colors.background') 85%);
         }
     }
 </style>

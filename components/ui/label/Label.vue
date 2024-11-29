@@ -16,8 +16,6 @@
     import { Label, type LabelProps } from 'radix-vue'
     import { type HTMLAttributes, computed } from 'vue'
 
-    import { cn } from '@/lib/utils'
-
     const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()
 
     const delegatedProps = computed(() => {

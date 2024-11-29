@@ -1,4 +1,6 @@
-export default (blob: Blob, name: string) => {
+import type { Asset } from '~/types/files.types'
+
+export function downloadBlob(blob: Blob, name: string) {
     const data = window.URL.createObjectURL(blob)
 
     const link = document.createElement('a')
@@ -19,4 +21,8 @@ export default (blob: Blob, name: string) => {
         window.URL.revokeObjectURL(data)
         link.remove()
     }, 100)
+}
+
+export function isImage(data: Asset) {
+    return data.metadata?.mimetype?.startsWith('image')
 }

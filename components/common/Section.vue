@@ -1,6 +1,9 @@
 <template>
-    <section :class="cn(props.class, 'py-16')">
-        <div class="container mx-auto px-4">
+    <section
+        :id="headingId"
+        :class="cn(props.class, 'py-16')"
+    >
+        <div class="container">
             <CommonTypography
                 v-if="props.heading"
                 tag="h2"
@@ -13,14 +16,16 @@
 </template>
 
 <script lang="ts" setup>
-    import { cn } from '~/lib/utils'
 
     import type { HTMLAttributes } from 'vue'
 
     interface Props {
         class?: HTMLAttributes['class']
         heading?: string
+        id?: string
     }
 
     const props = defineProps<Props>()
+
+    const headingId = computed(() => props.id || props.heading?.toLowerCase().replace(/\s/g, '-'))
 </script>

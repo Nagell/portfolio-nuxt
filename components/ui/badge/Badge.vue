@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-    import { cn } from '@/lib/utils'
-
     import { type BadgeVariants, badgeVariants } from '.'
 
     import type { HTMLAttributes } from 'vue'

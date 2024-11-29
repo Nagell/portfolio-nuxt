@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
 
     console.log('data', data)
 
-    if (error) throw createError({ status: 400, message: 'No such file' })
+    if (error) throw createError({ status: 400, statusMessage: 'No such file' })
 
     return data
 })

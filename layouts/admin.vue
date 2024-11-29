@@ -53,7 +53,7 @@
                                             :alt="data.user.name"
                                         />
                                         <AvatarFallback class="rounded-lg">
-                                            DN
+                                            {{ data.user.name.charAt(0) }}
                                         </AvatarFallback>
                                     </Avatar>
                                     <div class="grid flex-1 text-left text-sm leading-tight">
@@ -105,12 +105,19 @@
 
     const supabaseClient = useSupabaseClient()
     const supabaseUser = useSupabaseUser()
+    const userAvatar = ref('')
 
-    const data = {
+    onMounted(async () => {
+        if (!supabaseUser.value?.email) return
+        const avatarUrl = await getGitHubAvatar(supabaseUser.value?.email)
+        userAvatar.value = avatarUrl
+    })
+
+    const data = computed(() => ({
         user: {
             name: supabaseUser.value?.user_metadata.full_name ?? 'anonymous',
             email: supabaseUser.value?.email ?? 'anonymous@mail.com',
-            avatar: '',
+            avatar: userAvatar.value,
         },
         projects: [
             {
@@ -133,7 +140,7 @@
             name: 'Dashboard',
             logo: SlidersHorizontal,
         },
-    }
+    }))
 
     /** Log out the current user */
     async function logout() {

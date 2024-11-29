@@ -1,6 +1,6 @@
 <template>
     <footer class="py-4 mt-8">
-        <div class="container mx-auto px-4 flex justify-between items-center">
+        <div class="container flex justify-between items-center">
             <p>&copy; {{ new Date().getFullYear() }} My Portfolio</p>
             <div class="space-x-4">
                 <a
@@ -18,6 +18,18 @@
                     class="text-foreground hover:text-primary"
                 >
                     LinkedIn
+                </a>
+                <a
+                    href="/terms"
+                    class="underline underline-offset-4 hover:text-primary"
+                >
+                    Terms of Service
+                </a>
+                <a
+                    href="/privacy"
+                    class="underline underline-offset-4 hover:text-primary"
+                >
+                    Privacy Policy
                 </a>
             </div>
         </div>

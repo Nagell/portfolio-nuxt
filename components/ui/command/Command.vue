@@ -11,8 +11,6 @@
     import { ComboboxRoot, useForwardPropsEmits } from 'radix-vue'
     import { type HTMLAttributes, computed } from 'vue'
 
-    import { cn } from '@/lib/utils'
-
     import type { ComboboxRootEmits, ComboboxRootProps } from 'radix-vue'
 
     const props = withDefaults(defineProps<ComboboxRootProps & { class?: HTMLAttributes['class'] }>(), {

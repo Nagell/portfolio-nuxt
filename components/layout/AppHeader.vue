@@ -1,32 +1,70 @@
 <template>
-    <header class="py-4">
-        <nav class="container mx-auto px-4 flex justify-between items-center">
-            <NuxtLink
-                to="/"
-                class="text-2xl font-bold text-primary"
-            >
-                My Portfolio
-            </NuxtLink>
-            <div class="space-x-4">
+    <NavigationMenu class="">
+        <NavigationMenuList>
+            <NavigationMenuItem>
                 <NuxtLink
                     to="/"
-                    class="text-foreground hover:text-primary"
+                    class="px-2 py-3 block"
                 >
-                    Home
+                    <CommonLogoWhite class="h-6" />
                 </NuxtLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem
+                v-for="anchor in anchors"
+                :key="anchor.name"
+            >
                 <NuxtLink
-                    to="/tests"
-                    class="text-foreground hover:text-primary"
+                    :to="anchor.link"
+                    @click.prevent="anchor.onClick"
                 >
-                    Tests
+                    <NavigationMenuLink
+                        as="span"
+                        :class="navigationMenuTriggerStyle()"
+                    >
+                        {{ anchor.name }}
+                    </NavigationMenuLink>
                 </NuxtLink>
+            </NavigationMenuItem>
+        </NavigationMenuList>
+        <NavigationMenuList class="hidden xs:flex">
+            <NavigationMenuItem>
                 <NuxtLink
                     to="/admin/projects"
-                    class="text-foreground hover:text-primary"
                 >
-                    Admin
+                    <NavigationMenuLink
+                        as="span"
+                        :class="[navigationMenuTriggerStyle(), 'pr-3']"
+                    >
+                        Login
+                    </NavigationMenuLink>
                 </NuxtLink>
-            </div>
-        </nav>
-    </header>
+            </NavigationMenuItem>
+        </NavigationMenuList>
+    </NavigationMenu>
 </template>
+
+<script setup lang="ts">
+    import { navigationMenuTriggerStyle } from '~/components/ui/navigation-menu'
+
+    function scrollToAnchor(elementId: string) {
+        document.getElementById(elementId)?.scrollIntoView({ behavior: 'smooth' })
+    }
+
+    const anchors = [
+        {
+            name: 'About',
+            link: '/#about',
+            onClick: () => scrollToAnchor('about')
+        },
+        {
+            name: 'Experience',
+            link: '/#experience',
+            onClick: () => scrollToAnchor('experience')
+        },
+        {
+            name: 'Projects',
+            link: '/#projects',
+            onClick: () => scrollToAnchor('projects')
+        }
+    ]
+</script>

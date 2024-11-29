@@ -9,7 +9,7 @@
                 />
                 <NuxtLink
                     to="/"
-                    class="text-base font-bold text-primary"
+                    class="text-sm text-foreground"
                 >
                     Home
                 </NuxtLink>

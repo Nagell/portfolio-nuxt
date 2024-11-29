@@ -20,10 +20,7 @@ Documentation on this topic can be found [here](https://supabase.com/docs/guides
 
 ```bash
 # Install the Supabase CLI 
-# in this project it is already installed as a dev dependency
-# but you can install it globally
-yarn global add supabase
-
+# in this project it is already installed as a dev dependency.
 # If supabase is not recognized as a command after yarn install
 # you can just force it by reinstalling the package
 yarn install supabase -D
