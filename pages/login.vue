@@ -1,28 +1,47 @@
 <template>
     <div class="relative min-h-screen flex flex-col-reverse items-center justify-center lg:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div class="relative w-full min-h-dvh flex-col bg-muted p-10 text-white lg:flex">
-            <div class="absolute inset-0 bg-zinc-900" />
-            <div class="relative z-20 flex items-center text-lg font-medium">
+        <div class="relative hidden lg:flex w-full min-h-dvh flex-col bg-gradient-to-bl from-foreground to-muted">
+            <NuxtImg
+                src="/images/dashboard.webp"
+                alt="Code text image"
+                class="absolute inset-0 w-full h-full object-cover object-left opacity-80 cover pointer-events-none select-none "
+                format="webp"
+                sizes="xs:700px sm:1000px md:1500px"
+            />
+        </div>
+        <div class="relative w-full">
+            <div class="absolute top-10 left-12">
                 <CommonLogoWhite class="w-12" />
             </div>
-            <!-- TODO: Image -->
-        </div>
-        <div class="mx-auto flex min-h-dvh flex-col justify-center space-y-6 w-[350px]">
-            <div class="flex flex-col space-y-2 text-center">
-                <h1 class="text-2xl font-semibold tracking-tight">
-                    Login to your account
-                </h1>
-                <p class="text-sm text-muted-foreground">
-                    For now only I am allowed to access the dashboard.
-                    <span class="lg:hidden">
-                        You can still check how it looks like below.
-                    </span>
-                    <span class="hidden lg:inline">
-                        You can still check how it looks like on the left side.
-                    </span>
-                </p>
+            <div class="relative mx-auto flex flex-col min-h-dvh w-[350px] justify-center space-y-6 ">
+                <div class="flex flex-col space-y-2 text-center">
+                    <CommonTypography
+                        variant="h4"
+                        tag="h1"
+                        class="text-2xl font-semibold tracking-tight"
+                    >
+                        Login to your account
+                    </CommonTypography>
+                    <CommonTypography
+                        tag="p"
+                        class="text-sm text-muted-foreground"
+                    >
+                        Currently, only I have access to the dashboard.
+                    </CommonTypography>
+                    <CommonTypography
+                        tag="p"
+                        class="text-sm text-muted-foreground"
+                    >
+                        <span class="lg:hidden whitespace-pre-wrap">
+                            If you're curious, you can view it on a larger screen - a screenshot will appear on the left side.
+                        </span>
+                        <span class="hidden lg:inline">
+                            You can see how it looks on the left side.
+                        </span>
+                    </CommonTypography>
+                </div>
+                <FrontUserAuthForm />
             </div>
-            <FrontUserAuthForm />
         </div>
     </div>
 </template>
