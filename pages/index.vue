@@ -16,6 +16,11 @@
                 />
             </div>
         </CommonSection>
+        <CommonSection heading="Projects">
+            <div class="mt-4">
+                <FrontProjects />
+            </div>
+        </CommonSection>
     </div>
 </template>
 

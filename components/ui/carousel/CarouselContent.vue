@@ -1,7 +1,6 @@
 <template>
     <div
         ref="carouselRef"
-        class="overflow-hidden"
     >
         <div
             :class="
