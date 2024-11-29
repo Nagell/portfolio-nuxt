@@ -74,7 +74,7 @@
         --destructive:                  0 62.8% 30.6%;      /* hsl(0 62.8% 30.6%) */
         --destructive-foreground:       60 9.1% 97.8%;      /* hsl(60 9.1% 97.8%) */
         
-        --ring:                         35.5 91.7% 32.9%;   /* hsl(35.5 91.7% 32.9%) */
+        --ring:                         60 9.1% 97.8%;      /* hsl(60 9.1% 97.8%) */
 
         --sidebar-background:           240 5.9% 10%;       /* hsl(240 5.9% 10%) */
         --sidebar-foreground:           240 4.8% 95.9%;     /* hsl(240 4.8% 95.9%) */
@@ -83,7 +83,7 @@
         --sidebar-accent:               240 3.7% 15.9%;     /* hsl(240 3.7% 15.9%) */
         --sidebar-accent-foreground:    240 4.8% 95.9%;     /* hsl(240 4.8% 95.9%) */
         --sidebar-border:               240 3.7% 15.9%;     /* hsl(240 3.7% 15.9%) */
-        --sidebar-ring:                 35.5 91.7% 32.9%;   /* hsl(35.5 91.7% 32.9%) */
+        --sidebar-ring:                 60 9.1% 97.8%;      /* hsl(60 9.1% 97.8%) */
     }
 }
 
