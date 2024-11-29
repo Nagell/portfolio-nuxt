@@ -1,12 +1,14 @@
 @layer base {
     * {
         @apply border-border;
+        scrollbar-width: thin;
+        scrollbar-color: hsl(var(--border)) transparent;
     }
     body {
         @apply bg-background text-foreground overflow-x-hidden;
     }
     
-    :root {
+    html {
         color-scheme: light;
         @apply scroll-smooth;
     }
