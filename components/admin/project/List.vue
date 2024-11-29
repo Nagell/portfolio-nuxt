@@ -2,7 +2,8 @@
     <div>
         <h3 class="text-xl font-bold mb-4">
             Projects List
-        </h3><SheetTrigger as-child>
+        </h3>
+        <SheetTrigger as-child>
             <Button
                 class="mb-4"
                 @click="emits('openForm', { mode: 'add' })"
@@ -10,40 +11,25 @@
                 Add new
             </Button>
         </SheetTrigger>
-        <ul>
-            <li
-                v-for="project in projectsData"
-                :key="project.id"
-                class="mb-4 p-4 border rounded-lg flex justify-between"
-            >
-                <div>
-                    <h4 class="text-lg font-bold">
-                        {{ project.title }}
-                    </h4>
-                    <p>{{ project.description }}</p>
-                </div>
-                <div>
-                    <Button
-                        variant="link"
-                        @click="deleteProject({ id: project.id })"
-                    >
-                        Delete
-                    </Button><SheetTrigger as-child>
-                        <Button
-                            variant="link"
-                            @click="emits('openForm', { mode: 'edit', project })"
-                        >
-                            Edit
-                        </Button>
-                    </SheetTrigger>
-                </div>
-            </li>
-        </ul>
+        <CommonDataTable
+            v-if="projectsData"
+            :columns="columns"
+            :data="projectsData"
+            filter-by="title"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
+    import { ArrowUpDown, Image } from 'lucide-vue-next'
+    import { h } from 'vue'
+
+    import DropdownAction from '~/components/common/DataTableDropdown.vue'
+    import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+    import { Button } from '~/components/ui/button'
+
     import type { RealtimeChannel } from '@supabase/supabase-js'
+    import type { ColumnDef } from '@tanstack/vue-table'
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { DeleteProjectQuery, Project } from '~/types/projects.types'
 
@@ -68,6 +54,58 @@
     onUnmounted(() => {
         supabaseClient.removeChannel(realtimeChannel)
     })
+
+    /** Define the columns for the projects table */
+    const columns: ColumnDef<Project>[] = [
+        {
+            accessorKey: 'image',
+            header: 'Image',
+            cell: ({ row }) => {
+                const image = row.getValue('image') as Project['image']
+
+                return h('div', { class: 'relative' }, h(Avatar, { class: 'h-8 w-8 rounded-lg' }, () => [
+                    h(AvatarImage, { src: image, alt: 'Image' }),
+                    h(AvatarFallback, { class: 'rounded-lg' }, () => [
+                        h(Image, { class: 'h-4 w-4' })
+                    ])
+                ]))
+            },
+        },
+        {
+            accessorKey: 'title',
+            header: ({ column }) => {
+                return h(Button, {
+                    variant: 'ghost',
+                    onClick: () => column.toggleSorting(column.getIsSorted() === 'asc'),
+                }, () => [ 'Title', h(ArrowUpDown, { class: 'ml-2 h-4 w-4' }) ])
+            },
+            cell: ({ row }) => h('div', { class: 'truncate overflow-hidden max-w-80' }, row.getValue('title')),
+        },
+        {
+            accessorKey: 'description',
+            header: 'Description',
+            cell: ({ row }) => h('div', { class: 'truncate overflow-hidden max-w-80' }, row.getValue('description')),
+        },
+        {
+            accessorKey: 'url',
+            header: 'URL',
+            cell: ({ row }) => h('div', { class: 'truncate overflow-hidden max-w-80' }, row.getValue('url')),
+        },
+        {
+            id: 'actions',
+            enableHiding: false,
+            cell: ({ row }) => {
+                const item = row.original
+
+                return h('div', { class: 'relative' }, h(DropdownAction, {
+                    item,
+                    onExpand: row.toggleExpanded,
+                    onDelete: () => deleteProject({ id: item.id }),
+                    onEdit: () => emits('openForm', { mode: 'edit', project: item })
+                }))
+            },
+        },
+    ]
 
     /** Fetch all projects rows from the database */
     const { data: projectsData, refresh: refreshProjects } = await useFetch('/api/projects', {
