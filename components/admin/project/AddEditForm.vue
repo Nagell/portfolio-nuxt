@@ -102,10 +102,7 @@
 
 <script setup lang="ts">
     import { toTypedSchema } from '@vee-validate/zod'
-    import {
-        Check,
-        ChevronsUpDown
-    } from 'lucide-vue-next'
+    import { Check, ChevronsUpDown } from 'lucide-vue-next'
     import { useForm, useIsFormValid } from 'vee-validate'
 
     import { publicProjectsInsertSchemaSchema } from '~/types/schemas'
