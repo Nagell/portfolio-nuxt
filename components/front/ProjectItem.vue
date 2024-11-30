@@ -1,42 +1,39 @@
 <template>
-    <div class="border rounded-lg overflow-hidden group">
-        <div class="overflow-hidden">
-            <NuxtImg
-                :src="project.image"
-                :alt="project.title"
-                class="w-full h-48 object-cover group-hover:scale-105 transition-transform"
-                placeholder
-                format="webp"
-                loading="lazy"
-                sizes="xs:500px md:700px"
-            />
-            <!-- TODO: fix sizes -->
-        </div>
-        <div class="p-4">
-            <h3 class="text-xl font-bold mb-2">
-                {{ project.title }}
-            </h3>
-            <p class="mb-4">
-                {{ project.description }}
-            </p>
-            <a
-                v-if="project.url"
-                :href="project.url"
-                target="_blank"
-                rel="noopener noreferrer"
+    <Dialog>
+        <DialogTrigger as-child>
+            <CarouselItem
+                class="sm:basis-1/2 lg:basis-1/3"
             >
-                View on GitHub
-            </a>
-        </div>
-    </div>
+                <Card>
+                    <CardContent class="flex aspect-square items-center justify-center p-6">
+                        <span class="text-3xl font-semibold">
+                            Sample
+                        </span>
+                    </CardContent>
+                </Card>
+            </CarouselItem>
+        </DialogTrigger>
+
+        <DialogContent class="sm:max-w-[425px] grid-rows-[auto_minmax(0,1fr)_auto] p-0 max-h-[90dvh]">
+            <!-- Remove? -->
+            <DialogHeader class="p-6 pb-0">
+                <DialogTitle>Edit profile</DialogTitle>
+                <DialogDescription>
+                    Make changes to your profile here. Click save when you're done.
+                </DialogDescription>
+            </DialogHeader>
+
+            <div class="grid gap-4 py-4 overflow-y-auto px-6">
+                <div class="flex flex-col justify-between h-[300dvh]">
+                    <Card>
+                        <CardContent class="flex aspect-square items-center justify-center p-6">
+                            <span class="text-3xl font-semibold">
+                                Sample
+                            </span>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        </DialogContent>
+    </Dialog>
 </template>
-
-<script setup lang="ts">
-    import type { Project } from '~/types/projects.types'
-
-    interface Props {
-        project: Project
-    }
-
-    defineProps<Props>()
-</script>

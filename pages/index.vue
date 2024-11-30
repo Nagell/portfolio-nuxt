@@ -9,7 +9,7 @@
         />
         <CommonSection heading="Projects">
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <FrontProjectItem
+                <FrontProjectItemOld
                     v-for="project in projects"
                     :key="project.id"
                     :project="project"

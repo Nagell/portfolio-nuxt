@@ -9,7 +9,12 @@
         }"
     >
         <CarouselContent>
-            <CarouselItem
+            <FrontProjectItem
+                v-for="(_, index) in 5"
+                :key="index"
+                class="sm:basis-1/2 lg:basis-1/3"
+            />
+            <!-- <CarouselItem
                 v-for="(_, index) in 5"
                 :key="index"
                 class="sm:basis-1/2 lg:basis-1/3"
@@ -23,7 +28,7 @@
                         </CardContent>
                     </Card>
                 </div>
-            </CarouselItem>
+            </CarouselItem> -->
         </CarouselContent>
         <div class="relative mt-10 flex justify-center gap-6">
             <CarouselPrevious class="relative inset-0 translate-y-0 enabled:bg-muted" />
