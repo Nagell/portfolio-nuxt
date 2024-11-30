@@ -141,12 +141,9 @@
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {
-        if (props.mode === 'add') {
-            await addProject(data)
-        }
-        else {
-            await patchProject(data as PatchProjectQuery)
-        }
+        props.mode === 'add'
+            ? await addProject(data)
+            : await patchProject(data as PatchProjectQuery)
     })
     /** Add a new project row to the database */
     async function addProject(data: PostProjectQuery) {

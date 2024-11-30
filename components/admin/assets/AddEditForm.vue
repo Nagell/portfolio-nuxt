@@ -86,38 +86,30 @@
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data: FormValues) => {
-        if (props.mode === 'add') {
-            await addAsset(data.files)
-        }
-        else {
-            await patchAsset(data.files)
-        }
-    })
-    /** Add a new asset file to the bucket */
-    async function addAsset(files: File[]) {
+        const files = data.files
         const formData = new FormData()
 
         files.forEach((file) => {
             formData.append('file', file)
         })
 
+        props.mode === 'add'
+            ? await addAsset(formData)
+            : await patchAsset(formData)
+    })
+    /** Add a new asset file to the bucket */
+    async function addAsset(data: FormData) {
         await $fetch('/api/assets', {
             headers: useRequestHeaders([ 'cookie' ]),
-            body: formData,
+            body: data,
             method: 'post'
         })
     }
     /** Patch a asset file in the bucket */
-    async function patchAsset(files: File[]) {
-        const formData = new FormData()
-
-        files.forEach((file) => {
-            formData.append('file', file)
-        })
-
+    async function patchAsset(data: FormData) {
         await $fetch('/api/assets', {
             headers: useRequestHeaders([ 'cookie' ]),
-            body: formData,
+            body: data,
             method: 'patch'
         })
     }

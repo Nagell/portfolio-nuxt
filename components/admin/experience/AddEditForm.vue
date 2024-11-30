@@ -233,12 +233,9 @@
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {
-        if (props.mode === 'add') {
-            await addExperience(data)
-        }
-        else {
-            await patchExperience(data as PatchExperienceQuery)
-        }
+        props.mode === 'add'
+            ? await addExperience(data)
+            : await patchExperience(data as PatchExperienceQuery)
     })
     /** Add a new experience row to the database */
     async function addExperience(data: PostExperienceQuery) {
