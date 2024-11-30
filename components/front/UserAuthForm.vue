@@ -61,6 +61,6 @@
             options: { redirectTo: `${window.location.origin}/admin/projects` }
         })
 
-        if (error) throw console.error(error)
+        if (error) throw Error(error.message)
     }
 </script>
