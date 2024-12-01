@@ -21,7 +21,6 @@
 
     const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
         = useAddEditForm<Asset, FormData, FormData>({
-            addUrl: '/api/assets',
-            patchUrl: '/api/assets',
+            url: '/api/assets',
         })
 </script>

@@ -21,7 +21,6 @@
 
     const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
         = useAddEditForm<Project, PostProjectQuery, PatchProjectQuery>({
-            addUrl: '/api/projects',
-            patchUrl: '/api/projects',
+            url: '/api/projects',
         })
 </script>

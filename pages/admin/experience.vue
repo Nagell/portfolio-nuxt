@@ -21,7 +21,6 @@
 
     const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
         = useAddEditForm<Experience, PostExperienceQuery, PatchExperienceQuery>({
-            addUrl: '/api/experience',
-            patchUrl: '/api/experience',
+            url: '/api/experience',
         })
 </script>

@@ -2,8 +2,7 @@ import type { NitroFetchRequest } from 'nitropack/types'
 import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
 
 type Options = {
-    addUrl: NitroFetchRequest
-    patchUrl: NitroFetchRequest
+    url: NitroFetchRequest
 }
 
 export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
@@ -27,7 +26,7 @@ export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
     }
 
     async function _add(data: SubmitData) {
-        await $fetch(options.addUrl, {
+        await $fetch(options.url, {
             headers: useRequestHeaders([ 'cookie' ]),
             query: data.query ?? {},
             body: data.body,
@@ -36,7 +35,7 @@ export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
     }
 
     async function _patch(data: SubmitData) {
-        await $fetch(options.patchUrl, {
+        await $fetch(options.url, {
             headers: useRequestHeaders([ 'cookie' ]),
             query: data.query ?? {},
             body: data.body,
