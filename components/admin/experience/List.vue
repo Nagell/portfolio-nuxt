@@ -37,7 +37,7 @@
     let realtimeChannel: RealtimeChannel
 
     const emits = defineEmits<{
-        openForm: [{ mode: FormProps['mode'], experience?: Experience }]
+        openForm: [{ mode: FormProps['mode'], item?: Experience }]
     }>()
 
     onMounted(async () => {
@@ -96,7 +96,7 @@
                     item,
                     onExpand: row.toggleExpanded,
                     onDelete: () => deleteExperience({ id: item.id }),
-                    onEdit: () => emits('openForm', { mode: 'edit', experience: item })
+                    onEdit: () => emits('openForm', { mode: 'edit', item })
                 }))
             },
         },

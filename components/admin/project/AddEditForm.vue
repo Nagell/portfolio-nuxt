@@ -118,6 +118,9 @@
 
     const props = defineProps<Props>()
 
+    /** =======================
+     * FORM
+     */
     const formSchema = toTypedSchema(
         publicProjectsInsertSchemaSchema
     )
@@ -127,10 +130,6 @@
         keepValuesOnUnmount: true
     })
 
-    /** =======================
-     * FORM
-     */
-
     // when mounting or reopening the form, set the form values
     onMounted(() => reset(props.currentProject))
     watch(props, value => reset(value.currentProject), { deep: true })
@@ -139,28 +138,14 @@
         resetForm({ values: { ...data } }, { force: true })
     }
 
+    const emits = defineEmits < {
+        submit: [PostProjectQuery | PatchProjectQuery]
+    } > ()
+
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {
-        props.mode === 'add'
-            ? await addProject(data)
-            : await patchProject(data as PatchProjectQuery)
+        emits('submit', data)
     })
-    /** Add a new project row to the database */
-    async function addProject(data: PostProjectQuery) {
-        await $fetch('/api/projects', {
-            headers: useRequestHeaders([ 'cookie' ]),
-            query: data,
-            method: 'post'
-        })
-    }
-    /** Patch a project row in the database */
-    async function patchProject(data: PatchProjectQuery) {
-        await $fetch('/api/projects', {
-            headers: useRequestHeaders([ 'cookie' ]),
-            query: data,
-            method: 'patch'
-        })
-    }
 
     // =======================
     // IMAGES

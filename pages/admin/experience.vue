@@ -3,8 +3,9 @@
         <Sheet>
             <AdminExperienceAddEditForm
                 v-if="isFormOpen"
-                :current-experience="currentExperience"
+                :current-experience="currentItem"
                 :mode="addEditFormMode"
+                @submit="submit"
             />
             <AdminExperienceList @open-form="openAddEditForm" />
         </Sheet>
@@ -12,16 +13,15 @@
 </template>
 
 <script setup lang="ts">
-    import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { Experience } from '~/types/experience.types'
+    import type { Experience, PatchExperienceQuery, PostExperienceQuery } from '~/types/experience.types'
 
-    const isFormOpen = ref(false)
-    const addEditFormMode = ref<FormProps['mode']>('add')
-    const currentExperience = ref<Experience | {}>({})
-
-    function openAddEditForm(event: { mode: FormProps['mode'], experience?: Experience }) {
-        isFormOpen.value = true
-        addEditFormMode.value = event.mode
-        currentExperience.value = event.experience ?? {}
+    function submit(data: PostExperienceQuery | PatchExperienceQuery) {
+        onSubmit({ query: data })
     }
+
+    const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
+        = useAddEditForm<Experience, PostExperienceQuery, PatchExperienceQuery>({
+            addUrl: '/api/experience',
+            patchUrl: '/api/experience',
+        })
 </script>

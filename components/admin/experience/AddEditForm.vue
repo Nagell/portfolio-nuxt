@@ -210,6 +210,9 @@
 
     const props = defineProps<Props>()
 
+    /** =======================
+     * FORM
+     */
     const formSchema = toTypedSchema(
         publicExperienceInsertSchemaSchema
     )
@@ -219,10 +222,6 @@
         keepValuesOnUnmount: true,
     })
 
-    /** =======================
-     * FORM
-     */
-
     // when mounting or reopening the form, set the form values
     onMounted(() => reset(props.currentExperience))
     watch(props, value => reset(value.currentExperience), { deep: true })
@@ -231,28 +230,14 @@
         resetForm({ values: { tags: [], ...data } }, { force: true })
     }
 
+    const emits = defineEmits < {
+        submit: [PostExperienceQuery | PatchExperienceQuery]
+    } > ()
+
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {
-        props.mode === 'add'
-            ? await addExperience(data)
-            : await patchExperience(data as PatchExperienceQuery)
+        emits('submit', data)
     })
-    /** Add a new experience row to the database */
-    async function addExperience(data: PostExperienceQuery) {
-        await $fetch('/api/experience', {
-            headers: useRequestHeaders([ 'cookie' ]),
-            query: data,
-            method: 'post'
-        })
-    }
-    /** Patch an experience row in the database */
-    async function patchExperience(data: PatchExperienceQuery) {
-        await $fetch('/api/experience', {
-            headers: useRequestHeaders([ 'cookie' ]),
-            query: data,
-            method: 'patch'
-        })
-    }
 
     /** =======================
      * DATE
