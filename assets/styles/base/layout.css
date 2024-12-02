@@ -1,8 +1,15 @@
 @layer base {
     * {
+        /* borders */
         @apply border-border;
+
+        /* scrollbars */
         scrollbar-width: thin;
         scrollbar-color: hsl(var(--border)) transparent;
+
+        /* selection */
+        outline: none;
+        @apply  focus-visible:ring-offset-ring focus-visible:!ring-ring focus-visible:!ring-2 ;
     }
     body {
         @apply bg-background text-foreground overflow-x-hidden;
