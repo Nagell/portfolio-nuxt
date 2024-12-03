@@ -10,15 +10,19 @@
         <CommonSection heading="Projects">
             <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <FrontProjectItemOld
-                    v-for="project in projects"
+                    v-for="project in projectsData"
                     :key="project.id"
                     :project="project"
                 />
             </div>
         </CommonSection>
-        <CommonSection heading="Projects">
+        <CommonSection
+            v-if="projectsData"
+            heading="Projects"
+            class="bg-gradient-to-b from-background via-muted to-background"
+        >
             <div class="mt-4">
-                <FrontProjects />
+                <FrontProjects :projects="projectsData" />
             </div>
         </CommonSection>
     </div>
@@ -26,7 +30,7 @@
 
 <script setup lang="ts">
     /** Fetch all projects rows from the database */
-    const { data: projects } = await useFetch('/api/projects', {
+    const { data: projectsData } = await useFetch('/api/projects', {
         key: 'projects',
         method: 'get'
     })

@@ -9,26 +9,18 @@
         }"
     >
         <CarouselContent>
-            <FrontProjectItem
-                v-for="(_, index) in 5"
-                :key="index"
-                class="sm:basis-1/2 lg:basis-1/3"
-            />
-            <!-- <CarouselItem
-                v-for="(_, index) in 5"
-                :key="index"
-                class="sm:basis-1/2 lg:basis-1/3"
+            <FrontProjectItemWrapper
+                v-for="project in projects"
+                :key="project.id"
+                :project="project"
             >
-                <div class="p-1">
-                    <Card>
-                        <CardContent class="flex aspect-square items-center justify-center p-6">
-                            <span class="text-3xl font-semibold">
-                                {{ index + 1 }}
-                            </span>
-                        </CardContent>
-                    </Card>
-                </div>
-            </CarouselItem> -->
+                <template #carousel>
+                    <FrontProjectCarouselCard :project="project" />
+                </template>
+                <template #dialog>
+                    <FrontProjectDialogItem :project="project" />
+                </template>
+            </FrontProjectItemWrapper>
         </CarouselContent>
         <div class="relative mt-10 flex justify-center gap-6">
             <CarouselPrevious class="relative inset-0 translate-y-0 enabled:bg-muted" />
@@ -38,5 +30,7 @@
 </template>
 
 <script setup lang="ts">
+    import type { Project } from '~/types/projects.types'
 
+    defineProps<{ projects: Project[] }>()
 </script>
