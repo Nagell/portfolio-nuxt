@@ -9,18 +9,11 @@
         }"
     >
         <CarouselContent>
-            <FrontProjectItemWrapper
+            <FrontProjectCarouselCard
                 v-for="project in projects"
                 :key="project.id"
                 :project="project"
-            >
-                <template #carousel>
-                    <FrontProjectCarouselCard :project="project" />
-                </template>
-                <template #dialog>
-                    <FrontProjectDialogItem :project="project" />
-                </template>
-            </FrontProjectItemWrapper>
+            />
         </CarouselContent>
         <div class="relative mt-10 flex justify-center gap-6">
             <CarouselPrevious class="relative inset-0 translate-y-0 enabled:bg-muted" />

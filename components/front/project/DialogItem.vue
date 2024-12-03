@@ -10,7 +10,7 @@
         <div class="grid gap-4 py-4 overflow-y-auto px-6">
             <div class="flex flex-col">
                 <Card class="border-none rounded-2xl mx-auto">
-                    <CardContent class="w-80 aspect-[320/448] justify-start p-0 group">
+                    <CardContent class="w-80 aspect-[320/448] justify-start p-0">
                         <NuxtImg
                             :src="project.image"
                             :alt="project.title"
@@ -30,6 +30,7 @@
                     >
                         {{ project.title }}
                     </CommonTypography>
+                    <!-- TODO: Add group animation -->
                     <CommonDescriptionList :description="project.description" />
                 </div>
             </div>
