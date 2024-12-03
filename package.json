@@ -28,6 +28,7 @@
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
         "embla-carousel-vue": "^8.5.1",
+        "gsap": "^3.12.5",
         "lucide-vue-next": "^0.454.0",
         "nuxt": "^3.13.0",
         "nuxt-lucide-icons": "^1.0.5",

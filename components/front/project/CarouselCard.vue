@@ -1,46 +1,32 @@
 <template>
     <Dialog v-model:open="isDialogOpen">
-        <CarouselItem class="basis-[21rem]">
+        <CarouselItem
+            ref="carouselItem"
+            class="basis-[21rem]"
+        >
             <button
-                class="rounded-2xl w-80 aspect-[320/448]"
+                class="rounded-2xl w-80 aspect-[320/448] relative"
                 tabindex="0"
                 role="region"
                 aria-roledescription="carousel-content"
                 @click="openDialog"
             >
-                <Card class="border-none rounded-2xl w-full h-full">
-                    <CardContent class=" w-full h-full justify-start relative p-0 group">
-                        <NuxtImg
-                            :src="project.image"
-                            :alt="project.title"
-                            class="w-full h-full object-cover rounded-2xl"
-                            placeholder
-                            format="webp"
-                            loading="lazy"
-                            sizes="xs:500px md:700px"
-                        />
-                        <div class="absolute bottom-0 w-full p-6 flex items-center justify-between gap-6">
-                            <CommonTypography
-                                variant="p"
-                                tag="h3"
-                                class="font-bold text-start"
-                            >
-                                {{ project.title }}
-                            </CommonTypography>
-                            <div class="w-10 h-10 shrink-0 border rounded-full relative group-hover:bg-muted transition-colors duration-300">
-                                <Plus class="w-4 h-4 text-muted-foreground absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-                            </div>
-                        </div>
-                    </CardContent>
-                </Card>
+                <FrontProjectCardItem
+                    ref="cardItem"
+                    :project="project"
+                />
             </button>
         </CarouselItem>
-        <FrontProjectDialogItem :project="project" />
+        <div ref="dialogItemWrapper">
+            <FrontProjectDialogItem
+                :project="project"
+            />
+        </div>
     </Dialog>
 </template>
 
 <script setup lang="ts">
-    import { Plus } from 'lucide-vue-next'
+    import { gsap } from 'gsap'
     import { ref } from 'vue'
 
     import type { Project } from '~/types/projects.types'
@@ -48,9 +34,97 @@
     defineProps<{ project: Project }>()
     const isDialogOpen = ref(false)
 
-    const openDialog = () => {
-        setTimeout(() => {
-            isDialogOpen.value = true
-        }, 400)
+    function openDialog() {
+        isDialogOpen.value = true
+        lockBodyScroll()
+        nextTick(() => {
+            animateCard()
+            animateHeader()
+            animateDialog()
+        })
     }
+
+    const carouselItem = useTemplateRef('carouselItem')
+    const cardItem = useTemplateRef('cardItem')
+    const dialogItemWrapper = useTemplateRef('dialogItemWrapper')
+
+    let cardTimeline = gsap.timeline()
+    let headerTimeline = gsap.timeline()
+    let dialogTimeline = gsap.timeline()
+
+    function animateCard() {
+        const start = cardItem.value?.card
+        const goal = document.querySelector('.dialog-project')
+        const carouselEl = carouselItem.value
+
+        if (!start || !goal || !carouselEl) return
+
+        setHTMLElementCssProperty(carouselEl.$el, 'z-index', '1')
+
+        const startRect = start.$el.getBoundingClientRect()
+        const goalRect = goal.getBoundingClientRect()
+
+        cardTimeline = gsap.timeline()
+        cardTimeline.to(
+            start.$el,
+            {
+                x: goalRect.left - startRect.left,
+                y: goalRect.top - startRect.top,
+                width: goalRect.width,
+                height: goalRect.height,
+                duration: 0.2,
+                paddingTop: 24,
+            },
+        )
+    }
+
+    function animateHeader() {
+        const start = cardItem.value?.title
+
+        if (!start) return
+
+        headerTimeline = gsap.timeline()
+        headerTimeline.to(
+            start.$el,
+            {
+                opacity: 0,
+                duration: 0,
+            },
+        )
+        const bla = cardTimeline.getChildren()
+        console.log(bla)
+    }
+
+    function animateDialog() {
+        const content = dialogItemWrapper.value
+
+        if (!content) return
+
+        dialogTimeline = gsap.timeline()
+        gsap.delayedCall(0.1, () => {
+            dialogTimeline.to(
+                document.body,
+                {
+                    ['--project-dialog-opacity']: 1,
+                    duration: 0.2,
+                },
+            )
+        })
+    }
+
+    watch(isDialogOpen, (isOpen) => {
+        if (isOpen) return
+
+        const carouselEl = carouselItem.value
+
+        dialogTimeline.reverse()
+        gsap.delayedCall(0.1, () => {
+            cardTimeline.reverse().then(
+                () => {
+                    headerTimeline.reverse()
+                    unlockBodyScroll()
+                    if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
+                })
+        })
+    })
 </script>
