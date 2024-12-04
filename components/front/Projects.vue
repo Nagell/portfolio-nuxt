@@ -21,8 +21,8 @@
                     />
                 </CarouselContent>
                 <div class="relative mt-10 flex justify-center gap-6">
-                    <CarouselPrevious class="relative inset-0 translate-y-0 enabled:bg-muted" />
-                    <CarouselNext class="relative inset-0 translate-y-0 enabled:bg-muted" />
+                    <CarouselPrevious class="w-10 h-10 relative inset-0 translate-y-0 enabled:bg-muted" />
+                    <CarouselNext class="w-10 h-10 relative inset-0 translate-y-0 enabled:bg-muted" />
                 </div>
             </Carousel>
         </div>
