@@ -11,9 +11,9 @@
             />
         </div>
 
-        <FrontExternalLink @click="fetchCvWithBackup">
+        <CommonExternalLink @click="fetchCvWithBackup">
             View Full Résumé
-        </FrontExternalLink>
+        </CommonExternalLink>
     </CommonSection>
 </template>
 

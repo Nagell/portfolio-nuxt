@@ -14,13 +14,13 @@
         <div class="grow flex flex-col gap-3">
             <div>
                 <!-- heading -->
-                <FrontExternalLink :href="experience.link">
+                <CommonExternalLink :href="experience.link">
                     {{ experience.title.trim() }}
-                </FrontExternalLink>
+                </CommonExternalLink>
             </div>
 
             <!-- description -->
-            <CommonDescriptionList :description="experience.description" />
+            <CommonDescription :description="experience.description" />
 
             <!-- tags -->
             <CommonTagList :tags="experience.tags" />

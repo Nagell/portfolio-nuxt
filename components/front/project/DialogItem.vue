@@ -28,17 +28,25 @@
                     </Card>
                 </div>
 
-                <div class="bottom-0 w-full p-6 flex flex-col gap-6 max-w-[35rem] mx-auto">
+                <div class="bottom-0 w-full px-6 py-12 flex flex-col gap-10 max-w-[35rem] mx-auto">
                     <CommonTypography
                         variant="h2"
                         tag="h3"
                     >
                         {{ project.title }}
                     </CommonTypography>
-                    <CommonDescriptionList :description="project.description" />
-                    <!-- TODO: This list? maybe list is not needed?  -->
-                    <!-- TODO: what about tags?  -->
-                    <!-- TODO: github link  -->
+                    <div>
+                        <CommonDescription
+                            :description="project.description"
+                            type="p"
+                        />
+                    </div>
+                    <CommonExternalLink
+                        v-if="project.url"
+                        :href="project.url"
+                    >
+                        View Project on GitHub
+                    </CommonExternalLink>
                 </div>
             </div>
         </div>
