@@ -1,9 +1,9 @@
 <template>
     <CommonSection
         heading="Projects"
-        class="bg-gradient-to-b from-background via-muted to-background"
+        class="bg-gradient-to-b from-background via-foreground/[4%] to-background"
     >
-        <div class="mt-4">
+        <div class="mt-9">
             <Carousel
                 ref="carouselContainerRef"
                 class="relative w-full"
