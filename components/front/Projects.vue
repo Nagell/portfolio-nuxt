@@ -1,29 +1,36 @@
 <template>
-    <Carousel
-        ref="carouselContainerRef"
-        class="relative w-full"
-        :opts="{
-            align: 'start',
-            watchResize: true,
-            slidesToScroll: 'auto'
-        }"
+    <CommonSection
+        heading="Projects"
+        class="bg-gradient-to-b from-background via-muted to-background"
     >
-        <CarouselContent>
-            <FrontProjectCarouselCard
-                v-for="project in projects"
-                :key="project.id"
-                :project="project"
-            />
-        </CarouselContent>
-        <div class="relative mt-10 flex justify-center gap-6">
-            <CarouselPrevious class="relative inset-0 translate-y-0 enabled:bg-muted" />
-            <CarouselNext class="relative inset-0 translate-y-0 enabled:bg-muted" />
+        <div class="mt-4">
+            <Carousel
+                ref="carouselContainerRef"
+                class="relative w-full"
+                :opts="{
+                    align: 'start',
+                    watchResize: true,
+                    slidesToScroll: 'auto'
+                }"
+            >
+                <CarouselContent>
+                    <FrontProjectCarouselCard
+                        v-for="project in projectsData"
+                        :key="project.id"
+                        :project="project"
+                    />
+                </CarouselContent>
+                <div class="relative mt-10 flex justify-center gap-6">
+                    <CarouselPrevious class="relative inset-0 translate-y-0 enabled:bg-muted" />
+                    <CarouselNext class="relative inset-0 translate-y-0 enabled:bg-muted" />
+                </div>
+            </Carousel>
         </div>
-    </Carousel>
+    </CommonSection>
 </template>
 
 <script setup lang="ts">
     import type { Project } from '~/types/projects.types'
 
-    defineProps<{ projects: Project[] }>()
+    defineProps<{ projectsData: Project[] }>()
 </script>

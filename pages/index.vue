@@ -7,15 +7,10 @@
             v-if="experienceData"
             :experience-data="experienceData"
         />
-        <CommonSection
+        <FrontProjects
             v-if="projectsData"
-            heading="Projects"
-            class="bg-gradient-to-b from-background via-muted to-background"
-        >
-            <div class="mt-4">
-                <FrontProjects :projects="projectsData" />
-            </div>
-        </CommonSection>
+            :projects-data="projectsData"
+        />
     </div>
 </template>
 
