@@ -44,7 +44,7 @@
                         Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.
                     </span>
                 </CommonTypography>
-                <CommonSocial class="mt-6" />
+                <CommonSocial class="opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform mt-6" />
             </div>
         </div>
     </CommonSection>
