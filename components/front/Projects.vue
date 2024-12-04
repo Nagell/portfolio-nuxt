@@ -1,7 +1,7 @@
 <template>
     <CommonSection
         heading="Projects"
-        class="gradient"
+        class="gradient overflow-hidden"
     >
         <div class="mt-9">
             <Carousel

@@ -3,7 +3,7 @@
         class="dialog-project p-0 h-[80dvh] max-w-[60rem] !border-none bottom-0 top-auto !translate-y-0 !rounded-t-2xl !rounded-b-none !duration-500 opacity-0"
     >
         <VisuallyHidden>
-            <DialogHeader class="p-6 pb-0">
+            <DialogHeader class="p-4 pb-0">
                 <DialogTitle>Project details</DialogTitle>
                 <DialogDescription>
                     This dialog shows the details of the selected project.
@@ -11,7 +11,7 @@
             </DialogHeader>
         </VisuallyHidden>
 
-        <div class="grid gap-4 py-6 overflow-y-auto px-6">
+        <div class="grid gap-4 overflow-y-auto py-6">
             <div class="flex flex-col">
                 <div class="mx-auto">
                     <Card class="border-none rounded-2xl">
@@ -36,6 +36,8 @@
                         {{ project.title }}
                     </CommonTypography>
                     <CommonDescriptionList :description="project.description" />
+                    <!-- TODO: This list? maybe list is not needed?  -->
+                    <!-- TODO: what about tags?  -->
                 </div>
             </div>
         </div>
