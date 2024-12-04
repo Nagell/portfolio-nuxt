@@ -1,7 +1,7 @@
 <template>
     <CommonSection
         heading="Projects"
-        class="bg-gradient-to-b from-background via-foreground/[4%] to-background"
+        class="gradient"
     >
         <div class="mt-9">
             <Carousel
@@ -34,3 +34,9 @@
 
     defineProps<{ projectsData: Project[] }>()
 </script>
+
+<style scoped lang="css">
+    .gradient {
+        background: linear-gradient(180deg, transparent, theme('colors.foreground' / 0.06) 40%, theme('colors.foreground' / 0.06) 60%, transparent);
+    }
+</style>
