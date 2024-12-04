@@ -1,0 +1,1 @@
+alter table "public"."projects" add column "tags" json default '[]'::json;

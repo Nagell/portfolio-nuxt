@@ -60,6 +60,7 @@ export const publicProjectsRowSchemaSchema = z.object({
     description: z.string(),
     id: z.number(),
     image: z.string(),
+    tags: jsonSchema.nullable(),
     title: z.string(),
     url: z.string().nullable(),
 })
@@ -69,6 +70,7 @@ export const publicProjectsInsertSchemaSchema = z.object({
     description: z.string(),
     id: z.number().optional(),
     image: z.string(),
+    tags: jsonSchema.optional().nullable(),
     title: z.string(),
     url: z.string().optional().nullable(),
 })
@@ -78,6 +80,7 @@ export const publicProjectsUpdateSchemaSchema = z.object({
     description: z.string().optional(),
     id: z.number().optional(),
     image: z.string().optional(),
+    tags: jsonSchema.optional().nullable(),
     title: z.string().optional(),
     url: z.string().optional().nullable(),
 })
