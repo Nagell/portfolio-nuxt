@@ -34,6 +34,7 @@
                         type="text"
                         placeholder="Project description"
                         v-bind="componentField"
+                        rows="25"
                     />
                 </FormControl>
                 <FormMessage />
@@ -97,6 +98,29 @@
                 <FormMessage />
             </FormItem>
         </FormField>
+        <FormField
+            v-slot="{ value }"
+            name="tags"
+        >
+            <FormItem>
+                <FormLabel>Tags</FormLabel>
+                <FormControl>
+                    <TagsInput :model-value="value">
+                        <TagsInputItem
+                            v-for="item in value"
+                            :key="item"
+                            :value="item"
+                        >
+                            <TagsInputItemText />
+                            <TagsInputItemDelete />
+                        </TagsInputItem>
+
+                        <TagsInputInput placeholder="Add tags" />
+                    </TagsInput>
+                </FormControl>
+                <FormMessage />
+            </FormItem>
+        </FormField>
     </CommonAddEditFormWrapper>
 </template>
 
@@ -135,7 +159,7 @@
     watch(props, value => reset(value.currentProject), { deep: true })
 
     function reset(data: Project | {}) {
-        resetForm({ values: { ...data } }, { force: true })
+        resetForm({ values: { tags: [], ...data } }, { force: true })
     }
 
     const emits = defineEmits < {

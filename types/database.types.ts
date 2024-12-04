@@ -73,6 +73,7 @@ export type Database = {
                     description: string
                     id: number
                     image: string
+                    tags: Json | null
                     title: string
                     url: string | null
                 }
@@ -81,6 +82,7 @@ export type Database = {
                     description: string
                     id?: number
                     image: string
+                    tags?: Json | null
                     title: string
                     url?: string | null
                 }
@@ -89,6 +91,7 @@ export type Database = {
                     description?: string
                     id?: number
                     image?: string
+                    tags?: Json | null
                     title?: string
                     url?: string | null
                 }

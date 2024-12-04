@@ -1,3 +1,4 @@
+import { sanitizeExperienceQuery } from '~/server/sanitizers/experienceQuery'
 import { PostExperienceQuery } from '~/types/experience.types'
 
 import { serverSupabaseClient } from '#supabase/server'
@@ -5,14 +6,12 @@ import { serverSupabaseClient } from '#supabase/server'
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
 
-    const query = getQuery(event) as PostExperienceQuery
-
-    if (!query.end) query.end = null
-    if (!query.tags) query.tags = []
+    const query = getQuery(event)
+    const sanitizedQuery = sanitizeExperienceQuery(query) as PostExperienceQuery
 
     const { data, error } = await superbaseClient
         .from('experience')
-        .insert([ query ])
+        .insert([ sanitizedQuery ])
 
     if (error) throw createError({ statusMessage: error.message })
 

@@ -1,5 +1,6 @@
 <template>
     <CommonTypography
+        v-if="type === 'ul'"
         tag="ul"
         class="my-0 text-muted-foreground"
     >
@@ -12,14 +13,27 @@
             {{ point }}
         </CommonTypography>
     </CommonTypography>
+    <div v-if="type === 'p'">
+        <CommonTypography
+            v-for="(point, key) in points"
+            :key="key"
+            tag="p"
+            class="text-pretty"
+        >
+            {{ point }}
+        </CommonTypography>
+    </div>
 </template>
 
 <script lang="ts" setup>
     interface Props {
         description: string
+        type?: 'ul' | 'p'
     }
 
-    const props = defineProps<Props>()
+    const props = withDefaults(defineProps<Props>(), {
+        type: 'ul'
+    })
 
     /** Sanitize and split the description into an array */
     const points = computed(() => {

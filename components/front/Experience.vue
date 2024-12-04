@@ -1,7 +1,7 @@
 <template>
     <CommonSection
         heading="Experience"
-        class="bg-gradient-to-b md:from-5% from-background via-foreground/[4%] to-background to-70% md:to-60%"
+        class="mt-16 md:mt-32 !py-16 md:!py-32 bg-gradient-to-b from-foreground/5 to-transparent to-25%"
     >
         <div class="mt-9 flex flex-col gap-14">
             <FrontExperienceItem
@@ -11,9 +11,9 @@
             />
         </div>
 
-        <FrontExternalLink @click="fetchCvWithBackup">
+        <CommonExternalLink @click="fetchCvWithBackup">
             View Full Résumé
-        </FrontExternalLink>
+        </CommonExternalLink>
     </CommonSection>
 </template>
 

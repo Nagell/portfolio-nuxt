@@ -1,0 +1,1 @@
+alter table "public"."experience" alter column "tags" set default '[]'::json;

@@ -2,10 +2,10 @@
     <Dialog v-model:open="isDialogOpen">
         <CarouselItem
             ref="carouselItem"
-            class="basis-[21rem]"
+            class="basis-[17rem] md:basis-[21rem]"
         >
             <button
-                class="rounded-2xl w-80 aspect-[320/448] relative"
+                class="rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
                 tabindex="0"
                 role="region"
                 aria-roledescription="carousel-content"

@@ -1,52 +1,44 @@
 INSERT INTO public.experience 
   ("title", "description", "start", "end", "tags", "link")
 VALUES 
-('Frontend Engineer, lab56 Communications',
-'Prepared screen layouts and landing pages using SCSS and Gulp
+('Junior Frontend Developer, Digital Agency',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc
 
-Optimized the creation process of "mobile-first" landing pages with SCSS and Gulp
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
-Adapted layouts and languages and performed updates for Java-based Android applications
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
 
-Maintained and updated existing customer portals based on Joomla, ensuring functionality and security
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
-Created materials for online advertising using Photoshop and Illustrator to enhance brand visibility',
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
 '2018-02-01',
 '2019-05-31',
 '["JavaScript","SCSS","Gulp","Joomla","Java","Photoshop","Illustrator"]',
 NULL),
-('Frontend Engineer, LK Digital (DCC.RUHR)',
-'Planned and led a customizable Atomic Design project for multiple companies utilizing Vue 2, jQuery, Vite, Tailwind, Storybook, Lerna, NPM packages, and Figma
+('Frontend Engineer, Digital Commerce Company',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc
 
-Planned and led presentation projects for trade shows utilizing Vue 3, Vite, SCSS, Lerna, and Ionic
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
-Researched and implemented customizable client chat plugins utilizing Vue 2, Rollup, and SCSS
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
 
-Researched and implemented a 3D project using Vue 2, SCSS, PlayCanvas, and Adobe XD
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
-Developed UI, logic, and backend communication for various platforms with Vue 2, Vuex, SCSS, Webpack, Jest, and Cypress
-
-Established improved documentation standards to enhance onboarding and team efficiency',
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
 '2019-06-01',
 '2023-03-31',
 '["JavaScript", "TypeScript", "Vue 3", "Vue 2", "Vuex", "Cypress", "Jest", "Vite", "Webpack", "Rollup", "Lerna", "PlayCanvas", "Ionic", "Scss", "Tailwind", "Storybook", "Figma", "Adobe XD"]',
 'https://www.dcc.ruhr/'),
-('Senior Frontend Engineer, One Hiring',
-'Planned and led a multi-domain project utilizing Vue 3, Pinia, Vite, Nx, Yarn workspaces, Tailwind, Storybook, and Figma
+('Senior Frontend Developer, Digital Agency',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc
 
-Implemented integration of Google Analytics (GA) and Google Tag Manager (GTM)
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
-Integrated Lokalise for external translation management, improving localization processes
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
 
-Refactored structure, code, style, and build systems for existing platforms utilizing Vue 3, Pinia, Vite, Nx, Yarn workspaces, Cypress and SCSS, following industry best practices
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
-Contributed to the creation of a new design system using Figma to standardize UI components
-
-Assessed opportunities and benefits of new technologies, such as Nuxt, UnoCSS, etc.
-
-Communicated effectively with multiple departments and stakeholders (both internal and external)
-
-Documented processes and conducted training sessions for team members on frontend design patterns, Vue, Pinia, and Figma',
+At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
 '2023-04-01',
 NULL,
 '["JavaScript", "TypeScript", "Vue 3", "Pinia", "Cypress", "Vite", "Nx", "Tailwind", "Scss", "Storybook", "Figma"]',
