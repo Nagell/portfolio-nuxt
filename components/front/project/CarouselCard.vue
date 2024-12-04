@@ -91,8 +91,6 @@
                 duration: 0,
             },
         )
-        const bla = cardTimeline.getChildren()
-        console.log(bla)
     }
 
     function animateDialog() {
