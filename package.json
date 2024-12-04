@@ -4,6 +4,7 @@
     "type": "module",
     "scripts": {
         "dev": "nuxt dev",
+        "dev:host": "nuxt dev --host",
         "build": "nuxt build",
         "-----": "",
         "types:supabase": "supabase gen types --lang=typescript --project-id gmbtgsckranserhrllex > types/database.types.ts && yarn types:supazod",
