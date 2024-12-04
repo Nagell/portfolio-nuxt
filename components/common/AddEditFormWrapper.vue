@@ -42,9 +42,8 @@
     }>()
 
     const buttonLabel = computed(
-        () => props.mode === 'add'
-            ? 'Add'
-            : 'Edit')
+        () => props.mode === 'add' ? 'Add' : 'Edit'
+    )
 
     function onSubmit() {
         emits('submit')

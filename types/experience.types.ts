@@ -4,6 +4,6 @@ export type Experience = Tables<'experience'>
 
 export type PostExperienceQuery = TablesInsert<'experience'>
 
-export type PatchExperienceQuery = TablesUpdate<'experience'> & { id: number }
+export type PatchExperienceQuery = TablesUpdate<'experience'>
 
 export type DeleteExperienceQuery = { id: number }

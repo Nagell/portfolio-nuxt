@@ -6,6 +6,11 @@ export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
 
     const query = getQuery(event) as PatchExperienceQuery
+
+    if (!query.id) throw createError({ statusMessage: 'Missing id' })
+    if (!query.end) query.end = null
+    if (!query.tags) query.tags = []
+
     const { data, error } = await superbaseClient
         .from('experience')
         .update(query)

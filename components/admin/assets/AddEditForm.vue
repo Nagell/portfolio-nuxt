@@ -8,8 +8,9 @@
     >
         <template v-if="mode === 'edit' && currentAsset">
             <CommonAssetWithProps
+                v-if="currentAsset && Object.keys(currentAsset).length > 0"
                 class="mt-4"
-                :asset="currentAsset"
+                :asset="currentAsset as Asset"
             />
         </template>
         <FormField
@@ -47,12 +48,15 @@
     const { $const } = useNuxtApp()
 
     interface Props {
-        currentAsset?: Asset
+        currentAsset?: Asset | {}
         mode: FormProps['mode']
     }
 
     const props = defineProps<Props>()
 
+    /** =======================
+     * FORM
+     */
     const formSchema = toTypedSchema(z.object({
         files: z.instanceof(FileList)
             .refine(files => files?.length, 'No files selected.')
@@ -70,10 +74,6 @@
         keepValuesOnUnmount: true
     })
 
-    /** =======================
-     * FORM
-     */
-
     // when mounting or reopening the form, set the form values
     onMounted(() => reset())
     watch(props, () => reset(), { deep: true })
@@ -82,43 +82,19 @@
         resetForm({ values: { files: [] } }, { force: true })
     }
 
-    type FormValues = { files: File[] }
+    const emits = defineEmits < {
+        submit: [FormData]
+    } > ()
 
     /** Submit the form */
-    const onSubmit = handleSubmit(async (data: FormValues) => {
-        if (props.mode === 'add') {
-            await addAsset(data.files)
-        }
-        else {
-            await patchAsset(data.files)
-        }
+    const onSubmit = handleSubmit(async (data: { files: File[] }) => {
+        const files = data.files
+        const formData = new FormData()
+
+        files.forEach((file) => {
+            formData.append('file', file)
+        })
+
+        emits('submit', formData)
     })
-    /** Add a new asset file to the bucket */
-    async function addAsset(files: File[]) {
-        const formData = new FormData()
-
-        files.forEach((file) => {
-            formData.append('file', file)
-        })
-
-        await $fetch('/api/assets', {
-            headers: useRequestHeaders([ 'cookie' ]),
-            body: formData,
-            method: 'post'
-        })
-    }
-    /** Patch a asset file in the bucket */
-    async function patchAsset(files: File[]) {
-        const formData = new FormData()
-
-        files.forEach((file) => {
-            formData.append('file', file)
-        })
-
-        await $fetch('/api/assets', {
-            headers: useRequestHeaders([ 'cookie' ]),
-            body: formData,
-            method: 'patch'
-        })
-    }
 </script>

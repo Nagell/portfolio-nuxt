@@ -10,7 +10,7 @@
                 v-else
                 class="w-full object-cover aspect-square rounded-md flex items-center justify-center border"
             >
-                <FileText
+                <File
                     class="w-1/3 h-1/3 !stroke-1"
                 />
             </div>
@@ -26,7 +26,7 @@
                     <p>Updated at</p>
                 </span>
                 <span class="text-sm font-medium grid grid-cols-subgrid grid-rows-3 gap-2 row-span-3">
-                    <p>{{ fileSize }}</p>
+                    <p>{{ fileSize(props.asset) }}</p>
                     <p>{{ convertDate(asset.created_at) }}</p>
                     <p>{{ convertDate(asset.updated_at) }}</p>
                 </span>
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { FileText } from 'lucide-vue-next'
+    import { File } from 'lucide-vue-next'
 
     import type { Asset } from '~/types/files.types'
 
@@ -45,16 +45,7 @@
     }
 
     const props = defineProps<Props>()
-    /** Shows different file size descriptions on the file size (in B, KB or MB) */
-    const fileSize = computed(() => {
-        const size = props.asset.metadata?.size
-        if (!size) return
-        if (size < 1024) return size + ' B'
-        if (size < 1024 * 1024) return (size / 1024).toFixed(0) + ' KB'
-        if (size < 1024 * 1024 * 1024) return (size / 1024 / 1024).toFixed(0) + ' MB'
 
-        return size
-    })
     /** Converts the date to a human readable format */
     function convertDate(date: string) {
         return new Date(date).toLocaleString()

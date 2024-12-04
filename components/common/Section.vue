@@ -27,5 +27,7 @@
 
     const props = defineProps<Props>()
 
-    const headingId = computed(() => props.id || props.heading?.toLowerCase().replace(/\s/g, '-'))
+    const headingId = computed(
+        () => props.id || props.heading?.toLowerCase().replace(/\s/g, '-')
+    )
 </script>

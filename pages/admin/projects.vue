@@ -3,8 +3,9 @@
         <Sheet>
             <AdminProjectAddEditForm
                 v-if="isFormOpen"
-                :current-project="currentProject"
+                :current-project="currentItem"
                 :mode="addEditFormMode"
+                @submit="submit"
             />
             <AdminProjectList @open-form="openAddEditForm" />
         </Sheet>
@@ -12,16 +13,14 @@
 </template>
 
 <script setup lang="ts">
-    import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
-    import type { Project } from '~/types/projects.types'
+    import type { PatchProjectQuery, PostProjectQuery, Project } from '~/types/projects.types'
 
-    const isFormOpen = ref(false)
-    const addEditFormMode = ref<FormProps['mode']>('add')
-    const currentProject = ref<Project | {}>({})
-
-    function openAddEditForm(event: { mode: FormProps['mode'], project?: Project }) {
-        isFormOpen.value = true
-        addEditFormMode.value = event.mode
-        currentProject.value = event.project ?? {}
+    function submit(data: PostProjectQuery | PatchProjectQuery) {
+        onSubmit({ query: data })
     }
+
+    const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
+        = useAddEditForm<Project, PostProjectQuery, PatchProjectQuery>({
+            url: '/api/projects',
+        })
 </script>

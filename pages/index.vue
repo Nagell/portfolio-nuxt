@@ -7,21 +7,16 @@
             v-if="experienceData"
             :experience-data="experienceData"
         />
-        <CommonSection heading="Projects">
-            <div class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <FrontProjectItem
-                    v-for="project in projects"
-                    :key="project.id"
-                    :project="project"
-                />
-            </div>
-        </CommonSection>
+        <FrontProjects
+            v-if="projectsData"
+            :projects-data="projectsData"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
     /** Fetch all projects rows from the database */
-    const { data: projects } = await useFetch('/api/projects', {
+    const { data: projectsData } = await useFetch('/api/projects', {
         key: 'projects',
         method: 'get'
     })

@@ -32,12 +32,11 @@ is fetched at build time and then served from the cache.
 - [x] Deploy to Vercel
 - [x] Add CI/CD
 - [x] End testing phase - prepare dev and prod environments
-- [ ] Create and implement a design for
-  - [ ] landing page
+- [x] Create and implement a design for
+  - [x] landing page
   - [x] login page
   - [x] admin panel
-- [ ] Add Terms of Service and Privacy Policy
-- [ ] Add animations
+- [x] Add animations
 - [ ] Add meta tags
 - [ ] Add license
 - [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
@@ -45,7 +44,6 @@ is fetched at build time and then served from the cache.
 - [ ] Add a rebuild trigger on Vercel when DB changes
 - [ ] Add Vitest and tests
 - [ ] Add i18n
-- [ ] stats from vercel and cookie banner with cookie-control
 
 ## Setup
 

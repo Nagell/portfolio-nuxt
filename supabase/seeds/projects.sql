@@ -3,4 +3,6 @@ INSERT INTO public.projects
 VALUES
   ('Sample project 1', 'Description of the Sample Project 1', 'http://localhost:54321/storage/v1/object/public/assets/sample.jpg', 'http://localhost:3000/admin/projects'),
   ('Sample project 2', 'Description of the Sample Project 2', 'http://localhost:54321/storage/v1/object/public/assets/sample.jpg', 'http://localhost:3000/admin/projects'),
-  ('Sample project 3', 'Description of the Sample Project 3', 'http://localhost:54321/storage/v1/object/public/assets/sample.jpg', 'http://localhost:3000/admin/projects');
+  ('Sample project 3', 'Description of the Sample Project 3', 'http://localhost:54321/storage/v1/object/public/assets/sample.jpg', 'http://localhost:3000/admin/projects'),
+  ('Sample project 4', 'Description of the Sample Project 4', 'http://localhost:54321/storage/v1/object/public/assets/sample.jpg', 'http://localhost:3000/admin/projects'),
+  ('Sample project 5', 'Description of the Sample Project 5', 'http://localhost:54321/storage/v1/object/public/assets/sample.jpg', 'http://localhost:3000/admin/projects');

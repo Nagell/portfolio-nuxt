@@ -1,5 +1,8 @@
 <template>
-    <CommonSection heading="Experience">
+    <CommonSection
+        heading="Experience"
+        class="bg-gradient-to-b md:from-5% from-background via-foreground/[4%] to-background to-70% md:to-60%"
+    >
         <div class="mt-9 flex flex-col gap-14">
             <FrontExperienceItem
                 v-for="experience in experienceData"
