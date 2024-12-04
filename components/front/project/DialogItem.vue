@@ -2,12 +2,14 @@
     <DialogContent
         class="dialog-project p-0 h-[80dvh] max-w-[60rem] !border-none bottom-0 top-auto !translate-y-0 !rounded-t-2xl !rounded-b-none !duration-500 opacity-0"
     >
-        <!-- <DialogHeader class="p-6 pb-0">
-                <DialogTitle>Edit profile</DialogTitle>
+        <VisuallyHidden>
+            <DialogHeader class="p-6 pb-0">
+                <DialogTitle>Project details</DialogTitle>
                 <DialogDescription>
-                    Make changes to your profile here. Click save when you're done.
+                    This dialog shows the details of the selected project.
                 </DialogDescription>
-            </DialogHeader> -->
+            </DialogHeader>
+        </VisuallyHidden>
 
         <div class="grid gap-4 py-6 overflow-y-auto px-6">
             <div class="flex flex-col">
@@ -41,6 +43,8 @@
 </template>
 
 <script setup lang="ts">
+    import { VisuallyHidden } from 'radix-vue'
+
     import type { Project } from '~/types/projects.types'
 
     defineProps<{ project: Project }>()
