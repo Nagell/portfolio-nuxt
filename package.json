@@ -36,6 +36,7 @@
         "shadcn-nuxt": "^0.10.4",
         "tailwind-merge": "^2.5.4",
         "vee-validate": "^4.14.6",
+        "vue3-simple-icons": "^13.2.0",
         "zod": "^3.23.8"
     },
     "devDependencies": {
