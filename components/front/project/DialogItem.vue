@@ -1,6 +1,6 @@
 <template>
     <DialogContent
-        class="dialog-project p-0 h-[80dvh] max-w-[60rem] !border-none bottom-0 top-auto !translate-y-0 !rounded-t-2xl !rounded-b-none !duration-500 opacity-0"
+        class="dialog-project p-0 h-[90dvh] md:h-[80dvh] max-w-[60rem] !border-none bottom-0 top-auto !translate-y-0 !rounded-t-2xl !rounded-b-none !duration-500 opacity-0"
     >
         <VisuallyHidden>
             <DialogHeader class="p-4 pb-0">
@@ -38,6 +38,7 @@
                     <CommonDescriptionList :description="project.description" />
                     <!-- TODO: This list? maybe list is not needed?  -->
                     <!-- TODO: what about tags?  -->
+                    <!-- TODO: github link  -->
                 </div>
             </div>
         </div>
