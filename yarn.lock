@@ -8367,10 +8367,10 @@ sucrase@^3.32.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
-supabase@^1.223.10:
-  version "1.223.10"
-  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.223.10.tgz#6654e01b6f2612790f167085f818ca7195b5eab5"
-  integrity sha512-a5Wi562n0eiV3w359qiCjewyVad688Z3+JHdvLybdlITrwvNIcR6QYqRR6EzjKY5V/sNCqC+5sNf40wDYAYcHg==
+supabase@^1.226.3:
+  version "1.226.3"
+  resolved "https://registry.yarnpkg.com/supabase/-/supabase-1.226.3.tgz#729dc5e3056cf62e06b738181e3ee9d60e15eaa5"
+  integrity sha512-+KytrqHMQTg1J71E26Og1lMOsUG7MW+Fvcdlu9ZpUCz2dQG96gm0HEjUlL9/PV01DmhNIUZ1+EUaf8QMco4BLg==
   dependencies:
     bin-links "^5.0.0"
     https-proxy-agent "^7.0.2"
