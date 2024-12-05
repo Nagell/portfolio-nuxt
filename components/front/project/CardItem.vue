@@ -11,7 +11,6 @@
                 placeholder
                 format="webp"
                 loading="lazy"
-                sizes="xs:500px md:700px"
             />
             <div class="absolute bottom-0 w-full p-6 flex items-center justify-between gap-6">
                 <CommonTypography

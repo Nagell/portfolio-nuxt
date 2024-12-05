@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { ArrowUpDown, Image } from 'lucide-vue-next'
+    import { ArrowUpDown, File, Image } from 'lucide-vue-next'
     import { h } from 'vue'
 
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
@@ -68,7 +68,7 @@
                 return h('div', { class: 'relative' }, h(Avatar, { class: 'h-8 w-8 rounded-lg' }, () => [
                     h(AvatarImage, { src: useGetPublicURL(item.name), alt: 'Image' }),
                     h(AvatarFallback, { class: 'rounded-lg' }, () => [
-                        h(Image, { class: 'h-4 w-4' })
+                        isImage(item) ? h(Image, { class: 'h-4 w-4' }) : h(File, { class: 'h-4 w-4' })
                     ])
                 ]))
             },

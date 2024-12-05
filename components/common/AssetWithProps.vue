@@ -4,7 +4,7 @@
             <img
                 v-if="isImage(asset)"
                 :src="useGetPublicURL(asset.name)"
-                class="w-full object-cover aspect-square rounded-md"
+                class="w-full object-contain aspect-square rounded-md border"
             >
             <div
                 v-else

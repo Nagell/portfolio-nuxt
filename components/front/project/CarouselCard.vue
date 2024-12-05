@@ -34,6 +34,7 @@
     defineProps<{ project: Project }>()
     const isDialogOpen = ref(false)
 
+    /** Opens the dialog and animates the card to the dialog shape */
     function openDialog() {
         isDialogOpen.value = true
         lockBodyScroll()
@@ -52,6 +53,7 @@
     let headerTimeline = gsap.timeline()
     let dialogTimeline = gsap.timeline()
 
+    /** Animates the card to the shape of the not yet visible dialog */
     function animateCard() {
         const start = cardItem.value?.card
         const goal = document.querySelector('.dialog-project')
@@ -78,6 +80,7 @@
         )
     }
 
+    /** Hides the card header as soon as possible */
     function animateHeader() {
         const start = cardItem.value?.title
 
@@ -93,21 +96,22 @@
         )
     }
 
+    /** Animates the dialog content */
     function animateDialog() {
         const content = dialogItemWrapper.value
 
         if (!content) return
 
         dialogTimeline = gsap.timeline()
-        gsap.delayedCall(0.1, () => {
-            dialogTimeline.to(
-                document.body,
-                {
-                    ['--project-dialog-opacity']: 1,
-                    duration: 0.2,
-                },
-            )
-        })
+        // animate dialog content via css variables
+        // (reaching it through refs is tricky due to a portal in between)
+        dialogTimeline.to(
+            document.body,
+            {
+                ['--project-dialog-opacity']: 1,
+                duration: 0.2,
+            },
+        )
     }
 
     watch(isDialogOpen, (isOpen) => {
@@ -116,13 +120,11 @@
         const carouselEl = carouselItem.value
 
         dialogTimeline.reverse()
-        gsap.delayedCall(0.1, () => {
-            cardTimeline.reverse().then(
-                () => {
-                    headerTimeline.reverse()
-                    unlockBodyScroll()
-                    if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
-                })
-        })
+        cardTimeline.reverse().then(
+            () => {
+                headerTimeline.reverse()
+                unlockBodyScroll()
+                if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
+            })
     })
 </script>

@@ -22,13 +22,12 @@
                                 class="w-full h-full object-cover rounded-2xl"
                                 preload
                                 format="webp"
-                                sizes="xs:500px md:700px"
                             />
                         </CardContent>
                     </Card>
                 </div>
 
-                <div class="bottom-0 w-full px-6 py-12 flex flex-col gap-10 max-w-[35rem] mx-auto">
+                <div class="bottom-0 w-full px-6 -mt-12 pb-12 flex flex-col gap-10 max-w-[35rem] mx-auto">
                     <!-- heading -->
                     <CommonTypography
                         variant="h2"
