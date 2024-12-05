@@ -22,7 +22,6 @@
                                 class="w-full h-full object-cover rounded-2xl"
                                 preload
                                 format="webp"
-                                sizes="xs:500px md:700px"
                             />
                         </CardContent>
                     </Card>
