@@ -105,15 +105,13 @@
         dialogTimeline = gsap.timeline()
         // animate dialog content via css variables
         // (reaching it through refs is tricky due to a portal in between)
-        gsap.delayedCall(0.1, () => {
-            dialogTimeline.to(
-                document.body,
-                {
-                    ['--project-dialog-opacity']: 1,
-                    duration: 0.2,
-                },
-            )
-        })
+        dialogTimeline.to(
+            document.body,
+            {
+                ['--project-dialog-opacity']: 1,
+                duration: 0.2,
+            },
+        )
     }
 
     watch(isDialogOpen, (isOpen) => {
@@ -122,13 +120,11 @@
         const carouselEl = carouselItem.value
 
         dialogTimeline.reverse()
-        gsap.delayedCall(0.1, () => {
-            cardTimeline.reverse().then(
-                () => {
-                    headerTimeline.reverse()
-                    unlockBodyScroll()
-                    if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
-                })
-        })
+        cardTimeline.reverse().then(
+            () => {
+                headerTimeline.reverse()
+                unlockBodyScroll()
+                if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
+            })
     })
 </script>
