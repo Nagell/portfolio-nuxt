@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+
     const { $consoleLayout } = useNuxtApp()
     // make sure that the dark mode is applied on the first render
     // (even without JS active in the client)
@@ -18,7 +19,12 @@
         htmlAttrs: {
             class: 'dark',
         },
+        link: [
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon_black.ico', media: '(prefers-color-scheme: light)' },
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon_white.ico', media: '(prefers-color-scheme: dark)' }
+        ]
     })
+
     onMounted(() => {
         $consoleLayout()
     })
