@@ -13,11 +13,16 @@
 <script setup lang="ts">
 
     const { $consoleLayout } = useNuxtApp()
-    // make sure that the dark mode is applied on the first render
-    // (even without JS active in the client)
     useHead({
+        meta: [
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+            { name: 'author', content: 'Dawid Nitka' },
+        ],
         htmlAttrs: {
+            // make sure that the dark mode is applied on the first render
+            // (even without JS active in the client)
             class: 'dark',
+            lang: 'en',
         },
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon_black.ico', media: '(prefers-color-scheme: light)' },

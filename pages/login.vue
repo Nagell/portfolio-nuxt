@@ -47,6 +47,32 @@
 </template>
 
 <script lang="ts" setup>
+    const url = 'https://www.dawidnitka.com/login'
+    const title = 'Dawid Nitka | Login'
+    const description = 'Login page to the Dashboard. Restricted access only.'
+
+    useHead({
+        link: [
+            { rel: 'canonical', href: url },
+        ],
+    })
+
+    useSeoMeta({
+        title: title,
+        description: description,
+        robots: 'noindex, nofollow',
+        ogTitle: title,
+        ogDescription: description,
+        ogImage: '/meta/login_og.png',
+        ogUrl: url,
+        ogType: 'website',
+        ogSiteName: title,
+        twitterTitle: title,
+        twitterDescription: description,
+        twitterImage: '/meta/login_twitter.png',
+        twitterCard: 'summary_large_image',
+    })
+
     definePageMeta({
         layout: 'empty',
     })
