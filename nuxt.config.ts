@@ -6,8 +6,6 @@ export default defineNuxtConfig({
     routeRules: {
         // Home generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
         '/': { isr: 3600 },
-        // Would be nice but: https://github.com/nuxt/image/issues/1400
-        // '/_ipx/**': { isr: 3600 },
     },
     modules: [
         '@nuxtjs/tailwindcss',
