@@ -31,13 +31,13 @@
         robots: 'index, follow',
         ogTitle: title,
         ogDescription: description,
-        ogImage: '/meta/dawid_nitka_og.png',
+        ogImage: 'https://www.dawidnitka.com/meta/dawid_nitka_og.png',
         ogUrl: url,
         ogType: 'website',
         ogSiteName: title,
         twitterTitle: title,
         twitterDescription: description,
-        twitterImage: '/meta/dawid_nitka_twitter.png',
+        twitterImage: 'https://www.dawidnitka.com/meta/dawid_nitka_twitter.png',
         twitterCard: 'summary_large_image',
     })
 
