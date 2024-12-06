@@ -77,8 +77,8 @@ yarn run preview
 - [x] Add animations
 - [x] Connect final domain to the main branch
 - [x] Add license
-- [ ] Add meta tags
-- [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
+- [x] Add meta tags
+- [x] Improve a11y - <https://www.a11yproject.com/checklist/>
 - [ ] Add Legal Notice
 - [ ] Add i18n
 - [ ] Add Vitest and tests

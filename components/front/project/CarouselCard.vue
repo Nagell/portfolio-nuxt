@@ -7,9 +7,9 @@
             <button
                 class="rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
                 tabindex="0"
-                role="button"
-                aria-roledescription="Project card"
-                aria-label="Open project details"
+                type="button"
+                aria-haspopup="dialog"
+                :aria-expanded="isDialogOpen"
                 @click="openDialog"
             >
                 <FrontProjectCardItem

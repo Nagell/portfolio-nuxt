@@ -1,7 +1,6 @@
 <template>
     <div
         class="hero__wrapper -z-10 w-screen relative pointer-events-none select-none"
-        aria-label="A screenshot of the an IDE with a sample code"
     >
         <div
             class="hero__wrapper-inner w-full h-full relative"
