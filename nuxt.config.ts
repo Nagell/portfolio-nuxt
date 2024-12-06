@@ -37,7 +37,6 @@ export default defineNuxtConfig({
         prefix: '',
         componentDir: './components/ui'
     },
-    // css: [ '~/assets/styles/main.css' ],
     postcss: {
         plugins: {
             tailwindcss: {},
