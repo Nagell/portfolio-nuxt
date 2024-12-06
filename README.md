@@ -21,30 +21,6 @@ The Admin Dashboard is built with SSR and CRUD operations are done on the server
 Front (landing pages) on the other hand is built with ISR, which means that the data  
 is fetched at build time and then served from the cache.
 
-## Tasks
-
-- [x] Add Supabase integration
-- [x] Add Tailwind CSS integration
-- [x] Add admin panel with authentication
-- [x] Add server-side CRUD operations for projects
-- [x] Add server-side CRUD operations for images
-- [x] Add image optimization
-- [x] Deploy to Vercel
-- [x] Add CI/CD
-- [x] End testing phase - prepare dev and prod environments
-- [x] Create and implement a design for
-  - [x] landing page
-  - [x] login page
-  - [x] admin panel
-- [x] Add animations
-- [ ] Add meta tags
-- [ ] Add license
-- [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
-- [ ] Connect final domain to the main branch
-- [ ] Add a rebuild trigger on Vercel when DB changes
-- [ ] Add Vitest and tests
-- [ ] Add i18n
-
 ## Setup
 
 Make sure to install the dependencies:
@@ -82,3 +58,39 @@ Locally preview production build:
 ```bash
 yarn run preview
 ```
+
+## Tasks
+
+- [x] Add Supabase integration
+- [x] Add Tailwind CSS integration
+- [x] Add admin panel with authentication
+- [x] Add server-side CRUD operations for projects
+- [x] Add server-side CRUD operations for images
+- [x] Add image optimization
+- [x] Deploy to Vercel
+- [x] Add CI/CD
+- [x] End testing phase - prepare dev and prod environments
+- [x] Create and implement a design for
+  - [x] landing page
+  - [x] login page
+  - [x] admin panel
+- [x] Add animations
+- [x] Connect final domain to the main branch
+- [x] Add license
+- [ ] Add meta tags
+- [ ] Improve a11y - <https://www.a11yproject.com/checklist/>
+- [ ] Add i18n
+- [ ] Add Vitest and tests
+
+## License
+
+Shield: [![CC BY-NC 4.0][cc-by-nc-shield]][cc-by-nc]
+
+This work is licensed under a
+[Creative Commons Attribution-NonCommercial 4.0 International License][cc-by-nc].
+
+[![CC BY-NC 4.0][cc-by-nc-image]][cc-by-nc]
+
+[cc-by-nc]: https://creativecommons.org/licenses/by-nc/4.0/
+[cc-by-nc-image]: https://licensebuttons.net/l/by-nc/4.0/88x31.png
+[cc-by-nc-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg
