@@ -36,9 +36,11 @@
                         I’m a seasoned Frontend Engineer passionate about creating scalable, user-focused web applications that balance elegant design with robust technology.
                     </span>
                     <span class="text-muted-foreground opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform mt-3">
-                        With expertise in <span class="text-foreground">
-                            Vue, Nuxt, and TypeScript
-                        </span>, I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve honed my skills in responsive design, accessibility, and web performance.
+                        With expertise in
+                        <span class="text-foreground">
+                            Vue, Nuxt, and TypeScript,
+                        </span>
+                        I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve honed my skills in responsive design, accessibility, and web performance.
                     </span>
                     <span class="text-muted-foreground opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform mt-3">
                         Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.

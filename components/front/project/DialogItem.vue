@@ -18,7 +18,7 @@
                         <CardContent class="w-80 aspect-[320/448] justify-start p-0">
                             <NuxtImg
                                 :src="project.image"
-                                :alt="project.title"
+                                alt="Project cover image"
                                 class="w-full h-full object-cover rounded-2xl"
                                 preload
                                 format="webp"

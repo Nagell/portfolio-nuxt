@@ -7,8 +7,9 @@
             <button
                 class="rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
                 tabindex="0"
-                role="region"
-                aria-roledescription="carousel-content"
+                role="button"
+                aria-roledescription="Project card"
+                aria-label="Open project details"
                 @click="openDialog"
             >
                 <FrontProjectCardItem

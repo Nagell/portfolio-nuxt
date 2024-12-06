@@ -5,6 +5,7 @@
                 <NuxtLink
                     to="/"
                     class="px-2 py-3 block"
+                    aria-label="Navigate to the homepage"
                 >
                     <CommonLogoWhite class="h-6" />
                 </NuxtLink>

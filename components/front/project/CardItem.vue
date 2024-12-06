@@ -6,7 +6,7 @@
         <CardContent class="w-full h-full flex flex-col justify-start relative p-0 group">
             <NuxtImg
                 :src="project.image"
-                :alt="project.title"
+                alt="Project cover image"
                 class="w-80 aspect-[320/448] object-cover rounded-2xl mx-auto"
                 placeholder
                 format="webp"

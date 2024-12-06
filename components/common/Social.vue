@@ -5,6 +5,7 @@
             :key="social.link"
             :to="social.link"
             target="_blank"
+            :aria-label="social.aria"
         >
             <component
                 :is="social.icon"
@@ -26,9 +27,9 @@
     }
 
     const socialList = [
-        { icon: LinkedInIcon, link: $const.links.LINKEDIN },
-        { icon: XingIcon, link: $const.links.XING },
-        { icon: GitHubIcon, link: $const.links.GITHUB },
+        { icon: LinkedInIcon, link: $const.links.LINKEDIN, aria: 'LinkedIn - external link' },
+        { icon: XingIcon, link: $const.links.XING, aria: 'Xing - external link' },
+        { icon: GitHubIcon, link: $const.links.GITHUB, aria: 'GitHub - external link' },
     ]
 
     const props = defineProps<Props>()
