@@ -12,12 +12,12 @@
                 format="webp"
                 loading="lazy"
             />
-            <div class="absolute bottom-0 w-full p-6 flex items-center justify-between gap-6">
+            <div class="absolute bottom-0 w-full p-6 flex items-end justify-between gap-3 md:gap-6">
                 <CommonTypography
                     ref="title"
                     variant="p"
                     tag="h3"
-                    class="font-bold text-start"
+                    class="font-bold text-start text-sm md:text-base"
                 >
                     {{ project.title }}
                 </CommonTypography>
