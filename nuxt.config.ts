@@ -37,12 +37,15 @@ export default defineNuxtConfig({
         prefix: '',
         componentDir: './components/ui'
     },
-    css: [ '~/assets/styles/main.css' ],
+    // css: [ '~/assets/styles/main.css' ],
     postcss: {
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
         },
+    },
+    tailwindcss: {
+        cssPath: '~/assets/styles/main.css',
     },
     colorMode: {
         preference: 'dark',
