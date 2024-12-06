@@ -63,13 +63,13 @@
         robots: 'noindex, nofollow',
         ogTitle: title,
         ogDescription: description,
-        ogImage: '/meta/login_og.png',
+        ogImage: 'https://www.dawidnitka.com/meta/login_og.png',
         ogUrl: url,
         ogType: 'website',
         ogSiteName: title,
         twitterTitle: title,
         twitterDescription: description,
-        twitterImage: '/meta/login_twitter.png',
+        twitterImage: 'https://www.dawidnitka.com/meta/login_twitter.png',
         twitterCard: 'summary_large_image',
     })
 
