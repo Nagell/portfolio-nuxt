@@ -1,7 +1,7 @@
 <template>
     <div>
         <FrontSpotlights />
-        <FrontAbout class="mt-8 md:mt-20" />
+        <FrontAbout class="mt-2 md:mt-20" />
         <FrontHero />
         <FrontExperience
             v-if="experienceData"
