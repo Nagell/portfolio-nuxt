@@ -1,5 +1,7 @@
 export function getSeoUrls() {
-    const urlOrigin = window?.location.origin
+    const { $const } = useNuxtApp()
+
+    const urlOrigin = $const.seo.ORIGIN
     const urlCurrent = useRoute().path === '/' ? '' : useRoute().path
     const urlFull = `${urlOrigin}${urlCurrent}`
 
