@@ -11,7 +11,13 @@
         </div>
         <div class="relative w-full">
             <div class="absolute top-10 left-12">
-                <CommonLogoWhite class="w-12 h-12" />
+                <NuxtLink
+                    to="/"
+                    class="px-2 py-3 block"
+                    aria-label="Navigate to the homepage"
+                >
+                    <CommonLogoWhite class="w-12 h-12" />
+                </NuxtLink>
             </div>
             <div class="relative mx-auto flex flex-col min-h-dvh w-[350px] justify-center space-y-6 ">
                 <div class="flex flex-col space-y-2 text-center">
