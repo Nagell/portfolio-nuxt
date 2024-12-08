@@ -6,7 +6,8 @@
         <div class="container">
             <CommonTypography
                 v-if="props.heading"
-                tag="h2"
+                :tag="tag"
+                :variant="variant"
             >
                 {{ heading }}
             </CommonTypography>
@@ -18,14 +19,23 @@
 <script lang="ts" setup>
 
     import type { HTMLAttributes } from 'vue'
+    import type { Props as TypographyProps } from '~/components/common/Typography.vue'
 
     interface Props {
         class?: HTMLAttributes['class']
         heading?: string
         id?: string
+        tag?: TypographyProps['tag']
+        variant?: TypographyProps['variant']
     }
 
-    const props = defineProps<Props>()
+    const props = withDefaults(defineProps<Props>(), {
+        class: '',
+        heading: '',
+        id: '',
+        tag: 'h2',
+        variant: 'h2'
+    })
 
     const headingId = computed(
         () => props.id || props.heading?.toLowerCase().replace(/\s/g, '-')

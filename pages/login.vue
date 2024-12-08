@@ -11,7 +11,7 @@
         </div>
         <div class="relative w-full">
             <div class="absolute top-10 left-12">
-                <CommonLogoWhite class="w-12" />
+                <CommonLogoWhite class="w-12 h-12" />
             </div>
             <div class="relative mx-auto flex flex-col min-h-dvh w-[350px] justify-center space-y-6 ">
                 <div class="flex flex-col space-y-2 text-center">
