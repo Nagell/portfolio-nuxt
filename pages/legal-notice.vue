@@ -24,7 +24,7 @@
                     data-name="dawidnitka"
                     data-domain="gmail"
                     data-tld="com"
-                    @click="obfuscateEmail"
+                    @click="openEmail"
                 />
             </CommonTypography>
         </div>
@@ -50,7 +50,7 @@
     })
 
     /** Open the default mail client with the obfuscated email */
-    function obfuscateEmail(event: MouseEvent) {
+    function openEmail(event: MouseEvent) {
         const email = event.target as HTMLElement
         const name = email.getAttribute('data-name')
         const domain = email.getAttribute('data-domain')
