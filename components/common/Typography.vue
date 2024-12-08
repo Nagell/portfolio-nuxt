@@ -13,7 +13,7 @@
 
     type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'ul' | 'li' | 'code'
 
-    interface Props {
+    export interface Props {
         tag?: Variant
         variant?: Variant
         class?: HTMLAttributes['class']

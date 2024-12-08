@@ -15,13 +15,14 @@
 </template>
 
 <script setup lang="ts">
-    const url = 'https://www.dawidnitka.com'
+    const { urlFull, urlOrigin } = getSeoUrls()
+
     const title = 'Dawid Nitka'
     const description = 'Senior Frontend Developer skilled in Vue, Nuxt and TypeScript. Delivering quality solutions and empowering teams. Let\'s create something impactful together!'
 
     useHead({
         link: [
-            { rel: 'canonical', href: url },
+            { rel: 'canonical', href: urlFull },
         ],
     })
 
@@ -31,13 +32,13 @@
         robots: 'index, follow',
         ogTitle: title,
         ogDescription: description,
-        ogImage: 'https://www.dawidnitka.com/meta/dawid_nitka_og.png',
-        ogUrl: url,
+        ogImage: `${urlOrigin}/meta/dawid_nitka_og.png`,
+        ogUrl: urlFull,
         ogType: 'website',
         ogSiteName: title,
         twitterTitle: title,
         twitterDescription: description,
-        twitterImage: 'https://www.dawidnitka.com/meta/dawid_nitka_twitter.png',
+        twitterImage: `${urlOrigin}/meta/dawid_nitka_twitter.png`,
         twitterCard: 'summary_large_image',
     })
 
