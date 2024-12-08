@@ -47,13 +47,14 @@
 </template>
 
 <script lang="ts" setup>
-    const url = 'https://www.dawidnitka.com/login'
+    const { urlFull, urlOrigin } = getSeoUrls()
+
     const title = 'Dawid Nitka | Login'
     const description = 'Login page to the Dashboard. Restricted access only.'
 
     useHead({
         link: [
-            { rel: 'canonical', href: url },
+            { rel: 'canonical', href: urlFull },
         ],
     })
 
@@ -63,13 +64,13 @@
         robots: 'noindex, nofollow',
         ogTitle: title,
         ogDescription: description,
-        ogImage: 'https://www.dawidnitka.com/meta/login_og.png',
-        ogUrl: url,
+        ogImage: `${urlOrigin}/meta/login_og.png`,
+        ogUrl: urlFull,
         ogType: 'website',
         ogSiteName: title,
         twitterTitle: title,
         twitterDescription: description,
-        twitterImage: 'https://www.dawidnitka.com/meta/login_twitter.png',
+        twitterImage: `${urlOrigin}/meta/login_twitter.png`,
         twitterCard: 'summary_large_image',
     })
 

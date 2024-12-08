@@ -32,13 +32,14 @@
 </template>
 
 <script lang="ts" setup>
-    const url = 'https://www.dawidnitka.com/legal-notice'
+    const { urlFull } = getSeoUrls()
+
     const title = 'Dawid Nitka | Legal Notice'
     const description = 'Legal notice of Dawid Nitka portfolio website.'
 
     useHead({
         link: [
-            { rel: 'canonical', href: url },
+            { rel: 'canonical', href: urlFull },
         ],
     })
 
