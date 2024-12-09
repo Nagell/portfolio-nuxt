@@ -79,7 +79,7 @@ yarn run preview
 - [x] Add license
 - [x] Add meta tags
 - [x] Improve a11y - <https://www.a11yproject.com/checklist/>
-- [ ] Add Legal Notice
+- [x] Add Legal Notice and Privacy Policy
 - [ ] Add i18n
 - [ ] Add Vitest and tests
 
