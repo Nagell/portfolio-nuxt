@@ -2,6 +2,7 @@
     <CommonSection
         heading="Legal notice"
         tag="h1"
+        variant="h2"
     >
         <div class="mt-9">
             <CommonTypography
