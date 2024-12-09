@@ -1,13 +1,13 @@
 <template>
     <section
-        :id="headingId"
+        :id="sectionId"
         :class="cn(props.class, 'py-16')"
     >
         <div class="container">
             <CommonTypography
                 v-if="props.heading"
-                :tag="tag"
-                :variant="variant"
+                :tag="tagComputed"
+                :variant="variantComputed"
             >
                 {{ heading }}
             </CommonTypography>
@@ -33,11 +33,15 @@
         class: '',
         heading: '',
         id: '',
-        tag: 'h2',
-        variant: 'h2'
     })
 
-    const headingId = computed(
+    const sectionId = computed(
         () => props.id || props.heading?.toLowerCase().replace(/\s/g, '-')
     )
+
+    const tagComputed = computed(() => props.tag || 'h1')
+
+    const variantComputed = computed(() => {
+        return props.variant || props.tag || 'h1'
+    })
 </script>
