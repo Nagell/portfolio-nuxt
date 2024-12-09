@@ -17,15 +17,7 @@
             </CommonTypography>
             <CommonTypography tag="p">
                 E-Mail:
-                <NuxtLink
-                    href="#"
-                    aria-label="E-Mail address"
-                    class="cryptedmail"
-                    data-name="dawidnitka"
-                    data-domain="gmail"
-                    data-tld="com"
-                    @click="openEmail"
-                />
+                <CommonObfuscatedEmail />
             </CommonTypography>
         </div>
     </CommonSection>
@@ -48,20 +40,4 @@
         description: description,
         robots: 'noindex, nofollow',
     })
-
-    /** Open the default mail client with the obfuscated email */
-    function openEmail(event: MouseEvent) {
-        const email = event.target as HTMLElement
-        const name = email.getAttribute('data-name')
-        const domain = email.getAttribute('data-domain')
-        const tld = email.getAttribute('data-tld')
-
-        window.open(`mailto:${name}@${domain}.${tld}`, '_blank')
-    }
 </script>
-
-<style scoped>
-    .cryptedmail:after {
-        content: attr(data-name) "@" attr(data-domain) "." attr(data-tld);
-    }
-</style>
