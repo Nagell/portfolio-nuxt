@@ -6,6 +6,7 @@
         data-name="dawidnitka"
         data-domain="gmail"
         data-tld="com"
+        rel="noopener noreferrer"
         @click="openEmail"
     />
 </template>

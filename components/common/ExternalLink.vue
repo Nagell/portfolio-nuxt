@@ -17,6 +17,7 @@
         <CommonTypography
             tag="h3"
             variant="h4"
+            :class="cn(props.class)"
         >
             <slot />
             <ArrowUpRight class="ml-1 align-bottom inline-block transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -26,6 +27,7 @@
         v-else
         tag="h3"
         variant="h4"
+        :class="cn(props.class)"
     >
         <slot />
     </CommonTypography>
