@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 
     routeRules: {
         // Home generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
+        '/': { isr: 3600 },
         '/**': { isr: 3600 },
         '/admin': { ssr: true },
     },
