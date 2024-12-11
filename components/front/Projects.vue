@@ -10,7 +10,8 @@
                 :opts="{
                     align: 'start',
                     watchResize: true,
-                    slidesToScroll: 'auto'
+                    slidesToScroll: 'auto',
+                    dragFree: true,
                 }"
             >
                 <CarouselContent>
