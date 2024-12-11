@@ -1,5 +1,5 @@
 <template>
-    <NavigationMenu class="">
+    <NavigationMenu>
         <NavigationMenuList>
             <NavigationMenuItem>
                 <NuxtLink
