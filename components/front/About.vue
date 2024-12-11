@@ -40,7 +40,7 @@
                         <span class="text-foreground">
                             Vue, Nuxt, and TypeScript,
                         </span>
-                        I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve honed my skills in responsive design, accessibility, and web performance.
+                        I deliver high-performing, maintainable solutions. My experience spans startups and established companies, where I’ve polished my skills in responsive design, accessibility, and web performance.
                     </span>
                     <span class="text-muted-foreground opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform mt-3">
                         Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.
