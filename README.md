@@ -141,6 +141,9 @@ which means that the data is fetched at build time and then served from the cach
    git remote -v # confirm the changes
    ```
 
+To obtain the admin dashboard access, you need to create a new OAuth application on Github.  
+More on this topic can be found in the [development docs](https://github.com/Nagell/portfolio-nuxt/blob/main/docs/DEVELOPMENT.md).
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
