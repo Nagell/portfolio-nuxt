@@ -11,7 +11,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
-'http://localhost:54321/storage/v1/object/public/assets/sample.jpg',
+'http://localhost:54321/storage/v1/object/public/assets/sample.webp',
 'http://localhost:3000/admin/projects',
 '["JavaScript", "TypeScript", "Vue 3", "Vue 2", "Vuex", "Cypress", "Jest", "Vite", "Webpack", "Rollup", "Lerna", "PlayCanvas", "Ionic", "Scss", "Tailwind", "Storybook", "Figma", "Adobe XD"]'),
 ('Sample project 2',
@@ -24,7 +24,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
-'http://localhost:54321/storage/v1/object/public/assets/sample.jpg',
+'http://localhost:54321/storage/v1/object/public/assets/sample.webp',
 'http://localhost:3000/admin/projects',
 '["JavaScript","SCSS","Gulp","Joomla","Java","Photoshop","Illustrator"]'),
 ('Sample project 3',
@@ -37,7 +37,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
-'http://localhost:54321/storage/v1/object/public/assets/sample.jpg',
+'http://localhost:54321/storage/v1/object/public/assets/sample.webp',
 'http://localhost:3000/admin/projects',
 '["JavaScript","SCSS","Gulp","Joomla","Java","Photoshop","Illustrator"]'),
 ('Sample project 4',
@@ -51,7 +51,7 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
 
-'http://localhost:54321/storage/v1/object/public/assets/sample.jpg',
+'http://localhost:54321/storage/v1/object/public/assets/sample.webp',
 'http://localhost:3000/admin/projects',
 '["JavaScript","SCSS","Gulp","Joomla","Java","Photoshop","Illustrator"]'),
 ('Sample project 5',
@@ -64,6 +64,6 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
-'http://localhost:54321/storage/v1/object/public/assets/sample.jpg',
+'http://localhost:54321/storage/v1/object/public/assets/sample.webp',
 'http://localhost:3000/admin/projects',
 '["JavaScript","SCSS","Gulp","Joomla","Java","Photoshop","Illustrator"]');
