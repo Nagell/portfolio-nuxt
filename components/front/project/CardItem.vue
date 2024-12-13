@@ -1,13 +1,13 @@
 <template>
     <Card
         ref="card"
-        class="border-none rounded-2xl absolute top-0"
+        class="w-full border-none rounded-2xl absolute top-0"
     >
         <CardContent class="w-full h-full flex flex-col justify-start relative p-0 group">
             <NuxtImg
                 :src="project.image"
                 alt="Project cover image"
-                class="w-80 aspect-[320/448] object-cover rounded-2xl mx-auto"
+                class="w-full aspect-[320/448] object-cover rounded-2xl mx-auto"
                 placeholder
                 format="webp"
                 loading="lazy"
