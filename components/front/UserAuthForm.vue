@@ -23,7 +23,6 @@
         <Button
             variant="outline"
             type="button"
-
             :disabled="isLoading"
             @click="signInWithGithub"
         >

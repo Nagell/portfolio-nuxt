@@ -5,7 +5,7 @@
             class="basis-[17rem] md:basis-[21rem]"
         >
             <button
-                class="rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
+                class="carousel-activator rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
                 tabindex="0"
                 type="button"
                 aria-haspopup="dialog"
@@ -119,13 +119,23 @@
         if (isOpen) return
 
         const carouselEl = carouselItem.value
+        const cardEl = cardItem.value?.card
 
         dialogTimeline.reverse()
         cardTimeline.reverse().then(
             () => {
-                headerTimeline.reverse()
                 unlockBodyScroll()
                 if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
+                if (cardEl) setHTMLElementCssProperty(cardEl.$el, 'width')
+                if (cardEl) setHTMLElementCssProperty(cardEl.$el, 'height')
+                headerTimeline.reverse()
             })
     })
 </script>
+
+<style lang="css">
+    .carousel-activator:hover .card__image,
+    .carousel-activator:focus .card__image {
+        filter: sepia(1) hue-rotate(10deg) saturate(300%);
+    }
+</style>

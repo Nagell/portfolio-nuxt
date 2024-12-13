@@ -6,10 +6,11 @@
             :to="social.link"
             target="_blank"
             :aria-label="social.aria"
+            class="text-muted-foreground hover:text-primary focus:text-primary transition-colors duration-300"
         >
             <component
                 :is="social.icon"
-                class="w-6 h-6 text-muted-foreground hover:text-foreground transition-colors duration-300"
+                class="w-6 h-6"
             />
         </NuxtLink>
     </div>

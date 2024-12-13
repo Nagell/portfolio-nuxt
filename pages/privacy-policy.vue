@@ -5,7 +5,7 @@
             tag="h1"
             variant="h2"
         >
-            <div class="grid grid-cols-3 gap-12 [&>*]:col-span-3 [&>*]:md:col-span-2 [&_p]:text-muted-foreground [&_ul]:text-muted-foreground [&_a]:text-foreground">
+            <div class="grid grid-cols-3 gap-12 [&>*]:col-span-3 [&>*]:md:col-span-2 [&_p]:text-muted-foreground [&_ul]:text-muted-foreground [&_a]:text-foreground [&_a:hover]:text-primary [&_a:focus]:text-primary [&_a]:duration-300 [&_a]:transition-colors">
                 <div class="mt-4">
                     <CommonTypography
                         tag="p"
@@ -59,7 +59,7 @@
                         We do not collect, track, or store personal data, cookies, or any browsing information when you use this Website.
                     </CommonTypography>
                 </div>
-
+                <!--  -->
                 <div>
                     <CommonTypography
                         tag="h2"
@@ -85,16 +85,16 @@
                     </CommonTypography>
                     <CommonTypography tag="p">
                         For details on how GitHub handles your data, please refer to the
-                        <CommonExternalLink
-                            href="https://docs.github.com/en/github/site-policy/github-privacy-statement"
-                            aria-label="GitHub Privacy Policy"
-                            class="leading-6 text-base"
-                        >
-                            GitHub Privacy Policy
-                        </CommonExternalLink>.
                     </CommonTypography>
+                    <CommonExternalLink
+                        href="https://docs.github.com/en/github/site-policy/github-privacy-statement"
+                        aria-label="GitHub Privacy Policy"
+                        class="leading-6 text-base"
+                    >
+                        GitHub Privacy Policy
+                    </CommonExternalLink>.
                 </div>
-
+                <!--  -->
                 <div>
                     <CommonTypography
                         tag="h2"

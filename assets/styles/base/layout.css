@@ -7,9 +7,12 @@
         scrollbar-width: thin;
         scrollbar-color: hsl(var(--border)) transparent;
 
-        /* selection */
+        /* tab selection */
         outline: none;
         @apply  focus-visible:ring-offset-ring focus-visible:!ring-ring focus-visible:!ring-2 ;
+
+        /* selection */
+        @apply selection:bg-primary/10 selection:text-primary
     }
     body {
         @apply bg-background text-foreground overflow-x-hidden;

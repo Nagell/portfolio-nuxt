@@ -6,14 +6,14 @@
                 <NuxtLink
                     to="/legal-notice"
                     aria-label="Navigate to legal notice"
-                    class="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    class="text-muted-foreground hover:text-primary focus:text-primary transition-colors duration-300"
                 >
                     Legal Notice
                 </NuxtLink>
                 <NuxtLink
                     to="/privacy-policy"
                     aria-label="Navigate to privacy policy"
-                    class="text-muted-foreground hover:text-foreground transition-colors duration-300"
+                    class="text-muted-foreground hover:text-primary focus:text-primary transition-colors duration-300"
                 >
                     Privacy Policy
                 </NuxtLink>

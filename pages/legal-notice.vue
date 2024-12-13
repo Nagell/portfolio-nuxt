@@ -4,7 +4,7 @@
         tag="h1"
         variant="h2"
     >
-        <div class="mt-9">
+        <div class="mt-9 [&_p]:text-muted-foreground [&_ul]:text-muted-foreground [&_a]:text-foreground [&_a:hover]:text-primary [&_a:focus]:text-primary [&_a]:duration-300 [&_a]:transition-colors">
             <CommonTypography
                 variant="h3"
                 tag="h2"

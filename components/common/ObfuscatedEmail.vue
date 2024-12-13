@@ -2,7 +2,7 @@
     <NuxtLink
         href="#"
         aria-label="E-Mail address"
-        class="obfuscated-email"
+        class="obfuscated-email hover:text-primary focus:text-primary transition-colors duration-300"
         data-name="dawidnitka"
         data-domain="gmail"
         data-tld="com"
