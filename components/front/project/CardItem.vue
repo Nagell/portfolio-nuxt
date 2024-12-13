@@ -7,7 +7,7 @@
             <NuxtImg
                 :src="project.image"
                 alt="Project cover image"
-                class="w-full aspect-[320/448] object-cover rounded-2xl mx-auto"
+                class="w-80 aspect-[320/448] object-cover rounded-2xl mx-auto"
                 placeholder
                 format="webp"
                 loading="lazy"

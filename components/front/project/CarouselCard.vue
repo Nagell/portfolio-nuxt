@@ -119,13 +119,16 @@
         if (isOpen) return
 
         const carouselEl = carouselItem.value
+        const cardEl = cardItem.value?.card
 
         dialogTimeline.reverse()
         cardTimeline.reverse().then(
             () => {
-                headerTimeline.reverse()
                 unlockBodyScroll()
                 if (carouselEl) setHTMLElementCssProperty(carouselEl.$el, 'z-index')
+                if (cardEl) setHTMLElementCssProperty(cardEl.$el, 'width')
+                if (cardEl) setHTMLElementCssProperty(cardEl.$el, 'height')
+                headerTimeline.reverse()
             })
     })
 </script>
