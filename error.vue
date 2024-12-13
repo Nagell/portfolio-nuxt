@@ -40,24 +40,20 @@
                     {{ error.message }}
                 </CommonTypography>
             </template>
-            <NuxtLink
-                :class="cn(
-                    buttonVariants({ variant: 'default' }),
-                    'px-10',
-                )"
+            <Button
+                type="button"
+                class="px-10"
                 @click="handleError"
             >
                 <ArrowLeft />
                 Go back
-            </NuxtLink>
+            </Button>
         </div>
     </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
     import { ArrowLeft } from 'lucide-vue-next'
-
-    import { buttonVariants } from '~/components/ui/button'
 
     const error = useError()
 
