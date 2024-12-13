@@ -19,7 +19,7 @@
                             <NuxtImg
                                 :src="project.image"
                                 alt="Project cover image"
-                                class="w-full h-full object-cover rounded-2xl"
+                                class="dialog-project__image w-full h-full object-cover rounded-2xl"
                                 preload
                                 format="webp"
                             />
@@ -71,5 +71,8 @@
 <style lang="css">
     .dialog-project {
         opacity: var(--project-dialog-opacity, 0);
+    }
+    .dialog-project__image {
+        filter: sepia(1) hue-rotate(10deg) saturate(300%);
     }
 </style>

@@ -5,7 +5,7 @@
             class="basis-[17rem] md:basis-[21rem]"
         >
             <button
-                class="rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
+                class="carousel-activator rounded-2xl w-64 md:w-80 aspect-[320/448] relative"
                 tabindex="0"
                 type="button"
                 aria-haspopup="dialog"
@@ -132,3 +132,10 @@
             })
     })
 </script>
+
+<style lang="css">
+    .carousel-activator:hover .card__image,
+    .carousel-activator:focus .card__image {
+        filter: sepia(1) hue-rotate(10deg) saturate(300%);
+    }
+</style>

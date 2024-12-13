@@ -5,7 +5,7 @@
             tag="h1"
             variant="h2"
         >
-            <div class="grid grid-cols-3 gap-12 [&>*]:col-span-3 [&>*]:md:col-span-2 [&_p]:text-muted-foreground [&_ul]:text-muted-foreground [&_a]:text-foreground">
+            <div class="grid grid-cols-3 gap-12 [&>*]:col-span-3 [&>*]:md:col-span-2 [&_p]:text-muted-foreground [&_ul]:text-muted-foreground [&_a]:text-foreground [&_a:hover]:text-primary [&_a:focus]:text-primary [&_a]:duration-300 [&_a]:transition-colors">
                 <div class="mt-4">
                     <CommonTypography
                         tag="p"
