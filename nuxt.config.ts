@@ -8,6 +8,7 @@ export default defineNuxtConfig({
         '/': { isr: 3600 },
         '/legal-notice': { isr: 3600 },
         '/privacy-policy': { isr: 3600 },
+        '/admin/**': { robots: false },
     },
     modules: [
         '@nuxtjs/tailwindcss',
@@ -17,6 +18,8 @@ export default defineNuxtConfig({
         'nuxt-lucide-icons',
         '@nuxt/image',
         '@nuxt/fonts',
+        '@nuxtjs/sitemap',
+        '@nuxtjs/robots',
     ],
     supabase: {
         redirectOptions: {
