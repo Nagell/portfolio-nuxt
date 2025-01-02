@@ -51,6 +51,7 @@
                     <CommonExternalLink
                         v-if="project.url"
                         :href="project.url"
+                        variant="h4"
                     >
                         View Project on GitHub
                     </CommonExternalLink>

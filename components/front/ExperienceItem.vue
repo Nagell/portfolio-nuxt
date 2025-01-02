@@ -14,7 +14,11 @@
         <div class="grow flex flex-col gap-3">
             <div>
                 <!-- heading -->
-                <CommonExternalLink :href="experience.link">
+                <CommonExternalLink
+                    :href="experience.link"
+                    variant="h4"
+                    tag="h2"
+                >
                     {{ experience.title.trim() }}
                 </CommonExternalLink>
             </div>
