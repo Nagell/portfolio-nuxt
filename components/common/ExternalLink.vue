@@ -10,13 +10,13 @@
     <NuxtLink
         v-else-if="props.href"
         :href="props.href"
-        class="inline-block hover:text-primary  focus:text-primary transition-colors duration-300 group"
+        class="inline-block hover:text-primary focus:text-primary transition-colors duration-300 group"
         target="_blank"
         rel="noopener noreferrer"
     >
         <CommonTypography
-            tag="h3"
-            variant="h4"
+            :tag="tagComputed"
+            :variant="variantComputed"
             :class="cn(props.class)"
         >
             <slot />
@@ -25,8 +25,8 @@
     </NuxtLink>
     <CommonTypography
         v-else
-        tag="h3"
-        variant="h4"
+        :tag="tagComputed"
+        :variant="variantComputed"
         :class="cn(props.class)"
     >
         <slot />
@@ -36,11 +36,21 @@
 <script lang="ts" setup>
     import { ArrowUpRight } from 'lucide-vue-next'
 
+    import type { Props as TypographyProps } from '~/components/common/Typography.vue'
+
     interface Props {
         onClick?: () => void
         href?: string | null
         class?: string
+        tag?: TypographyProps['tag']
+        variant?: TypographyProps['variant']
     }
 
     const props = defineProps<Props>()
+
+    const tagComputed = computed(() => props.tag || 'span')
+
+    const variantComputed = computed(() => {
+        return props.variant || props.tag || 'span'
+    })
 </script>
