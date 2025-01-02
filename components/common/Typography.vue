@@ -11,7 +11,7 @@
 
     import type { HTMLAttributes } from 'vue'
 
-    type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'ul' | 'li' | 'code'
+    type Variant = 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'ul' | 'li' | 'code'
 
     export interface Props {
         tag?: Variant
@@ -33,7 +33,8 @@
             p: 'leading-6 [&:not(:first-child)]:mt-6',
             ul: 'my-6 ml-6 list-disc [&>li]:mt-2',
             li: 'leading-6',
-            code: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold'
+            code: 'relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold',
+            span: '',
         }
 
         return variantStyles[props.variant || props.tag]

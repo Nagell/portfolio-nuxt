@@ -16,7 +16,7 @@
                 <CommonTypography
                     ref="title"
                     variant="p"
-                    tag="h3"
+                    tag="h2"
                     class="font-bold text-start text-sm md:text-base"
                 >
                     {{ project.title }}
