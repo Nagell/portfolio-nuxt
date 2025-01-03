@@ -6,6 +6,7 @@ import ObfuscatedEmail from '../ObfuscatedEmail.vue'
 describe('ObfuscatedEmail', () => {
     it('renders correctly', async () => {
         const component = await mountSuspended(ObfuscatedEmail)
+
         expect(component.html()).toMatchSnapshot()
     })
 
@@ -21,12 +22,12 @@ describe('ObfuscatedEmail', () => {
         const component = await mountSuspended(ObfuscatedEmail)
         const windowOpenSpy = vi.spyOn(window, 'open')
 
-        component.trigger('click')
-
         const name = component.attributes()['data-name']
         const domain = component.attributes()['data-domain']
         const tld = component.attributes()['data-tld']
         const expectedCall = `mailto:${name}@${domain}.${tld}`
+
+        component.trigger('click')
 
         expect(windowOpenSpy).toHaveBeenCalledWith(
             expectedCall,
