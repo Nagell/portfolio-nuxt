@@ -1,13 +1,13 @@
-import { mount } from '@vue/test-utils'
+import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, it, vi } from 'vitest'
 
 import ExternalLink from '../ExternalLink.vue'
 import CommonTypography from '../Typography.vue'
 
-describe('ExternalLink', () => {
-    it('renders button when onClick is provided', () => {
+describe('ExternalLink', async () => {
+    it('renders button when onClick is provided', async () => {
         const onClick = vi.fn()
-        const wrapper = mount(ExternalLink, {
+        const wrapper = await mountSuspended(ExternalLink, {
             props: { onClick }
         })
 
@@ -15,9 +15,9 @@ describe('ExternalLink', () => {
         expect(wrapper.find('button').attributes('class')).toContain('group')
     })
 
-    it('renders NuxtLink when href is provided', () => {
+    it('renders NuxtLink when href is provided', async () => {
         const href = 'https://example.com'
-        const wrapper = mount(ExternalLink, {
+        const wrapper = await mountSuspended(ExternalLink, {
             props: { href }
         })
 
@@ -27,8 +27,8 @@ describe('ExternalLink', () => {
         expect(wrapper.find('a').attributes('rel')).toBe('noopener noreferrer')
     })
 
-    it('renders CommonTypography when neither onClick nor href is provided', () => {
-        const wrapper = mount(ExternalLink)
+    it('renders CommonTypography when neither onClick nor href is provided', async () => {
+        const wrapper = await mountSuspended(ExternalLink)
 
         expect(wrapper.findComponent(CommonTypography).exists()).toBe(true)
     })
