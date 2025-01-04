@@ -211,6 +211,9 @@ To run the tests, use the following command:
 # Prepare the test environment
 yarn playwright install
 
+# Start the local project - required for the e2e tests
+yarn dev
+
 # Run the tests
 yarn test
 ```
