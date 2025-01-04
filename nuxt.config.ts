@@ -11,15 +11,16 @@ export default defineNuxtConfig({
         '/admin/**': { robots: false },
     },
     modules: [
-        '@nuxtjs/tailwindcss',
-        '@nuxtjs/supabase',
-        'shadcn-nuxt',
-        '@nuxtjs/color-mode',
-        'nuxt-lucide-icons',
-        '@nuxt/image',
         '@nuxt/fonts',
-        '@nuxtjs/sitemap',
+        '@nuxt/image',
+        '@nuxt/test-utils/module',
+        '@nuxtjs/color-mode',
         '@nuxtjs/robots',
+        '@nuxtjs/sitemap',
+        '@nuxtjs/supabase',
+        '@nuxtjs/tailwindcss',
+        'nuxt-lucide-icons',
+        'shadcn-nuxt',
     ],
     supabase: {
         redirectOptions: {

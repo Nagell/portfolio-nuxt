@@ -7,6 +7,7 @@
   - [Documentation](#documentation)
   - [Common commands](#common-commands)
     - [Types](#types)
+    - [Testing](#testing)
     - [Production build](#production-build)
   - [Github OAuth - admin dashboard access](#github-oauth---admin-dashboard-access)
     - [Development](#development-1)
@@ -16,6 +17,7 @@
     - [Connecting to the external Supabase DB (production)](#connecting-to-the-external-supabase-db-production)
     - [Pushing migrations](#pushing-migrations)
     - [Pulling changes](#pulling-changes)
+  - [Testing](#testing-1)
 
 ## Documentation
 
@@ -49,6 +51,13 @@ yarn types:supabase
 
 # Generate types from the local database
 yarn types:supabase:local
+```
+
+### Testing
+
+```sh
+# Run the tests
+yarn test
 ```
 
 ### Production build
@@ -187,3 +196,24 @@ yarn supabase seed buckets
 ```
 
 <p align="right">(<a href="#development-top">back to top</a>)</p>
+
+## Testing
+
+To start with testing you will need a `.env.test` file.
+
+1. configure `.env` file as mentioned in the `README.md` in the section [Installation](https://github.com/Nagell/portfolio-nuxt/blob/main/README.md#installation)
+2. copy it
+3. rename to `.env.test`.
+
+To run the tests, use the following command:
+
+```sh
+# Prepare the test environment
+yarn playwright install
+
+# Start the local project - required for the e2e tests
+yarn dev
+
+# Run the tests
+yarn test
+```
