@@ -1,11 +1,11 @@
-import { mount, shallowMount } from '@vue/test-utils'
+import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, it } from 'vitest'
 
 import Typography from '../Typography.vue'
 
-describe('Typography', () => {
-    it('renders correctly', () => {
-        const wrapper = mount(Typography, {
+describe('Typography', async () => {
+    it('renders correctly', async () => {
+        const wrapper = await mountSuspended(Typography, {
             slots: {
                 default: 'Test Content'
             }
@@ -13,9 +13,9 @@ describe('Typography', () => {
         expect(wrapper.html()).toMatchSnapshot()
     })
 
-    it('renders with the correct tag', () => {
+    it('renders with the correct tag', async () => {
         const text = 'Test Content'
-        const wrapper = mount(Typography, {
+        const wrapper = await mountSuspended(Typography, {
             props: { tag: 'h2' },
             slots: {
                 default: text
@@ -25,9 +25,9 @@ describe('Typography', () => {
         expect(wrapper.find('h2').text()).toBe(text)
     })
 
-    it('applies custom class', () => {
+    it('applies custom class', async () => {
         const customClass = 'custom-typography-class'
-        const wrapper = mount(Typography, {
+        const wrapper = await mountSuspended(Typography, {
             props: { class: customClass },
             slots: {
                 default: 'Test Content'
