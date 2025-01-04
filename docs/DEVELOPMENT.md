@@ -208,5 +208,9 @@ To start with testing you will need a `.env.test` file.
 To run the tests, use the following command:
 
 ```sh
+# Prepare the test environment
+yarn playwright install
+
+# Run the tests
 yarn test
 ```
