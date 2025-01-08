@@ -3,6 +3,7 @@
         <CommonTypography
             tag="h1"
             class="flex gap-1.5"
+            :data-testid="testIds.index.about.header"
         >
             <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_400ms] inline-block will-change-transform">
                 Dawid
@@ -15,6 +16,7 @@
             tag="h2"
             variant="h3"
             class="text-muted-foreground mt-1.5 flex gap-[0.3rem]"
+            :data-testid="testIds.index.about.subHeader"
         >
             <span class="opacity-0 transition-all animate-[text-blur_1s_forwards_600ms] inline-block will-change-transform">
                 Senior
@@ -31,6 +33,7 @@
                 <CommonTypography
                     tag="p"
                     class="mt-5"
+                    :data-testid="testIds.index.about.description"
                 >
                     <span class="text-foreground opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform">
                         I’m a seasoned Frontend Engineer passionate about creating scalable, user-focused web applications that balance elegant design with robust technology.
@@ -46,11 +49,15 @@
                         Beyond coding, I enjoy mentoring, knowledge sharing, and exploring new technologies to drive innovation.
                     </span>
                 </CommonTypography>
-                <CommonSocial class="opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform mt-6" />
+                <CommonSocial
+                    class="opacity-0 transition-all animate-[text-blur_1s_forwards_900ms] inline-block will-change-transform mt-6"
+                    :data-testid="testIds.index.about.socialButtons"
+                />
             </div>
         </div>
     </CommonSection>
 </template>
 
 <script setup lang="ts">
+    import testIds from '~/pages/__tests__/testIds'
 </script>

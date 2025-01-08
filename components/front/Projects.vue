@@ -2,6 +2,7 @@
     <CommonSection
         heading="Projects"
         class="gradient overflow-hidden"
+        :data-testid="testIds.index.projects.header"
     >
         <div class="mt-9">
             <Carousel
@@ -14,7 +15,7 @@
                     dragFree: true,
                 }"
             >
-                <CarouselContent>
+                <CarouselContent :data-testid="testIds.index.projects.items">
                     <FrontProjectCarouselCard
                         v-for="project in projectsData"
                         :key="project.id"
@@ -31,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+    import testIds from '~/pages/__tests__/testIds'
+
     import type { Project } from '~/types/projects.types'
 
     defineProps<{ projectsData: Project[] }>()
