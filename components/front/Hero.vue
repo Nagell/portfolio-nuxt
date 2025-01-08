@@ -15,6 +15,7 @@
                         format="webp"
                         sizes="xs:700px sm:1000px md:1500px"
                         quality="100"
+                        :data-testid="testIds.index.hero.imageBackground"
                     />
                 </div>
                 <NuxtImg
@@ -23,11 +24,16 @@
                     class="hero opacity-0 animate-[image-hero-blur_1s_forwards_1500ms] absolute inset-0 w-full"
                     format="webp"
                     sizes="xs:700px sm:1000px md:1500px"
+                    :data-testid="testIds.index.hero.imageText"
                 />
             </div>
         </div>
     </div>
 </template>
+
+<script lang="ts" setup>
+    import testIds from '~/pages/__tests__/testIds'
+</script>
 
 <style scoped lang="css">
     .hero__wrapper {

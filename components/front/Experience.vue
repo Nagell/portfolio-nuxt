@@ -1,9 +1,13 @@
 <template>
     <CommonSection
         heading="Experience"
+        :data-testid="testIds.index.experience.header"
         class="mt-16 md:mt-32 !py-16 md:!py-32 bg-gradient-to-b from-foreground/5 to-transparent to-25%"
     >
-        <div class="mt-9 flex flex-col gap-14">
+        <div
+            class="mt-9 flex flex-col gap-14"
+            :data-testid="testIds.index.experience.items"
+        >
             <FrontExperienceItem
                 v-for="experience in experienceData"
                 :key="experience.id"
@@ -11,13 +15,18 @@
             />
         </div>
 
-        <CommonExternalLink @click="fetchCvWithBackup">
+        <CommonExternalLink
+            :data-testid="testIds.index.experience.downloadCvButton"
+            @click="fetchCvWithBackup"
+        >
             View Full Résumé
         </CommonExternalLink>
     </CommonSection>
 </template>
 
 <script lang="ts" setup>
+    import testIds from '~/pages/__tests__/testIds'
+
     import type { Experience } from '~/types/experience.types'
 
     const { $const } = useNuxtApp()
