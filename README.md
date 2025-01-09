@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 
 <!-- PROJECT SHIELDS -->
-[![Unlicense License][license-shield]][license-url]
+[![CC BY-NC 4.0][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
@@ -16,7 +16,7 @@
   <p align="center">
     Nuxt and Supabase based portfolio website
     <br />
-    <a href="https://github.com/Nagell/portfolio-nuxt/blob/main/docs/DEVELOPMENT.md"><strong>Explore the docs »</strong></a>
+    <a href="./docs/DEVELOPMENT.md"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/Nagell/portfolio-nuxt/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
@@ -142,7 +142,7 @@ which means that the data is fetched at build time and then served from the cach
    ```
 
 To obtain the admin dashboard access, you need to create a new OAuth application on Github.  
-More on this topic can be found in the [development docs](https://github.com/Nagell/portfolio-nuxt/blob/main/docs/DEVELOPMENT.md).
+More on this topic can be found in the [development docs](./docs/DEVELOPMENT.md).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -202,7 +202,7 @@ Project Link: [https://github.com/Nagell/portfolio-nuxt](https://github.com/Nage
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [license-shield]: https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?style=for-the-badge
-[license-url]: https://github.com/Nagell/portfolio-nuxt/blob/main/LICENSE
+[license-url]: ./LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/dawidnitka
 [product-screenshot]: /docs/screenshot.png

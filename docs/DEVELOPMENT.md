@@ -201,7 +201,7 @@ yarn supabase seed buckets
 
 To start with testing you will need a `.env.test` file.
 
-1. configure `.env` file as mentioned in the `README.md` in the section [Installation](https://github.com/Nagell/portfolio-nuxt/blob/main/README.md#installation)
+1. configure `.env` file as mentioned in the `README.md` in the section [Installation](../README.md#installation)
 2. copy it
 3. rename to `.env.test`.
 
