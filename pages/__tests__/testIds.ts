@@ -18,6 +18,7 @@ export default {
         projects: {
             header: 'index.projects.header',
             items: 'index.projects.items',
+            dialogContent: 'index.projects.dialogContent',
         },
         footer: {
             links: 'index.footer.links',

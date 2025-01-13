@@ -168,8 +168,8 @@ More on this topic can be found in the [development docs](./docs/DEVELOPMENT.md)
 - [x] Add meta tags
 - [x] Improve a11y - [link](https://www.a11yproject.com/checklist/)
 - [x] Add Legal Notice and Privacy Policy
+- [x] Add Vitest and tests
 - [ ] Add i18n
-- [ ] Add Vitest and tests
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

@@ -11,7 +11,10 @@
             </DialogHeader>
         </VisuallyHidden>
 
-        <div class="grid gap-4 overflow-y-auto py-6">
+        <div
+            class="grid gap-4 overflow-y-auto py-6"
+            :data-testid="testIds.index.projects.dialogContent"
+        >
             <div class="flex flex-col">
                 <div class="mx-auto">
                     <Card class="border-none rounded-2xl">
@@ -63,6 +66,8 @@
 
 <script setup lang="ts">
     import { VisuallyHidden } from 'radix-vue'
+
+    import testIds from '~/pages/__tests__/testIds'
 
     import type { Project } from '~/types/projects.types'
 

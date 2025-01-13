@@ -1,16 +1,16 @@
 import type { TestOptions } from 'vitest'
 
-const SEE_BROWSER = false
+const IS_BROWSER_VISIBLE = false
 
-const browserOptions = SEE_BROWSER
+const browserOptions = IS_BROWSER_VISIBLE
     ? {
         browser: true,
         browserOptions: {
             type: 'chromium',
             launch: {
                 headless: false,
-                slowMo: 5000,
-                timeout: 10000,
+                slowMo: 1000,
+                timeout: 20000,
             }
         },
     } as Partial<TestOptions>
