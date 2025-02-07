@@ -69,7 +69,7 @@
         "playwright-core": "^1.49.1",
         "postcss": "^8.4.35",
         "postcss-import": "^16.1.0",
-        "supabase": "^2.0.0",
+        "supabase": "^2.9.6",
         "supazod": "^1.1.2",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "~5.4.5",
