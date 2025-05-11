@@ -135,7 +135,7 @@
 
 <style lang="css">
     .carousel-activator:hover .card__image,
-    .carousel-activator:focus .card__image {
+    .carousel-activator:focus-visible .card__image {
         filter: sepia(1) hue-rotate(10deg) saturate(300%);
     }
 </style>
