@@ -1,7 +1,7 @@
 <template>
     <div
         ref="experienceItem"
-        class="w-full flex gap-32md:gap-8 flex-col md:flex-row experience-item-animate-on-scroll"
+        class="w-full flex gap-32md:gap-8 flex-col md:flex-row opacity-0 transition-all will-change-transform"
     >
         <div class="w-56 shrink-0">
             <!-- dates -->
@@ -51,7 +51,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate')
+                    entry.target.classList.add('animate-[text-blur_1s_forwards_400ms]')
                 }
             })
         }, {
@@ -68,16 +68,3 @@
         return new Date(date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
     }
 </script>
-
-<style scoped>
-.experience-item-animate-on-scroll {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.experience-item-animate-on-scroll.animate {
-    opacity: 1;
-    transform: translateY(0);
-}
-</style>
