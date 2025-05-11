@@ -108,8 +108,12 @@ export default {
                     from: { height: 'var(--radix-collapsible-content-height)' },
                     to: { height: '0' },
                 },
-                'text-blur': {
+                'hero-text-blur': {
                     '0%': { filter: 'blur(10px)', transform: 'translateY(10px)', opacity: '0' },
+                    '100%': { filter: 'blur(0px)', transform: 'translateY(0px)', opacity: '1' }
+                },
+                'text-blur': {
+                    '0%': { filter: 'blur(10px)', transform: 'translateY(50px)', opacity: '0' },
                     '100%': { filter: 'blur(0px)', transform: 'translateY(0px)', opacity: '1' }
                 },
                 'image-hero-blur': {
@@ -126,7 +130,8 @@ export default {
                 'accordion-up': 'accordion-up 0.2s ease-out',
                 'collapsible-down': 'collapsible-down 0.2s ease-in-out',
                 'collapsible-up': 'collapsible-up 0.2s ease-in-out',
-                'text-blur': 'text-blur 1s out-expo',
+                'hero-text-blur': 'hero-text-blur 1s out-expo',
+                'text-blur': 'hero-text-blur 1s out-expo',
                 'image-hero-blur': 'image-hero-blur 1s out-expo',
             },
         },
