@@ -36,7 +36,6 @@
 </template>
 
 <script setup lang="ts">
-    import { gsap } from 'gsap'
     import { nextTick, onMounted, ref } from 'vue'
 
     import testIds from '~/pages/__tests__/testIds'
@@ -47,29 +46,17 @@
     const carouselContentRef = ref<{ $el: HTMLElement } | null>(null)
 
     onMounted(() => {
-        // Wait for next tick to ensure the DOM is ready
         nextTick(() => {
             const carouselContent = carouselContentRef.value?.$el
             if (!carouselContent) return
 
-            // Set initial state for all cards
-            const cards = carouselContent.querySelectorAll('.carousel-activator')
-            gsap.set(cards, {
-                opacity: 0,
-                scale: 0,
-                translateX: 300
-            })
-
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        gsap.to(cards, {
-                            opacity: 1,
-                            scale: 1,
-                            translateX: 0,
-                            duration: 0.8,
-                            stagger: 0.15,
-                            ease: 'power1',
+                        const cards = carouselContent.querySelectorAll('.carousel-activator')
+                        cards.forEach((card, index) => {
+                            card.classList.add('animate-[project-card-slide_0.8s_forwards]');
+                            (card as HTMLElement).style.animationDelay = `${index * 150}ms`
                         })
                     }
                 })

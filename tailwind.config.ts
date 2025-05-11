@@ -120,6 +120,10 @@ export default {
                     '0%': { transform: 'translateZ(200px) translateX(50px)', opacity: '0', filter: 'blur(10px)' },
                     '100%': { transform: 'translateZ(0px) translateX(0px)', opacity: '1', filter: 'blur(0px)' }
                 },
+                'project-card-slide': {
+                    '0%': { opacity: '0', transform: 'translateX(300px) scale(0.3)', filter: 'blur(10px)' },
+                    '100%': { opacity: '1', transform: 'translateX(0) scale(1)', filter: 'blur(0px)' }
+                },
             },
             transitionTimingFunction: {
                 'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
@@ -133,6 +137,7 @@ export default {
                 'hero-text-blur': 'hero-text-blur 1s out-expo',
                 'text-blur': 'hero-text-blur 1s out-expo',
                 'image-hero-blur': 'image-hero-blur 1s out-expo',
+                'project-card-slide': 'project-card-slide 0.8s out-expo',
             },
         },
     },
