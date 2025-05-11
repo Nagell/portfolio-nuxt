@@ -15,7 +15,11 @@
                     dragFree: true,
                 }"
             >
-                <CarouselContent :data-testid="testIds.index.projects.items">
+                <CarouselContent
+                    ref="carouselContentRef"
+                    :data-testid="testIds.index.projects.items"
+                    class="project-cards-container"
+                >
                     <FrontProjectCarouselCard
                         v-for="project in projectsData"
                         :key="project.id"
@@ -32,15 +36,58 @@
 </template>
 
 <script setup lang="ts">
+    import { gsap } from 'gsap'
+    import { nextTick, onMounted, ref } from 'vue'
+
     import testIds from '~/pages/__tests__/testIds'
 
     import type { Project } from '~/types/projects.types'
 
     defineProps<{ projectsData: Project[] }>()
+    const carouselContentRef = ref<{ $el: HTMLElement } | null>(null)
+
+    onMounted(() => {
+        // Wait for next tick to ensure the DOM is ready
+        nextTick(() => {
+            const carouselContent = carouselContentRef.value?.$el
+            if (!carouselContent) return
+
+            // Set initial state for all cards
+            const cards = carouselContent.querySelectorAll('.carousel-activator')
+            gsap.set(cards, {
+                opacity: 0,
+                scale: 0,
+                translateX: 300
+            })
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        gsap.to(cards, {
+                            opacity: 1,
+                            scale: 1,
+                            translateX: 0,
+                            duration: 0.8,
+                            stagger: 0.15,
+                            ease: 'power1',
+                        })
+                    }
+                })
+            }, {
+                threshold: 0.3
+            })
+
+            observer.observe(carouselContent)
+        })
+    })
 </script>
 
 <style scoped lang="css">
     .gradient {
         background: linear-gradient(180deg, transparent, theme('colors.foreground' / 0.06) 40%, theme('colors.foreground' / 0.06) 60%, transparent);
+    }
+
+    :deep(.carousel-activator) {
+        opacity: 0;
     }
 </style>
