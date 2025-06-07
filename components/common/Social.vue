@@ -17,7 +17,9 @@
 </template>
 
 <script lang="ts" setup>
-    import { GitHubIcon, LinkedInIcon, XingIcon } from 'vue3-simple-icons'
+    import { GitHubIcon, MediumIcon, XingIcon } from 'vue3-simple-icons'
+
+    import LinkedInIcon from '~/components/common/icons/LinkedIn.vue'
 
     import type { HTMLAttributes } from 'vue'
 
@@ -30,6 +32,7 @@
     const socialList = [
         { icon: LinkedInIcon, link: $const.links.LINKEDIN, aria: 'LinkedIn - external link' },
         { icon: XingIcon, link: $const.links.XING, aria: 'Xing - external link' },
+        { icon: MediumIcon, link: $const.links.MEDIUM, aria: 'Medium - external link' },
         { icon: GitHubIcon, link: $const.links.GITHUB, aria: 'GitHub - external link' },
     ]
 

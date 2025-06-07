@@ -11002,10 +11002,10 @@ vue-router@^4.5.1:
   dependencies:
     "@vue/devtools-api" "^6.6.4"
 
-vue3-simple-icons@^13.2.0:
-  version "13.2.0"
-  resolved "https://registry.yarnpkg.com/vue3-simple-icons/-/vue3-simple-icons-13.2.0.tgz#f8a81676519de3c2f7df39ac3cedf97ac0bd1581"
-  integrity sha512-RCAr9gCQEDtHbQZ5xBPXm4+y6RWUZkER3yimb/XgJlAwK0UuwecTLw3kGXHvemfaCCSDBO3PqyPryIXHyZMgWw==
+vue3-simple-icons@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/vue3-simple-icons/-/vue3-simple-icons-15.0.0.tgz#accfa80b833df83796bc236f8571a2cc5a5b8000"
+  integrity sha512-RvynBry4kkuTFhxtmfEIbGLWEYlVzsUp3ExSqsZdaab8c2p2T+LcDyyDhNMWWHg++9Qn8/sxSKVo83KZzrx0UA==
   dependencies:
     vue "^3"
 
