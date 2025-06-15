@@ -37,6 +37,12 @@ export default defineNuxtConfig({
             }
         }
     },
+    sitemap: {
+        exclude: [
+            '/__tests__/**',
+            '/admin/**',
+        ],
+    },
     shadcn: {
         prefix: '',
         componentDir: './components/ui'
