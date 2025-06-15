@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Description > default > renders correctly 1`] = `
-"<ul class="ml-6 list-disc [&amp;&gt;li]:mt-2 my-0 text-muted-foreground">
+"<ul class="ml-6 list-disc [&amp;>li]:mt-2 my-0 text-muted-foreground">
   <li class="leading-6 text-pretty">Test description</li>
   <li class="leading-6 text-pretty">with multiple lines</li>
   <li class="leading-6 text-pretty">of text</li>

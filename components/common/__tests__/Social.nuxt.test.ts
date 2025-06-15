@@ -13,10 +13,11 @@ describe('Social', async () => {
         const wrapper = await mountSuspended(Social)
         const links = wrapper.findAll('a')
 
-        expect(links.length).toBe(3)
+        expect(links.length).toBe(4)
         expect(links[0].attributes('aria-label')).toBe('LinkedIn - external link')
         expect(links[1].attributes('aria-label')).toBe('Xing - external link')
-        expect(links[2].attributes('aria-label')).toBe('GitHub - external link')
+        expect(links[2].attributes('aria-label')).toBe('Medium - external link')
+        expect(links[3].attributes('aria-label')).toBe('GitHub - external link')
     })
 
     it('applies custom class', async () => {
