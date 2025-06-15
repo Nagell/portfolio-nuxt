@@ -59,7 +59,7 @@
         })
 
         if (experienceItem.value) {
-            observer.observe(experienceItem.value)
+            observer.observe(experienceItem.value as HTMLElement)
         }
     })
 

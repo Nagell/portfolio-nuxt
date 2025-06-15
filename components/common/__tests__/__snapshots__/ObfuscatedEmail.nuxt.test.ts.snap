@@ -1,3 +1,3 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ObfuscatedEmail > renders correctly 1`] = `"<a data-v-fa54199c="" href="/#" rel="noopener noreferrer" aria-label="E-Mail address" class="obfuscated-email hover:text-primary focus:text-primary transition-colors duration-300" data-name="contact" data-domain="dawidnitka" data-tld="com"></a>"`;
+exports[`ObfuscatedEmail > renders correctly 1`] = `"<a data-v-fa54199c="" href="#" rel="noopener noreferrer" aria-label="E-Mail address" class="obfuscated-email hover:text-primary focus:text-primary transition-colors duration-300" data-name="contact" data-domain="dawidnitka" data-tld="com"></a>"`;
