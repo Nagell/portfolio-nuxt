@@ -115,7 +115,7 @@ which means that the data is fetched at build time and then served from the cach
    If supabase is not recognized you can force it by reinstalling the package
 
    ```sh
-    yarn install supabase -D
+    yarn add supabase -D
     ```
 
 5. Copy `.env.example` to `.env`  
