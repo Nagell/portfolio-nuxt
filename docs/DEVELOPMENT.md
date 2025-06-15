@@ -47,6 +47,7 @@ yarn supabase db reset
 yarn supabase login
 
 # Generate types
+# remember to change the --project-id in this command to your project ID
 yarn types:supabase
 
 # Generate types from the local database
