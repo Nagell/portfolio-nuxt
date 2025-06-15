@@ -198,7 +198,7 @@
     import { toDate } from 'radix-vue/date'
     import { useForm, useIsFormValid } from 'vee-validate'
 
-    import { publicExperienceInsertSchemaSchema } from '~/types/schemas'
+    import { publicExperienceInsertSchema } from '~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Experience, PatchExperienceQuery, PostExperienceQuery } from '~/types/experience.types'
@@ -214,7 +214,7 @@
      * FORM
      */
     const formSchema = toTypedSchema(
-        publicExperienceInsertSchemaSchema
+        publicExperienceInsertSchema
     )
 
     const { handleSubmit, resetForm, setFieldValue, values } = useForm({

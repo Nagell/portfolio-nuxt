@@ -6,21 +6,19 @@
 
 import { z } from 'zod'
 
-import type { Json } from './database.types'
+import { type Json } from './database.types'
 
 export const jsonSchema: z.ZodSchema<Json> = z.lazy(() =>
-    z
-        .union([
-            z.string(),
-            z.number(),
-            z.boolean(),
-            z.record(z.union([ jsonSchema, z.undefined() ])),
-            z.array(jsonSchema),
-        ])
-        .nullable(),
+    z.union([
+        z.string(),
+        z.number(),
+        z.boolean(),
+        z.record(z.union([ jsonSchema, z.undefined() ])),
+        z.array(jsonSchema),
+    ]).nullable(),
 )
 
-export const publicExperienceRowSchemaSchema = z.object({
+export const publicExperienceRowSchema = z.object({
     created_at: z.string(),
     description: z.string(),
     end: z.string().nullable(),
@@ -31,7 +29,7 @@ export const publicExperienceRowSchemaSchema = z.object({
     title: z.string(),
 })
 
-export const publicExperienceInsertSchemaSchema = z.object({
+export const publicExperienceInsertSchema = z.object({
     created_at: z.string().optional(),
     description: z.string(),
     end: z.string().optional().nullable(),
@@ -42,7 +40,7 @@ export const publicExperienceInsertSchemaSchema = z.object({
     title: z.string(),
 })
 
-export const publicExperienceUpdateSchemaSchema = z.object({
+export const publicExperienceUpdateSchema = z.object({
     created_at: z.string().optional(),
     description: z.string().optional(),
     end: z.string().optional().nullable(),
@@ -53,9 +51,7 @@ export const publicExperienceUpdateSchemaSchema = z.object({
     title: z.string().optional(),
 })
 
-export const publicExperienceRelationshipsSchemaSchema = z.tuple([])
-
-export const publicProjectsRowSchemaSchema = z.object({
+export const publicProjectsRowSchema = z.object({
     created_at: z.string(),
     description: z.string(),
     id: z.number(),
@@ -65,7 +61,7 @@ export const publicProjectsRowSchemaSchema = z.object({
     url: z.string().nullable(),
 })
 
-export const publicProjectsInsertSchemaSchema = z.object({
+export const publicProjectsInsertSchema = z.object({
     created_at: z.string().optional(),
     description: z.string(),
     id: z.number().optional(),
@@ -75,7 +71,7 @@ export const publicProjectsInsertSchemaSchema = z.object({
     url: z.string().optional().nullable(),
 })
 
-export const publicProjectsUpdateSchemaSchema = z.object({
+export const publicProjectsUpdateSchema = z.object({
     created_at: z.string().optional(),
     description: z.string().optional(),
     id: z.number().optional(),
@@ -84,5 +80,3 @@ export const publicProjectsUpdateSchemaSchema = z.object({
     title: z.string().optional(),
     url: z.string().optional().nullable(),
 })
-
-export const publicProjectsRelationshipsSchemaSchema = z.tuple([])
