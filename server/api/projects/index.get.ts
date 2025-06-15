@@ -1,6 +1,6 @@
-import { Project } from '~/types/projects.types'
-
 import { serverSupabaseClient } from '#supabase/server'
+
+import type { Project } from '~/types/projects.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)

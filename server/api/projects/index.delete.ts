@@ -1,6 +1,6 @@
-import { DeleteProjectQuery } from '~/types/projects.types'
-
 import { serverSupabaseClient } from '#supabase/server'
+
+import type { DeleteProjectQuery } from '~/types/projects.types'
 
 export default eventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)

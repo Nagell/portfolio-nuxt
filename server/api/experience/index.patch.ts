@@ -1,7 +1,8 @@
 import { sanitizeExperienceQuery } from '~/server/sanitizers/experienceQuery'
-import { PatchExperienceQuery } from '~/types/experience.types'
 
 import { serverSupabaseClient } from '#supabase/server'
+
+import type { PatchExperienceQuery } from '~/types/experience.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)

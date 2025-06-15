@@ -1,4 +1,4 @@
-import { PatchProjectQuery, PostProjectQuery } from '~/types/projects.types'
+import type { PatchProjectQuery, PostProjectQuery } from '~/types/projects.types'
 
 export const sanitizeProjectsQuery = (project: PatchProjectQuery | PostProjectQuery) => {
     if (!project.tags) project.tags = []

@@ -64,7 +64,7 @@
                 threshold: 0.3
             })
 
-            observer.observe(carouselContent)
+            observer.observe(carouselContent as HTMLElement)
         })
     })
 </script>
