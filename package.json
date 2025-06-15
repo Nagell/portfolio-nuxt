@@ -28,7 +28,7 @@
         "@nuxtjs/sitemap": "^7.0.1",
         "@nuxtjs/supabase": "^1.4.0",
         "@tanstack/vue-table": "^8.20.5",
-        "@vee-validate/zod": "^4.14.6",
+        "@vee-validate/zod": "^4.15.1",
         "@vueuse/core": "^12.0.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
@@ -40,9 +40,9 @@
         "radix-vue": "^1.9.8",
         "shadcn-nuxt": "^0.10.4",
         "tailwind-merge": "^2.5.4",
-        "vee-validate": "^4.14.6",
+        "vee-validate": "^4.15.1",
         "vue3-simple-icons": "^15.0.0",
-        "zod": "^3.23.8"
+        "zod": "^3.25.64"
     },
     "devDependencies": {
         "@commitlint/cli": "^19.5.0",
@@ -69,8 +69,8 @@
         "playwright-core": "^1.49.1",
         "postcss": "^8.4.35",
         "postcss-import": "^16.1.0",
-        "supabase": "^2.9.6",
-        "supazod": "^1.1.2",
+        "supabase": "^2.24.3",
+        "supazod": "^2.0.0",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "~5.4.5",
         "vitest": "^2.1.8"

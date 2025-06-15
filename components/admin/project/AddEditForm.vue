@@ -129,7 +129,7 @@
     import { Check, ChevronsUpDown } from 'lucide-vue-next'
     import { useForm, useIsFormValid } from 'vee-validate'
 
-    import { publicProjectsInsertSchemaSchema } from '~/types/schemas'
+    import { publicProjectsInsertSchema } from '~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Asset } from '~/types/files.types'
@@ -146,7 +146,7 @@
      * FORM
      */
     const formSchema = toTypedSchema(
-        publicProjectsInsertSchemaSchema
+        publicProjectsInsertSchema
     )
 
     const { handleSubmit, resetForm, setFieldValue, values } = useForm({
