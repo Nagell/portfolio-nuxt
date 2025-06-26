@@ -105,19 +105,12 @@
 
     const supabaseClient = useSupabaseClient()
     const supabaseUser = useSupabaseUser()
-    const userAvatar = ref('')
-
-    onMounted(async () => {
-        if (!supabaseUser.value?.email) return
-        const avatarUrl = await getGitHubAvatar(supabaseUser.value?.email)
-        userAvatar.value = avatarUrl
-    })
 
     const data = computed(() => ({
         user: {
             name: supabaseUser.value?.user_metadata.full_name ?? 'anonymous',
             email: supabaseUser.value?.email ?? 'anonymous@mail.com',
-            avatar: userAvatar.value,
+            avatar: supabaseUser.value?.user_metadata.avatar_url ?? '',
         },
         projects: [
             {
