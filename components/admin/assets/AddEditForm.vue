@@ -15,7 +15,7 @@
         </template>
         <FormField
             v-slot="{ componentField }"
-            name="files"
+            :name="pickField('files')"
         >
             <FormItem class="mt-4">
                 <FormLabel>Image</FormLabel>
@@ -57,7 +57,8 @@
     /** =======================
      * FORM
      */
-    const formSchema = toTypedSchema(z.object({
+
+    const imagesInsertSchema = z.object({
         files: z.instanceof(FileList)
             .refine(files => files?.length, 'No files selected.')
             .transform(files => Array.from(files))
@@ -67,12 +68,18 @@
                 files => files.every(file => $const.assets.ACCEPTED_MIME_TYPES.includes(file.type)),
                 `${$const.assets.ACCEPTED_FILE_TYPES} files are accepted.`
             ),
-    }))
+    })
+
+    const formSchema = toTypedSchema(
+        imagesInsertSchema
+    )
 
     const { handleSubmit, resetForm } = useForm({
         validationSchema: formSchema,
         keepValuesOnUnmount: true
     })
+
+    const { pickField } = useZodFieldPicker(imagesInsertSchema)
 
     // when mounting or reopening the form, set the form values
     onMounted(() => reset())

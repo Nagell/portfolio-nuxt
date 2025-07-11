@@ -9,7 +9,7 @@
     >
         <FormField
             v-slot="{ componentField }"
-            name="title"
+            :name="pickField('title')"
         >
             <FormItem>
                 <FormLabel>Title</FormLabel>
@@ -25,7 +25,7 @@
         </FormField>
         <FormField
             v-slot="{ componentField }"
-            name="link"
+            :name="pickField('link')"
         >
             <FormItem>
                 <FormLabel>Company URL</FormLabel>
@@ -41,7 +41,7 @@
         </FormField>
         <FormField
             v-slot="{ componentField }"
-            name="description"
+            :name="pickField('description')"
         >
             <FormItem>
                 <FormLabel>Description</FormLabel>
@@ -58,7 +58,7 @@
         </FormField>
 
         <FormField
-            name="start"
+            :name="pickField('start')"
         >
             <FormItem class="flex flex-col">
                 <FormLabel>Start date</FormLabel>
@@ -112,7 +112,7 @@
             </FormItem>
         </FormField>
         <FormField
-            name="end"
+            :name="pickField('end')"
         >
             <FormItem class="flex flex-col">
                 <FormLabel>End date</FormLabel>
@@ -167,7 +167,7 @@
         </FormField>
         <FormField
             v-slot="{ value }"
-            name="tags"
+            :name="pickField('tags')"
         >
             <FormItem>
                 <FormLabel>Tags</FormLabel>
@@ -221,6 +221,8 @@
         validationSchema: formSchema,
         keepValuesOnUnmount: true,
     })
+
+    const { pickField } = useZodFieldPicker(publicExperienceInsertSchema)
 
     // when mounting or reopening the form, set the form values
     onMounted(() => reset(props.currentExperience))

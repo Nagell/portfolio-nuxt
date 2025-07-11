@@ -9,7 +9,7 @@
     >
         <FormField
             v-slot="{ componentField }"
-            name="title"
+            :name="pickField('title')"
         >
             <FormItem>
                 <FormLabel>Title</FormLabel>
@@ -25,7 +25,7 @@
         </FormField>
         <FormField
             v-slot="{ componentField }"
-            name="description"
+            :name="pickField('description')"
         >
             <FormItem>
                 <FormLabel>Description</FormLabel>
@@ -40,7 +40,7 @@
                 <FormMessage />
             </FormItem>
         </FormField>
-        <FormField name="image">
+        <FormField :name="pickField('image')">
             <FormItem class="flex flex-col">
                 <FormLabel>Image</FormLabel>
                 <Popover>
@@ -84,7 +84,7 @@
         </FormField>
         <FormField
             v-slot="{ componentField }"
-            name="url"
+            :name="pickField('url')"
         >
             <FormItem>
                 <FormLabel>GitHub URL</FormLabel>
@@ -100,7 +100,7 @@
         </FormField>
         <FormField
             v-slot="{ value }"
-            name="tags"
+            :name="pickField('tags')"
         >
             <FormItem>
                 <FormLabel>Tags</FormLabel>
@@ -153,6 +153,8 @@
         validationSchema: formSchema,
         keepValuesOnUnmount: true
     })
+
+    const { pickField } = useZodFieldPicker(publicProjectsInsertSchema)
 
     // when mounting or reopening the form, set the form values
     onMounted(() => reset(props.currentProject))
