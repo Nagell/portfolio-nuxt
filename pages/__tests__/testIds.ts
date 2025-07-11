@@ -24,5 +24,22 @@ export default {
             links: 'index.footer.links',
             socialButtons: 'index.footer.socialButtons',
         },
-    }
-}
+    },
+    admin: {
+        assets: {
+            header: 'admin.assets.header',
+            addAssetButton: 'admin.assets.addAssetButton',
+            assetList: 'admin.assets.assetList',
+        },
+        experience: {
+            header: 'admin.experience.header',
+            addExperienceButton: 'admin.experience.addExperienceButton',
+            experienceList: 'admin.experience.experienceList',
+        },
+        projects: {
+            header: 'admin.projects.header',
+            addProjectButton: 'admin.projects.addProjectButton',
+            projectList: 'admin.projects.projectList',
+        },
+    },
+} as const

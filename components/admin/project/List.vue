@@ -1,11 +1,15 @@
 <template>
     <div>
-        <h3 class="text-xl font-bold mb-4">
+        <h3
+            class="text-xl font-bold mb-4"
+            :data-testid="testIds.admin.projects.header"
+        >
             Projects List
         </h3>
         <SheetTrigger as-child>
             <Button
                 class="mb-4"
+                :data-testid="testIds.admin.projects.addProjectButton"
                 @click="emits('openForm', { mode: 'add' })"
             >
                 Add new
@@ -16,6 +20,7 @@
             :columns="columns"
             :data="projectsData"
             filter-by="title"
+            :data-testid="testIds.admin.projects.projectList"
         />
     </div>
 </template>
@@ -27,6 +32,7 @@
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { Button } from '~/components/ui/button'
+    import testIds from '~/pages/__tests__/testIds'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
     import type { ColumnDef } from '@tanstack/vue-table'

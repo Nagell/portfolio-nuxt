@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         '/legal-notice': { isr: 3600 },
         '/privacy-policy': { isr: 3600 },
         '/admin/**': { robots: false },
+        '/admin': { redirect: '/admin/projects' },
     },
     modules: [
         '@nuxt/fonts',

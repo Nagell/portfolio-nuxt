@@ -1,11 +1,15 @@
 <template>
     <div>
-        <h3 class="text-xl font-bold mb-4">
+        <h3
+            class="text-xl font-bold mb-4"
+            :data-testid="testIds.admin.experience.header"
+        >
             Experience List
         </h3>
         <SheetTrigger as-child>
             <Button
                 class="mb-4"
+                :data-testid="testIds.admin.experience.addExperienceButton"
                 @click="emits('openForm', { mode: 'add' })"
             >
                 Add new
@@ -16,6 +20,7 @@
             :columns="columns"
             :data="experienceData"
             filter-by="title"
+            :data-testid="testIds.admin.experience.experienceList"
         />
     </div>
 </template>
@@ -26,6 +31,7 @@
 
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
     import { Button } from '~/components/ui/button'
+    import testIds from '~/pages/__tests__/testIds'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
     import type { ColumnDef } from '@tanstack/vue-table'
