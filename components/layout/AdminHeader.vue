@@ -13,6 +13,16 @@
                 >
                     Home
                 </NuxtLink>
+                <Separator
+                    orientation="vertical"
+                    class="mx-2 h-4"
+                />
+                <a
+                    href="/sitemap.xml"
+                    class="text-sm text-foreground"
+                >
+                    Sitemap
+                </a>
             </div>
         </nav>
     </header>
