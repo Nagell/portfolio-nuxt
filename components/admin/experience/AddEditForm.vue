@@ -5,11 +5,13 @@
         title="experience"
         description="Make changes to your experiences here. Click save when you're done."
         :is-verified="useIsFormValid().value"
+        :data-testid="testIds.admin.experience.dialog.wrapper"
+        :button-test-id="testIds.admin.experience.dialog.saveButton"
         @submit="onSubmit"
     >
         <FormField
             v-slot="{ componentField }"
-            name="title"
+            :name="pickField('title')"
         >
             <FormItem>
                 <FormLabel>Title</FormLabel>
@@ -18,6 +20,7 @@
                         type="text"
                         placeholder="Experience title"
                         v-bind="componentField"
+                        :data-testid="testIds.admin.experience.dialog.title"
                     />
                 </FormControl>
                 <FormMessage />
@@ -25,7 +28,7 @@
         </FormField>
         <FormField
             v-slot="{ componentField }"
-            name="link"
+            :name="pickField('link')"
         >
             <FormItem>
                 <FormLabel>Company URL</FormLabel>
@@ -34,6 +37,7 @@
                         type="url"
                         placeholder="Company URL"
                         v-bind="componentField"
+                        :data-testid="testIds.admin.experience.dialog.url"
                     />
                 </FormControl>
                 <FormMessage />
@@ -41,7 +45,7 @@
         </FormField>
         <FormField
             v-slot="{ componentField }"
-            name="description"
+            :name="pickField('description')"
         >
             <FormItem>
                 <FormLabel>Description</FormLabel>
@@ -51,6 +55,7 @@
                         placeholder="Experience description"
                         v-bind="componentField"
                         rows="25"
+                        :data-testid="testIds.admin.experience.dialog.description"
                     />
                 </FormControl>
                 <FormMessage />
@@ -58,7 +63,7 @@
         </FormField>
 
         <FormField
-            name="start"
+            :name="pickField('start')"
         >
             <FormItem class="flex flex-col">
                 <FormLabel>Start date</FormLabel>
@@ -72,6 +77,7 @@
                                         'w-[240px] ps-3 text-start font-normal',
                                         !startDate && 'text-muted-foreground',
                                     )"
+                                    :data-testid="testIds.admin.experience.dialog.startDate"
                                 >
                                     <span>{{ startDate ? dateFormatter.format(toDate(startDate)) : "Pick a date" }}</span>
                                     <CalendarIcon class="ms-auto h-4 w-4 opacity-50" />
@@ -90,7 +96,10 @@
                             <Trash class="w-4 h-4 text-muted-foreground" />
                         </Button>
                     </div>
-                    <PopoverContent class="w-auto p-0">
+                    <PopoverContent
+                        class="w-auto p-0"
+                        :data-testid="testIds.admin.experience.dialog.startDatePopover"
+                    >
                         <Calendar
                             v-model:placeholder="startDatePlaceholder"
                             v-model="startDate"
@@ -112,7 +121,7 @@
             </FormItem>
         </FormField>
         <FormField
-            name="end"
+            :name="pickField('end')"
         >
             <FormItem class="flex flex-col">
                 <FormLabel>End date</FormLabel>
@@ -126,6 +135,7 @@
                                         'w-[240px] ps-3 text-start font-normal',
                                         !endDate && 'text-muted-foreground',
                                     )"
+                                    :data-testid="testIds.admin.experience.dialog.endDate"
                                 >
                                     <span>{{ endDate ? dateFormatter.format(toDate(endDate)) : "Pick a date" }}</span>
                                     <CalendarIcon class="ms-auto h-4 w-4 opacity-50" />
@@ -144,7 +154,10 @@
                             <Trash class="w-4 h-4 text-muted-foreground" />
                         </Button>
                     </div>
-                    <PopoverContent class="w-auto p-0">
+                    <PopoverContent
+                        class="w-auto p-0"
+                        :data-testid="testIds.admin.experience.dialog.endDatePopover"
+                    >
                         <Calendar
                             v-model:placeholder="endDatePlaceholder"
                             v-model="endDate"
@@ -167,7 +180,7 @@
         </FormField>
         <FormField
             v-slot="{ value }"
-            name="tags"
+            :name="pickField('tags')"
         >
             <FormItem>
                 <FormLabel>Tags</FormLabel>
@@ -182,7 +195,10 @@
                             <TagsInputItemDelete />
                         </TagsInputItem>
 
-                        <TagsInputInput placeholder="Add tags" />
+                        <TagsInputInput
+                            placeholder="Add tags"
+                            :data-testid="testIds.admin.experience.dialog.tags"
+                        />
                     </TagsInput>
                 </FormControl>
                 <FormMessage />
@@ -221,6 +237,8 @@
         validationSchema: formSchema,
         keepValuesOnUnmount: true,
     })
+
+    const { pickField } = useZodFieldPicker(publicExperienceInsertSchema)
 
     // when mounting or reopening the form, set the form values
     onMounted(() => reset(props.currentExperience))

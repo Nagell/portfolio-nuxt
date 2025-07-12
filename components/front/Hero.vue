@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts" setup>
-    import testIds from '~/pages/__tests__/testIds'
+    import testIds from '~/utils/testIds'
 </script>
 
 <style scoped lang="css">

@@ -1,3 +1,3 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Typography > renders correctly 1`] = `"<p class="leading-6 [&amp;:not(:first-child)]:mt-6">Test Content</p>"`;
+exports[`Typography Component > renders correctly 1`] = `"<p class="leading-6 [&amp;:not(:first-child)]:mt-6">Test Content</p>"`;

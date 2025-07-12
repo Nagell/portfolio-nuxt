@@ -108,9 +108,9 @@
 
     const data = computed(() => ({
         user: {
-            name: supabaseUser.value?.user_metadata.full_name ?? 'anonymous',
+            name: supabaseUser.value?.user_metadata?.full_name ?? 'anonymous',
             email: supabaseUser.value?.email ?? 'anonymous@mail.com',
-            avatar: supabaseUser.value?.user_metadata.avatar_url ?? '',
+            avatar: supabaseUser.value?.user_metadata?.avatar_url ?? '',
         },
         projects: [
             {

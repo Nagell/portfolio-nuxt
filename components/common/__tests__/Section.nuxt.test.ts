@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import Section from '../Section.vue'
 
-describe('Section', async () => {
+describe('Section Component', async () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(Section, {
             slots: {

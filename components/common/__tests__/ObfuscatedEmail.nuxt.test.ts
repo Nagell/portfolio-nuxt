@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import ObfuscatedEmail from '../ObfuscatedEmail.vue'
 
-describe('ObfuscatedEmail', () => {
+describe('ObfuscatedEmail Component', () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(ObfuscatedEmail)
 

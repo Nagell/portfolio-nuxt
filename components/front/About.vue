@@ -59,5 +59,5 @@
 </template>
 
 <script setup lang="ts">
-    import testIds from '~/pages/__tests__/testIds'
+    import testIds from '~/utils/testIds'
 </script>

@@ -38,7 +38,7 @@
 <script setup lang="ts">
     import { nextTick, onMounted, ref } from 'vue'
 
-    import testIds from '~/pages/__tests__/testIds'
+    import testIds from '~/utils/testIds'
 
     import type { Project } from '~/types/projects.types'
 

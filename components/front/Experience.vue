@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-    import testIds from '~/pages/__tests__/testIds'
+    import testIds from '~/utils/testIds'
 
     import type { Experience } from '~/types/experience.types'
 

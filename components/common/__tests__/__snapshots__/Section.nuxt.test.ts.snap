@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Section > renders correctly 1`] = `
+exports[`Section Component > renders correctly 1`] = `
 "<section id="" class="py-16">
   <div class="container">
     <!--v-if-->

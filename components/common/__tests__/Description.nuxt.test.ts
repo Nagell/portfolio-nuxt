@@ -9,7 +9,7 @@ of text`
 
 const singleLineText = 'Test description with multiple lines of text'
 
-describe('Description', async () => {
+describe('Description Component', async () => {
     const wrapper = await mountSuspended(Description, {
         props: {
             description: multilineText,
@@ -29,7 +29,7 @@ describe('Description', async () => {
     })
 })
 
-describe('Description', async () => {
+describe('Description Component', async () => {
     const wrapper = await mountSuspended(Description, {
         props: {
             description: multilineText,

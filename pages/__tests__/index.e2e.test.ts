@@ -1,14 +1,15 @@
 import { createPage, setup, url } from '@nuxt/test-utils/e2e'
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
-import { setupOptions } from '~/pages/__tests__/testHelpers'
-import testIds from '~/pages/__tests__/testIds'
+import { URLS } from './helpers/urlHelper'
+import { setupOptions } from './helpers/vitestConfig'
+import testIds from '../../utils/testIds'
 
-describe('index Page', async () => {
+describe('Home Page E2E Tests', async () => {
     await setup(setupOptions)
 
     const page = await createPage()
-    await page.goto(url('/'), { waitUntil: 'hydration' })
+    await page.goto(url(URLS.HOME), { waitUntil: 'hydration' })
 
     it('about section renders correctly', async () => {
         const header = page.getByTestId(testIds.index.about.header)
