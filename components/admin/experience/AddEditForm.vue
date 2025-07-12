@@ -5,6 +5,8 @@
         title="experience"
         description="Make changes to your experiences here. Click save when you're done."
         :is-verified="useIsFormValid().value"
+        :data-testid="testIds.admin.experience.dialog.wrapper"
+        :button-test-id="testIds.admin.experience.dialog.saveButton"
         @submit="onSubmit"
     >
         <FormField
@@ -18,6 +20,7 @@
                         type="text"
                         placeholder="Experience title"
                         v-bind="componentField"
+                        :data-testid="testIds.admin.experience.dialog.title"
                     />
                 </FormControl>
                 <FormMessage />
@@ -34,6 +37,7 @@
                         type="url"
                         placeholder="Company URL"
                         v-bind="componentField"
+                        :data-testid="testIds.admin.experience.dialog.url"
                     />
                 </FormControl>
                 <FormMessage />
@@ -51,6 +55,7 @@
                         placeholder="Experience description"
                         v-bind="componentField"
                         rows="25"
+                        :data-testid="testIds.admin.experience.dialog.description"
                     />
                 </FormControl>
                 <FormMessage />
@@ -72,6 +77,7 @@
                                         'w-[240px] ps-3 text-start font-normal',
                                         !startDate && 'text-muted-foreground',
                                     )"
+                                    :data-testid="testIds.admin.experience.dialog.startDate"
                                 >
                                     <span>{{ startDate ? dateFormatter.format(toDate(startDate)) : "Pick a date" }}</span>
                                     <CalendarIcon class="ms-auto h-4 w-4 opacity-50" />
@@ -90,7 +96,10 @@
                             <Trash class="w-4 h-4 text-muted-foreground" />
                         </Button>
                     </div>
-                    <PopoverContent class="w-auto p-0">
+                    <PopoverContent
+                        class="w-auto p-0"
+                        :data-testid="testIds.admin.experience.dialog.startDatePopover"
+                    >
                         <Calendar
                             v-model:placeholder="startDatePlaceholder"
                             v-model="startDate"
@@ -126,6 +135,7 @@
                                         'w-[240px] ps-3 text-start font-normal',
                                         !endDate && 'text-muted-foreground',
                                     )"
+                                    :data-testid="testIds.admin.experience.dialog.endDate"
                                 >
                                     <span>{{ endDate ? dateFormatter.format(toDate(endDate)) : "Pick a date" }}</span>
                                     <CalendarIcon class="ms-auto h-4 w-4 opacity-50" />
@@ -144,7 +154,10 @@
                             <Trash class="w-4 h-4 text-muted-foreground" />
                         </Button>
                     </div>
-                    <PopoverContent class="w-auto p-0">
+                    <PopoverContent
+                        class="w-auto p-0"
+                        :data-testid="testIds.admin.experience.dialog.endDatePopover"
+                    >
                         <Calendar
                             v-model:placeholder="endDatePlaceholder"
                             v-model="endDate"
@@ -182,7 +195,10 @@
                             <TagsInputItemDelete />
                         </TagsInputItem>
 
-                        <TagsInputInput placeholder="Add tags" />
+                        <TagsInputInput
+                            placeholder="Add tags"
+                            :data-testid="testIds.admin.experience.dialog.tags"
+                        />
                     </TagsInput>
                 </FormControl>
                 <FormMessage />

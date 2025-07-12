@@ -35,11 +35,38 @@ export default {
             header: 'admin.experience.header',
             addExperienceButton: 'admin.experience.addExperienceButton',
             experienceList: 'admin.experience.experienceList',
+            dialog: {
+                wrapper: 'admin.experience.dialog.wrapper',
+                title: 'admin.experience.dialog.title',
+                url: 'admin.experience.dialog.url',
+                description: 'admin.experience.dialog.description',
+                startDate: 'admin.experience.dialog.startDate',
+                startDatePopover: 'admin.experience.dialog.startDatePopover',
+                endDate: 'admin.experience.dialog.endDate',
+                endDatePopover: 'admin.experience.dialog.endDatePopover',
+                tags: 'admin.experience.dialog.tags',
+                saveButton: 'admin.experience.dialog.saveButton',
+            }
         },
         projects: {
             header: 'admin.projects.header',
             addProjectButton: 'admin.projects.addProjectButton',
             projectList: 'admin.projects.projectList',
+            dialog: {
+                wrapper: 'admin.projects.dialog.wrapper',
+                title: 'admin.projects.dialog.title',
+                description: 'admin.projects.dialog.description',
+                image: 'admin.projects.dialog.image',
+                imagePopover: 'admin.projects.dialog.imagePopover',
+                url: 'admin.projects.dialog.url',
+                tags: 'admin.projects.dialog.tags',
+                saveButton: 'admin.projects.dialog.saveButton',
+            }
         },
+        dataTableDropdown: {
+            wrapper: 'admin.dataTableDropdown.wrapper',
+            edit: 'admin.dataTableDropdown.edit',
+            delete: 'admin.dataTableDropdown.delete',
+        }
     },
 } as const

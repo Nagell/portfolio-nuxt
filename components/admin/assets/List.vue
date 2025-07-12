@@ -32,7 +32,7 @@
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { Button } from '~/components/ui/button'
-    import testIds from '~/pages/__tests__/testIds'
+    import testIds from '~/utils/testIds'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
     import type { ColumnDef } from '@tanstack/vue-table'

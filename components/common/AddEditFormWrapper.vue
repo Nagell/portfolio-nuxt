@@ -16,6 +16,7 @@
                     <Button
                         type="submit"
                         :disabled="!isVerified"
+                        :data-testid="buttonTestId"
                     >
                         {{ buttonLabel }}
                     </Button>
@@ -33,6 +34,7 @@
         title?: string
         description?: string
         isVerified?: boolean
+        buttonTestId?: string
     }
 
     const props = defineProps<Props>()

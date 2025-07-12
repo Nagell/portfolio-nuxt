@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { URLS } from './helpers/urlHelper'
 import { setupOptions } from './helpers/vitestConfig'
-import testIds from './testIds'
+import testIds from '../../utils/testIds'
 
 describe('Home Page E2E Tests', async () => {
     await setup(setupOptions)

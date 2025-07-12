@@ -5,6 +5,8 @@
         title="project"
         description="Make changes to your projects here. Click save when you're done."
         :is-verified="useIsFormValid().value"
+        :data-testid="testIds.admin.projects.dialog.wrapper"
+        :button-test-id="testIds.admin.projects.dialog.saveButton"
         @submit="onSubmit"
     >
         <FormField
@@ -18,6 +20,7 @@
                         type="text"
                         placeholder="Project title"
                         v-bind="componentField"
+                        :data-testid="testIds.admin.projects.dialog.title"
                     />
                 </FormControl>
                 <FormMessage />
@@ -35,6 +38,7 @@
                         placeholder="Project description"
                         v-bind="componentField"
                         rows="25"
+                        :data-testid="testIds.admin.projects.dialog.description"
                     />
                 </FormControl>
                 <FormMessage />
@@ -51,15 +55,21 @@
                                 variant="outline"
                                 role="combobox"
                                 :class="cn('w-[200px] justify-between', !values.image && 'text-muted-foreground')"
+                                :data-testid="testIds.admin.projects.dialog.image"
                             >
                                 {{ filterImageName }}
                                 <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </FormControl>
                     </PopoverTrigger>
-                    <PopoverContent class="w-[200px] p-0">
+                    <PopoverContent
+                        class="w-[200px] p-0"
+                    >
                         <Command>
-                            <CommandInput placeholder="Select an image" />
+                            <CommandInput
+                                placeholder="Select an image"
+                                :data-testid="testIds.admin.projects.dialog.imagePopover"
+                            />
                             <CommandEmpty>Nothing found.</CommandEmpty>
                             <CommandList>
                                 <CommandGroup>
@@ -93,6 +103,7 @@
                         type="url"
                         placeholder="GitHub URL"
                         v-bind="componentField"
+                        :data-testid="testIds.admin.projects.dialog.url"
                     />
                 </FormControl>
                 <FormMessage />
@@ -115,7 +126,10 @@
                             <TagsInputItemDelete />
                         </TagsInputItem>
 
-                        <TagsInputInput placeholder="Add tags" />
+                        <TagsInputInput
+                            placeholder="Add tags"
+                            :data-testid="testIds.admin.projects.dialog.tags"
+                        />
                     </TagsInput>
                 </FormControl>
                 <FormMessage />
@@ -130,6 +144,7 @@
     import { useForm, useIsFormValid } from 'vee-validate'
 
     import { publicProjectsInsertSchema } from '~/types/schemas'
+    import testIds from '~/utils/testIds'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Asset } from '~/types/files.types'

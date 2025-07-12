@@ -67,7 +67,7 @@
 <script setup lang="ts">
     import { VisuallyHidden } from 'radix-vue'
 
-    import testIds from '~/pages/__tests__/testIds'
+    import testIds from '~/utils/testIds'
 
     import type { Project } from '~/types/projects.types'
 
