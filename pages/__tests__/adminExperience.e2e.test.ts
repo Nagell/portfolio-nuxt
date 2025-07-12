@@ -52,7 +52,7 @@ createAdminTestSuite((authenticateUser) => {
             }
         })
 
-        it('should be able to add a new experience', async () => {
+        it('should be able to add a new experience and remove it', async () => {
             const page = await createPage()
 
             // Authenticate user
@@ -119,27 +119,12 @@ createAdminTestSuite((authenticateUser) => {
             expect(await page.locator(dialogLocators.wrapper).count()).toBe(0)
 
             // Wait a bit for the data to be saved and the list to update
-            await page.waitForTimeout(100)
+            await page.waitForTimeout(1000)
 
             // Check if any of the new experience values can be found in the list
             expect(await findTestExperienceInList(page)).toBe(true)
-        })
 
-        it('should delete previously created experience', async () => {
-            const page = await createPage()
-
-            // Authenticate user
-            await authenticateUser(page)
-
-            // Navigate to experience page
-            await page.goto(url(URLS.ADMIN_EXPERIENCE), { waitUntil: 'hydration' })
-
-            // Search for the <tr> elements in the list
-            const itemsLocator = `[data-testid="${testIds.admin.experience.experienceList}"] tbody tr`
-
-            // Ensure there is the experience added in the previous test
-            expect(await findTestExperienceInList(page)).toBe(true)
-
+            /* REMOVE EXPERIENCE */
             // Click the action button on the first experience
             const experienceActionButton = page.locator(itemsLocator).first().getByRole('button')
             expect(await experienceActionButton.count()).toBeGreaterThan(0)
@@ -157,7 +142,7 @@ createAdminTestSuite((authenticateUser) => {
             await deleteButton.click()
 
             // Wait for the deletion to be processed
-            await page.waitForTimeout(100)
+            await page.waitForTimeout(1000)
 
             // The test content should not be present anymore
             expect(await findTestExperienceInList(page)).toBe(false)

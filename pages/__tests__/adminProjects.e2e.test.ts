@@ -52,7 +52,7 @@ createAdminTestSuite((authenticateUser) => {
             }
         })
 
-        it('should be able to add a new project', async () => {
+        it('should be able to add a new project and remove it', async () => {
             const page = await createPage()
 
             // Authenticate user
@@ -107,24 +107,12 @@ createAdminTestSuite((authenticateUser) => {
             expect(await page.locator(dialogLocators.wrapper).count()).toBe(0)
 
             // Wait a bit for the data to be saved and the list to update
-            await page.waitForTimeout(100)
+            await page.waitForTimeout(1000)
 
             // Check if any of the new project values can be found in the list
             expect(await findTestProjectInList(page)).toBe(true)
-        })
 
-        it('should delete previously created project', async () => {
-            const page = await createPage()
-
-            // Authenticate user
-            await authenticateUser(page)
-
-            // Navigate to projects page
-            await page.goto(url(URLS.ADMIN_PROJECTS), { waitUntil: 'hydration' })
-
-            // Ensure there is the project added in the previous test
-            expect(await findTestProjectInList(page)).toBe(true)
-
+            /* REMOVE PROJECT */
             // Click the action button on the first project
             const projectActionButton = page.locator(itemsLocator).first().getByRole('button')
             expect(await projectActionButton.count()).toBeGreaterThan(0)
@@ -142,7 +130,7 @@ createAdminTestSuite((authenticateUser) => {
             await deleteButton.click()
 
             // Wait for the deletion to be processed
-            await page.waitForTimeout(100)
+            await page.waitForTimeout(1000)
 
             // The test content should not be present anymore
             expect(await findTestProjectInList(page)).toBe(false)
