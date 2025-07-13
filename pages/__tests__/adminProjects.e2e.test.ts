@@ -14,8 +14,21 @@ createAdminTestSuite((authenticateUser) => {
             tags: 'testTag1, testTag2,',
         }
 
-        // Search for the <tr> elements in the list
+        const addButtonLocator = `[data-testid="${testIds.admin.projects.addProjectButton}"]`
         const itemsLocator = `[data-testid="${testIds.admin.projects.projectList}"] tbody tr`
+        const actionMenuLocator = `[data-testid="${testIds.admin.dataTableDropdown.wrapper}"]`
+        const deleteButtonLocator = `[data-testid="${testIds.admin.dataTableDropdown.delete}"]`
+
+        const dialogLocators = {
+            wrapper: `[data-testid="${testIds.admin.projects.dialog.wrapper}"]`,
+            title: `[data-testid="${testIds.admin.projects.dialog.title}"]`,
+            description: `[data-testid="${testIds.admin.projects.dialog.description}"]`,
+            image: `[data-testid="${testIds.admin.projects.dialog.image}"]`,
+            imagePopover: `[data-testid="${testIds.admin.projects.dialog.imagePopover}"]`,
+            url: `[data-testid="${testIds.admin.projects.dialog.url}"]`,
+            tags: `[data-testid="${testIds.admin.projects.dialog.tags}"]`,
+            saveButton: `[data-testid="${testIds.admin.projects.dialog.saveButton}"]`,
+        }
 
         async function findTestProjectInList(page: NuxtPage) {
             for (const value of Object.values(projectContent)) {
@@ -50,6 +63,8 @@ createAdminTestSuite((authenticateUser) => {
 
                 expect(await element.count()).toBeGreaterThan(0)
             }
+
+            await page.close()
         })
 
         it('should be able to add a new project and remove it', async () => {
@@ -65,20 +80,9 @@ createAdminTestSuite((authenticateUser) => {
             expect(await findTestProjectInList(page)).toBe(false)
 
             /* ADD NEW PROJECT */
-            const button = page.getByTestId(testIds.admin.projects.addProjectButton)
-            expect(await button.count()).toBe(1)
-            await button.click()
-
-            const dialogLocators = {
-                wrapper: `[data-testid="${testIds.admin.projects.dialog.wrapper}"]`,
-                title: `[data-testid="${testIds.admin.projects.dialog.title}"]`,
-                description: `[data-testid="${testIds.admin.projects.dialog.description}"]`,
-                image: `[data-testid="${testIds.admin.projects.dialog.image}"]`,
-                imagePopover: `[data-testid="${testIds.admin.projects.dialog.imagePopover}"]`,
-                url: `[data-testid="${testIds.admin.projects.dialog.url}"]`,
-                tags: `[data-testid="${testIds.admin.projects.dialog.tags}"]`,
-                saveButton: `[data-testid="${testIds.admin.projects.dialog.saveButton}"]`,
-            }
+            const addButton = page.locator(addButtonLocator)
+            expect(await addButton.count()).toBe(1)
+            await addButton.click()
 
             // Wait for the dialog to open
             await page.waitForSelector(dialogLocators.wrapper, { state: 'visible' })
@@ -114,18 +118,18 @@ createAdminTestSuite((authenticateUser) => {
 
             /* REMOVE PROJECT */
             // Click the action button on the first project
-            const projectActionButton = page.locator(itemsLocator).first().getByRole('button')
-            expect(await projectActionButton.count()).toBeGreaterThan(0)
-            await projectActionButton.click()
+            const assetRow = page.locator(itemsLocator).filter({ hasText: projectContent.title }).first()
+            const actionButton = assetRow.getByRole('button')
+            expect(await actionButton.count()).toBeGreaterThan(0)
+            await actionButton.click()
 
             // Wait for the action menu to appear
-            const actionMenuLocator = `[data-testid="${testIds.admin.dataTableDropdown.wrapper}"]`
             const actionMenu = page.locator(actionMenuLocator)
             await page.waitForSelector(actionMenuLocator, { state: 'visible' })
             expect(await actionMenu.count()).toBe(1)
 
             // Click the delete button
-            const deleteButton = actionMenu.getByTestId(testIds.admin.dataTableDropdown.delete)
+            const deleteButton = actionMenu.locator(deleteButtonLocator)
             expect(await deleteButton.count()).toBe(1)
             await deleteButton.click()
 
@@ -134,6 +138,8 @@ createAdminTestSuite((authenticateUser) => {
 
             // The test content should not be present anymore
             expect(await findTestProjectInList(page)).toBe(false)
+
+            await page.close()
         })
     })
 })

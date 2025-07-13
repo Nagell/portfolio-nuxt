@@ -30,6 +30,11 @@ export default {
             header: 'admin.assets.header',
             addAssetButton: 'admin.assets.addAssetButton',
             assetList: 'admin.assets.assetList',
+            dialog: {
+                wrapper: 'admin.assets.dialog.wrapper',
+                fileInput: 'admin.assets.dialog.fileInput',
+                saveButton: 'admin.assets.dialog.saveButton',
+            }
         },
         experience: {
             header: 'admin.experience.header',

@@ -40,6 +40,8 @@ createAdminTestSuite((authenticateUser) => {
                 // Wait a bit before navigating to next page
                 await page.waitForTimeout(500)
             }
+
+            await page.close()
         })
     })
 })

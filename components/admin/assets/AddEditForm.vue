@@ -4,6 +4,8 @@
         title="assets"
         description="Make changes to your assets here. Click save when you're done."
         :is-verified="useIsFormValid().value"
+        :data-testid="testIds.admin.assets.dialog.wrapper"
+        :button-test-id="testIds.admin.assets.dialog.saveButton"
         @submit="onSubmit"
     >
         <template v-if="mode === 'edit' && currentAsset">
@@ -24,6 +26,7 @@
                         type="file"
                         :accept="$const.assets.ACCEPTED_FILE_TYPES"
                         multiple
+                        :data-testid="testIds.admin.assets.dialog.fileInput"
                         @change="componentField.onChange($event.target.files)"
                         @blur="componentField.onBlur($event.target.files)"
                     />
@@ -41,6 +44,8 @@
     import { toTypedSchema } from '@vee-validate/zod'
     import { useForm, useIsFormValid } from 'vee-validate'
     import * as z from 'zod'
+
+    import testIds from '~/utils/testIds'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Asset } from '~/types/files.types'
