@@ -3,11 +3,18 @@ import { createClient } from '@supabase/supabase-js'
 import type { NuxtPage } from '@nuxt/test-utils'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
+// Singleton pattern to ensure only one test client instance
+let testSupabaseClient: SupabaseClient | null = null
+
 /**
  * Creates a Supabase client for testing
  * @returns SupabaseClient - Configured Supabase client
  */
 export function createTestSupabaseClient(): SupabaseClient {
+    if (testSupabaseClient) {
+        return testSupabaseClient
+    }
+
     const supabaseUrl = process.env.SUPABASE_URL || 'http://127.0.0.1:54321'
     const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY || ''
 
@@ -15,7 +22,15 @@ export function createTestSupabaseClient(): SupabaseClient {
         throw new Error('SUPABASE_SERVICE_ROLE_KEY, SUPABASE_KEY or SUPABASE_ANON_KEY environment variable is required')
     }
 
-    return createClient(supabaseUrl, supabaseKey)
+    testSupabaseClient = createClient(supabaseUrl, supabaseKey, {
+        auth: {
+            storageKey: 'supabase-test-client',
+            detectSessionInUrl: false,
+            persistSession: false
+        }
+    })
+
+    return testSupabaseClient
 }
 
 export interface TestUser {
@@ -52,8 +67,6 @@ export async function createTestUser(supabase: SupabaseClient): Promise<boolean>
         })
 
         if (error) {
-            console.log('Admin createUser failed, trying signup:', error.message)
-
             // Fallback to regular signup
             const { error: signUpError } = await supabase.auth.signUp({
                 email: testUser.email,
