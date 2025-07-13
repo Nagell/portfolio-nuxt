@@ -1,5 +1,6 @@
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, it } from 'vitest'
+import { h } from 'vue'
 
 import Section from '../Section.vue'
 
@@ -7,7 +8,7 @@ describe('Section Component', async () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(Section, {
             slots: {
-                default: '<div class="test-content">Test Content</div>'
+                default: () => h('div', { class: 'test-content' }, 'Test Content')
             }
         })
         expect(wrapper.html()).toMatchSnapshot()
@@ -16,7 +17,7 @@ describe('Section Component', async () => {
     it('renders slot content', async () => {
         const wrapper = await mountSuspended(Section, {
             slots: {
-                default: '<div class="test-content">Test Content</div>'
+                default: () => h('div', { class: 'test-content' }, 'Test Content')
             }
         })
         expect(wrapper.find('.test-content').exists()).toBe(true)

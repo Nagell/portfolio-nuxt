@@ -14,7 +14,7 @@
         "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue src",
         "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx,.vue --fix src",
         "typecheck": "nuxt typecheck",
-        "test": "vitest",
+        "test": "vitest --no-file-parallelism",
         "----": "",
         "generate": "nuxt generate",
         "preview": "nuxt preview",
