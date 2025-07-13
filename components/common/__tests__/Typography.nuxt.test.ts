@@ -7,7 +7,7 @@ describe('Typography Component', async () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(Typography, {
             slots: {
-                default: 'Test Content'
+                default: () => 'Test Content'
             }
         })
         expect(wrapper.html()).toMatchSnapshot()
@@ -18,7 +18,7 @@ describe('Typography Component', async () => {
         const wrapper = await mountSuspended(Typography, {
             props: { tag: 'h2' },
             slots: {
-                default: text
+                default: () => text
             }
         })
         expect(wrapper.find('h2').exists()).toBe(true)
@@ -30,7 +30,7 @@ describe('Typography Component', async () => {
         const wrapper = await mountSuspended(Typography, {
             props: { class: customClass },
             slots: {
-                default: 'Test Content'
+                default: () => 'Test Content'
             }
         })
         expect(wrapper.classes()).toContain(customClass)
