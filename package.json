@@ -51,7 +51,7 @@
         "@html-eslint/eslint-plugin": "^0.26.0",
         "@html-eslint/parser": "^0.26.0",
         "@nuxt/eslint-config": "^0.6.0",
-        "@nuxt/test-utils": "^3.19.1",
+        "@nuxt/test-utils": "^3.19.2",
         "@nuxtjs/tailwindcss": "^6.12.2",
         "@stylistic/eslint-plugin": "^1.6.3",
         "@tailwindcss/container-queries": "^0.1.1",
@@ -66,16 +66,15 @@
         "eslint-plugin-vue": "^9.19.2",
         "happy-dom": "^18.0.1",
         "husky": "^9.1.6",
-        "playwright": "1.53.1",
-        "playwright-core": "1.53.1",
+        "playwright": "1.54.1",
+        "playwright-core": "1.54.1",
         "postcss": "^8.5.5",
         "postcss-import": "^16.1.0",
         "supabase": "^2.24.3",
         "supazod": "^2.0.0",
         "tailwindcss-animate": "^1.0.7",
         "typescript": "~5.8.3",
-        "vitest": "3.2.4",
-        "vue-tsc": "^2.2.10"
+        "vitest": "3.2.4"
     },
     "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
