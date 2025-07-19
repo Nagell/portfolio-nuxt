@@ -6,7 +6,7 @@
         <Badge
             v-for="(tag, key) in tags"
             :key="key"
-            variant="outline"
+            variant="muted"
         >
             {{ tag }}
         </Badge>
