@@ -28,18 +28,18 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 '2019-06-01',
 '2023-03-31',
 '["JavaScript", "TypeScript", "Vue 3", "Vue 2", "Vuex", "Cypress", "Jest", "Vite", "Webpack", "Rollup", "Lerna", "PlayCanvas", "Ionic", "Scss", "Tailwind", "Storybook", "Figma", "Adobe XD"]',
-'https://www.dcc.ruhr/'),
+'https://www.google.com/'),
 ('Senior Frontend Developer, Digital Agency',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nec purus nec nunc
+'**Lorem ipsum dolor sit amet**, consectetur adipiscing elit. Nullam nec purus nec nunc
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
+*Sed ut perspiciatis unde omnis* iste natus error sit voluptatem accusantium doloremque laudantium
 
-At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
+_At vero eos et accusamus et iusto_ odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium
+`Sed ut perspiciatis unde omnis` iste natus error sit voluptatem accusantium doloremque laudantium
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident',
 '2023-04-01',
 NULL,
 '["JavaScript", "TypeScript", "Vue 3", "Pinia", "Cypress", "Vite", "Nx", "Tailwind", "Scss", "Storybook", "Figma"]',
-'https://onehiring.com');
+'https://www.google.com/');

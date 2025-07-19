@@ -17,6 +17,7 @@
 
         <CommonExternalLink
             :data-testid="testIds.index.experience.downloadCvButton"
+            class="text-3xl"
             @click="fetchCvWithBackup"
         >
             View Full Résumé
