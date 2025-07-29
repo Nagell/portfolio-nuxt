@@ -1,6 +1,5 @@
 <template>
     <CommonAddEditFormWrapper
-        v-if="currentExperience"
         :mode="mode"
         title="experience"
         description="Make changes to your experiences here. Click save when you're done."

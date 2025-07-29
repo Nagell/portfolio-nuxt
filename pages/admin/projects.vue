@@ -1,13 +1,13 @@
 <template>
     <div>
-        <Sheet>
+        <Sheet @update:open="setIsFormOpen">
             <AdminProjectAddEditForm
                 v-if="isFormOpen"
                 :current-project="currentItem"
-                :mode="addEditFormMode"
+                :mode="formMode"
                 @submit="submit"
             />
-            <AdminProjectList @open-form="openAddEditForm" />
+            <AdminProjectList @set-form-data="setFormData" />
         </Sheet>
     </div>
 </template>
@@ -19,7 +19,7 @@
         onSubmit({ query: data })
     }
 
-    const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
+    const { isFormOpen, currentItem, formMode, onSubmit, setIsFormOpen, setFormData }
         = useAddEditForm<Project, PostProjectQuery, PatchProjectQuery>({
             url: '/api/projects',
         })

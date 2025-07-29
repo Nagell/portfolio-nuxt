@@ -1,13 +1,13 @@
 <template>
     <div>
-        <Sheet>
+        <Sheet @update:open="setIsFormOpen">
             <AdminExperienceAddEditForm
                 v-if="isFormOpen"
                 :current-experience="currentItem"
-                :mode="addEditFormMode"
+                :mode="formMode"
                 @submit="submit"
             />
-            <AdminExperienceList @open-form="openAddEditForm" />
+            <AdminExperienceList @set-form-data="setFormData" />
         </Sheet>
     </div>
 </template>
@@ -19,7 +19,7 @@
         onSubmit({ query: data })
     }
 
-    const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
+    const { isFormOpen, currentItem, formMode, onSubmit, setIsFormOpen, setFormData }
         = useAddEditForm<Experience, PostExperienceQuery, PatchExperienceQuery>({
             url: '/api/experience',
         })

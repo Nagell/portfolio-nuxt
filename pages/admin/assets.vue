@@ -1,13 +1,13 @@
 <template>
     <div>
-        <Sheet>
+        <Sheet @update:open="setIsFormOpen">
             <AdminAssetsAddEditForm
                 v-if="isFormOpen"
                 :current-asset="currentItem"
-                :mode="addEditFormMode"
+                :mode="formMode"
                 @submit="submit"
             />
-            <AdminAssetsList @open-form="openAddEditForm" />
+            <AdminAssetsList @set-form-data="setFormData" />
         </Sheet>
     </div>
 </template>
@@ -19,7 +19,7 @@
         onSubmit({ body: data })
     }
 
-    const { openAddEditForm, isFormOpen, currentItem, addEditFormMode, onSubmit }
+    const { isFormOpen, currentItem, formMode, onSubmit, setIsFormOpen, setFormData }
         = useAddEditForm<Asset, FormData, FormData>({
             url: '/api/assets',
         })

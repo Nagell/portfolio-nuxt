@@ -10,7 +10,7 @@
             <Button
                 class="mb-4"
                 :data-testid="testIds.admin.projects.addProjectButton"
-                @click="emits('openForm', { mode: 'add' })"
+                @click="emits('setFormData', { mode: 'add' })"
             >
                 Add new
             </Button>
@@ -44,7 +44,7 @@
     let realtimeChannel: RealtimeChannel
 
     const emits = defineEmits<{
-        openForm: [{ mode: FormProps['mode'], item?: Project }]
+        setFormData: [{ mode: FormProps['mode'], item?: Project }]
     }>()
 
     onMounted(async () => {
@@ -107,7 +107,7 @@
                     item,
                     onExpand: row.toggleExpanded,
                     onDelete: () => deleteProject({ id: item.id }),
-                    onEdit: () => emits('openForm', { mode: 'edit', item })
+                    onEdit: () => emits('setFormData', { mode: 'edit', item })
                 }))
             },
         },
