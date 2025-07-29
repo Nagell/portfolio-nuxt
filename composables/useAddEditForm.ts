@@ -7,10 +7,10 @@ type Options = {
 
 export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
     const isFormOpen = ref(false)
-    const addEditFormMode = ref<FormProps['mode']>('add')
+    const formMode = ref<FormProps['mode']>('add')
     const currentItem = ref<T | {}>({})
 
-    type FormModeQueryType = typeof addEditFormMode extends { value: 'add' }
+    type FormModeQueryType = typeof formMode extends { value: 'add' }
         ? AddQuery
         : PatchQuery
 
@@ -20,7 +20,7 @@ export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
     }
 
     async function onSubmit(data: SubmitData) {
-        addEditFormMode.value === 'add'
+        formMode.value === 'add'
             ? await _add(data)
             : await _patch(data)
     }
@@ -43,17 +43,36 @@ export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
         })
     }
 
-    function openAddEditForm(event: { mode: FormProps['mode'], item?: T }) {
-        isFormOpen.value = true
-        addEditFormMode.value = event.mode
+    function setFormData(event: { mode: FormProps['mode'], item?: T }) {
+        formMode.value = event.mode
         currentItem.value = event.item ?? {}
+    }
+
+    function _cleanFormData() {
+        formMode.value = 'add'
+        currentItem.value = {}
+    }
+
+    function setIsFormOpen(isOpen: boolean) {
+        if (isOpen === true) {
+            isFormOpen.value = true
+        }
+        else {
+            // If closing wait some time before destroying components
+            // This way we make sure that we don't wipe form data before submitting
+            setTimeout(() => {
+                isFormOpen.value = false
+                _cleanFormData()
+            }, 100)
+        }
     }
 
     return {
         isFormOpen,
-        addEditFormMode,
+        formMode,
         currentItem,
         onSubmit,
-        openAddEditForm,
+        setFormData,
+        setIsFormOpen,
     }
 }

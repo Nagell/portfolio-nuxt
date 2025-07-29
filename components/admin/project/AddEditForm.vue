@@ -1,6 +1,5 @@
 <template>
     <CommonAddEditFormWrapper
-        v-if="currentProject"
         :mode="mode"
         title="project"
         description="Make changes to your projects here. Click save when you're done."

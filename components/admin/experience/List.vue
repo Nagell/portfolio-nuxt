@@ -10,7 +10,7 @@
             <Button
                 class="mb-4"
                 :data-testid="testIds.admin.experience.addExperienceButton"
-                @click="emits('openForm', { mode: 'add' })"
+                @click="emits('setFormData', { mode: 'add' })"
             >
                 Add new
             </Button>
@@ -43,7 +43,7 @@
     let realtimeChannel: RealtimeChannel
 
     const emits = defineEmits<{
-        openForm: [{ mode: FormProps['mode'], item?: Experience }]
+        setFormData: [{ mode: FormProps['mode'], item?: Experience }]
     }>()
 
     onMounted(async () => {
@@ -102,7 +102,7 @@
                     item,
                     onExpand: row.toggleExpanded,
                     onDelete: () => deleteExperience({ id: item.id }),
-                    onEdit: () => emits('openForm', { mode: 'edit', item })
+                    onEdit: () => emits('setFormData', { mode: 'edit', item })
                 }))
             },
         },
