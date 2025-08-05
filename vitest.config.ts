@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/namespace
 import { defineVitestConfig } from '@nuxt/test-utils/config'
 
 export default defineVitestConfig({

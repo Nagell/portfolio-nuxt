@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     const files = parts
         .filter(part => part?.name === 'file')
         .map(part => part?.filename
-            ? new File([ part.data ], part?.filename, { type: part.type })
+            ? new File([ new Uint8Array(part.data) ], part?.filename, { type: part.type })
             : null)
 
     if (!files.length) throw createError({ status: 400, statusMessage: 'Bad Request: no files in this request' })
