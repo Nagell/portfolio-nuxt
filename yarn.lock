@@ -6606,9 +6606,9 @@ ioredis@^5.6.1:
     standard-as-callback "^2.1.0"
 
 ipx@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/ipx/-/ipx-2.1.0.tgz#235d37f789b6c5100f34a0bb3b3bef9852af4d76"
-  integrity sha512-AVnPGXJ8L41vjd11Z4akIF2yd14636Klxul3tBySxHA6PKfCOQPxBDkCFK5zcWh0z/keR6toh1eg8qzdBVUgdA==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ipx/-/ipx-2.1.1.tgz#3c309a3ae364f2c56ddb152cb6d14ba7c5767567"
+  integrity sha512-XuM9FEGOT+/45mfAWZ5ykwkZ/oE7vWpd1iWjRffMWlwAYIRzb/xD6wZhQ4BzmPMX6Ov5dqK0wUyD0OEN9oWT6g==
   dependencies:
     "@fastify/accept-negotiator" "^1.1.0"
     citty "^0.1.5"
