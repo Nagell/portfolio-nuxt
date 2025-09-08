@@ -39,6 +39,5 @@
     useSeoMeta({
         title: title,
         description: description,
-        robots: 'noindex, nofollow',
     })
 </script>
