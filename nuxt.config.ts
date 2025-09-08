@@ -42,6 +42,7 @@ export default defineNuxtConfig({
         exclude: [
             '/__tests__/**',
             '/admin/**',
+            '/login',
         ],
     },
     shadcn: {
