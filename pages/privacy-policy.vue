@@ -188,7 +188,6 @@
     useSeoMeta({
         title: title,
         description: description,
-        robots: 'noindex, nofollow',
     })
 
     const { $const } = useNuxtApp()
