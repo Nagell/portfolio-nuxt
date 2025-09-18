@@ -84,7 +84,7 @@
             </SidebarFooter>
             <SidebarRail />
         </Sidebar>
-        <SidebarInset>
+        <SidebarInset class="min-w-1">
             <LayoutAdminHeader />
             <div class="flex flex-1 flex-col gap-4 p-4 pt-0">
                 <slot />
