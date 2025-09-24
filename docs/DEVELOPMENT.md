@@ -167,7 +167,7 @@ yarn supabase link --project-ref <project-id>
 Assuming that a new migration was created locally, you can push it to the production environment.
 
 ```sh
-# Pull the database schema first public
+# Push the migration to the remote database
 yarn supabase db push
 ```
 
