@@ -105,7 +105,7 @@
                             calendar-label="Start date"
                             :min-value="new CalendarDate(1900, 1, 1)"
                             :max-value="today(getLocalTimeZone())"
-                            @update:model-value="(v) => {
+                            @update:model-value="(v: CalendarDate | undefined) => {
                                 if (v) {
                                     setFieldValue('start', v.toString())
                                 } else {
@@ -163,7 +163,7 @@
                             calendar-label="End date"
                             :min-value="new CalendarDate(1900, 1, 1)"
                             :max-value="today(getLocalTimeZone())"
-                            @update:model-value="(v) => {
+                            @update:model-value="(v: CalendarDate | undefined) => {
                                 if (v) {
                                     setFieldValue('end', v.toString())
                                 } else {
