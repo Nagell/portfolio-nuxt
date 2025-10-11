@@ -65,7 +65,7 @@
         "eslint-import-resolver-typescript": "^3.6.3",
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-vue": "^9.19.2",
-        "happy-dom": "^18.0.1",
+        "happy-dom": "^20.0.0",
         "husky": "^9.1.6",
         "playwright": "1.55.1",
         "playwright-core": "1.55.1",
