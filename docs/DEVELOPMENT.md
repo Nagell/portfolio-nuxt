@@ -219,4 +219,8 @@ yarn dev
 yarn test
 ```
 
+> [!NOTE]
+> If using VSCode, you can also run and debug tests directly from the editor.  
+> In case the VS Code Plugin stops reading tests use 'Developer: Reload Window'.
+
 <p align="right">(<a href="#development-top">back to top</a>)</p>

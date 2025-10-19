@@ -3,6 +3,10 @@ export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     devtools: { enabled: true },
 
+    ignoreOptions: {
+        allowRelativePaths: true,
+    },
+
     routeRules: {
         // Home generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
         '/': { isr: 3600 },
@@ -48,14 +52,6 @@ export default defineNuxtConfig({
     shadcn: {
         prefix: '',
         componentDir: './components/ui'
-    },
-    postcss: {
-        plugins: {
-            'postcss-import': {},
-            'tailwindcss/nesting': {},
-            'tailwindcss': {},
-            'autoprefixer': {},
-        },
     },
     tailwindcss: {
         cssPath: '~/assets/styles/main.css',
