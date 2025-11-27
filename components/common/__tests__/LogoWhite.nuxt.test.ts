@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import LogoWhite from '../LogoWhite.vue'
 
-describe('LogoWhite Component', async () => {
+describe('LogoWhite Component', () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(LogoWhite)
         expect(wrapper.html()).toMatchSnapshot()

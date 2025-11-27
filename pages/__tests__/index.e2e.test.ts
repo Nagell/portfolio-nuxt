@@ -1,15 +1,18 @@
-import { createPage, setup, url } from '@nuxt/test-utils/e2e'
-import { describe, expect, it } from 'vitest'
+import { type NuxtPage, createPage, setup, url } from '@nuxt/test-utils/e2e'
+import { beforeAll, describe, expect, it } from 'vitest'
 
 import { URLS } from './helpers/urlHelper'
 import { setupOptions } from './helpers/vitestConfig'
 import testIds from '../../utils/testIds'
 
-describe('Home Page E2E Tests', async () => {
-    await setup(setupOptions)
+describe('Home Page E2E Tests', () => {
+    let page: NuxtPage
 
-    const page = await createPage()
-    await page.goto(url(URLS.HOME), { waitUntil: 'hydration' })
+    beforeAll(async () => {
+        await setup(setupOptions)
+        page = await createPage()
+        await page.goto(url(URLS.HOME), { waitUntil: 'hydration' })
+    })
 
     it('about section renders correctly', async () => {
         const header = page.getByTestId(testIds.index.about.header)

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import Social from '../Social.vue'
 
-describe('Social Component', async () => {
+describe('Social Component', () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(Social)
         expect(wrapper.html()).toMatchSnapshot()

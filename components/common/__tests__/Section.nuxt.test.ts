@@ -4,7 +4,7 @@ import { h } from 'vue'
 
 import Section from '../Section.vue'
 
-describe('Section Component', async () => {
+describe('Section Component', () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(Section, {
             slots: {
