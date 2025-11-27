@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import Typography from '../Typography.vue'
 
-describe('Typography Component', async () => {
+describe('Typography Component', () => {
     it('renders correctly', async () => {
         const wrapper = await mountSuspended(Typography, {
             slots: {

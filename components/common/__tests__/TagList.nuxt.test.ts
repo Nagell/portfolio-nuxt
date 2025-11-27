@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import TagList from '../TagList.vue'
 
-describe('TagList Component', async () => {
+describe('TagList Component', () => {
     it('renders correctly when tags are provided', async () => {
         const tags = [ 'Vue', 'Nuxt', 'TypeScript' ]
         const wrapper = await mountSuspended(TagList, {

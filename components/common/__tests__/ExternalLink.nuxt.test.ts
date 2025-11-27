@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 import ExternalLink from '../ExternalLink.vue'
 import CommonTypography from '../Typography.vue'
 
-describe('ExternalLink Component', async () => {
+describe('ExternalLink Component', () => {
     it('renders button when onClick is provided', async () => {
         const onClick = vi.fn()
         const wrapper = await mountSuspended(ExternalLink, {

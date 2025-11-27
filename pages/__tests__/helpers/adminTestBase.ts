@@ -17,12 +17,11 @@ import { setupOptions } from './vitestConfig'
 export function createAdminTestSuite(
     testFn: (authenticateUser: (page: NuxtPage) => Promise<boolean>) => void
 ) {
-    return describe('Admin Area Tests', async () => {
-        await setup(setupOptions)
-
+    return describe('Admin Area Tests', () => {
         const supabase = createTestSupabaseClient()
 
         beforeAll(async () => {
+            await setup(setupOptions)
             // Ensure test user exists
             await createTestUser(supabase)
         })
