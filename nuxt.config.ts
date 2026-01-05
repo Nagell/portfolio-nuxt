@@ -69,5 +69,12 @@ export default defineNuxtConfig({
     },
     image: {
         format: [ 'webp', 'jpeg' ],
+        domains: [
+            '127.0.0.1:54321', // Local Supabase
+            process.env.SUPABASE_URL?.replace('https://', '') || '', // Production Supabase
+        ],
+        alias: {
+            supabase: process.env.SUPABASE_URL + '/storage/v1/object/public',
+        },
     },
 })
