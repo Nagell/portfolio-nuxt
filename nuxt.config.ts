@@ -8,9 +8,10 @@ export default defineNuxtConfig({
     },
 
     routeRules: {
-        '/': { isr: 3600 },
-        '/legal-notice': { isr: 3600 },
-        '/privacy-policy': { isr: 3600 },
+        // Prerendered pages - reliable, no -isr bug, served as static files
+        '/': { prerender: true },
+        '/legal-notice': { prerender: true },
+        '/privacy-policy': { prerender: true },
         '/admin/**': { robots: false },
         '/admin': { redirect: '/admin/projects' },
     },
