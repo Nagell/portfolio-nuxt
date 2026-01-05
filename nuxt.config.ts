@@ -9,9 +9,9 @@ export default defineNuxtConfig({
 
     routeRules: {
         // Home generated on demand, revalidates in background, cached for 1 hour (3600 seconds)
-        '/': { isr: 3600 },
-        '/legal-notice': { isr: 3600 },
-        '/privacy-policy': { isr: 3600 },
+        '/': { swr: 3600 },
+        '/legal-notice': { swr: 3600 },
+        '/privacy-policy': { swr: 3600 },
         '/admin/**': { robots: false },
         '/admin': { redirect: '/admin/projects' },
     },
@@ -69,5 +69,12 @@ export default defineNuxtConfig({
     },
     image: {
         format: [ 'webp', 'jpeg' ],
+        domains: [
+            '127.0.0.1:54321', // Local Supabase
+            process.env.SUPABASE_URL?.replace('https://', '') || '', // Production Supabase
+        ],
+        alias: {
+            supabase: process.env.SUPABASE_URL + '/storage/v1/object/public',
+        },
     },
 })
