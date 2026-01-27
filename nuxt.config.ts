@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
+    future: {
+        compatibilityVersion: 4,
+    },
 
     ignoreOptions: {
         allowRelativePaths: true,
@@ -51,7 +54,7 @@ export default defineNuxtConfig({
     },
     shadcn: {
         prefix: '',
-        componentDir: './components/ui'
+        componentDir: './app/components/ui'
     },
     tailwindcss: {
         cssPath: '~/assets/styles/main.css',

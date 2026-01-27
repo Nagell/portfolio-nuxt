@@ -1,6 +1,6 @@
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { Experience } from '~/types/experience.types'
+import type { Experience } from '~~/types/experience.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)

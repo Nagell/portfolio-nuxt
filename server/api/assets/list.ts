@@ -1,4 +1,4 @@
-import { ASSETS_BUCKET } from '~/plugins/constants/assets'
+import { ASSETS_BUCKET } from '~~/app/plugins/constants/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
