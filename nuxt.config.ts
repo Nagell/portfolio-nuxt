@@ -2,9 +2,6 @@
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
-    future: {
-        compatibilityVersion: 4,
-    },
 
     ignoreOptions: {
         allowRelativePaths: true,
@@ -28,7 +25,7 @@ export default defineNuxtConfig({
         '@nuxtjs/supabase',
         '@nuxtjs/tailwindcss',
         'nuxt-lucide-icons',
-        'shadcn-nuxt',
+        // 'shadcn-nuxt', // Temporarily disabled - causes duplicate component warnings with Nuxt 4
     ],
     supabase: {
         redirectOptions: {
@@ -52,9 +49,21 @@ export default defineNuxtConfig({
             '/login',
         ],
     },
-    shadcn: {
-        prefix: '',
-        componentDir: './app/components/ui'
+    // shadcn-nuxt disabled, using Nuxt's native component auto-import instead
+    components: {
+        dirs: [
+            // Non-ui components with normal path prefix
+            {
+                path: '~/components',
+                ignore: [ 'ui/**', '**/*.ts' ],
+            },
+            // UI components without path prefix (CarouselNext instead of UiCarouselCarouselNext)
+            {
+                path: '~/components/ui',
+                pathPrefix: false,
+                ignore: [ '**/*.ts' ],
+            },
+        ],
     },
     tailwindcss: {
         cssPath: '~/assets/styles/main.css',
