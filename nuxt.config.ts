@@ -33,6 +33,7 @@ export default defineNuxtConfig({
             callback: '/admin/projects',
             include: [ '/admin(/*)?' ],
         },
+        types: '~~/types/database.types.ts',
     },
     runtimeConfig: {
         public: {
