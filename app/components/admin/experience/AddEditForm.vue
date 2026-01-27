@@ -105,7 +105,7 @@
                             calendar-label="Start date"
                             :min-value="new CalendarDate(1900, 1, 1)"
                             :max-value="today(getLocalTimeZone())"
-                            @update:model-value="(v: CalendarDate | undefined) => {
+                            @update:model-value="(v: DateValue | undefined) => {
                                 if (v) {
                                     setFieldValue('start', v.toString())
                                 } else {
@@ -163,7 +163,7 @@
                             calendar-label="End date"
                             :min-value="new CalendarDate(1900, 1, 1)"
                             :max-value="today(getLocalTimeZone())"
-                            @update:model-value="(v: CalendarDate | undefined) => {
+                            @update:model-value="(v: DateValue | undefined) => {
                                 if (v) {
                                     setFieldValue('end', v.toString())
                                 } else {
@@ -207,7 +207,7 @@
 </template>
 
 <script setup lang="ts">
-    import { CalendarDate, DateFormatter, getLocalTimeZone, parseDate, today } from '@internationalized/date'
+    import { CalendarDate, DateFormatter, type DateValue, getLocalTimeZone, parseDate, today } from '@internationalized/date'
     import { toTypedSchema } from '@vee-validate/zod'
     import { CalendarIcon, Trash } from 'lucide-vue-next'
     import { toDate } from 'radix-vue/date'

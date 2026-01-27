@@ -142,8 +142,8 @@
     import { Check, ChevronsUpDown } from 'lucide-vue-next'
     import { useForm, useIsFormValid } from 'vee-validate'
 
-    import { publicProjectsInsertSchema } from '~~/types/schemas'
     import testIds from '~/utils/testIds'
+    import { publicProjectsInsertSchema } from '~~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
     import type { Asset } from '~~/types/files.types'
