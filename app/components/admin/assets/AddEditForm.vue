@@ -42,9 +42,10 @@
 
 <script setup lang="ts">
     import { toTypedSchema } from '@vee-validate/zod'
-    import { useForm, useIsFormValid } from 'vee-validate'
+    import { Field as FormField, useForm, useIsFormValid } from 'vee-validate'
     import * as z from 'zod'
 
+    import { FormControl, FormDescription, FormItem, FormLabel, FormMessage } from '~/components/ui/form'
     import testIds from '~/utils/testIds'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'

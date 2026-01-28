@@ -178,13 +178,16 @@
             </FormItem>
         </FormField>
         <FormField
-            v-slot="{ value }"
+            v-slot="{ value, componentField }"
             :name="pickField('tags')"
         >
             <FormItem>
                 <FormLabel>Tags</FormLabel>
                 <FormControl>
-                    <TagsInput :model-value="value">
+                    <TagsInput
+                        :model-value="value"
+                        @update:model-value="componentField.onChange"
+                    >
                         <TagsInputItem
                             v-for="item in value"
                             :key="item"
@@ -211,8 +214,9 @@
     import { toTypedSchema } from '@vee-validate/zod'
     import { CalendarIcon, Trash } from 'lucide-vue-next'
     import { toDate } from 'radix-vue/date'
-    import { useForm, useIsFormValid } from 'vee-validate'
+    import { Field as FormField, useForm, useIsFormValid } from 'vee-validate'
 
+    import { FormControl, FormItem, FormLabel, FormMessage } from '~/components/ui/form'
     import { publicExperienceInsertSchema } from '~~/types/schemas'
 
     import type { Props as FormProps } from '~/components/common/AddEditFormWrapper.vue'
