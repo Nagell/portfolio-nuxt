@@ -3,6 +3,7 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: { enabled: true },
 
+    ignore: [ '**/__tests__/**' ],
     ignoreOptions: {
         allowRelativePaths: true,
     },
@@ -44,11 +45,7 @@ export default defineNuxtConfig({
         }
     },
     sitemap: {
-        exclude: [
-            '/__tests__/**',
-            '/admin/**',
-            '/login',
-        ],
+        exclude: [ '/__tests__/**', '/admin/**', '/login' ]
     },
     // shadcn-nuxt disabled, using Nuxt's native component auto-import instead
     components: {
