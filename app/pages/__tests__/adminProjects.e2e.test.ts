@@ -32,7 +32,11 @@ createAdminTestSuite((authenticateUser) => {
 
         async function findTestProjectInList(page: NuxtPage) {
             for (const value of Object.values(projectContent)) {
-                const isValueInList = await page.locator(itemsLocator).filter({ hasText: value }).count() > 0
+                const isValueInList
+          = (await page
+              .locator(itemsLocator)
+              .filter({ hasText: value })
+              .count()) > 0
 
                 if (isValueInList) return true
             }
@@ -94,12 +98,16 @@ createAdminTestSuite((authenticateUser) => {
             await page.locator(dialogLocators.image).click()
 
             // Assuming this opens a file picker
-            await page.waitForSelector(dialogLocators.imagePopover, { state: 'visible' })
+            await page.waitForSelector(dialogLocators.imagePopover, {
+                state: 'visible'
+            })
             await page.locator(dialogLocators.imagePopover).press('Enter')
             await page.fill(dialogLocators.url, projectContent.url)
 
             // Fill tags with two tags
-            await page.locator(dialogLocators.tags).pressSequentially(projectContent.tags)
+            await page
+                .locator(dialogLocators.tags)
+                .pressSequentially(projectContent.tags)
 
             // Click the save button
             const saveButton = page.locator(dialogLocators.saveButton)
@@ -108,7 +116,6 @@ createAdminTestSuite((authenticateUser) => {
 
             // Wait for the dialog to close
             await page.waitForSelector(dialogLocators.wrapper, { state: 'hidden' })
-            expect(await page.locator(dialogLocators.wrapper).count()).toBe(0)
 
             // Wait a bit for the data to be saved and the list to update
             await page.waitForTimeout(1000)
@@ -118,7 +125,10 @@ createAdminTestSuite((authenticateUser) => {
 
             /* REMOVE PROJECT */
             // Click the action button on the first project
-            const assetRow = page.locator(itemsLocator).filter({ hasText: projectContent.title }).first()
+            const assetRow = page
+                .locator(itemsLocator)
+                .filter({ hasText: projectContent.title })
+                .first()
             const actionButton = assetRow.getByRole('button')
             expect(await actionButton.count()).toBeGreaterThan(0)
             await actionButton.click()

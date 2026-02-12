@@ -1,6 +1,9 @@
 <template>
     <div>
-        <Sheet @update:open="setIsFormOpen">
+        <Sheet
+            :open="isFormOpen"
+            @update:open="setIsFormOpen"
+        >
             <AdminProjectAddEditForm
                 v-if="isFormOpen"
                 :current-project="currentItem"
@@ -15,8 +18,14 @@
 <script setup lang="ts">
     import type { PatchProjectQuery, PostProjectQuery, Project } from '~~/types/projects.types'
 
-    function submit(data: PostProjectQuery | PatchProjectQuery) {
-        onSubmit({ query: data })
+    async function submit(data: PostProjectQuery | PatchProjectQuery) {
+        try {
+            await onSubmit({ query: data })
+            await refreshNuxtData('projects')
+        }
+        finally {
+            setIsFormOpen(false)
+        }
     }
 
     const { isFormOpen, currentItem, formMode, onSubmit, setIsFormOpen, setFormData }

@@ -1,6 +1,9 @@
 <template>
     <div>
-        <Sheet @update:open="setIsFormOpen">
+        <Sheet
+            :open="isFormOpen"
+            @update:open="setIsFormOpen"
+        >
             <AdminAssetsAddEditForm
                 v-if="isFormOpen"
                 :current-asset="currentItem"
@@ -15,8 +18,14 @@
 <script setup lang="ts">
     import type { Asset } from '~~/types/files.types'
 
-    function submit(data: FormData) {
-        onSubmit({ body: data })
+    async function submit(data: FormData) {
+        try {
+            await onSubmit({ body: data })
+            await refreshNuxtData('assets')
+        }
+        finally {
+            setIsFormOpen(false)
+        }
     }
 
     const { isFormOpen, currentItem, formMode, onSubmit, setIsFormOpen, setFormData }

@@ -16,10 +16,16 @@ export function createTestSupabaseClient(): SupabaseClient {
     }
 
     const supabaseUrl = process.env.SUPABASE_URL || 'http://127.0.0.1:54321'
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_KEY || process.env.SUPABASE_ANON_KEY || ''
+    const supabaseKey
+    = process.env.SUPABASE_SERVICE_ROLE_KEY
+    || process.env.SUPABASE_KEY
+    || process.env.SUPABASE_ANON_KEY
+    || ''
 
     if (!supabaseKey) {
-        throw new Error('SUPABASE_SERVICE_ROLE_KEY, SUPABASE_KEY or SUPABASE_ANON_KEY environment variable is required')
+        throw new Error(
+            'SUPABASE_SERVICE_ROLE_KEY, SUPABASE_KEY or SUPABASE_ANON_KEY environment variable is required'
+        )
     }
 
     testSupabaseClient = createClient(supabaseUrl, supabaseKey, {
@@ -54,9 +60,11 @@ export const testUser: TestUser = {
  * @param supabase - Supabase client instance
  * @returns Promise<boolean> - Success status
  */
-export async function createTestUser(supabase: SupabaseClient): Promise<boolean> {
+export async function createTestUser(
+    supabase: SupabaseClient
+): Promise<boolean> {
     try {
-        // First, try to create with auth.admin (requires service role)
+    // First, try to create with auth.admin (requires service role)
         const { error } = await supabase.auth.admin.createUser({
             email: testUser.email,
             password: testUser.password,
@@ -73,7 +81,10 @@ export async function createTestUser(supabase: SupabaseClient): Promise<boolean>
                 password: testUser.password,
             })
 
-            if (signUpError && !signUpError.message.includes('User already registered')) {
+            if (
+                signUpError
+                && !signUpError.message.includes('User already registered')
+            ) {
                 console.error('Error creating test user:', signUpError.message)
                 return false
             }
@@ -92,7 +103,9 @@ export async function createTestUser(supabase: SupabaseClient): Promise<boolean>
  * @param supabase - Supabase client instance
  * @returns Promise<boolean> - Success status
  */
-export async function signInTestUser(supabase: SupabaseClient): Promise<boolean> {
+export async function signInTestUser(
+    supabase: SupabaseClient
+): Promise<boolean> {
     try {
         const { data, error } = await supabase.auth.signInWithPassword({
             email: testUser.email,
@@ -117,7 +130,9 @@ export async function signInTestUser(supabase: SupabaseClient): Promise<boolean>
  * @param supabase - Supabase client instance
  * @returns Promise<boolean> - Success status
  */
-export async function signOutTestUser(supabase: SupabaseClient): Promise<boolean> {
+export async function signOutTestUser(
+    supabase: SupabaseClient
+): Promise<boolean> {
     try {
         const { error } = await supabase.auth.signOut()
         if (error) {
@@ -137,9 +152,14 @@ export async function signOutTestUser(supabase: SupabaseClient): Promise<boolean
  * @param supabase - Supabase client instance
  * @returns Promise<{ isValid: boolean, user: any | null }> - Session validity and user data
  */
-export async function getTestUserSession(supabase: SupabaseClient): Promise<{ isValid: boolean, user: any | null }> {
+export async function getTestUserSession(
+    supabase: SupabaseClient
+): Promise<{ isValid: boolean, user: any | null }> {
     try {
-        const { data: { session }, error } = await supabase.auth.getSession()
+        const {
+            data: { session },
+            error
+        } = await supabase.auth.getSession()
 
         if (error) {
             console.error('Error getting session:', error)
@@ -162,9 +182,14 @@ export async function getTestUserSession(supabase: SupabaseClient): Promise<{ is
  * @param supabase - Supabase client instance
  * @returns Promise<{ isValid: boolean, user: any | null }> - User validity and data
  */
-export async function getTestUser(supabase: SupabaseClient): Promise<{ isValid: boolean, user: any | null }> {
+export async function getTestUser(
+    supabase: SupabaseClient,
+): Promise<{ isValid: boolean, user: any | null }> {
     try {
-        const { data: { user }, error } = await supabase.auth.getUser()
+        const {
+            data: { user },
+            error
+        } = await supabase.auth.getUser()
 
         if (error) {
             console.error('Error getting user:', error)
@@ -188,7 +213,9 @@ export async function getTestUser(supabase: SupabaseClient): Promise<{ isValid: 
  * @param page - Playwright page instance
  * @returns Promise<boolean> - Success status
  */
-export async function createTestBrowserSession(page: NuxtPage): Promise<boolean> {
+export async function createTestBrowserSession(
+    page: NuxtPage
+): Promise<boolean> {
     try {
         // Create a session server-side first
         const supabase = createTestSupabaseClient()
@@ -206,7 +233,7 @@ export async function createTestBrowserSession(page: NuxtPage): Promise<boolean>
 
         // Set cookies in the exact format that @nuxtjs/supabase uses
         const sessionJson = JSON.stringify(data.session)
-        const base64Session = Buffer.from(sessionJson).toString('base64')
+        const base64Session = Buffer.from(sessionJson).toString('base64url')
 
         // Split the base64 string into chunks
         const chunkSize = 4000 // Approximate chunk size

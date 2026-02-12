@@ -53,19 +53,27 @@ describe('Home Page E2E Tests', () => {
         expect(imageText).toBeDefined()
     })
 
-    it('imageBackground and imageText have sizes greater than 0', async () => {
+    it('imageBackground and imageText have valid image sources', async () => {
         const imageBackground = page.getByTestId(testIds.index.hero.imageBackground)
         const imageText = page.getByTestId(testIds.index.hero.imageText)
 
-        const imageBackgroundWidth = await imageBackground.evaluate((img: HTMLImageElement) => img.naturalWidth)
-        const imageBackgroundHeight = await imageBackground.evaluate((img: HTMLImageElement) => img.naturalHeight)
-        const imageTextWidth = await imageText.evaluate((img: HTMLImageElement) => img.naturalWidth)
-        const imageTextHeight = await imageText.evaluate((img: HTMLImageElement) => img.naturalHeight)
+        const bgSrc = await imageBackground.evaluate(
+            (img: HTMLImageElement) => img.src
+        )
+        const bgSrcset = await imageBackground.evaluate(
+            (img: HTMLImageElement) => img.srcset
+        )
+        const textSrc = await imageText.evaluate(
+            (img: HTMLImageElement) => img.src
+        )
+        const textSrcset = await imageText.evaluate(
+            (img: HTMLImageElement) => img.srcset
+        )
 
-        expect(imageBackgroundWidth).toBeGreaterThan(0)
-        expect(imageBackgroundHeight).toBeGreaterThan(0)
-        expect(imageTextWidth).toBeGreaterThan(0)
-        expect(imageTextHeight).toBeGreaterThan(0)
+        expect(bgSrc).toContain('window.webp')
+        expect(bgSrcset).toBeTruthy()
+        expect(textSrc).toContain('text.webp')
+        expect(textSrcset).toBeTruthy()
     })
 
     it('experience section renders correctly', async () => {

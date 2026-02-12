@@ -1,7 +1,9 @@
 <template>
     <SheetContent class="w-full sm:w-[540px]">
         <SheetHeader>
-            <SheetTitle>{{ mode === 'edit' ? 'Edit' : 'Add' }} {{ title }}</SheetTitle>
+            <SheetTitle>
+                {{ mode === "edit" ? "Edit" : "Add" }} {{ title }}
+            </SheetTitle>
             <SheetDescription>
                 {{ description }}
             </SheetDescription>
@@ -12,15 +14,13 @@
         >
             <slot />
             <SheetFooter>
-                <SheetClose as-child>
-                    <Button
-                        type="submit"
-                        :disabled="!isVerified"
-                        :data-testid="buttonTestId"
-                    >
-                        {{ buttonLabel }}
-                    </Button>
-                </SheetClose>
+                <Button
+                    type="submit"
+                    :disabled="!isVerified"
+                    :data-testid="buttonTestId"
+                >
+                    {{ buttonLabel }}
+                </Button>
             </SheetFooter>
         </form>
     </SheetContent>
@@ -43,9 +43,7 @@
         submit: []
     }>()
 
-    const buttonLabel = computed(
-        () => props.mode === 'add' ? 'Add' : 'Edit'
-    )
+    const buttonLabel = computed(() => (props.mode === 'add' ? 'Add' : 'Edit'))
 
     function onSubmit() {
         emits('submit')

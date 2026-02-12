@@ -8,7 +8,7 @@ export default defineEventHandler(async (event) => {
             const user = await serverSupabaseUser(event)
 
             // Check if user exists and is properly authenticated
-            if (!user || !user.id) {
+            if (!user || !user.sub) {
                 throw createError({
                     status: 401,
                     statusMessage: 'Authentication required'
