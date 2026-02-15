@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
         .from('projects')
         .insert([ sanitizedQuery ])
 
-    if (error) throw createError({ statusMessage: error.message })
+    if (error) throw createError({ statusCode: Number(error.code) || 500, statusMessage: error.message })
 
     return data
 })

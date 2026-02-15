@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
         .select('*')
         .order('id', { ascending: false })
 
-    if (error) throw createError({ statusMessage: error.message })
+    if (error) throw createError({ statusCode: Number(error.code) || 500, statusMessage: error.message })
 
     return data as Project[]
 })
