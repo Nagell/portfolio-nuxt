@@ -63,7 +63,7 @@ jobs:
                   SERVICE_KEY=$(supabase status -o env | grep SERVICE_ROLE_KEY | cut -d'"' -f2)
                   echo '%PDF-1.0' > /tmp/cv.pdf
                   curl -s -X POST \
-                    "http://127.0.0.1:54321/storage/v1/object/assets/Empty - CV.pdf" \
+                    "http://127.0.0.1:54321/storage/v1/object/assets/Empty%20-%20CV.pdf" \
                     -H "Authorization: Bearer $SERVICE_KEY" \
                     -H "Content-Type: application/pdf" \
                     --data-binary @/tmp/cv.pdf

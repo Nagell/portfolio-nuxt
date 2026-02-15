@@ -32,7 +32,7 @@ describe('User Setup', () => {
 
         expect(isValid).toBe(true)
         expect(user).toBeTruthy()
-        expect(user.email).toBe(testUser.email)
+        expect(user!.email).toBe(testUser.email)
     })
 
     it('should sign out test user successfully and session should be invalid', async () => {

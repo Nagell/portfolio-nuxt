@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
 import type { NuxtPage } from '@nuxt/test-utils'
-import type { SupabaseClient } from '@supabase/supabase-js'
+import type { SupabaseClient, User } from '@supabase/supabase-js'
 
 // Singleton pattern to ensure only one test client instance
 let testSupabaseClient: SupabaseClient | null = null
@@ -150,11 +150,11 @@ export async function signOutTestUser(
 /**
  * Gets the current session from Supabase
  * @param supabase - Supabase client instance
- * @returns Promise<{ isValid: boolean, user: any | null }> - Session validity and user data
+ * @returns Promise<{ isValid: boolean, user: User | null }> - Session validity and user data
  */
 export async function getTestUserSession(
     supabase: SupabaseClient
-): Promise<{ isValid: boolean, user: any | null }> {
+): Promise<{ isValid: boolean, user: User | null }> {
     try {
         const {
             data: { session },
@@ -180,11 +180,11 @@ export async function getTestUserSession(
 /**
  * Gets the current user from Supabase
  * @param supabase - Supabase client instance
- * @returns Promise<{ isValid: boolean, user: any | null }> - User validity and data
+ * @returns Promise<{ isValid: boolean, user: User | null }> - User validity and data
  */
 export async function getTestUser(
     supabase: SupabaseClient,
-): Promise<{ isValid: boolean, user: any | null }> {
+): Promise<{ isValid: boolean, user: User | null }> {
     try {
         const {
             data: { user },
