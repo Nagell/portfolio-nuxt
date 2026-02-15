@@ -1,7 +1,7 @@
 <template>
     <div
         ref="experienceItem"
-        class="w-full flex gap-32md:gap-8 flex-col md:flex-row opacity-0 transition-all will-change-transform"
+        class="w-full flex md:gap-8 flex-col md:flex-row opacity-0 transition-all will-change-transform"
     >
         <div class="w-56 shrink-0">
             <!-- dates -->
