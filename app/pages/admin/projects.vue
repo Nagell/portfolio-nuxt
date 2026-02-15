@@ -16,15 +16,21 @@
 </template>
 
 <script setup lang="ts">
+    import { useToast } from '~/components/ui/toast'
+
     import type { PatchProjectQuery, PostProjectQuery, Project } from '~~/types/projects.types'
+
+    const { toast } = useToast()
 
     async function submit(data: PostProjectQuery | PatchProjectQuery) {
         try {
             await onSubmit({ query: data })
             await refreshNuxtData('projects')
-        }
-        finally {
             setIsFormOpen(false)
+        }
+        catch (error) {
+            console.error('Failed to save project:', error)
+            toast({ title: 'Error', description: 'Failed to save project. Please try again.', variant: 'destructive' })
         }
     }
 

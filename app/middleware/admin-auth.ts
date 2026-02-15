@@ -4,7 +4,12 @@ export default defineNuxtRouteMiddleware(async () => {
     // it initializes in page:start hook (which runs after middlewares).
     // Use getClaims() directly instead.
     const supabase = useSupabaseClient()
-    const { data } = await supabase.auth.getClaims()
+    const { data, error } = await supabase.auth.getClaims()
+
+    if (error) {
+        console.error('Auth claims check failed:', error.message)
+        throw createError({ statusCode: 500, statusMessage: 'Authentication service unavailable' })
+    }
 
     if (!data?.claims) return navigateTo('/login')
 })
