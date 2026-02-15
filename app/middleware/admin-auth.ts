@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware(async () => {
 
     if (error) {
         console.error('Auth claims check failed:', error.message)
-        throw createError({ statusCode: 500, statusMessage: 'Authentication service unavailable' })
+        return navigateTo('/login')
     }
 
     if (!data?.claims) return navigateTo('/login')
