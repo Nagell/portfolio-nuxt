@@ -42,31 +42,23 @@ jobs:
             - name: Create env files
               run: |
                   ANON_KEY=$(supabase status -o env | grep ANON_KEY | cut -d'"' -f2)
+                  SERVICE_KEY=$(supabase status -o env | grep SERVICE_ROLE_KEY | cut -d'"' -f2)
                   {
                     echo 'SUPABASE_URL=http://127.0.0.1:54321'
                     echo "SUPABASE_KEY=$ANON_KEY"
+                    echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_KEY"
                     echo 'NODE_TLS_REJECT_UNAUTHORIZED=0'
                     echo 'NUXT_IMAGE_DOMAINS="localhost,localhost:54321"'
                     echo 'NUXT_SITE_URL=http://localhost:3000'
                     echo 'NUXT_SITE_NAME=CI'
                     echo 'VITE_ORIGIN=http://localhost:3000'
-                    echo 'VITE_LINK_LINKEDIN=https://www.linkedin.com/in/test'
-                    echo 'VITE_LINK_XING=https://www.xing.com/profile/Test'
-                    echo 'VITE_LINK_MEDIUM=https://medium.com/@test'
-                    echo 'VITE_LINK_GITHUB=https://github.com/test'
+                    echo 'VITE_LINK_LINKEDIN=https://www.linkedin.com/in/dawidnitka'
+                    echo 'VITE_LINK_XING=https://www.xing.com/profile/Dawid_Nitka'
+                    echo 'VITE_LINK_MEDIUM=https://medium.com/@dawidnitka'
+                    echo 'VITE_LINK_GITHUB=https://github.com/Nagell'
                     echo 'VITE_CV_FILE_NAME="Empty - CV.pdf"'
                   } > .env
                   cp .env .env.test
-
-            - name: Upload CV file to Supabase storage
-              run: |
-                  SERVICE_KEY=$(supabase status -o env | grep SERVICE_ROLE_KEY | cut -d'"' -f2)
-                  echo '%PDF-1.0' > /tmp/cv.pdf
-                  curl -s -X POST \
-                    "http://127.0.0.1:54321/storage/v1/object/assets/Empty%20-%20CV.pdf" \
-                    -H "Authorization: Bearer $SERVICE_KEY" \
-                    -H "Content-Type: application/pdf" \
-                    --data-binary @/tmp/cv.pdf
 
             - name: Install Playwright browsers
               run: npx playwright install --with-deps chromium
