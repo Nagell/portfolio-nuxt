@@ -34,7 +34,7 @@ jobs:
             - run: yarn install --frozen-lockfile
 
             - name: Install Supabase CLI
-              run: npm install -g supabase@latest
+              uses: supabase/setup-cli@v1
 
             - name: Start Supabase
               run: supabase start
