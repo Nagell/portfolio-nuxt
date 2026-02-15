@@ -25,12 +25,19 @@
     async function submit(data: FormData) {
         try {
             await onSubmit({ body: data })
-            await refreshNuxtData('assets')
             setIsFormOpen(false)
         }
         catch (error) {
             console.error('Failed to save asset:', error)
             toast({ title: 'Error', description: 'Failed to save asset. Please try again.', variant: 'destructive' })
+            return
+        }
+
+        try {
+            await refreshNuxtData('assets')
+        }
+        catch (error) {
+            console.error('Failed to refresh assets list:', error)
         }
     }
 

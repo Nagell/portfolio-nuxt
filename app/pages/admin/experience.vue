@@ -25,12 +25,19 @@
     async function submit(data: PostExperienceQuery | PatchExperienceQuery) {
         try {
             await onSubmit({ query: data })
-            await refreshNuxtData('experience')
             setIsFormOpen(false)
         }
         catch (error) {
             console.error('Failed to save experience:', error)
             toast({ title: 'Error', description: 'Failed to save experience. Please try again.', variant: 'destructive' })
+            return
+        }
+
+        try {
+            await refreshNuxtData('experience')
+        }
+        catch (error) {
+            console.error('Failed to refresh experience list:', error)
         }
     }
 

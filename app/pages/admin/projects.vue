@@ -25,12 +25,19 @@
     async function submit(data: PostProjectQuery | PatchProjectQuery) {
         try {
             await onSubmit({ query: data })
-            await refreshNuxtData('projects')
             setIsFormOpen(false)
         }
         catch (error) {
             console.error('Failed to save project:', error)
             toast({ title: 'Error', description: 'Failed to save project. Please try again.', variant: 'destructive' })
+            return
+        }
+
+        try {
+            await refreshNuxtData('projects')
+        }
+        catch (error) {
+            console.error('Failed to refresh project list:', error)
         }
     }
 
