@@ -137,7 +137,7 @@
 
     /** Log out the current user */
     async function logout() {
-        supabaseClient.auth.signOut({})
+        await supabaseClient.auth.signOut({})
         await navigateTo('/login')
     }
 </script>
