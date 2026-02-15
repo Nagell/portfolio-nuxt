@@ -43,5 +43,24 @@ createAdminTestSuite((authenticateUser) => {
 
             await page.close()
         })
+
+        it('should maintain authentication after page refresh', async () => {
+            const page = await createPage()
+
+            // Authenticate and navigate to an admin page
+            await page.goto(url(URLS.ADMIN), { waitUntil: 'hydration' })
+            await authenticateUser(page)
+            await page.goto(url(URLS.ADMIN_PROJECTS), { waitUntil: 'hydration' })
+            expect(page.url()).toContain(URLS.ADMIN_PROJECTS)
+
+            // Full page refresh — regression test for getClaims() workaround
+            await page.reload({ waitUntil: 'networkidle' })
+
+            // Should stay on the admin page, not redirect to login
+            expect(page.url()).toContain(URLS.ADMIN_PROJECTS)
+            expect(page.url()).not.toContain(URLS.LOGIN)
+
+            await page.close()
+        })
     })
 })
