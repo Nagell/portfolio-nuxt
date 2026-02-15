@@ -1,0 +1,80 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+
+jobs:
+    lint-and-typecheck:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: yarn
+
+            - run: yarn install --frozen-lockfile
+            - run: yarn lint
+            - run: yarn typecheck
+
+    e2e-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+                  cache: yarn
+
+            - run: yarn install --frozen-lockfile
+
+            - name: Install Supabase CLI
+              run: npm install -g supabase@latest
+
+            - name: Start Supabase
+              run: supabase start
+
+            - name: Create env files
+              run: |
+                  ANON_KEY=$(supabase status -o env | grep ANON_KEY | cut -d'"' -f2)
+                  {
+                    echo 'SUPABASE_URL=http://127.0.0.1:54321'
+                    echo "SUPABASE_KEY=$ANON_KEY"
+                    echo 'NODE_TLS_REJECT_UNAUTHORIZED=0'
+                    echo 'NUXT_IMAGE_DOMAINS="localhost,localhost:54321"'
+                    echo 'NUXT_SITE_URL=http://localhost:3000'
+                    echo 'NUXT_SITE_NAME=CI'
+                    echo 'VITE_ORIGIN=http://localhost:3000'
+                    echo 'VITE_LINK_LINKEDIN=https://www.linkedin.com/in/test'
+                    echo 'VITE_LINK_XING=https://www.xing.com/profile/Test'
+                    echo 'VITE_LINK_MEDIUM=https://medium.com/@test'
+                    echo 'VITE_LINK_GITHUB=https://github.com/test'
+                    echo 'VITE_CV_FILE_NAME="Empty - CV.pdf"'
+                  } > .env
+                  cp .env .env.test
+
+            - name: Upload CV file to Supabase storage
+              run: |
+                  SERVICE_KEY=$(supabase status -o env | grep SERVICE_ROLE_KEY | cut -d'"' -f2)
+                  echo '%PDF-1.0' > /tmp/cv.pdf
+                  curl -s -X POST \
+                    "http://127.0.0.1:54321/storage/v1/object/assets/Empty - CV.pdf" \
+                    -H "Authorization: Bearer $SERVICE_KEY" \
+                    -H "Content-Type: application/pdf" \
+                    --data-binary @/tmp/cv.pdf
+
+            - name: Install Playwright browsers
+              run: npx playwright install --with-deps chromium
+
+            - name: Start dev server
+              run: yarn dev &
+
+            - name: Wait for dev server
+              run: npx wait-on http://localhost:3000 --timeout 60000
+
+            - run: yarn test
