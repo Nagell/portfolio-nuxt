@@ -43,6 +43,7 @@
         "shadcn-nuxt": "^0.10.4",
         "sharp": "0.32.6",
         "tailwind-merge": "^2.5.4",
+        "tar": "^7.5.7",
         "vee-validate": "^4.15.1",
         "vue3-simple-icons": "^15.6.0",
         "zod": "^4.1.11"
@@ -80,7 +81,7 @@
         "vitest": "3.2.4"
     },
     "resolutions": {
-        "tar": "^7.5.4",
+        "tar": "^7.5.7",
         "tar-fs": "^3.1.1",
         "vite": "^7.1.11",
         "@vue/devtools-kit": ">=8.0.3",
