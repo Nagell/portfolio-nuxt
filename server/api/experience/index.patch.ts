@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const sanitizedQuery = sanitizeExperienceQuery(query) as PatchExperienceQuery
 
-    if (!sanitizedQuery.id) throw createError({ statusMessage: 'Experience ID is required' })
+    if (!sanitizedQuery.id) throw createError({ statusCode: 400, statusMessage: 'Experience ID is required' })
 
     const { data, error } = await superbaseClient
         .from('experience')
