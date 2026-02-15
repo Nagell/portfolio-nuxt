@@ -32,6 +32,7 @@
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { Button } from '~/components/ui/button'
+    import { useToast } from '~/components/ui/toast'
     import testIds from '~/utils/testIds'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
@@ -119,12 +120,20 @@
         key: 'projects',
         method: 'get'
     })
+    const { toast } = useToast()
+
     /** Delete a project row from the database */
     async function deleteProject(data: DeleteProjectQuery) {
-        await $fetch(`/api/projects`, {
-            headers: useRequestHeaders([ 'cookie' ]),
-            query: data,
-            method: 'delete'
-        })
+        try {
+            await $fetch(`/api/projects`, {
+                headers: useRequestHeaders([ 'cookie' ]),
+                query: data,
+                method: 'delete'
+            })
+        }
+        catch (error) {
+            console.error('Failed to delete project:', error)
+            toast({ title: 'Error', description: 'Failed to delete project. Please try again.', variant: 'destructive' })
+        }
     }
 </script>

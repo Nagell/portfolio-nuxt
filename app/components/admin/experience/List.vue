@@ -31,6 +31,7 @@
 
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
     import { Button } from '~/components/ui/button'
+    import { useToast } from '~/components/ui/toast'
     import testIds from '~/utils/testIds'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
@@ -114,12 +115,20 @@
         key: 'experience',
         method: 'get'
     })
+    const { toast } = useToast()
+
     /** Delete an experience row from the database */
     async function deleteExperience(data: DeleteExperienceQuery) {
-        await $fetch(`/api/experience`, {
-            headers: useRequestHeaders([ 'cookie' ]),
-            query: data,
-            method: 'delete'
-        })
+        try {
+            await $fetch(`/api/experience`, {
+                headers: useRequestHeaders([ 'cookie' ]),
+                query: data,
+                method: 'delete'
+            })
+        }
+        catch (error) {
+            console.error('Failed to delete experience:', error)
+            toast({ title: 'Error', description: 'Failed to delete experience. Please try again.', variant: 'destructive' })
+        }
     }
 </script>
