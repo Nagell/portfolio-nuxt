@@ -1,8 +1,8 @@
-import { ASSETS_BUCKET } from '~/plugins/constants/assets'
+import { ASSETS_BUCKET } from '~~/app/plugins/constants/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { GetAssetQuery } from '~/types/files.types'
+import type { GetAssetQuery } from '~~/types/files.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
         .from(ASSETS_BUCKET)
         .download(query.name)
 
-    if (error) throw createError({ status: 400, statusMessage: 'No such file' })
+    if (error) throw createError({ statusCode: 404, statusMessage: 'No such file' })
 
     return data
 })

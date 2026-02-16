@@ -1,4 +1,4 @@
-import { ASSETS_BUCKET } from '~/plugins/constants/assets'
+import { ASSETS_BUCKET } from '~~/app/plugins/constants/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
         .from(ASSETS_BUCKET)
         .list()
 
-    if (error) throw createError({ statusMessage: error.message })
+    if (error) throw createError({ statusCode: Number(error.statusCode) || 500, statusMessage: error.message })
 
     return data
 })

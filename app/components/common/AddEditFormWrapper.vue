@@ -1,0 +1,51 @@
+<template>
+    <SheetContent class="w-full sm:w-[540px]">
+        <SheetHeader>
+            <SheetTitle>
+                {{ mode === "edit" ? "Edit" : "Add" }} {{ title }}
+            </SheetTitle>
+            <SheetDescription>
+                {{ description }}
+            </SheetDescription>
+        </SheetHeader>
+        <form
+            class="mt-6 space-y-6"
+            @submit.prevent="onSubmit"
+        >
+            <slot />
+            <SheetFooter>
+                <Button
+                    type="submit"
+                    :disabled="!isVerified"
+                    :data-testid="buttonTestId"
+                >
+                    {{ buttonLabel }}
+                </Button>
+            </SheetFooter>
+        </form>
+    </SheetContent>
+</template>
+
+<script setup lang="ts">
+    import { computed } from 'vue'
+
+    export interface Props {
+        mode: 'add' | 'edit'
+        title?: string
+        description?: string
+        isVerified?: boolean
+        buttonTestId?: string
+    }
+
+    const props = defineProps<Props>()
+
+    const emits = defineEmits<{
+        submit: []
+    }>()
+
+    const buttonLabel = computed(() => (props.mode === 'add' ? 'Add' : 'Edit'))
+
+    function onSubmit() {
+        emits('submit')
+    }
+</script>

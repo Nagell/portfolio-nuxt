@@ -1,4 +1,4 @@
-import { ASSETS_BUCKET } from '~/plugins/constants/assets'
+import { ASSETS_BUCKET } from '~~/app/plugins/constants/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
     const parts = await readMultipartFormData(event)
 
-    if (!parts) throw createError({ status: 400, statusMessage: 'No body in the request' })
+    if (!parts) throw createError({ statusCode: 400, statusMessage: 'No body in the request' })
 
     // prepare Files out of MultiPartData
     const files = parts
@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
             ? new File([ new Uint8Array(part.data) ], part?.filename, { type: part.type })
             : null)
 
-    if (!files.length) throw createError({ status: 400, statusMessage: 'Bad Request: no files in this request' })
+    if (!files.length) throw createError({ statusCode: 400, statusMessage: 'Bad Request: no files in this request' })
 
     const responses = []
     for (const file of files) {
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
                 cacheControl: '3600',
                 upsert: false
             })
-        if (error) throw createError({ statusMessage: error.message })
+        if (error) throw createError({ statusCode: Number(error.statusCode) || 500, statusMessage: error.message })
 
         responses.push(data)
     }

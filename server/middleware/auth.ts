@@ -1,3 +1,5 @@
+import { H3Error } from 'h3'
+
 import { serverSupabaseUser } from '#supabase/server'
 
 export default defineEventHandler(async (event) => {
@@ -7,31 +9,27 @@ export default defineEventHandler(async (event) => {
         try {
             const user = await serverSupabaseUser(event)
 
-            // Check if user exists and is properly authenticated
-            if (!user || !user.id) {
+            if (!user || !user.sub) {
                 throw createError({
-                    status: 401,
+                    statusCode: 401,
                     statusMessage: 'Authentication required'
                 })
             }
 
-            // Verify user session is valid (Supabase users have role 'authenticated' when logged in)
             if (user.role !== 'authenticated') {
                 throw createError({
-                    status: 401,
+                    statusCode: 401,
                     statusMessage: 'Invalid authentication state'
                 })
             }
         }
-        catch (error: any) {
-            // Handle potential Supabase errors gracefully
-            if (error?.statusCode) {
-                throw error // Re-throw our own createError instances
-            }
+        catch (error) {
+            if (error instanceof H3Error) throw error
 
+            console.error('Unexpected auth middleware error:', error)
             throw createError({
-                status: 401,
-                statusMessage: 'Authentication failed'
+                statusCode: 500,
+                statusMessage: 'Internal server error'
             })
         }
     }

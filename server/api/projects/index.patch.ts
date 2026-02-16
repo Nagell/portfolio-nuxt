@@ -1,8 +1,8 @@
-import { sanitizeProjectsQuery } from '~/server/sanitizers/projectsQuery'
+import { sanitizeProjectsQuery } from '~~/server/sanitizers/projectsQuery'
 
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { PatchProjectQuery } from '~/types/projects.types'
+import type { PatchProjectQuery } from '~~/types/projects.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     const query = getQuery(event)
     const sanitizedQuery = sanitizeProjectsQuery(query) as PatchProjectQuery
 
-    if (!sanitizedQuery.id) throw createError({ statusMessage: 'Project ID is required' })
+    if (!sanitizedQuery.id) throw createError({ statusCode: 400, statusMessage: 'Project ID is required' })
 
     const { data, error } = await superbaseClient
         .from('projects')

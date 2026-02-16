@@ -1,8 +1,8 @@
-import { sanitizeProjectsQuery } from '~/server/sanitizers/projectsQuery'
+import { sanitizeProjectsQuery } from '~~/server/sanitizers/projectsQuery'
 
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { PostProjectQuery } from '~/types/projects.types'
+import type { PostProjectQuery } from '~~/types/projects.types'
 
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
         .from('projects')
         .insert([ sanitizedQuery ])
 
-    if (error) throw createError({ statusMessage: error.message })
+    if (error) throw createError({ statusCode: Number(error.code) || 500, statusMessage: error.message })
 
     return data
 })
