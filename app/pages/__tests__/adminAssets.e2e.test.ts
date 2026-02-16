@@ -99,8 +99,9 @@ createAdminTestSuite((authenticateUser) => {
             expect(await actionButton.count()).toBeGreaterThan(0)
             await actionButton.click()
 
-            // Wait for the action menu to appear
+            // Wait for the action menu to appear and the page to settle
             await page.waitForSelector(actionMenuLocator, { state: 'visible' })
+            await page.waitForLoadState('networkidle')
             const actionMenu = page.locator(actionMenuLocator)
             expect(await actionMenu.count()).toBe(1)
 
