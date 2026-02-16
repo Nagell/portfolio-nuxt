@@ -93,15 +93,17 @@ createAdminTestSuite((authenticateUser) => {
             expect(await findTestAssetInList(page, testFileName)).toBe(true)
 
             /* REMOVE ASSET */
+            // Wait for the page to fully settle before interacting with the menu
+            await page.waitForLoadState('networkidle')
+
             // Click the action button on the asset
             const assetRow = page.locator(itemsLocator).filter({ hasText: testFileName }).first()
             const actionButton = assetRow.getByRole('button')
             expect(await actionButton.count()).toBeGreaterThan(0)
             await actionButton.click()
 
-            // Wait for the action menu to appear and the page to settle
+            // Wait for the action menu to appear
             await page.waitForSelector(actionMenuLocator, { state: 'visible' })
-            await page.waitForLoadState('networkidle')
             const actionMenu = page.locator(actionMenuLocator)
             expect(await actionMenu.count()).toBe(1)
 
