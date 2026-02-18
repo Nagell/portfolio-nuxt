@@ -86,11 +86,10 @@ createAdminTestSuite((authenticateUser) => {
             await page.waitForSelector(dialogLocators.wrapper, { state: 'hidden' })
             expect(await page.locator(dialogLocators.wrapper).count()).toBe(0)
 
-            // Wait a bit for the data to be saved and the list to update
-            await page.waitForTimeout(1000)
-
-            // Check if the uploaded asset appears in the list
-            expect(await findTestAssetInList(page, testFileName)).toBe(true)
+            // Wait for the uploaded asset to appear in the list
+            const uploadedAssetLocator = page.locator(itemsLocator).filter({ hasText: testFileName })
+            await uploadedAssetLocator.waitFor({ state: 'visible', timeout: 10000 })
+            expect(await uploadedAssetLocator.count()).toBeGreaterThan(0)
 
             /* REMOVE ASSET */
             // Wait for the page to fully settle before interacting with the menu
