@@ -16,6 +16,8 @@ logs
 # AI files
 .cursor
 .claude
+_bmad
+_bmad-output
 
 # Misc
 .DS_Store
