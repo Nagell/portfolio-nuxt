@@ -57,8 +57,9 @@
 Projects main goal it to try out a combination of Nuxt and Supabase and the features they both offer.  
 
 The Admin Dashboard is built with SSR and CRUD operations are done on the server side.  
-The landing pages / accessible parts on the other hand are utilizing Incremental Static Regeneration (ISR),  
-which means that the data is fetched at build time and then served from the cache.
+The home page uses Incremental Static Regeneration (ISR) — cached indefinitely on Vercel's CDN  
+and revalidated on-demand after each content change.  
+Static pages (legal notice, privacy policy) are prerendered at build time.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -169,6 +170,7 @@ More on this topic can be found in the [development docs](./docs/DEVELOPMENT.md)
 - [x] Improve a11y - [link](https://www.a11yproject.com/checklist/)
 - [x] Add Legal Notice and Privacy Policy
 - [x] Add Vitest and tests
+- [x] Add on-demand ISR cache revalidation
 - [ ] Add i18n
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

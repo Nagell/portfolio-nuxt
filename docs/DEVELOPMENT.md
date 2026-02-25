@@ -17,6 +17,7 @@
     - [Connecting to the external Supabase DB (production)](#connecting-to-the-external-supabase-db-production)
     - [Pushing migrations](#pushing-migrations)
     - [Pulling changes](#pulling-changes)
+  - [Vercel ISR revalidation](#vercel-isr-revalidation)
   - [Testing](#testing-1)
 
 ## Documentation
@@ -194,6 +195,28 @@ yarn supabase db reset
 
 # To seed buckets manually run
 yarn supabase seed buckets
+```
+
+<p align="right">(<a href="#development-top">back to top</a>)</p>
+
+## Vercel ISR revalidation
+
+The home page (`/`) uses Vercel On-Demand ISR. Cached HTML is invalidated automatically after each content mutation (project or experience CRUD) via `server/utils/revalidatePage.ts`.
+
+Two tokens must be configured in Vercel project settings:
+
+| Variable | Set by | Purpose |
+| --- | --- | --- |
+| `VERCEL_BYPASS_TOKEN` | You (manually) | ISR cache bypass — sent as `x-prerender-revalidate` header. Also baked into the Vercel output config at build time via `nitro.vercel.config.bypassToken` in `nuxt.config.ts`. |
+| `VERCEL_AUTOMATION_BYPASS_SECRET` | Vercel (auto-injected) | Deployment Protection bypass — sent as `x-vercel-protection-bypass` header. Required for preview deployments with protection enabled. Created via Vercel → Project Settings → Security → __Protection Bypass for Automation__. |
+
+> [!IMPORTANT]
+> `VERCEL_BYPASS_TOKEN` must be set in Vercel project settings __before__ the build that first introduces `nitro.vercel.config.bypassToken`. If it is added after, a new deployment must be triggered so the correct value is baked into the output config.
+
+Generate a token with:
+
+```sh
+openssl rand -base64 32
 ```
 
 <p align="right">(<a href="#development-top">back to top</a>)</p>

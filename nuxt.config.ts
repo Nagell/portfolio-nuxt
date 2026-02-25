@@ -9,8 +9,8 @@ export default defineNuxtConfig({
     },
 
     routeRules: {
-        // Prerendered pages - reliable, no -isr bug, served as static files
-        '/': { prerender: true },
+        // ISR - cached indefinitely on Vercel CDN, invalidated on-demand via revalidatePage()
+        '/': { isr: true },
         '/legal-notice': { prerender: true },
         '/privacy-policy': { prerender: true },
         '/admin/**': { robots: false },
@@ -76,6 +76,13 @@ export default defineNuxtConfig({
         classSuffix: '',
         storage: 'localStorage',
         storageKey: 'nuxt-color-mode'
+    },
+    nitro: {
+        vercel: {
+            config: {
+                bypassToken: process.env.VERCEL_BYPASS_TOKEN,
+            },
+        },
     },
     image: {
         format: [ 'webp', 'jpeg' ],

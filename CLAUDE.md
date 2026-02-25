@@ -4,7 +4,8 @@
 
 **Hybrid Nuxt 4 portfolio** with dual rendering:
 
-- **Public pages** (`/`, `/legal-notice`, `/privacy-policy`): **ISR** with 1-hour cache
+- **Home page** (`/`): **ISR** — cached indefinitely on Vercel CDN, revalidated on-demand via `revalidatePage()`
+- **Static pages** (`/legal-notice`, `/privacy-policy`): **prerendered** at build time
 - **Admin dashboard** (`/admin/**`): **SSR** with server-side auth and CRUD
 
 **Stack**: Nuxt 4 + Supabase + TypeScript + Shadcn-vue + Tailwind CSS v3 + Vitest
@@ -71,5 +72,6 @@ yarn type-check           # Run TypeScript checks
 
 - **Auth issues**: Check GitHub OAuth callback URLs match environment
 - **Type errors**: Regenerate types after DB changes
-- **ISR problems**: Verify `routeRules` in `nuxt.config.ts`
+- **ISR problems**: Verify `routeRules` in `nuxt.config.ts`; check `VERCEL_BYPASS_TOKEN`  
+is set in Vercel env vars and was available at build time (see `docs/DEVELOPMENT.md`)
 - **Test failures**: Ensure dev server running, check browser visibility settings
