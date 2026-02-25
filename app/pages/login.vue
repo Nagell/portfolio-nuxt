@@ -1,13 +1,11 @@
 <template>
     <div class="relative min-h-screen flex flex-col-reverse items-center justify-center lg:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
         <div class="relative hidden lg:flex w-full min-h-dvh flex-col bg-gradient-to-bl from-foreground to-muted">
-            <NuxtImg
+            <img
                 src="/images/dashboard.webp"
                 alt="Code text image"
                 class="absolute inset-0 w-full h-full object-cover object-left opacity-80 cover pointer-events-none select-none "
-                format="webp"
-                sizes="xs:700px sm:1000px md:1500px"
-            />
+            >
         </div>
         <div class="relative w-full">
             <div class="absolute top-10 left-12">
