@@ -16,5 +16,6 @@ export default defineEventHandler(async (event) => {
 
     if (error) throw createError({ statusCode: Number(error.code) || 500, statusMessage: error.message })
 
+    revalidatePage('/')
     return data
 })
