@@ -1,10 +1,15 @@
 export function revalidatePage(path: string): void {
     const bypassToken = process.env.VERCEL_BYPASS_TOKEN
-    const siteUrl = process.env.NUXT_SITE_URL
+    // VERCEL_URL is auto-injected per-deployment (preview + production).
+    // Prefer it over NUXT_SITE_URL so preview deployments revalidate their own cache,
+    // not production's. Falls back to NUXT_SITE_URL for local dev (no VERCEL_URL).
+    const siteUrl = process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : process.env.NUXT_SITE_URL
 
     if (!bypassToken || !siteUrl) return
 
-    console.log(`[revalidatePage] Triggering revalidation for: ${path}`)
+    console.log(`[revalidatePage] Triggering revalidation for: ${siteUrl}${path}`)
     fetch(`${siteUrl}${path}`, {
         headers: { 'x-prerender-revalidate': bypassToken },
     }).catch((err) => {
