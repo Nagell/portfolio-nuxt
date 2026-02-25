@@ -9,15 +9,15 @@ export function revalidatePage(path: string): void {
 
     if (!bypassToken || !siteUrl) return
 
-    const headers: Record<string, string> = { 'x-prerender-revalidate': bypassToken }
-    if (process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
-        headers['x-vercel-protection-bypass'] = process.env.VERCEL_AUTOMATION_BYPASS_SECRET
+    const headers: Record<string, string> = {
+        'x-prerender-revalidate': bypassToken,
+        ...(process.env.VERCEL_AUTOMATION_BYPASS_SECRET && {
+            'x-vercel-protection-bypass': process.env.VERCEL_AUTOMATION_BYPASS_SECRET,
+        }),
     }
 
     console.log(`[revalidatePage] Triggering revalidation for: ${siteUrl}${path}`)
-    fetch(`${siteUrl}${path}`, { headers }).then((res) => {
-        console.log(`[revalidatePage] Response: ${res.status} ${res.statusText}`)
-    }).catch((err) => {
-        console.error(`[revalidatePage] Failed to revalidate ${path}:`, err)
-    })
+    fetch(`${siteUrl}${path}`, { headers })
+        .then(res => console.log(`[revalidatePage] Response: ${res.status} ${res.statusText}`))
+        .catch(err => console.error(`[revalidatePage] Failed to revalidate ${path}:`, err))
 }
