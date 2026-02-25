@@ -85,6 +85,7 @@ export default defineNuxtConfig({
         },
     },
     image: {
+        provider: 'ipx',
         format: [ 'webp', 'jpeg' ],
         domains: [
             '127.0.0.1:54321', // Local Supabase

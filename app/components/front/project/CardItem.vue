@@ -8,7 +8,6 @@
                 :src="project.image"
                 alt="Project cover image"
                 class="card__image w-80 aspect-[320/448] object-cover rounded-2xl mx-auto transition-all duration-300"
-                placeholder
                 format="webp"
                 loading="lazy"
             />
