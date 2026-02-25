@@ -12,6 +12,8 @@ export function revalidatePage(path: string): void {
     console.log(`[revalidatePage] Triggering revalidation for: ${siteUrl}${path}`)
     fetch(`${siteUrl}${path}`, {
         headers: { 'x-prerender-revalidate': bypassToken },
+    }).then((res) => {
+        console.log(`[revalidatePage] Response: ${res.status} ${res.statusText}`)
     }).catch((err) => {
         console.error(`[revalidatePage] Failed to revalidate ${path}:`, err)
     })
