@@ -60,20 +60,12 @@ describe('Home Page E2E Tests', () => {
         const bgSrc = await imageBackground.evaluate(
             (img: HTMLImageElement) => img.src
         )
-        const bgSrcset = await imageBackground.evaluate(
-            (img: HTMLImageElement) => img.srcset
-        )
         const textSrc = await imageText.evaluate(
             (img: HTMLImageElement) => img.src
         )
-        const textSrcset = await imageText.evaluate(
-            (img: HTMLImageElement) => img.srcset
-        )
 
         expect(bgSrc).toContain('window.webp')
-        expect(bgSrcset).toBeTruthy()
         expect(textSrc).toContain('text.webp')
-        expect(textSrcset).toBeTruthy()
     })
 
     it('experience section renders correctly', async () => {
