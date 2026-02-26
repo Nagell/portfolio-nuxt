@@ -6,8 +6,14 @@
             class="hero__wrapper-inner w-full h-full relative"
             aria-hidden="true"
         >
-            <div class="hero__animation-frame absolute inset-0">
-                <div class="hero opacity-0 animate-[image-hero-blur_1s_forwards_1000ms] absolute inset-0">
+            <div
+                ref="animationFrame"
+                class="hero__animation-frame absolute inset-0"
+            >
+                <div
+                    ref="imageBackground"
+                    class="hero opacity-0 absolute inset-0"
+                >
                     <img
                         src="/images/window.webp"
                         alt="IDE window image"
@@ -16,9 +22,10 @@
                     >
                 </div>
                 <img
+                    ref="imageText"
                     src="/images/text.webp"
                     alt="Code text image"
-                    class="hero opacity-0 animate-[image-hero-blur_1s_forwards_1500ms] absolute inset-0 w-full"
+                    class="hero opacity-0 absolute inset-0 w-full"
                     :data-testid="testIds.index.hero.imageText"
                 >
             </div>
@@ -28,6 +35,26 @@
 
 <script lang="ts" setup>
     import testIds from '~/utils/testIds'
+
+    const animationFrame = useTemplateRef('animationFrame')
+    const imageBackground = useTemplateRef('imageBackground')
+    const imageText = useTemplateRef('imageText')
+
+    onMounted(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    imageBackground.value?.classList.add('animate-[image-hero-blur_1s_forwards_1000ms]')
+                    imageText.value?.classList.add('animate-[image-hero-blur_1s_forwards_1500ms]')
+                    observer.disconnect()
+                }
+            })
+        }, { threshold: 0.1 })
+
+        if (animationFrame.value) {
+            observer.observe(animationFrame.value)
+        }
+    })
 </script>
 
 <style scoped lang="css">

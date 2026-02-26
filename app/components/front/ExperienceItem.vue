@@ -44,7 +44,7 @@
 
     defineProps<Props>()
 
-    const experienceItem = ref<HTMLElement | null>(null)
+    const experienceItem = useTemplateRef('experienceItem')
 
     /** Adds an intersection observer for animation */
     onMounted(() => {
@@ -59,7 +59,7 @@
         })
 
         if (experienceItem.value) {
-            observer.observe(experienceItem.value as HTMLElement)
+            observer.observe(experienceItem.value)
         }
     })
 
