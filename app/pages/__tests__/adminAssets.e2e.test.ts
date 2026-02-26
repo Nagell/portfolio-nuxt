@@ -59,6 +59,9 @@ createAdminTestSuite((authenticateUser) => {
             // Navigate to assets page
             await page.goto(url(URLS.ADMIN_ASSETS), { waitUntil: 'hydration' })
 
+            // Wait for Supabase SIGNED_IN event to fire and any resulting navigation to settle
+            await page.waitForTimeout(1500)
+
             const testFileName = 'test-image.png'
 
             // The test asset should not be present in the initial list
@@ -77,11 +80,7 @@ createAdminTestSuite((authenticateUser) => {
             const testPNGFile = createTestFile(testFileName, 'png')
             await page.locator(dialogLocators.fileInput).setInputFiles(testPNGFile)
 
-            // Wait for vee-validate to finish and layout to settle
-            await page.waitForTimeout(800)
-            await page.waitForSelector(dialogLocators.wrapper, { state: 'visible' })
-
-            // Click the save button
+            // Click the save button (auth navigation already settled above)
             const saveButton = page.locator(dialogLocators.saveButton)
             await saveButton.click()
 
