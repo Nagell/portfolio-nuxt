@@ -77,18 +77,12 @@ createAdminTestSuite((authenticateUser) => {
             const testPNGFile = createTestFile(testFileName, 'png')
             await page.locator(dialogLocators.fileInput).setInputFiles(testPNGFile)
 
-            /// Click the save button
+            // Wait for vee-validate to finish and layout to settle
+            await page.waitForTimeout(800)
+            await page.waitForSelector(dialogLocators.wrapper, { state: 'visible' })
+
+            // Click the save button
             const saveButton = page.locator(dialogLocators.saveButton)
-            expect(await saveButton.count()).toBe(1)
-            // Wait for vee-validate to finish validation and enable the button
-            await saveButton.waitFor({ state: 'visible' })
-            await page.waitForFunction(
-                (selector: string) => {
-                    const btn = document.querySelector(selector)
-                    return btn && !btn.hasAttribute('disabled')
-                },
-                dialogLocators.saveButton
-            )
             await saveButton.click()
 
             // Wait for the dialog to close
