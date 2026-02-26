@@ -80,6 +80,15 @@ createAdminTestSuite((authenticateUser) => {
             /// Click the save button
             const saveButton = page.locator(dialogLocators.saveButton)
             expect(await saveButton.count()).toBe(1)
+            // Wait for vee-validate to finish validation and enable the button
+            await saveButton.waitFor({ state: 'visible' })
+            await page.waitForFunction(
+                (selector: string) => {
+                    const btn = document.querySelector(selector)
+                    return btn && !btn.hasAttribute('disabled')
+                },
+                dialogLocators.saveButton
+            )
             await saveButton.click()
 
             // Wait for the dialog to close
