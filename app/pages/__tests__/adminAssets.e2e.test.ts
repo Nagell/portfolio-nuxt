@@ -68,8 +68,10 @@ createAdminTestSuite((authenticateUser) => {
             expect(await findTestAssetInList(page, testFileName)).toBe(false)
 
             /* ADD NEW ASSET */
+            // Wait for button to be visible — in slow CI environments the Supabase SIGNED_IN
+            // navigation may still be settling after the timeout above
             const addButton = page.locator(addButtonLocator)
-            expect(await addButton.count()).toBe(1)
+            await addButton.waitFor({ state: 'visible', timeout: 10000 })
             await addButton.click()
 
             // Wait for the dialog to open
