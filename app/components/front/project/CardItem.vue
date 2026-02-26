@@ -9,7 +9,6 @@
                 alt="Project cover image"
                 class="card__image w-80 aspect-[320/448] object-cover rounded-2xl mx-auto transition-all duration-300"
                 format="webp"
-                loading="lazy"
             />
             <div class="absolute bottom-0 w-full p-6 flex items-end justify-between gap-3 md:gap-6">
                 <CommonTypography
