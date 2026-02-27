@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-    import { NavigationMenuIndicator, type NavigationMenuIndicatorProps, useForwardProps } from 'radix-vue'
+    import { NavigationMenuIndicator, type NavigationMenuIndicatorProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<NavigationMenuIndicatorProps & { class?: HTMLAttributes['class'] }>()

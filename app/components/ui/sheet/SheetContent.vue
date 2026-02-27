@@ -29,7 +29,7 @@
         DialogOverlay,
         DialogPortal,
         useForwardPropsEmits,
-    } from 'radix-vue'
+    } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     import { type SheetVariants, sheetVariants } from '.'

@@ -17,7 +17,7 @@
         type NavigationMenuRootEmits,
         type NavigationMenuRootProps,
         useForwardPropsEmits,
-    } from 'radix-vue'
+    } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     import NavigationMenuViewport from './NavigationMenuViewport.vue'

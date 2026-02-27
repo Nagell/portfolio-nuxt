@@ -213,7 +213,7 @@
     import { CalendarDate, DateFormatter, type DateValue, getLocalTimeZone, parseDate, today } from '@internationalized/date'
     import { toTypedSchema } from '@vee-validate/zod'
     import { CalendarIcon, Trash } from 'lucide-vue-next'
-    import { toDate } from 'radix-vue/date'
+    import { toDate } from 'reka-ui/date'
     import { Field as FormField, useForm, useIsFormValid } from 'vee-validate'
 
     import { FormControl, FormItem, FormLabel, FormMessage } from '~/components/ui/form'

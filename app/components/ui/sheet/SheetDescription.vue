@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-    import { DialogDescription, type DialogDescriptionProps } from 'radix-vue'
+    import { DialogDescription, type DialogDescriptionProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<DialogDescriptionProps & { class?: HTMLAttributes['class'] }>()

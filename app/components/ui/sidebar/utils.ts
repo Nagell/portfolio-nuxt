@@ -1,4 +1,4 @@
-import { createContext } from 'radix-vue'
+import { createContext } from 'reka-ui'
 
 import type { ComputedRef, Ref } from 'vue'
 

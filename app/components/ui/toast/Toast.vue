@@ -10,13 +10,13 @@
 
 <script setup lang="ts">
 
-    import { ToastRoot, useForwardPropsEmits } from 'radix-vue'
+    import { ToastRoot, useForwardPropsEmits } from 'reka-ui'
     import { computed } from 'vue'
 
     import { toastVariants } from '.'
 
     import type { ToastProps } from '.'
-    import type { ToastRootEmits } from 'radix-vue'
+    import type { ToastRootEmits } from 'reka-ui'
 
     const props = defineProps<ToastProps>()
 

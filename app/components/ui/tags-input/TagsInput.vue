@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-    import { TagsInputRoot, type TagsInputRootEmits, type TagsInputRootProps, useForwardPropsEmits } from 'radix-vue'
+    import { TagsInputRoot, type TagsInputRootEmits, type TagsInputRootProps, useForwardPropsEmits } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<TagsInputRootProps & { class?: HTMLAttributes['class'] }>()

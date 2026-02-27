@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
     import { Search } from 'lucide-vue-next'
-    import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'radix-vue'
+    import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     defineOptions({

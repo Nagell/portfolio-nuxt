@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { CalendarGridRow, type CalendarGridRowProps, useForwardProps } from 'radix-vue'
+    import { CalendarGridRow, type CalendarGridRowProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<CalendarGridRowProps & { class?: HTMLAttributes['class'] }>()

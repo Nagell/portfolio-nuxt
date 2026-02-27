@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-    import { DropdownMenuTrigger, type DropdownMenuTriggerProps, useForwardProps } from 'radix-vue'
+    import { DropdownMenuTrigger, type DropdownMenuTriggerProps, useForwardProps } from 'reka-ui'
 
     const props = defineProps<DropdownMenuTriggerProps>()
 

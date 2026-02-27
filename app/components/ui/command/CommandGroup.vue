@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-    import { ComboboxGroup, ComboboxLabel } from 'radix-vue'
+    import { ComboboxGroup, ComboboxLabel } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
-    import type { ComboboxGroupProps } from 'radix-vue'
+    import type { ComboboxGroupProps } from 'reka-ui'
 
     const props = defineProps<ComboboxGroupProps & {
         class?: HTMLAttributes['class']

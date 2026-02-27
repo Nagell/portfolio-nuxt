@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { CalendarHeading, type CalendarHeadingProps, useForwardProps } from 'radix-vue'
+    import { CalendarHeading, type CalendarHeadingProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<CalendarHeadingProps & { class?: HTMLAttributes['class'] }>()

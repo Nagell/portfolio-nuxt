@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { CalendarHeader, type CalendarHeaderProps, useForwardProps } from 'radix-vue'
+    import { CalendarHeader, type CalendarHeaderProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<CalendarHeaderProps & { class?: HTMLAttributes['class'] }>()
