@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen flex flex-col">
-        <main class="flex-grow">
+        <main class="grow">
             <slot />
         </main>
     </div>
