@@ -29,6 +29,7 @@ export default defineNuxtConfig({
         'nuxt-lucide-icons',
         'shadcn-nuxt',
     ],
+    css: [ '~/assets/styles/main.css' ],
     vite: {
         plugins: [ tailwindcss() ],
     },

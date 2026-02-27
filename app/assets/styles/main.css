@@ -2,7 +2,7 @@
 
 @plugin "@tailwindcss/typography";
 @plugin "@tailwindcss/forms";
-@plugin "tw-animate-css";
+@import "tw-animate-css";
 
 @import "./base/index.css";
 @import "./components/index.css";
@@ -98,6 +98,10 @@
   to { height: 0; }
 }
 @keyframes hero-text-blur {
+  0% { filter: blur(10px); transform: translateY(10px); opacity: 0; }
+  100% { filter: blur(0px); transform: translateY(0px); opacity: 1; }
+}
+@keyframes text-blur {
   0% { filter: blur(10px); transform: translateY(10px); opacity: 0; }
   100% { filter: blur(0px); transform: translateY(0px); opacity: 1; }
 }
