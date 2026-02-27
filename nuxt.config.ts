@@ -26,7 +26,6 @@ export default defineNuxtConfig({
         '@nuxtjs/robots',
         '@nuxtjs/sitemap',
         '@nuxtjs/supabase',
-        'nuxt-lucide-icons',
         'shadcn-nuxt',
     ],
     css: [ '~/assets/styles/main.css' ],

@@ -4,6 +4,7 @@
     "typescript": true,
     "tsConfigPath": "./.nuxt/tsconfig.json",
     "tailwind": {
+        "config": "",
         "css": "app/assets/styles/main.css",
         "baseColor": "neutral",
         "cssVariables": true,
