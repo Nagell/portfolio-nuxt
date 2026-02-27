@@ -37,6 +37,6 @@
 
 <style scoped lang="css">
     .blur-mask {
-        mask-image: linear-gradient(to bottom, theme('colors.background') 20%, theme('colors.transparent') calc(100% - 20%));
+        mask-image: linear-gradient(to bottom, var(--color-background) 20%, transparent calc(100% - 20%));
     }
 </style>

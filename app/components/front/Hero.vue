@@ -71,11 +71,11 @@
             position: absolute;
             inset: 0;
             z-index: 2;
-            background: linear-gradient(to bottom, transparent 50%, theme('colors.background') 85%);
+            background: linear-gradient(to bottom, transparent 50%, var(--color-background) 85%);
         }
     }
 
-    @media screen and (min-width: theme('screens.md')) {
+    @media screen and (min-width: 48rem) {
         .hero__wrapper {
             --hero-width: 1500px;
             --height: 800px;
@@ -103,7 +103,7 @@
             pointer-events: none;
             position: absolute;
             inset: -8px;
-            background: linear-gradient(to right, transparent 70%, theme('colors.background') 85%);
+            background: linear-gradient(to right, transparent 70%, var(--color-background) 85%);
         }
     }
 </style>
