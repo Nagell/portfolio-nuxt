@@ -71,6 +71,7 @@
 
 /* Container utility — mirrors v3 container config */
 @utility container {
+  width: 100%;
   margin-inline: auto;
   padding-inline: 1.5rem;
 
