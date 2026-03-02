@@ -59,8 +59,10 @@ createAdminTestSuite((authenticateUser) => {
             // Navigate to assets page
             await page.goto(url(URLS.ADMIN_ASSETS), { waitUntil: 'hydration' })
 
-            // Wait for Supabase SIGNED_IN event to fire and any resulting navigation to settle
-            await page.waitForTimeout(1500)
+            // Wait for the Supabase SIGNED_IN navigation and any subsequent data fetching
+            // to fully settle before interacting. networkidle is event-driven and reliably
+            // catches the auth redirect regardless of server speed (unlike a fixed timeout).
+            await page.waitForLoadState('networkidle', { timeout: 10000 })
 
             const testFileName = 'test-image.png'
 
@@ -68,8 +70,6 @@ createAdminTestSuite((authenticateUser) => {
             expect(await findTestAssetInList(page, testFileName)).toBe(false)
 
             /* ADD NEW ASSET */
-            // Wait for button to be visible — in slow CI environments the Supabase SIGNED_IN
-            // navigation may still be settling after the timeout above
             const addButton = page.locator(addButtonLocator)
             await addButton.waitFor({ state: 'visible', timeout: 10000 })
             await addButton.click()
