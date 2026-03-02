@@ -39,6 +39,9 @@ jobs:
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
+          # Allow gh CLI commands needed by the code-review plugin's subagents.
+          # Without these, Claude's default permission mode blocks all Bash calls in CI.
+          claude_args: '--allowedTools "Bash(gh pr diff*)" "Bash(gh pr view*)" "Bash(gh pr review*)" "Bash(gh pr comment*)"'
           # Temporary: exposes full Claude output in Actions logs to diagnose why reviews are not posted.
           # Remove once the root cause (permission_denials_count: 11) is identified.
           show_full_output: true
