@@ -2,7 +2,7 @@
     <div class="min-h-screen flex flex-col">
         <SpeedInsights />
         <LayoutAppHeader />
-        <main class="flex-grow">
+        <main class="grow">
             <slot />
         </main>
         <LayoutAppFooter />

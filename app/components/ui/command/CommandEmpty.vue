@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-    import { ComboboxEmpty } from 'radix-vue'
+    import { ComboboxEmpty } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
-    import type { ComboboxEmptyProps } from 'radix-vue'
+    import type { ComboboxEmptyProps } from 'reka-ui'
 
     const props = defineProps<ComboboxEmptyProps & { class?: HTMLAttributes['class'] }>()
 

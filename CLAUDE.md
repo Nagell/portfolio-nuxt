@@ -8,7 +8,7 @@
 - **Static pages** (`/legal-notice`, `/privacy-policy`): **prerendered** at build time
 - **Admin dashboard** (`/admin/**`): **SSR** with server-side auth and CRUD
 
-**Stack**: Nuxt 4 + Supabase + TypeScript + Shadcn-vue + Tailwind CSS v3 + Vitest
+**Stack**: Nuxt 4 + Supabase + TypeScript + Shadcn-vue + Tailwind CSS v4 + Vitest
 
 ## Key Project Patterns
 
@@ -65,7 +65,7 @@ yarn type-check           # Run TypeScript checks
 - **Testing isolation**: Tests run with `--no-file-parallelism` due to shared state
 - **Image uploads**: Use `useGetPublicURL()` composable for consistent URL handling
 - **Form validation**: Leverage Zod schemas from `types/schemas.ts`
-- **shadcn-nuxt**: Pinned to 0.10.4 (1.x line) — requires Tailwind v3. Upgrade to 2.x requires Tailwind v4
+- **shadcn-nuxt**: Using 2.x line with Tailwind v4
 - **Always run `yarn lint` and `yarn type-check`** before considering tasks complete
 
 ## Common Debugging

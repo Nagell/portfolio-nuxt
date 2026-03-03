@@ -10,7 +10,7 @@
         type DropdownMenuSubEmits,
         type DropdownMenuSubProps,
         useForwardPropsEmits,
-    } from 'radix-vue'
+    } from 'reka-ui'
 
     const props = defineProps<DropdownMenuSubProps>()
     const emits = defineEmits<DropdownMenuSubEmits>()

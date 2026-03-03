@@ -71,7 +71,7 @@
 
 <style scoped lang="css">
     .gradient {
-        background: linear-gradient(180deg, transparent, theme('colors.foreground' / 0.06) 40%, theme('colors.foreground' / 0.06) 60%, transparent);
+        background: linear-gradient(180deg, transparent, hsl(var(--foreground) / 0.06) 40%, hsl(var(--foreground) / 0.06) 60%, transparent);
     }
 
     :deep(.carousel-activator) {

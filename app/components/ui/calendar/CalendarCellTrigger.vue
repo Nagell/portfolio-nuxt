@@ -21,7 +21,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { CalendarCellTrigger, type CalendarCellTriggerProps, useForwardProps } from 'radix-vue'
+    import { CalendarCellTrigger, type CalendarCellTriggerProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     import { buttonVariants } from '@/components/ui/button'

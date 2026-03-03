@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 
-    import { Primitive, type PrimitiveProps } from 'radix-vue'
+    import { Primitive, type PrimitiveProps } from 'reka-ui'
 
     import { type ButtonVariants, buttonVariants } from '.'
 

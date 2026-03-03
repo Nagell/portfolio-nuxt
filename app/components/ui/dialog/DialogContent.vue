@@ -1,7 +1,7 @@
 <template>
     <DialogPortal>
         <DialogOverlay
-            class="fixed inset-0 z-50 bg-[black]/40 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 backdrop-blur-sm"
+            class="fixed inset-0 z-50 bg-[black]/40 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 backdrop-blur-xs"
         />
         <DialogContent
             v-bind="forwarded"
@@ -14,7 +14,7 @@
             <slot />
 
             <DialogClose
-                class="w-10 h-10 absolute right-6 top-6 rounded-full border opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
+                class="w-10 h-10 absolute right-6 top-6 rounded-full border opacity-70 ring-offset-background transition-opacity hover:opacity-100 hover:bg-muted focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
             >
                 <X class="w-4 h-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
                 <span class="sr-only">
@@ -35,7 +35,7 @@
         DialogOverlay,
         DialogPortal,
         useForwardPropsEmits,
-    } from 'radix-vue'
+    } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<DialogContentProps & { class?: HTMLAttributes['class'] }>()

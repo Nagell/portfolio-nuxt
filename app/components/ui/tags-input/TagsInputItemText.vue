@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-    import { TagsInputItemText, type TagsInputItemTextProps, useForwardProps } from 'radix-vue'
+    import { TagsInputItemText, type TagsInputItemTextProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     const props = defineProps<TagsInputItemTextProps & { class?: HTMLAttributes['class'] }>()

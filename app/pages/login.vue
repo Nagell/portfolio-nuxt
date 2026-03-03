@@ -1,6 +1,6 @@
 <template>
     <div class="relative min-h-screen flex flex-col-reverse items-center justify-center lg:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
-        <div class="relative hidden lg:flex w-full min-h-dvh flex-col bg-gradient-to-bl from-foreground to-muted">
+        <div class="relative hidden lg:flex w-full min-h-dvh flex-col bg-linear-to-bl from-foreground to-muted">
             <img
                 src="/images/dashboard.webp"
                 alt="Code text image"

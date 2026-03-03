@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-    import { CalendarGridBody, type CalendarGridBodyProps } from 'radix-vue'
+    import { CalendarGridBody, type CalendarGridBodyProps } from 'reka-ui'
 
     const props = defineProps<CalendarGridBodyProps>()
 </script>

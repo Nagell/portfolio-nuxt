@@ -1,7 +1,7 @@
 <template>
     <NuxtLayout
         name="empty"
-        class="bg-gradient-to-b from-foreground/10 to-transparent"
+        class="bg-linear-to-b from-foreground/10 to-transparent"
     >
         <div
             v-if="error"

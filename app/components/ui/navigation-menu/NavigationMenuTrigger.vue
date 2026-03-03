@@ -16,7 +16,7 @@
         NavigationMenuTrigger,
         type NavigationMenuTriggerProps,
         useForwardProps,
-    } from 'radix-vue'
+    } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     import { navigationMenuTriggerStyle } from '.'

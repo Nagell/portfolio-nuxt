@@ -7,14 +7,14 @@
         <ComboboxInput
             v-bind="{ ...forwardedProps, ...$attrs }"
             auto-focus
-            :class="cn('flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50', props.class)"
+            :class="cn('flex h-11 w-full rounded-md bg-transparent py-3 text-sm outline-hidden placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50', props.class)"
         />
     </div>
 </template>
 
 <script setup lang="ts">
     import { Search } from 'lucide-vue-next'
-    import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'radix-vue'
+    import { ComboboxInput, type ComboboxInputProps, useForwardProps } from 'reka-ui'
     import { type HTMLAttributes, computed } from 'vue'
 
     defineOptions({

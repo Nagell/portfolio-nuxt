@@ -2,7 +2,7 @@
     <CommonSection
         heading="Experience"
         :data-testid="testIds.index.experience.header"
-        class="mt-16 md:mt-32 !py-16 md:!py-32 bg-gradient-to-b from-foreground/5 to-transparent to-25%"
+        class="mt-16 md:mt-32 py-16! md:py-32! bg-linear-to-b from-foreground/5 to-transparent to-25%"
     >
         <div
             class="mt-9 flex flex-col gap-14"

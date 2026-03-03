@@ -5,7 +5,7 @@
                 '--sidebar-width': SIDEBAR_WIDTH,
                 '--sidebar-width-icon': SIDEBAR_WIDTH_ICON,
             }"
-            :class="cn('group/sidebar-wrapper flex min-h-svh w-full text-sidebar-foreground has-[[data-variant=inset]]:bg-sidebar', props.class)"
+            :class="cn('group/sidebar-wrapper flex min-h-svh w-full text-sidebar-foreground has-data-[variant=inset]:bg-sidebar', props.class)"
         >
             <slot />
         </div>
@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
     import { useEventListener, useMediaQuery, useVModel } from '@vueuse/core'
-    import { TooltipProvider } from 'radix-vue'
+    import { TooltipProvider } from 'reka-ui'
     import { type HTMLAttributes, type Ref, computed, ref } from 'vue'
 
     import { SIDEBAR_COOKIE_MAX_AGE, SIDEBAR_COOKIE_NAME, SIDEBAR_KEYBOARD_SHORTCUT, SIDEBAR_WIDTH, SIDEBAR_WIDTH_ICON, provideSidebarContext } from './utils'

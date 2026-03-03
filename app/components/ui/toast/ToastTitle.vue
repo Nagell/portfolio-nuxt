@@ -8,10 +8,10 @@
 </template>
 
 <script setup lang="ts">
-    import { ToastTitle } from 'radix-vue'
+    import { ToastTitle } from 'reka-ui'
     import { computed } from 'vue'
 
-    import type { ToastTitleProps } from 'radix-vue'
+    import type { ToastTitleProps } from 'reka-ui'
     import type { HTMLAttributes } from 'vue'
 
     const props = defineProps<ToastTitleProps & { class?: HTMLAttributes['class'] }>()

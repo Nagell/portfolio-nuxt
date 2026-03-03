@@ -1,3 +1,5 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
@@ -24,10 +26,16 @@ export default defineNuxtConfig({
         '@nuxtjs/robots',
         '@nuxtjs/sitemap',
         '@nuxtjs/supabase',
-        '@nuxtjs/tailwindcss',
-        'nuxt-lucide-icons',
-        // 'shadcn-nuxt', // Temporarily disabled - causes duplicate component warnings with Nuxt 4
+        'shadcn-nuxt',
     ],
+    css: [ '~/assets/styles/main.css' ],
+    vite: {
+        plugins: [ tailwindcss() ],
+    },
+    shadcn: {
+        prefix: '',
+        componentDir: './app/components/ui',
+    },
     supabase: {
         redirectOptions: {
             login: '/login',
@@ -47,24 +55,14 @@ export default defineNuxtConfig({
     sitemap: {
         exclude: [ '/__tests__/**', '/admin/**', '/login' ]
     },
-    // shadcn-nuxt disabled, using Nuxt's native component auto-import instead
     components: {
         dirs: [
-            // Non-ui components with normal path prefix
+            // Non-ui components with normal path prefix (shadcn-nuxt handles ~/components/ui)
             {
                 path: '~/components',
                 ignore: [ 'ui/**', '**/*.ts' ],
             },
-            // UI components without path prefix (CarouselNext instead of UiCarouselCarouselNext)
-            {
-                path: '~/components/ui',
-                pathPrefix: false,
-                ignore: [ '**/*.ts' ],
-            },
         ],
-    },
-    tailwindcss: {
-        cssPath: '~/assets/styles/main.css',
     },
     colorMode: {
         preference: 'dark',
