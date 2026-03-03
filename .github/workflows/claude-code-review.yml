@@ -44,7 +44,7 @@ jobs:
           # - gh pr diff/view: read PR data
           # - gh pr review/comment: post the review
           # - gh api repos/*/pulls/*: fetch PR files and metadata
-          claude_args: '--allowedTools "Bash(gh pr diff*)" "Bash(gh pr view*)" "Bash(gh pr review*)" "Bash(gh pr comment*)" "Bash(gh api repos/*/pulls/*)"'
+          claude_args: '--model sonnet --allowedTools "Bash(gh pr diff*)" "Bash(gh pr view*)" "Bash(gh pr review*)" "Bash(gh pr comment*)" "Bash(gh api repos/*/pulls/*)"'
           # Temporary: exposes full Claude output in Actions logs to diagnose why reviews are not posted.
           # Remove once the root cause (permission_denials_count: 11) is identified.
           show_full_output: true
