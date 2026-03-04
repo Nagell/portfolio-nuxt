@@ -19,6 +19,7 @@ export default defineNuxtConfig({
         '/admin': { redirect: '/admin/projects' },
     },
     modules: [
+        '@nuxt/eslint',
         '@nuxt/fonts',
         '@nuxt/image',
         '@nuxt/test-utils/module',

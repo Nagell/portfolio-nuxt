@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { z } from 'zod'
 
 /**
  * Simple function that returns an object with a single method `pickField` that accepts a key from passed schema.
