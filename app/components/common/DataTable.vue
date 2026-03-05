@@ -22,8 +22,8 @@
                         v-for="column in table.getAllColumns().filter((column) => column.getCanHide())"
                         :key="column.id"
                         class="capitalize"
-                        :checked="column.getIsVisible()"
-                        @update:checked="(value: boolean) => {
+                        :model-value="column.getIsVisible()"
+                        @update:model-value="(value: boolean) => {
                             column.toggleVisibility(!!value)
                         }"
                     >
