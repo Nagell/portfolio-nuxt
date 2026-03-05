@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue'
 
-import type { ToastProps } from '.'
-import type { Component, VNode } from 'vue'
+import type { Component, HTMLAttributes, VNode } from 'vue'
 
 const TOAST_LIMIT = 1
 const TOAST_REMOVE_DELAY = 1000000
@@ -11,11 +10,17 @@ export type StringOrVNode =
     | VNode
     | (() => VNode)
 
-type ToasterToast = ToastProps & {
+type ToasterToast = {
     id: string
     title?: string
     description?: StringOrVNode
     action?: Component
+    class?: HTMLAttributes['class']
+    variant?: 'default' | 'destructive' | null
+    onOpenChange?: ((value: boolean) => void) | undefined
+    open?: boolean
+    type?: 'foreground' | 'background'
+    duration?: number
 }
 
 const actionTypes = {
@@ -79,9 +84,11 @@ const state = ref<State>({
 
 function dispatch(action: Action) {
     switch (action.type) {
-        case actionTypes.ADD_TOAST:
+        case actionTypes.ADD_TOAST: {
+            // @ts-expect-error TS2589: deep type instantiation from reka-ui ToastRootProps via VNode
             state.value.toasts = [ action.toast, ...state.value.toasts ].slice(0, TOAST_LIMIT)
             break
+        }
 
         case actionTypes.UPDATE_TOAST:
             state.value.toasts = state.value.toasts.map(t =>

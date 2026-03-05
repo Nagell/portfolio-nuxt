@@ -31,6 +31,7 @@ export default defineNuxtConfig({
     ],
     css: [ '~/assets/styles/main.css' ],
     vite: {
+        // @ts-expect-error vite type mismatch between @tailwindcss/vite and @nuxt/schema (nuxt#34384)
         plugins: [ tailwindcss() ],
     },
     shadcn: {
