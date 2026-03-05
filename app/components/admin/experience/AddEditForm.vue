@@ -223,7 +223,7 @@
     import type { Experience, PatchExperienceQuery, PostExperienceQuery } from '~~/types/experience.types'
 
     interface Props {
-        currentExperience: Experience | {}
+        currentExperience: Experience | null
         mode: FormProps['mode']
     }
 
@@ -247,13 +247,13 @@
     onMounted(() => reset(props.currentExperience))
     watch(props, value => reset(value.currentExperience), { deep: true })
 
-    function reset(data: Experience | {}) {
-        resetForm({ values: { tags: [], ...data } }, { force: true })
+    function reset(data: Experience | null) {
+        resetForm({ values: { tags: [], ...(data ?? {}) } }, { force: true })
     }
 
-    const emits = defineEmits < {
+    const emits = defineEmits <{
         submit: [PostExperienceQuery | PatchExperienceQuery]
-    } > ()
+    }> ()
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {

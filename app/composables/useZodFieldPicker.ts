@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { z } from 'zod'
 
 /**
  * Simple function that returns an object with a single method `pickField` that accepts a key from passed schema.
@@ -22,7 +22,7 @@ import { z } from 'zod'
  *  </script>
  * ```
  */
-export function useZodFieldPicker<T extends z.ZodObject<any>>(schema: T) {
+export function useZodFieldPicker<T extends z.ZodObject<z.ZodRawShape>>(_schema: T) {
   type Fields = z.infer<T>
 
   /** Function accepting a key from passed schema and returning it as a string. */

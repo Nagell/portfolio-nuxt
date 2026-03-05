@@ -8,7 +8,7 @@ type Options = {
 export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
     const isFormOpen = ref(false)
     const formMode = ref<FormProps['mode']>('add')
-    const currentItem = ref<T | {}>({})
+    const currentItem = ref<T | null>(null)
 
     type FormModeQueryType = typeof formMode extends { value: 'add' }
         ? AddQuery
@@ -16,13 +16,13 @@ export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
 
     type SubmitData = {
         query?: FormModeQueryType
-        body?: any
+        body?: Record<string, unknown> | FormData | null
     }
 
     async function onSubmit(data: SubmitData) {
-        formMode.value === 'add'
-            ? await _add(data)
-            : await _patch(data)
+        await (formMode.value === 'add'
+            ? _add(data)
+            : _patch(data))
     }
 
     async function _add(data: SubmitData) {
@@ -45,12 +45,12 @@ export const useAddEditForm = <T, AddQuery, PatchQuery>(options: Options) => {
 
     function setFormData(event: { mode: FormProps['mode'], item?: T }) {
         formMode.value = event.mode
-        currentItem.value = event.item ?? {}
+        currentItem.value = event.item ?? null
     }
 
     function _cleanFormData() {
         formMode.value = 'add'
-        currentItem.value = {}
+        currentItem.value = null
     }
 
     function setIsFormOpen(isOpen: boolean) {
