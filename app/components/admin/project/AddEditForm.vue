@@ -155,7 +155,7 @@
     import type { PatchProjectQuery, PostProjectQuery, Project } from '~~/types/projects.types'
 
     interface Props {
-        currentProject: Project | {}
+        currentProject: Project | null
         mode: FormProps['mode']
     }
 
@@ -179,13 +179,13 @@
     onMounted(() => reset(props.currentProject))
     watch(props, value => reset(value.currentProject), { deep: true })
 
-    function reset(data: Project | {}) {
-        resetForm({ values: { tags: [], ...data } }, { force: true })
+    function reset(data: Project | null) {
+        resetForm({ values: { tags: [], ...(data ?? {}) } }, { force: true })
     }
 
-    const emits = defineEmits < {
+    const emits = defineEmits <{
         submit: [PostProjectQuery | PatchProjectQuery]
-    } > ()
+    }> ()
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data) => {

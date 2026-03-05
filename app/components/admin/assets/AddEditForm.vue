@@ -54,7 +54,7 @@
     const { $const } = useNuxtApp()
 
     interface Props {
-        currentAsset?: Asset | {}
+        currentAsset?: Asset | null
         mode: FormProps['mode']
     }
 
@@ -95,9 +95,9 @@
         resetForm({ values: { files: [] } }, { force: true })
     }
 
-    const emits = defineEmits < {
+    const emits = defineEmits <{
         submit: [FormData]
-    } > ()
+    }> ()
 
     /** Submit the form */
     const onSubmit = handleSubmit(async (data: { files: File[] }) => {

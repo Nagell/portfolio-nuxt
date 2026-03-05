@@ -7,15 +7,4 @@ export default withNuxt(
     ...generalConfig,
     ...vueConfig,
     ...htmlConfig,
-
-    // TODO: Re-enable these rules and fix violations in a follow-up PR.
-    // Disabled during ESLint v9 migration to avoid scope creep — these are
-    // new rules from withNuxt() that were not in the old eslintrc config.
-    {
-        rules: {
-            '@typescript-eslint/no-empty-object-type': 'off',
-            '@typescript-eslint/no-import-type-side-effects': 'off',
-            '@typescript-eslint/no-unused-expressions': 'off',
-        },
-    },
 )

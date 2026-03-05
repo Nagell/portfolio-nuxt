@@ -24,15 +24,6 @@
             "source.fixAll.eslint": "explicit"
         },
         "eslint.format.enable": true,
-        "eslint.options": {
-            "extensions": [
-                ".html",
-                ".js",
-                ".cjs",
-                ".vue",
-                ".jsx"
-            ]
-        },
         "eslint.validate": [
             "html",
             "vue",

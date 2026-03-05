@@ -8,7 +8,13 @@ export default [
     importX.flatConfigs.recommended,
     importX.flatConfigs.typescript,
 
-    // Main config: stylistic + import-x overrides
+    // @stylistic recommended preset (includes quotes, semi, spacing, etc.)
+    {
+        ...stylistic.configs['recommended'],
+        files: [ '**/*.ts', '**/*.tsx', '**/*.js', '**/*.cjs', '**/*.jsx', '**/*.vue' ],
+    },
+
+    // Main config: stylistic overrides + import-x
     {
         files: [ '**/*.ts', '**/*.tsx', '**/*.js', '**/*.cjs', '**/*.jsx', '**/*.vue' ],
         languageOptions: {
@@ -20,9 +26,6 @@ export default [
             ecmaVersion: 2022,
             sourceType: 'module',
         },
-        plugins: {
-            '@stylistic': stylistic,
-        },
         settings: {
             'import-x/resolver-next': [
                 createTypeScriptImportResolver({
@@ -31,7 +34,7 @@ export default [
             ],
         },
         rules: {
-            // @stylistic formatting
+            // @stylistic overrides (customize recommended defaults)
             '@stylistic/indent': [ 'warn', 4 ],
             '@stylistic/comma-dangle': [ 'warn', 'only-multiline' ],
             '@stylistic/array-bracket-spacing': [ 'warn', 'always' ],
@@ -65,7 +68,7 @@ export default [
             ],
 
             // import-x rules
-            'import-x/no-unresolved': 'off', // Nuxt auto-imports cause false positives
+            'import-x/no-unresolved': [ 'error', { ignore: [ '^#' ] } ], // Ignore alias imports (e.g., #supabase/server)
             'import-x/order': [
                 'error',
                 {

@@ -6,7 +6,7 @@
 
 import { z } from 'zod'
 
-import { type Json } from './database.types'
+import type { Json } from './database.types'
 
 export const jsonSchema: z.ZodSchema<Json> = z.lazy(() =>
     z

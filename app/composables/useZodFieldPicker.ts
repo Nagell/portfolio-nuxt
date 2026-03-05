@@ -22,7 +22,7 @@ import type { z } from 'zod'
  *  </script>
  * ```
  */
-export function useZodFieldPicker<T extends z.ZodObject<any>>(schema: T) {
+export function useZodFieldPicker<T extends z.ZodObject<z.ZodRawShape>>(_schema: T) {
   type Fields = z.infer<T>
 
   /** Function accepting a key from passed schema and returning it as a string. */
