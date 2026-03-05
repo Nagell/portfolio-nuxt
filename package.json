@@ -47,6 +47,7 @@
         "tailwind-merge": "^3.5.0",
         "tar": "^7.5.8",
         "vee-validate": "^4.15.1",
+        "vue-sonner": "^2.0.9",
         "vue3-simple-icons": "^15.6.0",
         "zod": "^4.1.11"
     },

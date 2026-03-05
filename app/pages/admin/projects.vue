@@ -16,11 +16,9 @@
 </template>
 
 <script setup lang="ts">
-    import { useToast } from '~/components/ui/toast'
+    import { toast } from '~/components/ui/sonner'
 
     import type { PatchProjectQuery, PostProjectQuery, Project } from '~~/types/projects.types'
-
-    const { toast } = useToast()
 
     async function submit(data: PostProjectQuery | PatchProjectQuery) {
         try {
@@ -29,7 +27,7 @@
         }
         catch (error) {
             console.error('Failed to save project:', error)
-            toast({ title: 'Error', description: 'Failed to save project. Please try again.', variant: 'destructive' })
+            toast.error('Failed to save project. Please try again.')
             return
         }
 

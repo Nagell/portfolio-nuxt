@@ -146,7 +146,7 @@
     import { Field as FormField, useForm, useIsFormValid } from 'vee-validate'
 
     import { FormControl, FormItem, FormLabel, FormMessage } from '~/components/ui/form'
-    import { useToast } from '~/components/ui/toast'
+    import { toast } from '~/components/ui/sonner'
     import testIds from '~/utils/testIds'
     import { publicProjectsInsertSchema } from '~~/types/schemas'
 
@@ -197,8 +197,6 @@
 
     const images = ref<Asset[]>([])
 
-    const { toast } = useToast()
-
     // when opening the form, fetch the list of assets and pick only the images
     onMounted(async () => {
         try {
@@ -207,7 +205,7 @@
         }
         catch (error) {
             console.error('Failed to load assets:', error)
-            toast({ title: 'Error', description: 'Failed to load images. Please try again.', variant: 'destructive' })
+            toast.error('Failed to load images. Please try again.')
         }
     })
 

@@ -32,7 +32,7 @@
     import DropdownAction from '~/components/common/DataTableDropdown.vue'
     import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
     import { Button } from '~/components/ui/button'
-    import { useToast } from '~/components/ui/toast'
+    import { toast } from '~/components/ui/sonner'
     import testIds from '~/utils/testIds'
 
     import type { RealtimeChannel } from '@supabase/supabase-js'
@@ -120,8 +120,6 @@
         key: 'assets',
         method: 'get'
     })
-    const { toast } = useToast()
-
     /** Delete an asset file from the bucket */
     async function deleteAsset(name: string) {
         try {
@@ -133,7 +131,7 @@
         }
         catch (error) {
             console.error('Failed to delete asset:', error)
-            toast({ title: 'Error', description: 'Failed to delete asset. Please try again.', variant: 'destructive' })
+            toast.error('Failed to delete asset. Please try again.')
         }
     }
 </script>

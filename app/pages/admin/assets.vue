@@ -16,11 +16,9 @@
 </template>
 
 <script setup lang="ts">
-    import { useToast } from '~/components/ui/toast'
+    import { toast } from '~/components/ui/sonner'
 
     import type { Asset } from '~~/types/files.types'
-
-    const { toast } = useToast()
 
     async function submit(data: FormData) {
         try {
@@ -29,7 +27,7 @@
         }
         catch (error) {
             console.error('Failed to save asset:', error)
-            toast({ title: 'Error', description: 'Failed to save asset. Please try again.', variant: 'destructive' })
+            toast.error('Failed to save asset. Please try again.')
             return
         }
 
