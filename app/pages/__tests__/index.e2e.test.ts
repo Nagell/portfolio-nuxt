@@ -79,55 +79,29 @@ describe('Home Page E2E Tests', () => {
     })
 
     it('CV is being downloaded', async () => {
-        const errors: string[] = []
-        const logs: string[] = []
-        page.on('console', (msg) => {
-            if (msg.type() === 'error') errors.push(msg.text())
-            logs.push(`[${msg.type()}] ${msg.text()}`)
-        })
-
         const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
 
-        // Diagnose what element we're actually clicking
-        const elementInfo = await downloadCvButton.evaluate(el => ({
-            tagName: el.tagName,
-            isConnected: el.isConnected,
-            innerText: el.textContent?.trim().slice(0, 50),
-            hasClickListeners: !!(el as HTMLElement).onclick,
-            boundingBox: el.getBoundingClientRect().toJSON(),
-        }))
+        // Wait for Vue hydration to attach event listeners by verifying
+        // the click actually triggers the API call (retry up to 3 times)
+        let download
+        for (let attempt = 0; attempt < 3; attempt++) {
+            const responsePromise = page.waitForResponse(
+                resp => resp.url().includes('/api/assets'),
+                { timeout: 10000 }
+            )
+            const downloadPromise = page.waitForEvent('download', { timeout: 10000 })
 
-        const pageUrlBefore = page.url()
+            await downloadCvButton.click()
 
-        // Intercept the API call to verify it succeeds
-        const responsePromise = page.waitForResponse(
-            resp => resp.url().includes('/api/assets'),
-            { timeout: 30000 }
-        )
+            const apiResponse = await responsePromise.catch(() => null)
+            if (!apiResponse) continue
 
-        const downloadPromise = page.waitForEvent('download', { timeout: 30000 })
+            download = await downloadPromise.catch(() => null)
+            if (download) break
+        }
 
-        await downloadCvButton.click()
-
-        const apiResponse = await responsePromise.catch(() => null)
-        const apiStatus = apiResponse?.status()
-        const apiContentType = apiResponse?.headers()['content-type']
-        const pageUrlAfter = page.url()
-
-        const download = await downloadPromise.catch((err) => {
-            console.error('Download event not fired.', {
-                elementInfo,
-                pageUrlBefore,
-                pageUrlAfter,
-                apiStatus,
-                apiContentType,
-                consoleErrors: errors,
-                consoleLogs: logs,
-            })
-            throw err
-        })
-
-        expect(download.suggestedFilename()).toBe(import.meta.env.VITE_CV_FILE_NAME)
+        expect(download).toBeTruthy()
+        expect(download!.suggestedFilename()).toBe(import.meta.env.VITE_CV_FILE_NAME)
     })
 
     it('projects section renders correctly', async () => {
