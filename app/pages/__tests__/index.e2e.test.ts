@@ -80,28 +80,13 @@ describe('Home Page E2E Tests', () => {
 
     it('CV is being downloaded', async () => {
         const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
+        const downloadPromise = page.waitForEvent('download')
 
-        // Wait for Vue hydration to attach event listeners by verifying
-        // the click actually triggers the API call (retry up to 3 times)
-        let download
-        for (let attempt = 0; attempt < 3; attempt++) {
-            const responsePromise = page.waitForResponse(
-                resp => resp.url().includes('/api/assets'),
-                { timeout: 10000 }
-            )
-            const downloadPromise = page.waitForEvent('download', { timeout: 10000 })
+        await downloadCvButton.click()
 
-            await downloadCvButton.click()
+        const download = await downloadPromise
 
-            const apiResponse = await responsePromise.catch(() => null)
-            if (!apiResponse) continue
-
-            download = await downloadPromise.catch(() => null)
-            if (download) break
-        }
-
-        expect(download).toBeTruthy()
-        expect(download!.suggestedFilename()).toBe(import.meta.env.VITE_CV_FILE_NAME)
+        expect(download.suggestedFilename()).toBe(import.meta.env.VITE_CV_FILE_NAME)
     })
 
     it('projects section renders correctly', async () => {
