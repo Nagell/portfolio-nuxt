@@ -79,12 +79,20 @@ describe('Home Page E2E Tests', () => {
     })
 
     it('CV is being downloaded', async () => {
+        const errors: string[] = []
+        page.on('console', (msg) => {
+            if (msg.type() === 'error') errors.push(msg.text())
+        })
+
         const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
-        const downloadPromise = page.waitForEvent('download')
+        const downloadPromise = page.waitForEvent('download', { timeout: 30000 })
 
         await downloadCvButton.click()
 
-        const download = await downloadPromise
+        const download = await downloadPromise.catch((err) => {
+            console.error('Download event not fired. Console errors:', errors)
+            throw err
+        })
 
         expect(download.suggestedFilename()).toBe(import.meta.env.VITE_CV_FILE_NAME)
     })
