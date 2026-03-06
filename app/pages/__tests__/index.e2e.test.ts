@@ -80,17 +80,34 @@ describe('Home Page E2E Tests', () => {
 
     it('CV is being downloaded', async () => {
         const errors: string[] = []
+        const logs: string[] = []
         page.on('console', (msg) => {
             if (msg.type() === 'error') errors.push(msg.text())
+            logs.push(`[${msg.type()}] ${msg.text()}`)
         })
+
+        // Intercept the API call to verify it succeeds
+        const responsePromise = page.waitForResponse(
+            resp => resp.url().includes('/api/assets'),
+            { timeout: 30000 }
+        )
 
         const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
         const downloadPromise = page.waitForEvent('download', { timeout: 30000 })
 
         await downloadCvButton.click()
 
+        const apiResponse = await responsePromise.catch(() => null)
+        const apiStatus = apiResponse?.status()
+        const apiContentType = apiResponse?.headers()['content-type']
+
         const download = await downloadPromise.catch((err) => {
-            console.error('Download event not fired. Console errors:', errors)
+            console.error('Download event not fired.', {
+                apiStatus,
+                apiContentType,
+                consoleErrors: errors,
+                consoleLogs: logs,
+            })
             throw err
         })
 
