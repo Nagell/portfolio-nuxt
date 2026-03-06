@@ -46,9 +46,6 @@ jobs:
             - name: Start Supabase
               run: supabase start
 
-            - name: Seed database and storage buckets
-              run: supabase db reset
-
             - name: Create env files
               run: |
                   ANON_KEY=$(supabase status -o env | grep ANON_KEY | cut -d'"' -f2)
