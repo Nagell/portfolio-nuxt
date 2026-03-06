@@ -86,13 +86,25 @@ describe('Home Page E2E Tests', () => {
             logs.push(`[${msg.type()}] ${msg.text()}`)
         })
 
+        const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
+
+        // Diagnose what element we're actually clicking
+        const elementInfo = await downloadCvButton.evaluate(el => ({
+            tagName: el.tagName,
+            isConnected: el.isConnected,
+            innerText: el.textContent?.trim().slice(0, 50),
+            hasClickListeners: !!(el as HTMLElement).onclick,
+            boundingBox: el.getBoundingClientRect().toJSON(),
+        }))
+
+        const pageUrlBefore = page.url()
+
         // Intercept the API call to verify it succeeds
         const responsePromise = page.waitForResponse(
             resp => resp.url().includes('/api/assets'),
             { timeout: 30000 }
         )
 
-        const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
         const downloadPromise = page.waitForEvent('download', { timeout: 30000 })
 
         await downloadCvButton.click()
@@ -100,9 +112,13 @@ describe('Home Page E2E Tests', () => {
         const apiResponse = await responsePromise.catch(() => null)
         const apiStatus = apiResponse?.status()
         const apiContentType = apiResponse?.headers()['content-type']
+        const pageUrlAfter = page.url()
 
         const download = await downloadPromise.catch((err) => {
             console.error('Download event not fired.', {
+                elementInfo,
+                pageUrlBefore,
+                pageUrlAfter,
                 apiStatus,
                 apiContentType,
                 consoleErrors: errors,
