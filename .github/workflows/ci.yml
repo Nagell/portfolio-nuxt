@@ -46,14 +46,6 @@ jobs:
             - name: Start Supabase
               run: supabase start
 
-            - name: Debug - check storage bucket contents
-              run: |
-                  ANON_KEY=$(supabase status -o env | grep ANON_KEY | cut -d'"' -f2)
-                  curl -s -H "Authorization: Bearer $ANON_KEY" \
-                    http://127.0.0.1:54321/storage/v1/object/list/assets \
-                    -H "Content-Type: application/json" \
-                    -d '{"prefix":"","limit":100}' | head -500
-
             - name: Create env files
               run: |
                   ANON_KEY=$(supabase status -o env | grep ANON_KEY | cut -d'"' -f2)
