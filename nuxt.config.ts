@@ -86,6 +86,9 @@ export default defineNuxtConfig({
     },
     image: {
         provider: 'ipx',
+        ipx: {
+            maxAge: 31536000, // 1 year — Vercel CDN; naturally busted when image URL changes
+        },
         format: [ 'webp', 'jpeg' ],
         domains: [
             '127.0.0.1:54321', // Local Supabase
