@@ -125,21 +125,21 @@ export type Tables<
         schema: keyof DatabaseWithoutInternals
     }
         ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'] &
-        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])
+            DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])
         : never = never,
 > = DefaultSchemaTableNameOrOptions extends {
     schema: keyof DatabaseWithoutInternals
 }
     ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Tables'] &
-    DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])[TableName] extends {
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions['schema']]['Views'])[TableName] extends {
         Row: infer R
     }
         ? R
         : never
     : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema['Tables'] &
-    DefaultSchema['Views'])
+        DefaultSchema['Views'])
         ? (DefaultSchema['Tables'] &
-        DefaultSchema['Views'])[DefaultSchemaTableNameOrOptions] extends {
+            DefaultSchema['Views'])[DefaultSchemaTableNameOrOptions] extends {
             Row: infer R
         }
             ? R
