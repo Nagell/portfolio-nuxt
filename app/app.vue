@@ -7,7 +7,7 @@
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
-        <Toaster :theme="colorModeTheme" rich-colors />
+        <ClientOnly><Toaster :theme="colorModeTheme" rich-colors /></ClientOnly>
     </div>
 </template>
 
