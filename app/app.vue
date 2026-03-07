@@ -7,11 +7,14 @@
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
-        <Toaster />
+        <Toaster :theme="colorModeTheme" rich-colors />
     </div>
 </template>
 
 <script setup lang="ts">
+
+    const colorMode = useColorMode()
+    const colorModeTheme = computed(() => colorMode.value as 'light' | 'dark')
 
     const { $consoleLayout } = useNuxtApp()
     useHead({

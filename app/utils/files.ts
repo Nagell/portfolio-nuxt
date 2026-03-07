@@ -7,18 +7,12 @@ export function downloadBlob(blob: Blob, name: string) {
     const link = document.createElement('a')
     link.href = data
     link.download = name
+    link.style.display = 'none'
+    document.body.appendChild(link)
 
-    // this is necessary as link.click() does not work on the Firefox
-    link.dispatchEvent(
-        new MouseEvent('click', {
-            bubbles: true,
-            cancelable: true,
-            view: window
-        })
-    )
+    link.click()
 
     setTimeout(() => {
-        // For Firefox it is necessary to delay revoking the ObjectURL
         window.URL.revokeObjectURL(data)
         link.remove()
     }, 100)

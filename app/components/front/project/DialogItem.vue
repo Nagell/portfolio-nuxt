@@ -1,6 +1,6 @@
 <template>
     <DialogContent
-        class="dialog-project p-0 h-[90dvh] md:h-[80dvh] max-w-[60rem] !border-none bottom-0 top-auto !translate-y-0 !rounded-t-2xl !rounded-b-none !duration-500 opacity-0"
+        class="dialog-project p-0 h-[90dvh] md:h-[80dvh] max-w-240 border-none! bottom-0 top-auto translate-y-0! rounded-t-2xl! rounded-b-none! duration-500! opacity-0 animate-none!"
     >
         <VisuallyHidden>
             <DialogHeader class="p-4 pb-0">
@@ -18,7 +18,7 @@
             <div class="flex flex-col">
                 <div class="mx-auto">
                     <Card class="border-none rounded-2xl">
-                        <CardContent class="w-80 aspect-[320/448] justify-start p-0">
+                        <CardContent class="w-80 aspect-320/448 justify-start p-0">
                             <NuxtImg
                                 :src="project.image"
                                 alt="Project cover image"
@@ -30,7 +30,7 @@
                     </Card>
                 </div>
 
-                <div class="bottom-0 w-full px-6 -mt-12 pb-12 flex flex-col gap-10 max-w-[35rem] mx-auto">
+                <div class="bottom-0 w-full px-6 -mt-12 pb-12 flex flex-col gap-10 max-w-140 mx-auto">
                     <!-- heading -->
                     <CommonTypography
                         variant="h2"

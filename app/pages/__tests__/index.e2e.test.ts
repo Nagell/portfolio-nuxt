@@ -79,6 +79,8 @@ describe('Home Page E2E Tests', () => {
     })
 
     it('CV is being downloaded', async () => {
+        await page.waitForLoadState('networkidle')
+
         const downloadCvButton = page.getByTestId(testIds.index.experience.downloadCvButton)
         const downloadPromise = page.waitForEvent('download')
 

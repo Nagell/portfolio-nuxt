@@ -27,8 +27,8 @@
 
 **Commands**:
 
-- `yarn types:supabase:local` - Generate from local DB
-- `yarn types:supabase` - Generate from production (requires project ID update)
+- `pnpm types:supabase:local` - Generate from local DB
+- `pnpm types:supabase` - Generate from production (requires project ID update)
 
 ### Component Architecture
 
@@ -47,14 +47,14 @@
 ## Essential Commands
 
 ```bash
-yarn supabase start        # Start local Supabase (Docker Desktop required)
-yarn dev                   # Start Nuxt dev server
-yarn supabase db reset     # Apply migrations locally
-yarn supabase migration new <name>  # Create new migration
-yarn test                  # Run Vitest tests (requires yarn dev running)
-yarn playwright install    # First-time setup for e2e tests
-yarn lint                  # Run ESLint
-yarn type-check           # Run TypeScript checks
+pnpm supabase start        # Start local Supabase (Docker Desktop required)
+pnpm dev                   # Start Nuxt dev server
+pnpm supabase db reset     # Apply migrations locally
+pnpm supabase migration new <name>  # Create new migration
+pnpm test                  # Run Vitest tests (requires pnpm dev running)
+pnpm playwright install    # First-time setup for e2e tests
+pnpm lint                  # Run ESLint
+pnpm typecheck             # Run TypeScript checks
 ```
 
 ## Critical Development Notes
@@ -66,7 +66,7 @@ yarn type-check           # Run TypeScript checks
 - **Image uploads**: Use `useGetPublicURL()` composable for consistent URL handling
 - **Form validation**: Leverage Zod schemas from `types/schemas.ts`
 - **shadcn-nuxt**: Using 2.x line with Tailwind v4
-- **Always run `yarn lint` and `yarn type-check`** before considering tasks complete
+- **Always run `pnpm lint` and `pnpm typecheck`** before considering tasks complete
 
 ## Common Debugging
 
