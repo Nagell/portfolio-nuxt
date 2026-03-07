@@ -17,6 +17,7 @@ logs
 # AI files
 .cursor
 .claude
+.playwright-mcp
 _bmad
 _bmad-output
 
