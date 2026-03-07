@@ -15,26 +15,30 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
+            - uses: pnpm/action-setup@v4
+
             - uses: actions/setup-node@v4
               with:
                   node-version: 24
-                  cache: yarn
+                  cache: pnpm
 
-            - run: yarn install --frozen-lockfile
-            - run: yarn lint
-            - run: yarn typecheck
+            - run: pnpm install --frozen-lockfile
+            - run: pnpm lint
+            - run: pnpm typecheck
 
     e2e-tests:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
 
+            - uses: pnpm/action-setup@v4
+
             - uses: actions/setup-node@v4
               with:
                   node-version: 24
-                  cache: yarn
+                  cache: pnpm
 
-            - run: yarn install --frozen-lockfile
+            - run: pnpm install --frozen-lockfile
 
             - name: Install Supabase CLI
               uses: supabase/setup-cli@v1
@@ -67,9 +71,9 @@ jobs:
               run: npx playwright install --with-deps chromium
 
             - name: Start dev server
-              run: yarn dev &
+              run: pnpm dev &
 
             - name: Wait for dev server
               run: npx wait-on http://localhost:3000 --timeout 60000
 
-            - run: yarn test
+            - run: pnpm test
