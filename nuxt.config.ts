@@ -55,7 +55,8 @@ export default defineNuxtConfig({
         }
     },
     sitemap: {
-        exclude: [ '/__tests__/**', '/admin/**', '/login' ]
+        exclude: [ '/__tests__/**', '/admin/**', '/login' ],
+        sources: [ '/api/__sitemap__/urls' ],
     },
     components: {
         dirs: [
