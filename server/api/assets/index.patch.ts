@@ -30,6 +30,12 @@ export default defineEventHandler(async (event) => {
             })
         if (error) throw createError({ statusCode: Number(error.statusCode) || 500, statusMessage: error.message })
 
+        const { data: { publicUrl } } = superbaseClient.storage
+            .from(ASSETS_BUCKET)
+            .getPublicUrl(file.name)
+
+        await bustProjectImageCache(superbaseClient, publicUrl)
+
         responses.push(data)
     }
 
