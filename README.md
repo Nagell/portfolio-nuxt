@@ -83,10 +83,10 @@ Static pages (legal notice, privacy policy) are prerendered at build time.
 - [Node.js](https://nodejs.org/en/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
-- yarn
+- pnpm
 
   ```sh
-  npm install yarn -g
+  npm install pnpm -g
   ```
 
 ### Installation
@@ -100,26 +100,26 @@ Static pages (legal notice, privacy policy) are prerendered at build time.
 2. Install packages
 
    ```sh
-   yarn install
+   pnpm install
    ```
 
-3. Start Docker Desktop ([Official docs](https://supabase.com/docs/guides/local-development/cli/getting-started))  
+3. Start Docker Desktop ([Official docs](https://supabase.com/docs/guides/local-development/cli/getting-started))
    - For Windows: set on in the settings `Expose deamon on tcp://localhost:2375 without TLS`
-   - For Mac: set on in the settings `Use Virtualization Framework`  
+   - For Mac: set on in the settings `Use Virtualization Framework`
 
 4. Download Supabase container
 
    ```sh
-   yarn supabase start
+   pnpm supabase start
    ```
 
    If supabase is not recognized you can force it by reinstalling the package
 
    ```sh
-    yarn add supabase -D
-    ```
+   pnpm add supabase -D
+   ```
 
-5. Copy `.env.example` to `.env`  
+5. Copy `.env.example` to `.env`
    and fill in the Supabase credentials visible in the console when the container starts.
 
     ```sh
@@ -130,7 +130,7 @@ Static pages (legal notice, privacy policy) are prerendered at build time.
 6. Start the development server
 
    ```sh
-   yarn run dev
+   pnpm dev
    ```
 
 7. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
