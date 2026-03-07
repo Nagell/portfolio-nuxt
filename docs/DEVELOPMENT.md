@@ -32,44 +32,44 @@
 
 ```sh
 # Start the development server
-yarn supabase start
+pnpm supabase start
 
 # Stop the development server
-yarn supabase stop
+pnpm supabase stop
 
 # Reset the database from the migrations
-yarn supabase db reset
+pnpm supabase db reset
 ```
 
 ### Types
 
 ```sh
 # Login to Supabase
-yarn supabase login
+pnpm supabase login
 
 # Generate types
 # remember to change the --project-id in this command to your project ID
-yarn types:supabase
+pnpm types:supabase
 
 # Generate types from the local database
-yarn types:supabase:local
+pnpm types:supabase:local
 ```
 
 ### Testing
 
 ```sh
 # Run the tests
-yarn test
+pnpm test
 ```
 
 ### Production build
 
 ```sh
 # Build the application for production:
-yarn run build
+pnpm build
 
 # Locally preview production build:
-yarn run preview
+pnpm preview
 ```
 
 <p align="right">(<a href="#development-top">back to top</a>)</p>
@@ -133,14 +133,14 @@ To access the Supabase admin panel, open <http://127.0.0.1:54323> in your browse
 
 ```sh
 # Create a new migration
-yarn supabase migration new <migration-name>
+pnpm supabase migration new <migration-name>
 ```
 
 Write the migration in the newly created file in the `/supabase/migrations` directory.
 
 ```sh
 # Apply the migration
-yarn supabase db reset
+pnpm supabase db reset
 ```
 
 More about possible ways to manage migrations can be found in the [Supabase documentation](https://supabase.com/docs/guides/local-development/overview#database-migrations).
@@ -152,13 +152,13 @@ More about possible ways to manage migrations can be found in the [Supabase docu
 ```sh
 # So far the Supabase CLI should be installed as a dev dependency.
 # If "supabase" is not recognized, you can force it by reinstalling the package
-yarn install supabase -D
+pnpm add supabase -D
 
 # Login to Supabase
-yarn supabase login
+pnpm supabase login
 
 # Link the project to the Supabase project
-yarn supabase link --project-ref <project-id>
+pnpm supabase link --project-ref <project-id>
 ```
 
 <p align="right">(<a href="#development-top">back to top</a>)</p>
@@ -169,7 +169,7 @@ Assuming that a new migration was created locally, you can push it to the produc
 
 ```sh
 # Push the migration to the remote database
-yarn supabase db push
+pnpm supabase db push
 ```
 
 <p align="right">(<a href="#development-top">back to top</a>)</p>
@@ -181,20 +181,20 @@ you can pull these changes to your local environment.
 
 ```sh
 # Pull the database schema first public
-yarn supabase db pull
-# Update remote migration history table? [Y/n] 
+pnpm supabase db pull
+# Update remote migration history table? [Y/n]
 Y
 
 # Pull the database schema for auth, storage
-yarn supabase db pull --schema auth,storage
+pnpm supabase db pull --schema auth,storage
 # Update remote migration history table? [Y/n]
 Y
 
 # Apply changes locally (including seeding the buckets)
-yarn supabase db reset
+pnpm supabase db reset
 
 # To seed buckets manually run
-yarn supabase seed buckets
+pnpm supabase seed buckets
 ```
 
 <p align="right">(<a href="#development-top">back to top</a>)</p>
@@ -233,13 +233,13 @@ To run the tests, use the following command:
 
 ```sh
 # Prepare the test environment
-yarn playwright install
+pnpm playwright install
 
 # Start the local project - required for the e2e tests
-yarn dev
+pnpm dev
 
 # Run the tests
-yarn test
+pnpm test
 ```
 
 > [!NOTE]
