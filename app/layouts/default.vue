@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen flex flex-col">
         <SpeedInsights />
-        <LayoutAppHeader />
+        <ClientOnly><LayoutAppHeader /></ClientOnly>
         <main class="grow">
             <slot />
         </main>
