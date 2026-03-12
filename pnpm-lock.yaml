@@ -83,7 +83,7 @@ importers:
         version: 3.5.0
       tar:
         specifier: ^7.5.7
-        version: 7.5.10
+        version: 7.5.11
       vee-validate:
         specifier: ^4.15.1
         version: 4.15.1(vue@3.5.29(typescript@5.9.3))
@@ -5251,8 +5251,8 @@ packages:
   tar-stream@3.1.8:
     resolution: {integrity: sha512-U6QpVRyCGHva435KoNWy9PRoi2IFYCgtEhq9nmrPPpbRacPs9IH4aJ3gbrFC8dPcXvdSZ4XXfXT5Fshbp2MtlQ==}
 
-  tar@7.5.10:
-    resolution: {integrity: sha512-8mOPs1//5q/rlkNSPcCegA6hiHJYDmSLEI8aMH/CdSQJNWztHC9WHNam5zdQlfpTwB9Xp7IBEsHfV5LKMJGVAw==}
+  tar@7.5.11:
+    resolution: {integrity: sha512-ChjMH33/KetonMTAtpYdgUFr0tbz69Fp2v7zWxQfYZX4g5ZN2nOBXm1R2xyA+lMIKrLKIoKAwFj93jE/avX9cQ==}
     engines: {node: '>=18'}
 
   teex@1.0.1:
@@ -6648,7 +6648,7 @@ snapshots:
       node-fetch: 2.7.0
       nopt: 8.1.0
       semver: 7.7.4
-      tar: 7.5.10
+      tar: 7.5.11
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -11355,7 +11355,7 @@ snapshots:
       bin-links: 6.0.0
       https-proxy-agent: 7.0.6
       node-fetch: 3.3.2
-      tar: 7.5.10
+      tar: 7.5.11
     transitivePeerDependencies:
       - supports-color
 
@@ -11415,7 +11415,7 @@ snapshots:
       - bare-buffer
       - react-native-b4a
 
-  tar@7.5.10:
+  tar@7.5.11:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
