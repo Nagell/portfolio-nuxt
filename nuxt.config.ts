@@ -49,6 +49,8 @@ export default defineNuxtConfig({
                 '@tanstack/vue-table',
                 'zod',
                 '@vercel/speed-insights/nuxt',
+                '@internationalized/date',
+                'reka-ui/date',
             ]
         }
     },
