@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen flex flex-col">
-        <SpeedInsights />
+        <ClientOnly><SpeedInsights /></ClientOnly>
         <ClientOnly>
             <LayoutAppHeader />
             <template #fallback>
