@@ -90,9 +90,7 @@
     "pnpm": {
         "overrides": {
             "flatted": "^3.4.2",
-            "serialize-javascript": "^7.0.4",
-            "@vue/runtime-core": "3.5.30",
-            "@vue/server-renderer": "3.5.30"
+            "serialize-javascript": "^7.0.4"
         },
         "onlyBuiltDependencies": [
             "@parcel/watcher",
