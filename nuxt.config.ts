@@ -31,8 +31,26 @@ export default defineNuxtConfig({
     ],
     css: [ '~/assets/styles/main.css' ],
     vite: {
-        // @ts-expect-error vite type mismatch between @tailwindcss/vite and @nuxt/schema (nuxt#34384)
         plugins: [ tailwindcss() ],
+        optimizeDeps: {
+            include: [
+                'lucide-vue-next',
+                'class-variance-authority',
+                'vue-sonner',
+                'clsx',
+                'tailwind-merge',
+                '@vueuse/core',
+                'reka-ui',
+                'gsap',
+                'vue3-simple-icons',
+                'embla-carousel-vue',
+                '@vee-validate/zod',
+                'vee-validate',
+                '@tanstack/vue-table',
+                'zod',
+                '@vercel/speed-insights/nuxt',
+            ]
+        }
     },
     shadcn: {
         prefix: '',
@@ -83,6 +101,13 @@ export default defineNuxtConfig({
             config: {
                 bypassToken: process.env.VERCEL_BYPASS_TOKEN,
             },
+        },
+        // Workaround: Nitro 2.13.1 regression where normalizeKey('/') returns ''
+        // causing the root ISR payload to be written as a file at the same path
+        // that other routes expect to be a directory (ENOTDIR). No persistent cache needed in dev.
+        // Fixed in Nuxt v5.0.0 (nuxt/nuxt#34569) — remove when upgrading.
+        devStorage: {
+            cache: { driver: 'memory' },
         },
     },
     image: {
