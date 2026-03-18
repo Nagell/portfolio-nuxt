@@ -1,13 +1,12 @@
 import { ASSETS_BUCKET } from '~~/app/plugins/constants/assets'
+import { assetQuerySchema } from '~~/server/schemas/assets'
 
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { GetAssetQuery } from '~~/types/files.types'
-
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
+    const query = await getValidatedQuery(event, data => assetQuerySchema.parse(data))
 
-    const query = getQuery(event) as GetAssetQuery
     const { data, error } = await superbaseClient.storage
         .from(ASSETS_BUCKET)
         .download(query.name)
