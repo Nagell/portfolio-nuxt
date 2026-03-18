@@ -1,23 +1,17 @@
-import { sanitizeExperienceQuery } from '~~/server/sanitizers/experienceQuery'
+import { experienceUpdateSchema } from '~~/server/schemas/experience'
 
 import { serverSupabaseClient } from '#supabase/server'
 
-import type { PatchExperienceQuery } from '~~/types/experience.types'
-
 export default defineEventHandler(async (event) => {
     const superbaseClient = await serverSupabaseClient(event)
-
-    const query = getQuery(event)
-    const sanitizedQuery = sanitizeExperienceQuery(query) as PatchExperienceQuery
-
-    if (!sanitizedQuery.id) throw createError({ statusCode: 400, statusMessage: 'Experience ID is required' })
+    const query = await getValidatedQuery(event, data => experienceUpdateSchema.parse(data))
 
     const { data, error } = await superbaseClient
         .from('experience')
-        .update(sanitizedQuery)
-        .eq('id', sanitizedQuery.id)
+        .update(query)
+        .eq('id', query.id)
 
-    if (error) throw createError({ statusMessage: error.message })
+    if (error) throw createError({ statusCode: Number(error.code) || 500, statusMessage: error.message })
 
     revalidatePage('/')
     return data
