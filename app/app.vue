@@ -31,6 +31,9 @@
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon_black.ico', media: '(prefers-color-scheme: light)' },
             { rel: 'icon', type: 'image/x-icon', href: '/favicon_white.ico', media: '(prefers-color-scheme: dark)' }
+        ],
+        script: [
+            { src: 'https://va.vercel-scripts.com/v1/speed-insights/script.js', defer: true }
         ]
     })
 

@@ -1,6 +1,5 @@
 <template>
     <div class="min-h-screen flex flex-col">
-        <ClientOnly><SpeedInsights /></ClientOnly>
         <ClientOnly>
             <LayoutAppHeader />
             <template #fallback>
@@ -13,6 +12,3 @@
         <LayoutAppFooter />
     </div>
 </template>
-<script setup lang="ts">
-    import { SpeedInsights } from '@vercel/speed-insights/nuxt'
-</script>
