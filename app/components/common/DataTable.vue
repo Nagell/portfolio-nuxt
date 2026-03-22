@@ -42,6 +42,7 @@
                         <TableHead
                             v-for="header in headerGroup.headers"
                             :key="header.id"
+                            :class="header.column.columnDef.meta?.class"
                         >
                             <FlexRender
                                 v-if="!header.isPlaceholder"
@@ -57,10 +58,11 @@
                             v-for="row in table.getRowModel().rows"
                             :key="row.id"
                         >
-                            <TableRow :data-state="row.getIsSelected() && 'selected'">
+                            <TableRow class="group" :data-state="row.getIsSelected() && 'selected'">
                                 <TableCell
                                     v-for="cell in row.getVisibleCells()"
                                     :key="cell.id"
+                                    :class="cell.column.columnDef.meta?.class"
                                 >
                                     <FlexRender
                                         :render="cell.column.columnDef.cell"
