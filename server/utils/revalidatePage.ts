@@ -1,11 +1,14 @@
 export function revalidatePage(path: string): void {
     const bypassToken = process.env.VERCEL_BYPASS_TOKEN
-    // VERCEL_URL is auto-injected per-deployment (preview + production).
-    // Prefer it over NUXT_SITE_URL so preview deployments revalidate their own cache,
-    // not production's. Falls back to NUXT_SITE_URL for local dev (no VERCEL_URL).
-    const siteUrl = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : process.env.NUXT_SITE_URL
+    // For production, use NUXT_SITE_URL (custom domain) so the correct ISR cache slot
+    // is invalidated. VERCEL_URL is the deployment .vercel.app URL and has a separate
+    // cache key from the custom domain — using it on production would never revalidate
+    // what users actually see. Preview deployments use VERCEL_URL to revalidate their
+    // own cache without touching production.
+    const siteUrl
+        = process.env.VERCEL_ENV === 'preview'
+            ? `https://${process.env.VERCEL_URL}`
+            : process.env.NUXT_SITE_URL
 
     if (!bypassToken || !siteUrl) return
 
