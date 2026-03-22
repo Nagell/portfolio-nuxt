@@ -96,6 +96,7 @@
         {
             id: 'actions',
             enableHiding: false,
+            meta: { class: 'sticky right-0 z-10 bg-background' },
             cell: ({ row }) => {
                 const item = row.original
 
