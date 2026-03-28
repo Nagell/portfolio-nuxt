@@ -145,8 +145,8 @@ createAdminTestSuite((authenticateUser) => {
             expect(await deleteButton.count()).toBe(1)
             await deleteButton.click()
 
-            // Wait for the deletion to be processed
-            await page.waitForTimeout(1000)
+            // Wait for the deleted experience row to be removed from the DOM
+            await assetRow.waitFor({ state: 'detached', timeout: 15000 })
 
             // The test content should not be present anymore
             expect(await findTestExperienceInList(page)).toBe(false)
