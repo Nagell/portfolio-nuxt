@@ -47,7 +47,8 @@
     const props = defineProps<Props>()
 
     /** Converts the date to a human readable format */
-    function convertDate(date: string) {
+    function convertDate(date: string | null) {
+        if (!date) return '-'
         return new Date(date).toLocaleString()
     }
 </script>
