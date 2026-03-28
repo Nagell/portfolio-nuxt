@@ -115,8 +115,9 @@ createAdminTestSuite((authenticateUser) => {
             expect(await deleteButton.count()).toBe(1)
             await deleteButton.click()
 
-            // Wait for the deletion to be processed
-            await page.waitForTimeout(1000)
+            // Wait for the deleted asset row to be removed from the DOM
+            // (delete triggers a Supabase realtime event → list refresh; waitForTimeout is unreliable here)
+            await uploadedAssetLocator.waitFor({ state: 'detached', timeout: 15000 })
 
             // The test asset should not be present anymore
             expect(await findTestAssetInList(page, testFileName)).toBe(false)
@@ -169,7 +170,7 @@ createAdminTestSuite((authenticateUser) => {
                 await page.waitForSelector(actionMenuLocator, { state: 'visible' })
                 const deleteButton = actionMenu.locator(deleteButtonLocator)
                 await deleteButton.click()
-                await page.waitForTimeout(1000)
+                await assetRow.waitFor({ state: 'detached', timeout: 15000 })
             }
 
             await page.close()
