@@ -74,7 +74,7 @@
                                 <CommandGroup>
                                     <CommandItem
                                         v-for="image in images"
-                                        :key="image.id"
+                                        :key="image.id ?? ''"
                                         :value="image.name"
                                         @select="() => setFieldValue('image', useGetPublicURL(image.name))"
                                     >
