@@ -77,12 +77,4 @@ jobs:
             - name: Wait for dev server
               run: npx wait-on http://localhost:3000 --timeout 60000
 
-            - name: Run adminAssets test 3× (stability check)
-              run: |
-                  for i in 1 2 3; do
-                    echo "=== adminAssets run $i/3 ==="
-                    pnpm exec vitest run app/pages/__tests__/adminAssets.e2e.test.ts --no-file-parallelism
-                  done
-
-            - name: Run full test suite
-              run: pnpm test
+            - run: pnpm test
