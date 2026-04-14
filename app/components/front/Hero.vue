@@ -12,12 +12,13 @@
             >
                 <div
                     ref="imageBackground"
-                    class="hero opacity-0 absolute inset-0"
+                    class="hero opacity-[0.01] absolute inset-0"
                 >
                     <img
                         src="/images/window.webp"
                         alt="IDE window image"
                         class="w-full"
+                        fetchpriority="high"
                         :data-testid="testIds.index.hero.imageBackground"
                     >
                 </div>
@@ -25,7 +26,8 @@
                     ref="imageText"
                     src="/images/text.webp"
                     alt="Code text image"
-                    class="hero opacity-0 absolute inset-0 w-full"
+                    class="hero opacity-[0.01] absolute inset-0 w-full"
+                    fetchpriority="high"
                     :data-testid="testIds.index.hero.imageText"
                 >
             </div>
@@ -36,20 +38,40 @@
 <script lang="ts" setup>
     import testIds from '~/utils/testIds'
 
-    const animationFrame = useTemplateRef('animationFrame')
-    const imageBackground = useTemplateRef('imageBackground')
-    const imageText = useTemplateRef('imageText')
+    const animationFrame = useTemplateRef<HTMLDivElement>('animationFrame')
+    const imageBackground = useTemplateRef<HTMLDivElement>('imageBackground')
+    const imageText = useTemplateRef<HTMLImageElement>('imageText')
 
     onMounted(() => {
+        let animated = false
+
+        const triggerAnimation = (delay1: number, delay2: number) => {
+            if (animated) return
+            animated = true
+            if (imageBackground.value) {
+                imageBackground.value.style.animation = `image-hero-blur 1s var(--ease-out-expo) ${delay1}ms forwards`
+            }
+            if (imageText.value) {
+                imageText.value.style.animation = `image-hero-blur 1s var(--ease-out-expo) ${delay2}ms forwards`
+            }
+        }
+
+        const isDesktop = window.matchMedia('(min-width: 768px)').matches
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
-                    imageBackground.value?.classList.add('animate-[image-hero-blur_1s_forwards_1000ms]')
-                    imageText.value?.classList.add('animate-[image-hero-blur_1s_forwards_1500ms]')
+                    triggerAnimation(
+                        isDesktop ? 1000 : 0,
+                        isDesktop ? 1500 : 300,
+                    )
                     observer.disconnect()
                 }
             })
-        }, { threshold: 0.1 })
+        }, {
+            threshold: 0.1,
+            rootMargin: isDesktop ? '0px' : '0px 0px 200px 0px',
+        })
 
         if (animationFrame.value) {
             observer.observe(animationFrame.value)
