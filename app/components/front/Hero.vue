@@ -68,10 +68,7 @@
                     observer.disconnect()
                 }
             })
-        }, {
-            threshold: 0.1,
-            rootMargin: isDesktop ? '0px' : '0px 0px 200px 0px',
-        })
+        }, { threshold: 0.1 })
 
         if (animationFrame.value) {
             observer.observe(animationFrame.value)
