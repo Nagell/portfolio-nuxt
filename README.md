@@ -123,7 +123,7 @@ Static pages (legal notice, privacy policy) are prerendered at build time.
    and fill in the Supabase credentials visible in the console when the container starts.
 
     ```sh
-    SUPABASE_KEY=<YOUR_LOCAL_SUPABASE_KEY> #"anon key" from the console
+    SUPABASE_PUBLISHABLE_KEY=<YOUR_LOCAL_SUPABASE_PUBLISHABLE_KEY> #"Publishable key" from the console
     # the rest can initially stay as it is
     ```
 

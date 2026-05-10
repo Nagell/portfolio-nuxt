@@ -49,12 +49,16 @@ jobs:
 
             - name: Create env files
               run: |
-                  ANON_KEY=$(supabase status -o env | grep ANON_KEY | cut -d'"' -f2)
-                  SERVICE_KEY=$(supabase status -o env | grep SERVICE_ROLE_KEY | cut -d'"' -f2)
+                  SUPABASE_STATUS=$(supabase status -o env)
+                  echo "$SUPABASE_STATUS"
+                  PUBLISHABLE_KEY=$(echo "$SUPABASE_STATUS" | grep '^PUBLISHABLE_KEY=' | cut -d'"' -f2)
+                  [ -z "$PUBLISHABLE_KEY" ] && PUBLISHABLE_KEY=$(echo "$SUPABASE_STATUS" | grep '^ANON_KEY=' | cut -d'"' -f2)
+                  SECRET_KEY=$(echo "$SUPABASE_STATUS" | grep '^SECRET_KEY=' | cut -d'"' -f2)
+                  [ -z "$SECRET_KEY" ] && SECRET_KEY=$(echo "$SUPABASE_STATUS" | grep '^SERVICE_ROLE_KEY=' | cut -d'"' -f2)
                   {
                     echo 'SUPABASE_URL=http://127.0.0.1:54321'
-                    echo "SUPABASE_KEY=$ANON_KEY"
-                    echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_KEY"
+                    echo "SUPABASE_PUBLISHABLE_KEY=$PUBLISHABLE_KEY"
+                    echo "SUPABASE_SECRET_KEY=$SECRET_KEY"
                     echo 'NODE_TLS_REJECT_UNAUTHORIZED=0'
                     echo 'NUXT_IMAGE_DOMAINS="localhost,localhost:54321"'
                     echo 'NUXT_SITE_URL=http://localhost:3000'

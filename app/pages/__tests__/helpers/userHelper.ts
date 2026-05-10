@@ -17,14 +17,13 @@ export function createTestSupabaseClient(): SupabaseClient {
 
     const supabaseUrl = process.env.SUPABASE_URL || 'http://127.0.0.1:54321'
     const supabaseKey
-    = process.env.SUPABASE_SERVICE_ROLE_KEY
-        || process.env.SUPABASE_KEY
-        || process.env.SUPABASE_ANON_KEY
+    = process.env.SUPABASE_SECRET_KEY
+        || process.env.SUPABASE_PUBLISHABLE_KEY
         || ''
 
     if (!supabaseKey) {
         throw new Error(
-            'SUPABASE_SERVICE_ROLE_KEY, SUPABASE_KEY or SUPABASE_ANON_KEY environment variable is required'
+            'SUPABASE_SECRET_KEY or SUPABASE_PUBLISHABLE_KEY environment variable is required'
         )
     }
 
