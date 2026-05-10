@@ -49,11 +49,12 @@ jobs:
 
             - name: Create env files
               run: |
-                  supabase status -o env
-                  PUBLISHABLE_KEY=$(supabase status -o env | grep PUBLISHABLE_KEY | cut -d'"' -f2)
-                  SECRET_KEY=$(supabase status -o env | grep SECRET_KEY | cut -d'"' -f2)
-                  echo "Extracted PUBLISHABLE_KEY: $PUBLISHABLE_KEY"
-                  echo "Extracted SECRET_KEY: $SECRET_KEY"
+                  SUPABASE_STATUS=$(supabase status -o env)
+                  echo "$SUPABASE_STATUS"
+                  PUBLISHABLE_KEY=$(echo "$SUPABASE_STATUS" | grep '^PUBLISHABLE_KEY=' | cut -d'"' -f2)
+                  [ -z "$PUBLISHABLE_KEY" ] && PUBLISHABLE_KEY=$(echo "$SUPABASE_STATUS" | grep '^ANON_KEY=' | cut -d'"' -f2)
+                  SECRET_KEY=$(echo "$SUPABASE_STATUS" | grep '^SECRET_KEY=' | cut -d'"' -f2)
+                  [ -z "$SECRET_KEY" ] && SECRET_KEY=$(echo "$SUPABASE_STATUS" | grep '^SERVICE_ROLE_KEY=' | cut -d'"' -f2)
                   {
                     echo 'SUPABASE_URL=http://127.0.0.1:54321'
                     echo "SUPABASE_PUBLISHABLE_KEY=$PUBLISHABLE_KEY"
