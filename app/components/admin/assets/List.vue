@@ -129,6 +129,7 @@
                 query: { name },
                 method: 'delete'
             })
+            await refreshAssets()
         }
         catch (error) {
             console.error('Failed to delete asset:', error)
