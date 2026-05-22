@@ -13,6 +13,11 @@ export default defineNuxtConfig({
     routeRules: {
         // ISR - cached indefinitely on Vercel CDN, invalidated on-demand via revalidatePage()
         '/': { isr: true },
+        // Nuxt 4.4.6 auto-adds /_payload.json: { isr: true } when the parent route is ISR.
+        // On Vercel, this triggers a pre-render invocation during deployment that fails before
+        // Supabase is reachable. Opt out to restore on-demand (non-ISR) payload serving,
+        // matching the 4.4.2 behaviour where this route was never ISR-cached.
+        '/_payload.json': { isr: false },
         '/legal-notice': { prerender: true },
         '/privacy-policy': { prerender: true },
         '/admin/**': { robots: false },
