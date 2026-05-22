@@ -3,6 +3,9 @@
     "private": true,
     "type": "module",
     "license": "CC-BY-NC-4.0",
+    "engines": {
+        "node": "22"
+    },
     "scripts": {
         "dev": "nuxt dev",
         "dev:host": "nuxt dev --host",
@@ -40,7 +43,7 @@
         "embla-carousel-vue": "^8.6.0",
         "gsap": "^3.14.2",
         "lucide-vue-next": "^0.577.0",
-        "nuxt": "^4.4.2",
+        "nuxt": "^4.4.6",
         "reka-ui": "^2.9.2",
         "shadcn-nuxt": "^2.4.3",
         "tailwind-merge": "^3.5.0",
@@ -108,6 +111,12 @@
             "minimatch@10>brace-expansion": "^5.0.5",
             "picomatch@2": "^2.3.2",
             "picomatch@4": "^4.0.4",
+            "vue": ">=3.5.34",
+            "@vue/runtime-core": ">=3.5.34",
+            "@vue/runtime-dom": ">=3.5.34",
+            "@vue/reactivity": ">=3.5.34",
+            "@vue/compiler-core": ">=3.5.34",
+            "@vue/compiler-dom": ">=3.5.34",
             "defu": ">=6.1.5",
             "lodash": ">=4.18.0",
             "unhead": "~2.1.13"
