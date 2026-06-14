@@ -8,7 +8,7 @@
             >
         </div>
         <div class="relative w-full">
-            <div class="absolute top-10 left-12">
+            <div class="absolute top-10 left-0 right-0 flex justify-center lg:left-12 lg:right-auto lg:block">
                 <NuxtLink
                     to="/"
                     class="px-2 py-3 block"
@@ -17,7 +17,7 @@
                     <CommonLogoWhite class="w-12 h-12" />
                 </NuxtLink>
             </div>
-            <div class="relative mx-auto flex flex-col min-h-dvh w-[350px] justify-center space-y-6 ">
+            <div class="relative mx-auto flex flex-col min-h-dvh w-full px-6 justify-center space-y-6 lg:w-[350px] lg:px-0">
                 <div class="flex flex-col space-y-2 text-center">
                     <CommonTypography
                         variant="h4"
