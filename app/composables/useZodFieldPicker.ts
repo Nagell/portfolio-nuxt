@@ -23,12 +23,12 @@ import type { z } from 'zod'
  * ```
  */
 export function useZodFieldPicker<T extends z.ZodObject<z.ZodRawShape>>(_schema: T) {
-  type Fields = z.infer<T>
+    type Fields = z.infer<T>
 
-  /** Function accepting a key from passed schema and returning it as a string. */
-  function pickField<K extends keyof Fields>(field: K): string {
-      return field as string
-  }
+    /** Function accepting a key from passed schema and returning it as a string. */
+    function pickField<K extends keyof Fields>(field: K): string {
+        return field as string
+    }
 
-  return { pickField }
+    return { pickField }
 }

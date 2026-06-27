@@ -17,9 +17,9 @@ export function createTestSupabaseClient(): SupabaseClient {
 
     const supabaseUrl = process.env.SUPABASE_URL || 'http://127.0.0.1:54321'
     const supabaseKey
-    = process.env.SUPABASE_SECRET_KEY
-        || process.env.SUPABASE_PUBLISHABLE_KEY
-        || ''
+        = process.env.SUPABASE_SECRET_KEY
+            || process.env.SUPABASE_PUBLISHABLE_KEY
+            || ''
 
     if (!supabaseKey) {
         throw new Error(

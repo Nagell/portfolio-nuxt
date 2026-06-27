@@ -33,10 +33,10 @@ createAdminTestSuite((authenticateUser) => {
         async function findTestProjectInList(page: NuxtPage) {
             for (const value of Object.values(projectContent)) {
                 const isValueInList
-          = (await page
-              .locator(itemsLocator)
-              .filter({ hasText: value })
-              .count()) > 0
+                    = (await page
+                        .locator(itemsLocator)
+                        .filter({ hasText: value })
+                        .count()) > 0
 
                 if (isValueInList) return true
             }
