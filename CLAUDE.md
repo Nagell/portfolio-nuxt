@@ -75,3 +75,43 @@ pnpm typecheck             # Run TypeScript checks
 - **ISR problems**: Verify `routeRules` in `nuxt.config.ts`; check `VERCEL_BYPASS_TOKEN`  
 is set in Vercel env vars and was available at build time (see `docs/DEVELOPMENT.md`)
 - **Test failures**: Ensure dev server running, check browser visibility settings
+
+## CI / Deploy Verification (GitHub + Vercel MCP)
+
+When verifying a change end-to-end, use the **GitHub MCP** (`mcp__github__*`) and
+**Vercel MCP** (`mcp__Vercel__*`) tools. These are configured at the environment
+level (not the repo), so availability depends on the session — discover IDs at
+runtime with `list_teams` → `list_projects` → `list_deployments` if the values
+below have changed.
+
+- **Vercel team**: `team_PYrbwmBmWpsDINtLsvdoAbMa` (`nagells-projects`)
+- **Vercel project**: `prj_YYhOXiqyNc5KMEubLs1FeK5BYRsJ` (`portfolio-nuxt`, framework `nuxtjs`)
+- **Production domains**: `dawidnitka.com`, `www.dawidnitka.com`
+
+### Trigger flow (important)
+
+- **Pushing a feature branch does NOT run CI.** `.github/workflows/ci.yml` only
+  triggers on `pull_request`/`push` to `main` (+ `workflow_dispatch`). To get a
+  GitHub Actions signal you must open a PR to `main`.
+- **Opening a PR to `main`** triggers both the GitHub Actions CI run
+  (`lint-and-typecheck` + `e2e-tests`) and a **Vercel preview** deploy (`target: null`).
+- **Merging to `main`** triggers the **Vercel production** deploy
+  (`target: "production"`, aliased to the domains above).
+- Webhooks delivered to a subscribed session cover failures/comments but **not**
+  CI success or production-deploy completion — poll those explicitly via the MCP
+  tools (e.g. a short recurring `CronCreate` self-check that deletes itself once
+  the run/deploy reaches a terminal state).
+- Direct `api.github.com` access via `curl` is blocked in web sessions (gated to
+  the GitHub MCP) — use `mcp__github__actions_*` / `mcp__github__get_job_logs`.
+
+### Known gotchas (history)
+
+- **e2e "Wait for dev server"** can time out even after the dev server builds;
+  the timeout was raised 60s → 120s. A failure here is usually a flake, not a
+  prod break — the same commit's Vercel build often stays green.
+- **Nuxt 4.4.x upgrades** historically broke Vercel with `FUNCTION_INVOCATION_FAILED`:
+  (1) vue-router pulled `@babel/generator@8` (ESM, needs Node ≥22.18) → fixed by
+  `engines.node = "22"`; (2) pnpm split Vue core vs `@vue/server-renderer` → fixed
+  by pinning all `@vue/*` to `>=3.5.34`. Keep these mitigations and verify Vue
+  resolves to a single aligned version (`pnpm ls vue @vue/server-renderer`) after
+  any Nuxt bump.
