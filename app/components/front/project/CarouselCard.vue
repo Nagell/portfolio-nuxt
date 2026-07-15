@@ -35,6 +35,9 @@
     defineProps<{ project: Project }>()
     const isDialogOpen = ref(false)
 
+    // Close the dialog on browser/mobile "back" instead of leaving the page.
+    useDialogHistory(isDialogOpen)
+
     /** Opens the dialog and animates the card to the dialog shape */
     function openDialog() {
         isDialogOpen.value = true
