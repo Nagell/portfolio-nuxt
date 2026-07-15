@@ -99,7 +99,7 @@ describe('Home Page E2E Tests', () => {
         expect(items).toBeDefined()
     })
 
-    it('projects cards open correctly', async () => {
+    it('projects cards open and close on browser back', async () => {
         const items = page.getByTestId(testIds.index.projects.items)
         const button = items.getByRole('button').first()
         expect(button).toBeDefined()
@@ -119,6 +119,16 @@ describe('Home Page E2E Tests', () => {
 
         const dialogHeader = await dialogContent.getByRole('heading').innerText()
         expect(dialogHeader).toBe(header)
+
+        // browser/mobile back closes the dialog instead of leaving the page
+        await page.goBack()
+
+        await dialogContent.waitFor({ state: 'hidden' })
+        const closedDialogText = await dialogContent.allInnerTexts()
+        expect(closedDialogText).toStrictEqual([])
+
+        // still on the home page, not navigated away
+        expect(new URL(page.url()).pathname).toBe(URLS.HOME)
     })
 
     it('footer renders correctly', async () => {
