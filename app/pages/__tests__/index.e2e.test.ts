@@ -131,6 +131,34 @@ describe('Home Page E2E Tests', () => {
         expect(new URL(page.url()).pathname).toBe(URLS.HOME)
     })
 
+    it('closing a project dialog via the UI still lets browser back leave the page', async () => {
+        // Navigate through another page first so there is a real "previous
+        // page" to land on once the dialog's own history entry is cleaned up.
+        await page.goto(url(URLS.LEGAL_NOTICE), { waitUntil: 'hydration' })
+        await page.goto(url(URLS.HOME), { waitUntil: 'hydration' })
+
+        const items = page.getByTestId(testIds.index.projects.items)
+        const button = items.getByRole('button').first()
+        const dialogContent = page.getByTestId(testIds.index.projects.dialogContent)
+
+        await button.click()
+        await dialogContent.getByRole('heading').waitFor()
+
+        // Close via the UI (Escape), not via the browser back button.
+        await page.keyboard.press('Escape')
+        await dialogContent.waitFor({ state: 'hidden' })
+
+        // The entry useDialogHistory pushed on open must have been popped —
+        // otherwise this back press would be silently swallowed by it
+        // instead of taking the user to the previous page.
+        await page.goBack()
+        await page.waitForURL(url(URLS.LEGAL_NOTICE))
+        expect(new URL(page.url()).pathname).toBe(URLS.LEGAL_NOTICE)
+
+        // Restore state for the remaining tests in this suite.
+        await page.goto(url(URLS.HOME), { waitUntil: 'hydration' })
+    })
+
     it('footer renders correctly', async () => {
         const links = page.getByTestId(testIds.index.footer.links)
         const socialButtons = page.getByTestId(testIds.index.footer.socialButtons)
