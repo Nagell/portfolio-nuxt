@@ -32,7 +32,7 @@
     
     html {
         color-scheme: light;
-        @apply scroll-smooth;
+        @apply motion-safe:scroll-smooth;
     }
     
     html.dark {
