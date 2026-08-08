@@ -2,6 +2,23 @@ import { onScopeDispose, watch } from 'vue'
 
 import type { Ref } from 'vue'
 
+// Consumed by app/router.options.ts's scrollBehavior override. Nuxt's default
+// scrollBehavior re-scrolls to `to.hash` (or resets to top) on every same-path
+// navigation, regardless of whether the hash actually changed. The push/pop
+// below is a same-path, same-hash no-op for routing purposes, but it still
+// runs through vue-router's popstate handling — so without suppressing it,
+// closing the dialog while the URL still carries an earlier in-page anchor
+// (e.g. #experience, left over from a nav-link click) yanks the page back to
+// it, and even a hash-less URL gets reset to the top of the page.
+let suppressNextScrollBehavior = false
+
+export function consumeDialogHistoryScrollSuppression() {
+    if (!suppressNextScrollBehavior) return false
+    suppressNextScrollBehavior = false
+
+    return true
+}
+
 /**
  * Ties a dialog's open state to a browser history entry so the mobile/browser
  * "back" gesture closes the dialog instead of navigating away from the page.
@@ -17,6 +34,7 @@ export function useDialogHistory(isOpen: Ref<boolean>) {
 
     function onPopState() {
         if (!isOpen.value) return
+        suppressNextScrollBehavior = true
         closedByPopState = true
         isOpen.value = false
     }
@@ -37,6 +55,7 @@ export function useDialogHistory(isOpen: Ref<boolean>) {
         }
         else {
             // Closed via UI — drop the entry we pushed on open.
+            suppressNextScrollBehavior = true
             window.history.back()
         }
     })

@@ -53,6 +53,53 @@ describe('useDialogHistory', () => {
         expect(isOnDialogHistoryEntry()).toBe(false)
     })
 
+    it('keeps a stale #hash in the URL but flags the close so scrollBehavior is skipped', async () => {
+        const wrapper = await mountSuspended(DialogHistoryHost)
+
+        // Simulate arriving with an in-page anchor still in the URL (e.g. the
+        // user clicked a nav link to #experience earlier, then scrolled on).
+        window.location.hash = 'experience'
+        await nextTick()
+        expect(window.location.hash).toBe('#experience')
+
+        // Nothing pending yet.
+        expect(consumeDialogHistoryScrollSuppression()).toBe(false)
+
+        wrapper.vm.isOpen = true
+        await nextTick()
+
+        // Opening never touches the URL — the hash stays exactly as the user left it.
+        expect(window.location.hash).toBe('#experience')
+        expect(consumeDialogHistoryScrollSuppression()).toBe(false)
+
+        window.history.back()
+        await nextTick()
+
+        expect(wrapper.vm.isOpen).toBe(false)
+        // Going back restores the same URL, hash included — that's correct,
+        // it's the resulting scroll jump app/router.options.ts must suppress.
+        expect(window.location.hash).toBe('#experience')
+
+        // app/router.options.ts's scrollBehavior would call this once, right
+        // here, to decide whether to skip scrolling for this navigation.
+        expect(consumeDialogHistoryScrollSuppression()).toBe(true)
+        // It's a one-shot flag — a later, unrelated navigation isn't affected.
+        expect(consumeDialogHistoryScrollSuppression()).toBe(false)
+    })
+
+    it('flags a UI-triggered close (history.back()) for scroll suppression too', async () => {
+        const wrapper = await mountSuspended(DialogHistoryHost)
+
+        wrapper.vm.isOpen = true
+        await nextTick()
+        expect(consumeDialogHistoryScrollSuppression()).toBe(false)
+
+        wrapper.vm.isOpen = false
+        await nextTick()
+
+        expect(consumeDialogHistoryScrollSuppression()).toBe(true)
+    })
+
     it('supports repeated open/close cycles without leaking popstate listeners or entries', async () => {
         const wrapper = await mountSuspended(DialogHistoryHost)
 
