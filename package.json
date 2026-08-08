@@ -43,7 +43,7 @@
         "embla-carousel-vue": "^8.6.0",
         "gsap": "^3.15.0",
         "lucide-vue-next": "^0.577.0",
-        "nuxt": "^4.4.7",
+        "nuxt": "^4.5.1",
         "reka-ui": "^2.10.1",
         "shadcn-nuxt": "^2.7.4",
         "tailwind-merge": "^3.6.0",
@@ -86,7 +86,7 @@
     "resolutions": {
         "tar": "^7.5.21",
         "tar-fs": "^3.1.1",
-        "vite": "^7.3.5",
+        "vite": "^8.2.1",
         "@vue/devtools-kit": ">=8.0.3",
         "glob": "^10.5.0"
     },
@@ -95,7 +95,7 @@
         "overrides": {
             "flatted": "^3.4.2",
             "serialize-javascript": ">=7.0.5",
-            "h3": ">=1.15.9",
+            "h3": "1.15.11",
             "nitropack": ">=2.13.4",
             "simple-git": ">=3.36.0",
             "fast-uri": ">=4.1.1",
@@ -121,7 +121,7 @@
             "@vue/shared": "3.5.39",
             "defu": ">=6.1.5",
             "lodash": ">=4.18.0",
-            "unhead": "~2.1.13",
+            "unhead": ">=3.2.3",
             "ws": ">=8.20.1",
             "shell-quote": ">=1.9.0",
             "@babel/core": "^7.29.7",
