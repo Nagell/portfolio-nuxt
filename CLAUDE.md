@@ -115,3 +115,12 @@ below have changed.
   by pinning all `@vue/*` to `>=3.5.34`. Keep these mitigations and verify Vue
   resolves to a single aligned version (`pnpm ls vue @vue/server-renderer`) after
   any Nuxt bump.
+- **`app/router.options.ts` duplicates Nuxt's default `scrollBehavior`** (copied
+  from `nuxt/dist/pages/runtime/router.options.js`) with one addition: it skips
+  scrolling when `useDialogHistory` flags a fake same-URL history pop/push (the
+  project gallery's dialog-close-on-back), which otherwise re-triggers Nuxt's
+  hash/scroll-reset logic and yanks the page to a stale `#anchor` or the top.
+  Nuxt has no supported way to extend rather than fully replace `scrollBehavior`,
+  so this is a plain copy, not a wrapper — it won't pick up upstream changes
+  automatically. After a Nuxt version bump, diff this file's logic against the
+  current `nuxt/dist/pages/runtime/router.options.js` and re-sync if it changed.
