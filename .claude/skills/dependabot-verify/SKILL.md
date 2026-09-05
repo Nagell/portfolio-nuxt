@@ -213,21 +213,62 @@ This is the half of the job that isn't waiting.
 ## 7. Hand over the link and stop
 
 When CI is green on the current head and the Vercel preview for that same sha is `READY` with
-clean build logs, report:
+clean build logs, report using the template below. Then stop. Don't merge, don't verify the
+render, don't keep polling.
 
-- what Dependabot flagged and what you changed
-- the check names and their conclusions
-- the Vercel deployment state
-- **the preview link**
-
-The link is the branch alias, stable across pushes:
+The preview link is the branch alias, stable across pushes:
 
 ```
 https://portfolio-nuxt-git-<branch-slug>-nagells-projects.vercel.app
 ```
 
-Read it off `meta.branchAlias` in the deployment, or the `vercel[bot]` comment's Preview
-column. Then stop. Don't merge, don't verify the render, don't keep polling.
+Read it off `meta.branchAlias` in the deployment, or the `vercel[bot]` comment's Preview column.
+
+### Report template
+
+Fill both tables. Keep the column headers as-is so consecutive runs read the same way.
+
+---
+
+Both builds are green on `<head-sha>`. Here's the link.
+
+**Preview:** `<branch-alias-url>`
+
+**PR [#N](<pr-url>)** — head `<short-sha>`, `<mergeable_state>`.
+
+**Steps**
+
+| # | Step | Result |
+| --- | --- | --- |
+| 1 | Read advisories (`pnpm audit`) | ✅ `<N>` findings, `<severity breakdown>` |
+| 2 | Patch via `pnpm.overrides` | ✅ `<N>` entries added/raised |
+| 3 | `pnpm audit` re-run | ✅ No known vulnerabilities found |
+| 4 | `pnpm lint` | ✅ 0 errors |
+| 5 | `pnpm typecheck` | ✅ clean |
+| 6 | `pnpm build` | ✅ succeeds |
+| 7 | PR opened to `main` | ✅ #`<N>` |
+| 8 | GitHub Actions | ✅ `<n>`/`<n>` checks green |
+| 9 | Vercel preview build | ✅ `READY`, no build-log errors |
+| 10 | Repairs needed | `<none, or what you fixed>` |
+
+**Dependencies updated**
+
+| Package | Previous | Current | Reason |
+| --- | --- | --- | --- |
+| `<pkg>` | `<x.y.z>` | `<x.y.z>` | `<GHSA-id>` — `<one-line description>` |
+
+Rules for the tables:
+
+- **Steps**: one row per step actually performed. Drop rows that didn't apply and add rows for
+  anything extra you did (a merge-base merge, a re-run, a repair round). A step that failed and
+  was then fixed stays in the table as ⚠️ with a note — don't quietly relabel it ✅.
+- **Dependencies**: read *Previous* and *Current* from the lockfile before and after
+  `pnpm install`, not from the override string. The override is a floor (`>=4.1.3`); the
+  resolved version is what actually shipped (`4.1.4`), and those differ often enough to matter.
+  Group multiple advisories on one package into a single row with the GHSA ids comma-separated.
+- Mention below the tables whether the packages are runtime or dev-only, since that's what
+  decides how much the change can actually break.
+- Prose around the tables stays short. The tables are the report.
 
 ## Why you can't open the preview
 
@@ -268,4 +309,7 @@ None of this is a problem: handing over the link is the intended end of the job.
 - 111 `vue/max-len` warnings are pre-existing. `pnpm lint` exiting 0 with warnings is a pass.
 - `.claude` is gitignored wholesale, so this file is force-added. It stays tracked, but
   `git add` still refuses the ignored path — use `git add -f` every time you edit it.
+- When updating this skill, or any file that already exists: **edit the part that changed, don't
+  regenerate the whole file.** A wholesale rewrite silently drops details nobody asked you to
+  remove, and turns a two-line correction into an unreviewable diff.
 - Clean up `.output` (~39 MB); disk is a fixed allowance.
