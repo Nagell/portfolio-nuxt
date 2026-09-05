@@ -19,7 +19,9 @@ logs
 
 # AI files
 .cursor
-.claude
+.claude/*
+# ...but share committed skills with the team / web sessions
+!.claude/skills/
 .playwright-mcp
 _bmad
 _bmad-output
