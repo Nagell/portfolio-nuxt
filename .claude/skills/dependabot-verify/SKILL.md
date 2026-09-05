@@ -230,11 +230,14 @@ Fill both tables. Keep the column headers as-is so consecutive runs read the sam
 
 ---
 
-Both builds are green on `<head-sha>`. Here's the link.
+Both builds are green on `<short-sha>`.
 
-**Preview:** `<branch-alias-url>`
+- 🔗 **[Open the preview](<branch-alias-url>)** — `<branch-alias-host>`
+- 🔗 **[PR #N](<pr-url>)** — head `<short-sha>`, `<mergeable_state>`
 
-**PR [#N](<pr-url>)** — head `<short-sha>`, `<mergeable_state>`.
+Both links go first, on their own lines, as markdown links so they're one click away. Never
+paste a bare URL for either — a long alias hostname wraps across lines and stops being a single
+clickable target.
 
 **Steps**
 
