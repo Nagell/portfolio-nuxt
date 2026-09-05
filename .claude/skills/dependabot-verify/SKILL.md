@@ -55,11 +55,43 @@ The path tells you the blast radius: a transitive **dev** dependency (eslint plu
 commitlint, test tooling) is low risk; anything in the runtime tree deserves more care at
 step 3.
 
-## 2. Patch via `pnpm.overrides`
+## 2. Patch it — try upgrading before reaching for an override
 
-Almost every advisory lands on a package that is **not a direct dependency**, and
-`package.json` already carries ~35 `pnpm.overrides` entries for exactly this. Follow the
-pattern:
+`package.json` already carries **40** `pnpm.overrides` entries plus 5 `resolutions`, because
+the reflex here has been "add an override". Resist that reflex: an override is a permanent pin
+that never expires, keeps applying long after the parent catches up, and can later hold a
+package *back*. This repo has been broken twice by exactly that — an `unhead ~2.1.13` override
+left over from an old CVE fix broke `nuxt@4.5.1`, and a `vite ^7.3.5` pin blocked
+`@nuxt/vite-builder@4.5.2`. Every override you add is a future incident waiting for a version
+bump.
+
+**So try the upgrade first.** Take the direct dependency at the head of the advisory's
+dependency path and check whether a newer release resolves it:
+
+```bash
+pnpm outdated | grep -Ei "<direct parent>"      # is there a newer release at all?
+```
+
+If there is, bump the direct dep in `package.json`, `pnpm install`, and re-run `pnpm audit`.
+Clean? That's the fix — the real one, with no debt attached. Ship that instead of an override.
+
+This is not theoretical. On the run that produced this skill, bumping `@nuxt/eslint`
+1.16.0 → 1.17.0 and `@commitlint/cli` 21.1.0 → 21.2.2 cleared **all six** advisories with zero
+overrides.
+
+Two things to weigh before choosing the upgrade anyway:
+
+- **Diff size.** The override approach touched 12 lines of lockfile; the upgrade churned ~1400.
+  On a security-only patch you want reviewable, or right before a release, the small targeted
+  diff can be the better trade.
+- **Silent regressions.** Dropping an override lets the tree resolve freely, and it can go
+  *backwards*. In the run above, `fast-uri` went 4.1.4 → **3.1.7** — a major downgrade that
+  `pnpm audit` still calls clean, because no current advisory covers 3.1.7. Audit-clean is not
+  the same as intended. Always diff the resolved versions, not just the audit result.
+
+### When an override really is the answer
+
+No release of any parent resolves it yet. Then follow the existing pattern:
 
 - Already in `pnpm.overrides` → raise its floor (`">=4.1.2"` → `">=4.1.3"`).
 - Not there → add `"<pkg>": ">=<patched version>"`.
@@ -74,6 +106,14 @@ pnpm audit                          # must print "No known vulnerabilities found
 
 Never hand-edit `pnpm-lock.yaml`. A correct override often makes it *shrink* — two copies
 collapsing into one. That's the fix working, not a mistake.
+
+### Prune while you're in there
+
+Overrides accumulate and nothing ever removes them. While you have the tree loaded, spot-check
+a couple of the oldest entries: drop one, `pnpm install`, `pnpm audit`. If it stays clean and
+the resolved version is still at or above the floor, the tree has outgrown that override and it
+can go. Don't attempt all 40 in one pass — a few per run, mentioned in the report, keeps the
+list shrinking without turning a security patch into a dependency refactor.
 
 ## 3. Validate locally before pushing
 
@@ -232,13 +272,6 @@ Fill both tables. Keep the column headers as-is so consecutive runs read the sam
 
 Both builds are green on `<short-sha>`.
 
-- 🔗 **[Open the preview](<branch-alias-url>)** — `<branch-alias-host>`
-- 🔗 **[PR #N](<pr-url>)** — head `<short-sha>`, `<mergeable_state>`
-
-Both links go first, on their own lines, as markdown links so they're one click away. Never
-paste a bare URL for either — a long alias hostname wraps across lines and stops being a single
-clickable target.
-
 **Steps**
 
 | # | Step | Result |
@@ -272,6 +305,19 @@ Rules for the tables:
 - Mention below the tables whether the packages are runtime or dev-only, since that's what
   decides how much the change can actually break.
 - Prose around the tables stays short. The tables are the report.
+- **The two links go last**, after the tables and after any closing note — nothing below them.
+  This is a chat: the bottom of the message is what's on screen when you stop, so the links
+  should be right there, click-ready, without scrolling back up.
+
+Close the report with exactly this, and nothing after it:
+
+```
+- 🔗 **[Open the preview](<branch-alias-url>)**
+- 🔗 **[PR #N](<pr-url>)** — head `<short-sha>`, `<mergeable_state>`
+```
+
+Markdown links, never bare URLs — a long alias hostname wraps across lines and stops being a
+single clickable target.
 
 ## Why you can't open the preview
 
