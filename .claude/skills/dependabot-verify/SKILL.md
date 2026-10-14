@@ -3,8 +3,9 @@ name: dependabot-verify
 description: >
     Find what Dependabot is flagging on this repo, patch it, open a PR to main, then watch both
     the GitHub Actions run and the Vercel preview build until they finish. Fix whatever goes
-    red. When both are green, hand over the preview link and stop — the human does the visual
-    check. Use when asked to "check Dependabot", "fix the security alerts", "patch the
+    red. When both are green, smoke-test the preview at runtime (a page, an uncached image,
+    the runtime error log), then hand over the preview link and stop — the human does the
+    visual check. Use when asked to "check Dependabot", "fix the security alerts", "patch the
     advisories", or to take any dependency bump from alert to a verified-building preview.
 ---
 
@@ -16,11 +17,13 @@ The contract, end to end:
 2. Patch it.
 3. Open a PR to `main` (nothing else triggers CI or a preview).
 4. Watch **GitHub Actions** and **the Vercel preview build**. Fix anything red.
-5. Both green → **post the preview link and stop.**
+5. Both green → **smoke-test the preview at runtime** (step 7).
+6. Smoke test clean → **post the preview link and stop.**
 
-Step 5 is a full stop. Do **not** try to fetch or verify the rendered preview yourself — you
-can't (see [Why you can't open the preview](#why-you-cant-open-the-preview)), and it isn't
-your job. The human opens the link and judges whether it looks right.
+A green build is not a working site. The smoke test catches what only fails when a request
+hits the deployed function (see [step 7](#7-smoke-test-the-preview-at-runtime)). It is a
+request-level check, not a visual one: the human still opens the link and judges whether it
+looks right.
 
 ## 0. What you have and don't have
 
@@ -250,11 +253,42 @@ This is the half of the job that isn't waiting.
   quarantine a test to get green.
 - Each push restarts both builds. Go back to step 5 and watch the new head.
 
-## 7. Hand over the link and stop
+## 7. Smoke-test the preview at runtime
 
-When CI is green on the current head and the Vercel preview for that same sha is `READY` with
-clean build logs, report using the template below. Then stop. Don't merge, don't verify the
-render, don't keep polling.
+Once the preview for the current head is `READY`, hit it. `mcp__Vercel__web_fetch_vercel_url`
+gets through the preview's SSO protection (see
+[Opening the preview](#opening-the-preview)). Three checks:
+
+1. **A prerendered page** → `<branch-alias-url>/legal-notice` must return `200` with HTML.
+2. **An uncached image through `/_ipx`** → must return `200` with `content-type: image/webp`:
+
+   ```
+   <branch-alias-url>/_ipx/w_<odd width>&f_webp/https:/gmbtgsckranserhrllex.supabase.co/storage/v1/object/public/assets/portfolio.webp
+   ```
+
+   Pick a width nothing has requested before (e.g. `w_317`, `w_323`) so the CDN can't answer
+   from cache (`x-vercel-cache: MISS`) and the image function actually runs.
+3. **The runtime error log** → `mcp__Vercel__get_runtime_logs` with the preview's
+   `deploymentId`, `level: ["error","fatal"]`, `since: "15m"` must be empty. The two requests
+   above just exercised the functions, so an empty log now means something.
+
+Why these three: on the run that added this step, `@nuxt/image` 2.0 → 2.1 pulled
+`ipx@4.0.0-beta.1`, and every `/_ipx` request on Vercel 500'd with `ERR_REQUIRE_ESM`
+(`ipx/dist/_chunks/node-fs.mjs` `require()`s ESM-only `srvx`). Build green, all six checks
+green, e2e green — and every project cover image broken. Only a runtime request shows it.
+
+Any check fails → it's a red build: back to [step 6](#6-if-something-is-red-repair-it). Read
+the runtime log for the stack, fix, push.
+
+If `web_fetch_vercel_url` comes back with a `302` to `vercel.com/sso-api` instead (access has
+regressed), skip checks 1–2, still read the runtime log, and say plainly in the report that the
+runtime smoke test could not run. Don't present the hand-over as verified.
+
+## 8. Hand over the link and stop
+
+When CI is green on the current head, the Vercel preview for that same sha is `READY` with
+clean build logs, and the step-7 smoke test is clean, report using the template below. Then
+stop. Don't merge, don't keep polling.
 
 The preview link is the branch alias, stable across pushes:
 
@@ -285,7 +319,8 @@ Both builds are green on `<short-sha>`.
 | 7 | PR opened to `main` | ✅ #`<N>` |
 | 8 | GitHub Actions | ✅ `<n>`/`<n>` checks green |
 | 9 | Vercel preview build | ✅ `READY`, no build-log errors |
-| 10 | Repairs needed | `<none, or what you fixed>` |
+| 10 | Preview runtime smoke test | ✅ page 200, uncached `/_ipx` 200 `image/webp`, no runtime errors |
+| 11 | Repairs needed | `<none, or what you fixed>` |
 
 **Dependencies updated**
 
@@ -319,28 +354,24 @@ Close the report with exactly this, and nothing after it:
 Markdown links, never bare URLs — a long alias hostname wraps across lines and stops being a
 single clickable target.
 
-## Why you can't open the preview
+## Opening the preview
 
-Worth knowing so you don't burn turns rediscovering it:
-
-- `ssoProtection` on this project is `all_except_custom_domains` (confirm with
-  `get_project_deployment_protection`). Every `*.vercel.app` preview 302s to
-  `vercel.com/sso-api`.
-- `mcp__Vercel__web_fetch_vercel_url` **follows no redirects** and never sets the SSO cookie —
-  it just returns the 302. A `_vercel_share` token from `get_access_to_vercel_url` doesn't help;
-  the tool overwrites it with its own and still 302s.
+- `ssoProtection` on this project is `all_except_custom_domains`, so every `*.vercel.app`
+  preview sits behind Vercel SSO.
+- **`mcp__Vercel__web_fetch_vercel_url` gets through it** (verified 2026-10-14): both a
+  prerendered page and an uncached `/_ipx` image on the branch-alias preview returned `200`.
+  This used to fail — the tool returned the `302` to `vercel.com/sso-api` — so if it ever does
+  again, use the fallback in step 7 rather than hunting for a workaround.
+- Responses are returned raw: an image comes back as binary text. Judge it by `status` and the
+  `content-type` / `x-vercel-cache` headers, not the body.
 - `WebFetch` returns `EGRESS_BLOCKED` for `*.vercel.app`; `curl` from the container gets
-  `CONNECT tunnel failed, response 403`. The network policy denies the host outright.
-- The Protection Bypass secret (`VERCEL_AUTOMATION_BYPASS_SECRET`) would work, but **it is not
-  obtainable here — already checked, don't re-search:** `.env`/`.env.*` are gitignored so a
-  fresh clone never has them (only `.env.example`, with placeholders); there's no `.vercel/`
-  directory; it's not in the session environment; and no Vercel MCP tool reads project env vars
-  (`get_project` returns metadata only).
-- Custom domains *are* exempt, so `mcp__Vercel__web_fetch_vercel_url` fetches
-  `https://www.dawidnitka.com/...` fine — relevant only if you're ever asked to check
-  production after a merge. Use the `www.` host; the bare domain 308s and the tool won't follow.
-
-None of this is a problem: handing over the link is the intended end of the job.
+  `CONNECT tunnel failed, response 403`. Only the Vercel MCP tool reaches previews.
+- The Protection Bypass secret (`VERCEL_AUTOMATION_BYPASS_SECRET`) **is not obtainable here —
+  already checked, don't re-search:** `.env`/`.env.*` are gitignored, there's no `.vercel/`
+  directory, it's not in the session environment, and no Vercel MCP tool reads env values.
+- Custom domains are exempt from SSO, so the same tool fetches `https://www.dawidnitka.com/...`
+  for a post-merge production check. Use the `www.` host; the bare domain 308s and the tool
+  won't follow.
 
 ## Caveats worth re-reading
 
@@ -350,8 +381,11 @@ None of this is a problem: handing over the link is the intended end of the job.
   current head.
 - The `vercel[bot]` comment edits are your Vercel hook, but confirm state via the API.
 - `list_deployments` without `since` returns a wall of text.
-- Empty Vercel runtime logs on a protected preview prove nothing — the edge rejects the request
-  before the function ever runs.
+- A green build is not a working site — run the step-7 smoke test. Empty runtime logs only
+  prove something after your own requests have hit the functions.
+- A dependency bump that resolves to a **pre-release** (`-beta`, `-rc`, `-alpha`) is a red flag
+  even when audit, build and CI are all clean — that's exactly how `ipx@4.0.0-beta.1` slipped in.
+  Diff resolved versions for pre-release tags before pushing.
 - Local `curl` needs the proxy bypassed or a healthy server reads as dead (`000`).
 - `/` hangs locally without Supabase. Smoke-test `/legal-notice` instead.
 - `pnpm test` needs Docker; can't run here.
