@@ -1,5 +1,5 @@
 <template>
-    <NuxtLink
+    <a
         href="#"
         aria-label="E-Mail address"
         class="obfuscated-email hover:text-primary focus:text-primary transition-colors duration-300"
@@ -7,7 +7,7 @@
         data-domain="dawidnitka"
         data-tld="com"
         rel="noopener noreferrer"
-        @click="openEmail"
+        @click.prevent="openEmail"
     />
 </template>
 
