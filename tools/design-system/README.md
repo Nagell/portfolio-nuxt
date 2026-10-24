@@ -26,6 +26,10 @@ python3 readmes.py <dir>/project    # components/<Name>/README.md
 
 Serve the scratch root over HTTP and open `harness/<Name>.light.html` / `.dark.html` to check each card before publishing. Publish the changed files to the system's URL as its `SKILL.md` describes, with `components/index.d.ts` sent as `text/plain`.
 
+## Claude Design app (`/design-sync`)
+
+The same kit also feeds the "Dawid Nitka Portfolio" project in the Claude Design app. Run `/design-sync` in Claude Code from the repo root: it reads `.design-sync/config.json` (project, build command, CSS and docs paths), the preview cards in `.design-sync/previews/` and the quirks in `.design-sync/NOTES.md`. `pnpm build:dist` produces the package form it needs (`dist/` with types, `out/tokens.css` from the site's `variables.css`); `docs/*.md` are the per-component guides for both destinations.
+
 ## Files
 
 | Path | What |

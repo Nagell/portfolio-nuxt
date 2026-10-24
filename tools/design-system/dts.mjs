@@ -6,8 +6,8 @@ let out = `// Dawid Nitka Portfolio: React mirror of the site's shadcn-vue compo
 // Everything is on window.DawidNitka (e.g. DawidNitka.Button). Documentation only, not type-checked.
 import * as React from "react"
 `
-for (const f of fs.readdirSync("types-out/ui").sort()) {
-  const body = fs.readFileSync(`types-out/ui/${f}`, "utf8")
+for (const f of fs.readdirSync("dist/ui").sort()) {
+  const body = fs.readFileSync(`dist/ui/${f}`, "utf8")
     .split("\n").filter((l) => !/^import .* from "\.\.?\//.test(l)).join("\n")
   out += `\n// ---- ${f.replace(".d.ts", "")} ----\n${body}`
 }

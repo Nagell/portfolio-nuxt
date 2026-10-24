@@ -1,87 +1,11 @@
-import os, sys
+# Copies docs/<Name>.md into the design-system artifact as components/<Name>/README.md
+# (drops the frontmatter, adds the title). docs/ is also what /design-sync reads.
+import os, re, sys
 
 S = sys.argv[1]
-# name: (summary, details, example)
-R = {
-"Button": ("A clickable action: the primary call to action in yellow, plus quieter variants.",
-"- `variant`: `default` (yellow `primary`, one per view), `secondary`, `outline`, `ghost` (toolbars, menus), `link`, `destructive` (delete only).\n- `size`: `sm` (32px), `default` (36px), `lg` (40px), `icon` (36px square; give it an `aria-label`).\n- `asChild` renders the styles on your own element, e.g. an `<a>`.\n- Icons go inside as children; they are sized to 16px automatically.",
-'<Button>Save project</Button>\n<Button variant="outline" size="icon" aria-label="Add"><DawidNitka.Icons.Plus /></Button>'),
-"Badge": ("A small pill label for tags and statuses.",
-"- `variant`: `default` (yellow, for one highlight), `secondary`, `muted` (outlined, `muted-foreground` text: the site's technology tags), `outline`, `destructive`.\n- Lay tag lists out with `flex flex-wrap gap-2`.",
-'<Badge variant="muted">Nuxt</Badge>'),
-"Avatar": ("A person's picture or initials in a circle or rounded square.",
-"- Parts: `Avatar` > `AvatarImage` (`src`, `alt`) + `AvatarFallback` (initials shown while the image loads or if it fails).\n- `size`: `sm` 40px (default), `base` 64px, `lg` 128px. `shape`: `circle` (default) or `square`.\n- The fill is `secondary`.",
-'<Avatar size="base"><AvatarImage src={url} alt="Dawid Nitka" /><AvatarFallback>DN</AvatarFallback></Avatar>'),
-"Card": ("A bordered surface that groups one item: an experience entry, a project, a form.",
-"- Parts: `Card` > `CardHeader` (`CardTitle`, `CardDescription`) > `CardContent` > `CardFooter`.\n- Cards separate from the page by their 1px `border`, not by fill (`card` equals `background`).\n- `CardTitle` is 24px semibold; use `CardDescription` for dates and metadata.",
-'<Card>\n  <CardHeader><CardTitle>Title</CardTitle><CardDescription>2021 – present</CardDescription></CardHeader>\n  <CardContent>…</CardContent>\n</Card>'),
-"Carousel": ("A horizontally (or vertically) scrolling row of slides with previous/next buttons (Embla).",
-"- Parts: `Carousel` > `CarouselContent` > `CarouselItem`…, plus `CarouselPrevious` and `CarouselNext` (round outline buttons that sit 48px outside the track, so leave side padding).\n- Set slide width with `basis-*` on `CarouselItem` (`basis-1/2`, `md:basis-1/3`).\n- `opts` passes Embla options (`{ align: \"start\", loop: true }`); `orientation=\"vertical\"` stacks slides.",
-'<Carousel className="max-w-sm">\n  <CarouselContent>{items.map(i => <CarouselItem key={i.id} className="basis-1/2">…</CarouselItem>)}</CarouselContent>\n  <CarouselPrevious /><CarouselNext />\n</Carousel>'),
-"Separator": ("A 1px divider line, horizontal or vertical, with an optional centred label.",
-"- `orientation`: `horizontal` (default) or `vertical` (give the parent a height, e.g. `h-5`).\n- `label` puts small muted text on the line, e.g. `\"OR\"` between two login options.",
-'<Separator className="my-4" />\n<Separator label="OR" />'),
-"Skeleton": ("A pulsing placeholder block shown while content loads.",
-"- Size and shape it with classes to match the content it stands in for (`h-4 w-48`, `h-12 w-12 rounded-full`).\n- Fill is `muted`, which is very light on the light theme by design.",
-'<Skeleton className="h-4 w-48" />'),
-"Table": ("A data table for admin lists: projects, assets, experience entries.",
-"- Parts: `Table` > `TableHeader` > `TableRow` > `TableHead`; `TableBody` > `TableRow` > `TableCell`; optional `TableFooter`, `TableCaption`.\n- `TableEmpty` renders a full-width \"No results\" row; pass `colSpan` = number of columns.\n- Rows highlight on hover; set `data-state=\"selected\"` on a row to mark it selected. The table scrolls horizontally inside its own wrapper.",
-'<Table>\n  <TableHeader><TableRow><TableHead>Title</TableHead></TableRow></TableHeader>\n  <TableBody><TableRow><TableCell>Portfolio site</TableCell></TableRow></TableBody>\n</Table>'),
-"Input": ("A single-line text field.",
-"- Takes every native `<input>` prop (`type`, `placeholder`, `value`, `onChange`, `disabled`).\n- 40px tall, `input` border, `ring` focus ring. Pair it with a `Label` (`htmlFor` = the input's `id`), or use it inside `Form`.",
-'<Label htmlFor="title">Title</Label>\n<Input id="title" placeholder="Experience title" />'),
-"Textarea": ("A multi-line text field, at least 80px tall.",
-"- Takes every native `<textarea>` prop. Pair with a `Label`, or use inside `Form`.",
-'<Textarea placeholder="Experience description" />'),
-"Label": ("The text label for a form control.",
-"- 14px medium. Link it to its control with `htmlFor`. It dims automatically when a sibling `peer` control is disabled.",
-'<Label htmlFor="url">Company URL</Label>'),
-"Checkbox": ("A square on/off control.",
-"- `checked` / `defaultChecked` / `onCheckedChange`; `disabled`.\n- Border and checked fill are `primary` (yellow) with a dark check mark. Put a `Label` beside it.",
-'<div className="flex items-center gap-2"><Checkbox id="pub" /><Label htmlFor="pub">Published</Label></div>'),
-"TagsInput": ("A field that collects a list of free-text tags.",
-"- `value` + `onValueChange` (controlled) or `defaultValue` (uncontrolled), `placeholder`, `disabled`.\n- Enter or comma adds the typed tag; Backspace in an empty field removes the last one; each tag has a remove button.\n- The tag chips are `secondary` with square-ish 4px corners, unlike the round `Badge`.",
-'<TagsInput defaultValue={["Vue", "Nuxt"]} placeholder="Add tags" />'),
-"Calendar": ("A month grid for picking a date (react-day-picker v9).",
-"- `mode=\"single\"` with `selected` + `onSelect`; also `mode=\"range\"` / `\"multiple\"`. `defaultMonth` sets the visible month.\n- Selected day is filled `primary`; today is tinted `accent`. Put it inside a `Popover` for a date field, or give it `className=\"rounded-md border\"` inline.",
-'const [date, setDate] = React.useState(new Date())\n<Calendar mode="single" selected={date} onSelect={setDate} className="rounded-md border" />'),
-"Form": ("Form fields wired to react-hook-form with zod validation, labels, descriptions and error messages.",
-"- `useForm`, `zodResolver` and `z` are exported by the bundle too.\n- Parts: `Form` (spread the `useForm()` result into it) > `FormField` (`control`, `name`, `render`) > `FormItem` > `FormLabel`, `FormControl` (wraps the input), `FormDescription`, `FormMessage` (shows the field's error).\n- On error the label and message turn `destructive`.",
-'const form = useForm({ resolver: zodResolver(schema), defaultValues: { title: "" } })\n<Form {...form}><form onSubmit={form.handleSubmit(save)}>\n  <FormField control={form.control} name="title" render={({ field }) => (\n    <FormItem><FormLabel>Title</FormLabel><FormControl><Input {...field} /></FormControl><FormMessage /></FormItem>\n  )} />\n</form></Form>'),
-"Dialog": ("A modal window over a blurred backdrop, for editing or confirming one thing.",
-"- Parts: `Dialog` > `DialogTrigger` (use `asChild` with a `Button`) + `DialogContent` > `DialogHeader` (`DialogTitle`, `DialogDescription`), body, `DialogFooter`.\n- The site's dialog has a light 40% black overlay with a small blur and a round, bordered close button at the top right.\n- `DialogScrollContent` replaces `DialogContent` for long content: the overlay scrolls instead of the panel.\n- Control it with `open` / `onOpenChange` or start it open with `defaultOpen`.",
-'<Dialog>\n  <DialogTrigger asChild><Button variant="outline">Edit</Button></DialogTrigger>\n  <DialogContent><DialogHeader><DialogTitle>Edit experience</DialogTitle></DialogHeader>…</DialogContent>\n</Dialog>'),
-"Sheet": ("A panel that slides in from a screen edge, over an 80% black overlay.",
-"- Parts: `Sheet` > `SheetTrigger` + `SheetContent` (`side`: `right` default, `left`, `top`, `bottom`) > `SheetHeader` (`SheetTitle`, `SheetDescription`), body, `SheetFooter`.\n- Side panels are 3/4 of the width, up to 384px from `sm` up, and scroll internally.",
-'<Sheet>\n  <SheetTrigger asChild><Button>Open</Button></SheetTrigger>\n  <SheetContent side="right"><SheetHeader><SheetTitle>Edit project</SheetTitle></SheetHeader>…</SheetContent>\n</Sheet>'),
-"Popover": ("A small floating panel anchored to a trigger, for filters and pickers.",
-"- Parts: `Popover` > `PopoverTrigger` (`asChild`) + `PopoverContent` (`align`, `side`, `sideOffset`; 288px wide by default).",
-'<Popover>\n  <PopoverTrigger asChild><Button variant="outline">Filter</Button></PopoverTrigger>\n  <PopoverContent>…</PopoverContent>\n</Popover>'),
-"Tooltip": ("A short hint that appears on hover or focus.",
-"- Wrap the app (or the area) once in `TooltipProvider`. Parts: `Tooltip` > `TooltipTrigger` (`asChild`) + `TooltipContent` (`side`).\n- Use it to name icon-only buttons; keep the text to a few words.",
-'<TooltipProvider><Tooltip>\n  <TooltipTrigger asChild><Button size="icon" variant="outline" aria-label="Add project"><DawidNitka.Icons.Plus /></Button></TooltipTrigger>\n  <TooltipContent>Add project</TooltipContent>\n</Tooltip></TooltipProvider>'),
-"DropdownMenu": ("A menu of actions that opens from a button.",
-"- Parts: `DropdownMenu` > `DropdownMenuTrigger` (`asChild`) + `DropdownMenuContent` > `DropdownMenuLabel`, `DropdownMenuItem` (icons as first child, `onSelect`), `DropdownMenuSeparator`, `DropdownMenuShortcut`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioGroup`/`RadioItem`, `DropdownMenuSub`/`SubTrigger`/`SubContent`.\n- The site uses it for row actions (a ghost icon button with `Icons.MoreHorizontal`) and the sidebar's account menu.",
-'<DropdownMenu>\n  <DropdownMenuTrigger asChild><Button variant="ghost" size="icon" aria-label="Actions"><DawidNitka.Icons.MoreHorizontal /></Button></DropdownMenuTrigger>\n  <DropdownMenuContent><DropdownMenuItem><DawidNitka.Icons.Trash />Delete</DropdownMenuItem></DropdownMenuContent>\n</DropdownMenu>'),
-"Command": ("A searchable list of commands or results (cmdk).",
-"- Parts: `Command` > `CommandInput` + `CommandList` > `CommandEmpty`, `CommandGroup` (`heading`) > `CommandItem` (`onSelect`), `CommandSeparator`, `CommandShortcut`.\n- `CommandDialog` (`open`, `onOpenChange`) shows it as a modal palette.",
-'<Command className="rounded-lg border">\n  <CommandInput placeholder="Search…" />\n  <CommandList><CommandEmpty>No results found.</CommandEmpty><CommandGroup heading="Sections"><CommandItem>About</CommandItem></CommandGroup></CommandList>\n</Command>'),
-"Toaster": ("Toast notifications (Sonner): mount one `Toaster`, then call `toast()` anywhere.",
-"- Render `<Toaster />` once near the root; it follows the light/dark theme automatically.\n- `toast(\"Title\", { description })`, `toast.success`, `toast.error`, `toast.warning`, `toast.info`, `toast.loading`, `toast.promise`. Lucide icons mark each type.\n- Toasts use `background`, `border` and a large shadow; action buttons are `primary`.",
-'<Toaster />\n<Button onClick={() => toast.success("Project saved")}>Save</Button>'),
-"Collapsible": ("A section that expands and collapses with a short height animation.",
-"- Parts: `Collapsible` (`open`/`onOpenChange` or `defaultOpen`) > `CollapsibleTrigger` (`asChild`) + `CollapsibleContent`.",
-'<Collapsible>\n  <CollapsibleTrigger asChild><Button variant="ghost" size="sm">Show more</Button></CollapsibleTrigger>\n  <CollapsibleContent>…</CollapsibleContent>\n</Collapsible>'),
-"NavigationMenu": ("The site header: a sticky bar floating 16px from the top, with a rounded-xl border, a blurred translucent background, the logo and section links.",
-"- `NavigationMenu` already renders the floating bar, its blurred backdrop and the `container` width. Put one or more `NavigationMenuList`s inside; with two, the second is pushed to the right (the site's Login link, hidden below the `xs` breakpoint with `hidden xs:flex`).\n- Links: `NavigationMenuItem` > `NavigationMenuLink asChild` > your `<a className={navigationMenuTriggerStyle()}>`. Text is `accent-foreground` at 80% opacity, full on hover.\n- The first item is the logo mark at 24px (`mark-ink.svg` / `mark-white.svg` from Logos).\n- `NavigationMenuTrigger` + `NavigationMenuContent` give dropdown panels, but the site uses plain links only.",
-'<NavigationMenu>\n  <NavigationMenuList>\n    <NavigationMenuItem><NavigationMenuLink asChild><a href="#about" className={navigationMenuTriggerStyle()}>About</a></NavigationMenuLink></NavigationMenuItem>\n  </NavigationMenuList>\n</NavigationMenu>'),
-"Sidebar": ("The admin dashboard's collapsible side navigation.",
-"- Wrap the page in `SidebarProvider`; put `Sidebar` (`collapsible`: `offcanvas`, `icon` (the admin's choice), `none`; `side`; `variant`) and `SidebarInset` (the main area) inside.\n- Inside `Sidebar`: `SidebarHeader`, `SidebarContent` > `SidebarGroup` > `SidebarGroupLabel` + `SidebarMenu` > `SidebarMenuItem` > `SidebarMenuButton` (`asChild`, `isActive`, `tooltip`, `size`), and `SidebarFooter`.\n- `SidebarTrigger` toggles it; `useSidebar()` reads its state. Below 768px it becomes a `Sheet`.\n- Uses the `sidebar-*` tokens. Admin screens only.",
-'<SidebarProvider>\n  <Sidebar collapsible="icon"><SidebarContent><SidebarGroup><SidebarMenu>\n    <SidebarMenuItem><SidebarMenuButton isActive><DawidNitka.Icons.Library /><span>Projects</span></SidebarMenuButton></SidebarMenuItem>\n  </SidebarMenu></SidebarGroup></SidebarContent></Sidebar>\n  <SidebarInset>…</SidebarInset>\n</SidebarProvider>'),
-}
-assert len(R) == 25
-for name, (summary, details, ex) in R.items():
-    txt = f"# {name}\n\n{summary}\n\n{details}\n\n```jsx\n{ex}\n```\n\nReact mirror of the site's shadcn-vue `{name}`; classes copied from `app/components/ui`.\n"
+for f in sorted(os.listdir("docs")):
+    name = f[:-3]
+    body = re.sub(r"^---\n.*?\n---\n\n", "", open(f"docs/{f}").read(), flags=re.S)
     os.makedirs(f"{S}/components/{name}", exist_ok=True)
-    open(f"{S}/components/{name}/README.md", "w").write(txt)
+    open(f"{S}/components/{name}/README.md", "w").write(f"# {name}\n\n{body}")
 print("ok")

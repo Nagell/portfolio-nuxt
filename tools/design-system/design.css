@@ -10,6 +10,7 @@
 
 @source "./src";
 @source "./previews";
+@source "../../.design-sync/previews";
 
 /* Utilities a design may use on its own markup, beyond what the components use */
 @source inline("{,hover:,focus:}{bg,text,border}-{background,foreground,card,card-foreground,popover,popover-foreground,primary,primary-foreground,secondary,secondary-foreground,muted,muted-foreground,accent,accent-foreground,destructive,destructive-foreground,border,input,ring}");
