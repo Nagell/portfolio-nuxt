@@ -4,23 +4,23 @@ Builds the [Dawid Nitka Portfolio](https://claude.ai/artifact/YFMLUApDALJbHz9sa9
 
 Each `src/ui/*.tsx` starts from the React shadcn/ui "default" style, with its Tailwind classes replaced by the exact class strings of the matching Vue component. Change a Vue component's styling, then copy the change here and rebuild.
 
-This folder uses npm (its own `package-lock.json`) and is excluded from the repo's ESLint and Nuxt typecheck.
+This folder is its own pnpm project (not a workspace member, with its own `pnpm-lock.yaml`) and is excluded from the repo's ESLint and Nuxt typecheck.
 
 ## Rebuild
 
 ```bash
 cd tools/design-system
-npm ci
-npm run drift            # classes that differ between Vue and React, per component
-npm run build            # out/bundle.js (window.DawidNitka) + out/bundle.css
+pnpm install --frozen-lockfile
+pnpm drift                 # classes that differ between Vue and React, per component
+pnpm build                 # out/bundle.js (window.DawidNitka) + out/bundle.css
 ```
 
 To publish, read the system's files into a folder (`<dir>/project/…`) with the Artifact tool, then:
 
 ```bash
 cp out/bundle.js out/bundle.css <dir>/project/components/
-npm run previews -- <dir>/project   # components/<Name>/preview.html + harness/ pages for screenshots
-npm run dts -- <dir>/project        # components/index.d.ts
+pnpm previews <dir>/project   # components/<Name>/preview.html + harness/ pages for screenshots
+pnpm dts <dir>/project        # components/index.d.ts
 python3 readmes.py <dir>/project    # components/<Name>/README.md
 ```
 
