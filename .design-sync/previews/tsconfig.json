@@ -1,0 +1,4 @@
+{
+    // Previews are React; without this, esbuild picks up the Nuxt root tsconfig and compiles JSX for Vue
+    "compilerOptions": { "jsx": "react-jsx", "jsxImportSource": "react" }
+}
