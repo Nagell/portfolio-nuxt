@@ -77,6 +77,7 @@ export default defineNuxtConfig({
     sitemap: {
         exclude: [ '/__tests__/**', '/admin/**', '/login' ],
         sources: [ '/api/__sitemap__/urls' ],
+        xsl: false, // browsers are dropping XSLT; crawlers never used the styled view
     },
     components: {
         dirs: [
