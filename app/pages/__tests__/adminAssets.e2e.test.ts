@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
+import testIds from '../../utils/testIds'
 import { URLS, createAdminTestSuite, createPage, url } from './helpers/adminTestBase'
 import { createTestFile } from './helpers/assetHelper'
-import testIds from '../../utils/testIds'
 
 import type { NuxtPage } from '@nuxt/test-utils'
 

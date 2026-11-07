@@ -1,9 +1,9 @@
 import { type NuxtPage, createPage, setup, url } from '@nuxt/test-utils/e2e'
 import { beforeAll, describe, expect, it } from 'vitest'
 
+import testIds from '../../utils/testIds'
 import { URLS } from './helpers/urlHelper'
 import { setupOptions } from './helpers/vitestConfig'
-import testIds from '../../utils/testIds'
 
 describe('Home Page E2E Tests', () => {
     let page: NuxtPage
